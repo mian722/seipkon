@@ -476,8 +476,8 @@
                               <div class="chart">
                                  <ul class="earning_chart">
                                     <li>
-                                       <h4>today</h4>
-                                       <p>155</p>
+                                       <h4>Today</h4>
+                                       <p>160</p>
                                     </li>
                                     <li>
                                        <h4>Last week</h4>
