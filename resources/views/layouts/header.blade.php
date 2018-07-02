@@ -316,7 +316,7 @@
                   <h3>General</h3>
                   <ul class="list-unstyled components">
                      <li class="active">
-                        <a href="index-2.html">
+                        <a href="{{ asset('') }}">
                         <i class="fa fa-dashboard"></i>
                         Dashboard
                         </a>
@@ -327,10 +327,10 @@
                         e-Commerce
                         </a>
                         <ul class="collapse list-unstyled" id="ecommerce">
-                           <li><a href="product.html">all products</a></li>
-                           <li><a href="add-product.html">add new product</a></li>
-                           <li><a href="edit-product.html">Edit product</a></li>
-                           <li><a href="order-list-product.html">product order list</a></li>
+                           <li><a href="{{ asset('product') }}">all products</a></li>
+                           <li><a href="{{ asset('add-product') }}">add new product</a></li>
+                           <li><a href="{{ asset('edit-product') }}">Edit product</a></li>
+                           <li><a href="{{ asset('order-list-product') }}">product order list</a></li>
                         </ul>
                      </li>
                      <li>
@@ -339,9 +339,9 @@
                         pages
                         </a>
                         <ul class="collapse list-unstyled" id="createpage">
-                           <li><a href="pages.html">all pages</a></li>
-                           <li><a href="create-page.html">create a page</a></li>
-                           <li><a href="edit-page.html">Edit Page</a></li>
+                           <li><a href="{{ asset('pages') }}">all pages</a></li>
+                           <li><a href="{{ asset('create-page') }}">create a page</a></li>
+                           <li><a href="{{ asset('edit-page') }}">Edit Page</a></li>
                         </ul>
                      </li>
                      <li>
@@ -350,9 +350,9 @@
                         Advance apps
                         </a>
                         <ul class="collapse list-unstyled" id="apps">
-                           <li><a href="chatting.html">Chatting</a></li>
-                           <li><a href="notes.html">notes</a></li>
-                           <li><a href="apps-contact-list.html">Contact/Employee</a></li>
+                           <li><a href="{{ asset('chatting') }}">Chatting</a></li>
+                           <li><a href="{{ asset('notes') }}">notes</a></li>
+                           <li><a href="{{ asset('apps-contact-list') }}">Contact/Employee</a></li>
                         </ul>
                      </li>
                      <li>
@@ -361,9 +361,9 @@
                         mailbox
                         </a>
                         <ul class="collapse list-unstyled" id="mail">
-                           <li><a href="compose.html">compose</a></li>
-                           <li><a href="inbox.html">inbox</a></li>
-                           <li><a href="mail-read.html">read</a></li>
+                           <li><a href="{{ asset('compose') }}">compose</a></li>
+                           <li><a href="{{ asset('inbox') }}">inbox</a></li>
+                           <li><a href="{{ asset('mail-read') }}">read</a></li>
                         </ul>
                      </li>
                      <li>
@@ -372,24 +372,24 @@
                         UI Elements
                         </a>
                         <ul class="collapse list-unstyled" id="ui_elements">
-                           <li><a href="ui_button.html">Button</a></li>
-                           <li><a href="ui_panels.html">Panels</a></li>
+                           <li><a href="{{ asset('ui_button') }}">Button</a></li>
+                           <li><a href="{{ asset('ui_panels') }}">Panels</a></li>
                            <li>
                               <a href="#icon" data-toggle="collapse" aria-expanded="false">
                               Icons
                               </a>
                               <ul class="collapse list-unstyled" id="icon">
-                                 <li><a href="icon-fontawesome.html">Font awesome</a></li>
-                                 <li><a href="icon-glyphicons.html">Glyphicons</a></li>
-                                 <li><a href="icon-themify.html">Themify Icons</a></li>
+                                 <li><a href="{{ asset('icon-fontawesome') }}">Font awesome</a></li>
+                                 <li><a href="{{ asset('icon-glyphicons') }}">Glyphicons</a></li>
+                                 <li><a href="{{ asset('icon-themify') }}">Themify Icons</a></li>
                               </ul>
                            </li>
-                           <li><a href="ui_tab_accordion.html">Tabs & Accordions</a></li>
-                           <li><a href="ui_sweet_alerts.html">sweet Alerts</a></li>
-                           <li><a href="ui_progressbars.html">Progress bars</a></li>
-                           <li><a href="ui_carousel.html">Carousel</a></li>
-                           <li><a href="ui_breadcrumbs.html">breadcrumbs</a></li>
-                           <li><a href="ui_pagination.html">pagination</a></li>
+                           <li><a href="{{ asset('ui_tab_accordion') }}">Tabs & Accordions</a></li>
+                           <li><a href="{{ asset('ui_sweet_alerts') }}">sweet Alerts</a></li>
+                           <li><a href="{{ asset('ui_progressbars') }}">Progress bars</a></li>
+                           <li><a href="{{ asset('ui_carousel') }}">Carousel</a></li>
+                           <li><a href="{{ asset('ui_breadcrumbs') }}">breadcrumbs</a></li>
+                           <li><a href="{{ asset('ui_pagination') }}">pagination</a></li>
                         </ul>
                      </li>
                   </ul>
