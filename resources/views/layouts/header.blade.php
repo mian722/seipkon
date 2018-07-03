@@ -27,12 +27,6 @@
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/jvector/css/jquery-jvectormap.css') }}">
       <!-- Daterange CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/daterangepicker/css/daterangepicker.css') }}">
-      <!-- Toggles CSS -->
-      <link rel="stylesheet" href="{{ asset('public/assets/plugins/jquery-toggle/css/toggles-full.css') }}">
-      <!-- Select2 CSS -->
-      <link rel="stylesheet" href="{{ asset('public/assets/plugins/select2/css/select2.min.css') }}">
-      <!-- Color Picker CSS -->
-      <link rel="stylesheet" href="{{ asset('public/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
       <!-- Bootstrap-select CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/bootstrap-select/css/bootstrap-select.min.css') }}">
       <!-- Summernote CSS -->
@@ -447,8 +441,8 @@
                         Tables
                         </a>
                         <ul class="collapse list-unstyled" id="table">
-                           <li><a href="{{ asset('basic-table') }}">basic table</a></li>
-                           <li><a href="{{ asset('advance-table') }}">table Advance</a></li>
+                           <li><a href="basic-table.html">basic table</a></li>
+                           <li><a href="advance-table.html">table Advance</a></li>
                         </ul>
                      </li>
                   </ul>
@@ -550,23 +544,12 @@
       <script src="{{ asset('public/assets/js/jquery-3.1.0.min.js') }}"></script>
       <!-- Bootstrap JS -->
       <script src="{{ asset('public/assets/plugins/bootstrap/bootstrap.min.js') }}"></script>
+      
+      <!-- Bootstrap-select JS -->
+      <script src="{{ asset('public/assets/plugins/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
       <!-- Daterange JS -->
       <script src="{{ asset('public/assets/plugins/daterangepicker/js/moment.min.js') }}"></script>
       <script src="{{ asset('public/assets/plugins/daterangepicker/js/daterangepicker.js') }}"></script>
-      <!-- Perfect Scrollbar JS -->
-      <script src="{{ asset('public/assets/plugins/perfect-scrollbar/jquery-perfect-scrollbar.min.js') }}"></script>
-      <!-- Masked Input JS -->
-      <script src="{{ asset('public/assets/plugins/masked-input/js/jquery.maskedinput.min.js') }}"></script>
-      <!-- Select2 JS -->
-      <script src="{{ asset('public/assets/plugins/select2/js/select2.full.js') }}"></script>
-      <!-- Color Picker JS -->
-      <script src="{{ asset('public/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
-      <!-- Jquery Knob JS -->
-      <script src="{{ asset('public/assets/plugins/jquery-knob/js/jquery.knob.min.js') }}"></script>
-      <!-- Advance Component Form JS For Only This Page -->
-      <script src="{{ asset('public/assets/js/advance_component_form.js') }}"></script>
-      <!-- Custom JS -->
-      <script src="{{ asset('public/assets/js/seipkon.js') }}"></script>
       <!-- Jvector JS -->
       <script src="{{ asset('public/assets/plugins/jvector/js/jquery-jvectormap-1.2.2.min.js') }}"></script>
       <script src="{{ asset('public/assets/plugins/jvector/js/jquery-jvectormap-world-mill-en.js') }}"></script>
@@ -593,6 +576,8 @@
       <script src="{{ asset('public/assets/plugins/datatables/js/jszip.min.js') }}"></script>
       <script src="{{ asset('public/assets/plugins/datatables/js/pdfmake.min.js') }}"></script>
       <script src="{{ asset('public/assets/plugins/datatables/js/vfs_fonts.js') }}"></script>
+      <!-- Perfect Scrollbar JS -->
+      <script src="{{ asset('public/assets/plugins/perfect-scrollbar/jquery-perfect-scrollbar.min.js') }}"></script>
       <!-- Vue JS -->
       <script src="{{ asset('public/assets/plugins/vue/vue.min.js') }}"></script>
       <!-- Summernote JS -->
@@ -600,8 +585,10 @@
       <script src="{{ asset('public/assets/plugins/summernote/js/custom-summernote.js') }}"></script>
       <!-- Dashboard JS -->
       <script src="{{ asset('public/assets/js/dashboard.js') }}"></script>
-      <!-- Bootstrap-select JS -->
-      <script src="{{ asset('public/assets/plugins/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
+       <!-- Form Wizard Custom JS For Only This Page -->
+      <script src="{{ asset('public/assets/js/advance_table_custom.js') }}"></script>
+      <!-- Custom JS -->
+      <script src="{{ asset('public/assets/js/seipkon.js') }}"></script>
    </body>
 
 <!-- Mirrored from themescare.com/demos/seipkon-admin-template/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Jun 2018 07:49:15 GMT -->
