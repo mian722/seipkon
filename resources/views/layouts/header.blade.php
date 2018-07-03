@@ -437,8 +437,8 @@
                         Tables
                         </a>
                         <ul class="collapse list-unstyled" id="table">
-                           <li><a href="basic-table.html">basic table</a></li>
-                           <li><a href="advance-table.html">table Advance</a></li>
+                           <li><a href="{{ asset('basic-table') }}">basic table</a></li>
+                           <li><a href="{{ asset('advance-table') }}">table Advance</a></li>
                         </ul>
                      </li>
                   </ul>
@@ -568,6 +568,8 @@
       <script src="{{ asset('public/assets/plugins/summernote/js/custom-summernote.js') }}"></script>
       <!-- Dashboard JS -->
       <script src="{{ asset('public/assets/js/dashboard.js') }}"></script>
+      <!-- Advance Component Form JS For Only This Page -->
+      <script src="{{ asset('public/assets/js/advance_component_form.js') }}"></script>
       <!-- Custom JS -->
       <script src="{{ asset('public/assets/js/seipkon.js') }}"></script>
    </body>
