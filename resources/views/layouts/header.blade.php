@@ -27,6 +27,10 @@
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/jvector/css/jquery-jvectormap.css') }}">
       <!-- Daterange CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/daterangepicker/css/daterangepicker.css') }}">
+      <!-- Toggles CSS -->
+      <link rel="stylesheet" href="{{ asset('public/assets/plugins/jquery-toggle/css/toggles-full.css') }}">
+      <!-- Select2 CSS -->
+      <link rel="stylesheet" href="{{ asset('public/assets/plugins/select2/css/select2.min.css') }}">
       <!-- Bootstrap-select CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/bootstrap-select/css/bootstrap-select.min.css') }}">
       <!-- Summernote CSS -->
@@ -550,6 +554,18 @@
       <!-- Daterange JS -->
       <script src="{{ asset('public/assets/plugins/daterangepicker/js/moment.min.js') }}"></script>
       <script src="{{ asset('public/assets/plugins/daterangepicker/js/daterangepicker.js') }}"></script>
+      <!-- Perfect Scrollbar JS -->
+      <script src="{{ asset('public/assets/plugins/perfect-scrollbar/jquery-perfect-scrollbar.min.js') }}"></script>
+      <!-- Masked Input JS -->
+      <script src="{{ asset('public/assets/plugins/masked-input/js/jquery.maskedinput.min.js') }}"></script>
+      <!-- Select2 JS -->
+      <script src="{{ asset('public/assets/plugins/select2/js/select2.full.js') }}"></script>
+      <!-- Color Picker JS -->
+      <script src="{{ asset('public/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+      <!-- Jquery Knob JS -->
+      <script src="{{ asset('public/assets/plugins/jquery-knob/js/jquery.knob.min.js') }}"></script>
+      <!-- Advance Component Form JS For Only This Page -->
+      <script src="{{ asset('public/assets/js/advance_component_form.js') }}"></script>
       <!-- Jvector JS -->
       <script src="{{ asset('public/assets/plugins/jvector/js/jquery-jvectormap-1.2.2.min.js') }}"></script>
       <script src="{{ asset('public/assets/plugins/jvector/js/jquery-jvectormap-world-mill-en.js') }}"></script>
@@ -576,8 +592,6 @@
       <script src="{{ asset('public/assets/plugins/datatables/js/jszip.min.js') }}"></script>
       <script src="{{ asset('public/assets/plugins/datatables/js/pdfmake.min.js') }}"></script>
       <script src="{{ asset('public/assets/plugins/datatables/js/vfs_fonts.js') }}"></script>
-      <!-- Perfect Scrollbar JS -->
-      <script src="{{ asset('public/assets/plugins/perfect-scrollbar/jquery-perfect-scrollbar.min.js') }}"></script>
       <!-- Vue JS -->
       <script src="{{ asset('public/assets/plugins/vue/vue.min.js') }}"></script>
       <!-- Summernote JS -->

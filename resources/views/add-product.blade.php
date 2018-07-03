@@ -92,13 +92,23 @@
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Status <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <input type="text" placeholder="Tags">
+                                                         <select class="form-control select2">
+                                                            <option selected="selected">Active</option>
+                                                            <option>Paused</option>
+                                                            <option>Pending</option>
+                                                            <option>Deleted</option>
+                                                         </select>
                                                       </p>
                                                    </div>
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Currency <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <input type="text" placeholder="Advertiser's Offer ID">
+                                                         <select class="form-control select2">
+                                                            <option selected="selected">United States, Dollars(USD)</option>
+                                                            <option>Euro(EUR)</option>
+                                                            <option>Australia, Dollars(AUD)</option>
+                                                            <option>Brazil, Reais(BRL)</option>
+                                                         </select>
                                                       </p>
                                                    </div>
                                                 </div>
