@@ -324,13 +324,14 @@
                      <li>
                         <a href="#ecommerce" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-shopping-cart"></i>
-                        e-Commerce
+                        Offers
                         </a>
                         <ul class="collapse list-unstyled" id="ecommerce">
-                           <li><a href="{{ asset('product') }}">all products</a></li>
-                           <li><a href="{{ asset('add-product') }}">add new product</a></li>
-                           <li><a href="{{ asset('edit-product') }}">Edit product</a></li>
-                           <li><a href="{{ asset('order-list-product') }}">product order list</a></li>
+                           <li><a href="{{ asset('all-offers') }}">all offers</a></li>
+                           <li><a href="{{ asset('add-product') }}">add new offer</a></li>
+                           <li><a href="{{ asset('offer-application') }}">Offer Application</a></li>
+                           <!-- <li><a href="{{ asset('edit-product') }}">Edit product</a></li> -->
+                           <li><a href="{{ asset('offer-pool') }}">Offer Pool</a></li>
                         </ul>
                      </li>
                      <li>
