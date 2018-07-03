@@ -272,8 +272,22 @@
                                                 <div class="col-md-12">
                                                    <p>
                                                       <label>Description <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <input type="text" placeholder="Tags">
+                                                      <div id="page-editor">
+                                                         &nbsp;
+                                                         <br />
+                                                         &nbsp;
+                                                         <br />
+                                                         &nbsp;
+                                                         <br />
+                                                         &nbsp;
+                                                         <br />
+                                                         &nbsp;
+                                                         <br />
+                                                         &nbsp;
+                                                         <br />
+                                                      </div>
                                                    </p>
+                                                   <button type="submit" class="pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
                                                 </div>
                                              </div>
 
