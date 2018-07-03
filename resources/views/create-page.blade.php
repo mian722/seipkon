@@ -38,20 +38,41 @@
                            <div class="row">
                               <div class="col-md-9">
                                  <div class="create-page-left">
-                                    <form>
-                                       <p>
-                                          <label>Page Title</label>
-                                          <input type="text" placeholder="Enter Page Title" >
-                                       </p>
-                                       <div class="page-editor-box">
-                                          <label>Page Content</label>
-                                          <div id="page-editor"></div>
-                                       </div>
-                                       <p>
-                                          <button type="submit" class="btn btn-success" ><i class="fa fa-check"></i>publish page</button>
-                                          <button type="submit" class="btn btn-default" ><i class="fa fa-ban"></i>save draft</button>
-                                       </p>
-                                    </form>
+                                    <div class="table-responsive">
+                              <table class="table">
+                                 <thead>
+                                    <tr>
+                                       <th>ID</th>
+                                       <th>Advertiser</th>
+                                       <th>Offer</th>
+                                       <th>Affiliate</th>
+                                       <th>Manager</th>
+                                       <th>Apply Time</th>
+                                       <th>Accept Time</th>
+                                       <th>Status</th>
+                                       <th>Action</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>#1</td>
+                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
+                                       <td>#120342</td>
+                                       <td>Angelica Ramos</td>
+                                       <td>product title</td>
+                                       <td>22</td>
+                                       <td>09/08/2017</td>
+                                       <td>
+                                          <span class="label label-success">Approve</span>
+                                       </td>
+                                       <td>
+                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Approve"><i class="fa fa-check"></i></a>
+                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Decline"><i class="fa fa-times"></i></a>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
                                  </div>
                               </div>
                               <div class="col-md-3">
