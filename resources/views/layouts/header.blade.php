@@ -31,6 +31,10 @@
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/bootstrap-select/css/bootstrap-select.min.css') }}">
       <!-- Summernote CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/summernote/css/summernote.css') }}">
+      <!-- DataTables CSS -->
+      <link rel="stylesheet" href="{{ asset('public/assets/plugins/datatables/css/dataTables.bootstrap.min.css') }}" >
+      <link rel="stylesheet" href="{{ asset('public/assets/plugins/datatables/css/buttons.bootstrap.min.css') }}" >
+      <link rel="stylesheet" href="{{ asset('public/assets/plugins/datatables/css/responsive.bootstrap.min.css') }}" >
       <!-- Main CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/css/seipkon.css') }}">
       <!-- Responsive CSS -->
@@ -540,6 +544,7 @@
       <script src="{{ asset('public/assets/js/jquery-3.1.0.min.js') }}"></script>
       <!-- Bootstrap JS -->
       <script src="{{ asset('public/assets/plugins/bootstrap/bootstrap.min.js') }}"></script>
+      
       <!-- Bootstrap-select JS -->
       <script src="{{ asset('public/assets/plugins/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
       <!-- Daterange JS -->
@@ -557,8 +562,20 @@
       <script src="{{ asset('public/assets/plugins/sparkline/js/jquery.sparkline.js') }}"></script>
       <!-- Chart JS -->
       <script src="{{ asset('public/assets/plugins/charts/js/Chart.js') }}"></script>
+      
       <!-- Datatables -->
       <script src="{{ asset('public/assets/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/datatables/js/dataTables.bootstrap.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/datatables/js/dataTables.buttons.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/datatables/js/buttons.bootstrap.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/datatables/js/buttons.flash.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/datatables/js/buttons.html5.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/datatables/js/buttons.print.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/datatables/js/responsive.bootstrap.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/datatables/js/jszip.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/datatables/js/pdfmake.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/datatables/js/vfs_fonts.js') }}"></script>
       <!-- Perfect Scrollbar JS -->
       <script src="{{ asset('public/assets/plugins/perfect-scrollbar/jquery-perfect-scrollbar.min.js') }}"></script>
       <!-- Vue JS -->
@@ -568,6 +585,8 @@
       <script src="{{ asset('public/assets/plugins/summernote/js/custom-summernote.js') }}"></script>
       <!-- Dashboard JS -->
       <script src="{{ asset('public/assets/js/dashboard.js') }}"></script>
+       <!-- Form Wizard Custom JS For Only This Page -->
+      <script src="{{ asset('public/assets/js/advance_table_custom.js') }}"></script>
       <!-- Custom JS -->
       <script src="{{ asset('public/assets/js/seipkon.js') }}"></script>
    </body>
