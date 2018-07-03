@@ -72,7 +72,15 @@
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Tag <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <input type="text" placeholder="Tags">
+                                                         <select class="form-control select2" multiple="multiple" data-placeholder="Select a State">
+                                                            <option>Alabama</option>
+                                                            <option>Alaska</option>
+                                                            <option>California</option>
+                                                            <option>Delaware</option>
+                                                            <option>Tennessee</option>
+                                                            <option>Texas</option>
+                                                            <option>Washington</option>
+                                                         </select>
                                                       </p>
                                                    </div>
                                                    <div class="col-md-4">
@@ -112,8 +120,163 @@
                                                       </p>
                                                    </div>
                                                 </div>
-
                                              </div>
+
+                                             <div class="col-md-12">
+                                                <div class="col-md-3">
+                                                   <p>
+                                                      <label>Revenue Type</label>
+                                                      <select class="form-control select2">
+                                                         <option selected="selected">RPA</option>
+                                                         <option>RPS</option>
+                                                         <option>RPA+RPS</option>
+                                                      </select>
+                                                   </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                   <p>
+                                                      <label>Revenue</label>
+                                                      <input type="text" placeholder="Tags">
+                                                   </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                      <p>
+                                                         <label>Offer Approval <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                         <select class="form-control select2">
+                                                            <option selected="selected">Require Approval</option>
+                                                            <option>Public</option>
+                                                            <option>Private</option>
+                                                         </select>
+                                                      </p>
+                                                </div>
+                                                <div class="col-md-3">&nbsp;</div>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <div class="col-md-3">
+                                                   <p>
+                                                      <label>Payout Type</label>
+                                                      <select class="form-control select2">
+                                                         <option selected="selected">CPA</option>
+                                                         <option>CPS</option>
+                                                         <option>CPA+CPS</option>
+                                                      </select>
+                                                   </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                   <p>
+                                                      <label>Payout</label>
+                                                      <input type="text" placeholder="Tags">
+                                                   </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                      <p>
+                                                         <label>Affiliate Payout Tiers <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                         <select class="form-control select2">
+                                                            <option selected="selected">Disable</option>
+                                                            <option>Enable</option>
+                                                         </select>
+                                                      </p>
+                                                </div>
+                                                <div class="col-md-3">&nbsp;</div>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <div class="col-md-12">
+                                                   <p>
+                                                      <label>Preview URL <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                      <input type="text" placeholder="Tags">
+                                                   </p>
+                                                </div>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <div class="col-md-12">
+                                                   <p>
+                                                      <label>Destination URL <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                      <input type="text" placeholder="Tags">
+                                                   </p>
+                                                </div>
+                                             </div>
+
+                                             <div style="clear: both; width: 100%; display: block; overflow: hidden;margin-bottom: 30px;"></div>
+                                             <div class="col-md-12">
+                                                <div class="col-md-12">
+                                                   <h3>Tracking Parameters <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
+
+                                                   <div class="table-responsive">
+                                                      <table class="table">
+                                                         <tbody>
+                                                            <tr>
+                                                               <td>{click_id}</td>
+                                                               <td>{offer_id}</td>
+                                                               <td>{event_id}</td>
+                                                               <td>{country_id}</td>
+                                                               <td>{aff_id}</td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td>{adv_id}</td>
+                                                               <td>{adv_sub1}</td>
+                                                               <td>{adv_sub2}</td>
+                                                               <td>{adv_sub3}</td>
+                                                               <td>{aff_sub1}</td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td>{aff_sub2}</td>
+                                                               <td>{aff_sub3}</td>
+                                                               <td>{aff_sub4}</td>
+                                                               <td>{aff_sub5}</td>
+                                                               <td>{source_id}</td>
+                                                            </tr>
+                                                         </tbody>
+                                                      </table>
+                                                   </div>
+                                                      
+                                                </div>
+                                             </div>
+
+                                             <div class="col-md-12">
+                                                <div class="col-md-3">
+                                                   <p>
+                                                      <label>Conversion Protocol <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                      <select class="form-control select2">
+                                                         <option selected="selected">Postback URL</option>
+                                                         <option>CPS</option>
+                                                         <option>CPA+CPS</option>
+                                                      </select>
+                                                   </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                   <p>
+                                                      <label>Conversions Need Approval <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                      <select class="form-control select2">
+                                                         <option selected="selected">Disable</option>
+                                                         <option>Enable</option>
+                                                      </select>
+                                                   </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                   <p>
+                                                      <label>Hide Referral <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                      <select class="form-control select2">
+                                                         <option selected="selected">Default</option>
+                                                         <option>Enable</option>
+                                                      </select>
+                                                   </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                   <p>
+                                                      <label>Application ID</label>
+                                                      <input type="text" placeholder="Application ID">
+                                                   </p>
+                                                </div>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <div class="col-md-12">
+                                                   <p>
+                                                      <label>Description <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                      <input type="text" placeholder="Tags">
+                                                   </p>
+                                                </div>
+                                             </div>
+
                                           </div>
                                        </div>
                                        <div id="Restriction" class="tab-pane fade in">

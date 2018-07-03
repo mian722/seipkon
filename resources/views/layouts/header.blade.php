@@ -43,6 +43,13 @@
       <link rel="stylesheet" href="{{ asset('public/assets/css/seipkon.css') }}">
       <!-- Responsive CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
+
+      <style type="text/css">
+         .profile-widget-img {
+            text-align: center;
+            padding-top: 40px;
+         }
+      </style>
    </head>
    <body>
        
