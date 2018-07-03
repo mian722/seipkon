@@ -86,7 +86,7 @@
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Duration <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <input type="text" id="reservation" class="form-control" placeholder="Date" />
+                                                         <input type="text" id="reservation" placeholder="Date" />
                                                       </p>
                                                    </div>
                                                    <div class="col-md-4">

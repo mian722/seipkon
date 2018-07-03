@@ -21,6 +21,7 @@ Route::get('/offer-application', function () { return view('offer-application');
 Route::get('/pages', function () { return view('pages'); });
 Route::get('/basic-table', function () { return view('basic-table'); });
 Route::get('/advance-table', function () { return view('advance-table'); });
+Route::get('/advance-components', function () { return view('advance-components'); });
 Route::get('/create-page', function () { return view('create-page'); });
 Route::get('/edit-page', function () { return view('edit-page'); });
 Route::get('/chatting', function () { return view('chatting'); });
