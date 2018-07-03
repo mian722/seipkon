@@ -25,6 +25,8 @@
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.css') }}">
       <!-- Jvector CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/jvector/css/jquery-jvectormap.css') }}">
+      <link href="{{ asset('public/assets/bootstrap3-editable/css/bootstrap-editable.css') }}" rel="stylesheet"/>
+
       <!-- Daterange CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/daterangepicker/css/daterangepicker.css') }}">
       <!-- Toggles CSS -->
@@ -349,7 +351,7 @@
                         </a>
                         <ul class="collapse list-unstyled" id="createpage">
                            <li><a href="{{ asset('pages') }}">all pages</a></li>
-                           <li><a href="{{ asset('create-page') }}">create a page</a></li>
+                           <li><a href="{{ asset('create-pool') }}">create a pool</a></li>
                            <li><a href="{{ asset('edit-page') }}">Edit Page</a></li>
                         </ul>
                      </li>
@@ -558,6 +560,7 @@
       <script src="{{ asset('public/assets/plugins/perfect-scrollbar/jquery-perfect-scrollbar.min.js') }}"></script>
       <!-- Masked Input JS -->
       <script src="{{ asset('public/assets/plugins/masked-input/js/jquery.maskedinput.min.js') }}"></script>
+      <script src="{{ asset('public/assets/bootstrap3-editable/js/bootstrap-editable.min.js') }}"></script>
       <!-- Select2 JS -->
       <script src="{{ asset('public/assets/plugins/select2/js/select2.full.js') }}"></script>
       <!-- Color Picker JS -->
@@ -603,6 +606,12 @@
       <script src="{{ asset('public/assets/js/advance_table_custom.js') }}"></script>
       <!-- Custom JS -->
       <script src="{{ asset('public/assets/js/seipkon.js') }}"></script>
+      <script type="text/javascript">
+         $(document).ready(function() {
+            $.fn.editable.defaults.mode = 'popup';
+    $('.username').editable();
+});
+      </script>
    </body>
 
 <!-- Mirrored from themescare.com/demos/seipkon-admin-template/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Jun 2018 07:49:15 GMT -->

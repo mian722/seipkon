@@ -57,7 +57,7 @@
                                           <span class="label label-success">Active</span>
                                        </td>
                                        <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                          <a href="{{ url('/create-page') }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                        </td>
                                     </tr>

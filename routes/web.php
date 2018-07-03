@@ -17,6 +17,8 @@ Route::get('/add-product', function () { return view('add-product'); });
 Route::get('/edit-product', function () { return view('edit-product'); });
 Route::get('/all-offers', function () { return view('all-offers'); });
 Route::get('/offer-pool', function () { return view('offer-pool'); });
+Route::get('/create-pool', function () { return view('create-pool'); });
+Route::get('/detail-pool', function () { return view('detail-pool'); });
 Route::get('/offer-application', function () { return view('offer-application'); });
 Route::get('/pages', function () { return view('pages'); });
 Route::get('/basic-table', function () { return view('basic-table'); });
