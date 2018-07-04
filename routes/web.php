@@ -48,6 +48,7 @@ Route::get('/pending-affiliates', function () { return view('pending-affiliates'
 Route::get('/affiliate-payouts', function () { return view('affiliate-payouts'); });
 Route::get('/affiliate-postback', function () { return view('affiliate-postback'); });
 Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payout-tiers'); });
+Route::get('/affiliate-invoices', function () { return view('affiliate-invoices'); });
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
