@@ -49,7 +49,11 @@ Route::get('/affiliate-payouts', function () { return view('affiliate-payouts');
 Route::get('/affiliate-postback', function () { return view('affiliate-postback'); });
 Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payout-tiers'); });
 Route::get('/affiliate-invoices', function () { return view('affiliate-invoices'); });
+<<<<<<< HEAD
 Route::get('/affiliate-create', function () { return view('affiliate-create'); });
+=======
+Route::get('/advertisers', function () { return view('advertisers'); });
+>>>>>>> ad1018f157bfd5b716191a405767d1ca5806e854
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

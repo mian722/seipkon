@@ -367,6 +367,17 @@
                         </ul>
                      </li>
                      <li>
+                        <a href="#advertiser" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-user-o"></i>
+                        Advertiser
+                        </a>
+                        <ul class="collapse list-unstyled" id="advertiser">
+                           <li><a href="{{ asset('advertisers') }}">Advertiser</a></li>
+                           <li><a href="{{ asset('pending-affiliates') }}">Pending Advertiser</a></li>
+                           <li><a href="{{ asset('affiliate-payouts') }}">Advertiser Invoices</a></li>
+                        </ul>
+                     </li>
+                     <li>
                         <a href="#apps" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-th"></i>
                         Advance apps
