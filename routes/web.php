@@ -52,9 +52,11 @@ Route::get('/affiliate-invoices', function () { return view('affiliate-invoices'
 Route::get('/affiliate-create', function () { return view('affiliate-create'); });
 Route::get('/advertisers', function () { return view('advertisers'); });
 
-Route::get('/pending-advertisers', function () { return view('pending-advertisers'); });
+Route::get('/advertisers-pending', function () { return view('advertisers-pending'); });
 Route::get('/advertisers-invoices', function () { return view('advertisers-invoices'); });
 Route::get('/invoice', function () { return view('invoice'); });
+Route::get('/advertisers-invoice-create', function () { return view('advertisers-invoice-create'); });
+Route::get('/advertisers-create', function () { return view('advertisers-create'); });
 
 Route::get('/postback-create', function () { return view('postback-create'); });
 Auth::routes();

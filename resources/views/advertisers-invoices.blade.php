@@ -18,7 +18,7 @@
                                  </div>
                               </div>
                               <div class="col-md-1 col-sm-1">
-                                 <a class="btn btn-success btn-xs" href="{{ url('affiliate-create') }}" >Create</a>
+                                 <a class="btn btn-success btn-xs" href="{{ url('advertisers-invoice-create') }}" >Create</a>
                               </div>
                            </div>
                         </div>
