@@ -35,13 +35,13 @@
                   <!-- Form Layout Row Start -->
                   <div class="row">
                      <div class="col-md-12">
-                        <div class="col-md-6">
+                     <div class="col-md-6">
                         <div class="page-box">
                            <div class="form-example">
                               <div class="form-wrap">
                                  <form>
                                     <div class="form-group">
-                                       <label class="control-label">Basic Select</label>
+                                       <label class="control-label">Affiliate</label>
                                        <select class="form-control select2">
                                           <option selected="selected">Alabama</option>
                                           <option>Alaska</option>
@@ -53,9 +53,24 @@
                                        </select>
                                     </div>
                                     <div class="form-group">
-                                       <label class="control-label">Disabled Select</label>
-                                       <select class="form-control select2" disabled="disabled">
-                                          <option selected="selected">Alabama</option>
+                                       <label class="control-label" style="width: 100%">Type</label>
+                                       <div class="form-group form-radio col-md-4">
+                                          <input id="radio-1" name="radio" type="radio" checked="checked" />
+                                          <label for="radio-1" class="inline control-label">Offer</label>
+                                       </div>
+                                       <div class="form-group form-radio col-md-4">
+                                          <input id="radio-2" name="radio" type="radio" />
+                                          <label  for="radio-2" class="inline control-label">SmartLink</label>
+                                       </div>
+                                       <div class="form-group form-radio col-md-4">
+                                          <input id="radio-3" name="radio" type="radio" />
+                                         <label  for="radio-2" class="inline control-label">Global</label>
+                                       </div>
+                                    </div>
+                                    <div class="form-group">
+                                       <label class="control-label">Smartlink</label>
+                                       <select class="form-control select2" >
+                                          <option selected="selected">Smartlink 1</option>
                                           <option>Alaska</option>
                                           <option>California</option>
                                           <option>Delaware</option>
@@ -65,9 +80,9 @@
                                        </select>
                                     </div>
                                     <div class="form-group">
-                                       <label class="control-label">Multiple Select</label>
-                                       <select class="form-control select2" multiple="multiple" data-placeholder="Select a State">
-                                          <option>Alabama</option>
+                                       <label class="control-label">Offer</label>
+                                       <select class="form-control select2" >
+                                          <option selected="selected">Offer 1</option>
                                           <option>Alaska</option>
                                           <option>California</option>
                                           <option>Delaware</option>
@@ -77,16 +92,33 @@
                                        </select>
                                     </div>
                                     <div class="form-group">
-                                       <label class="control-label">Disabled Result</label>
+                                       <label class="control-label">Event</label>
                                        <select class="form-control select2">
-                                          <option selected="selected">Alabama</option>
+                                          <option selected="selected">Event1</option>
                                           <option>Alaska</option>
-                                          <option disabled="disabled">California (disabled)</option>
                                           <option>Delaware</option>
                                           <option>Tennessee</option>
                                           <option>Texas</option>
                                           <option>Washington</option>
                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                       <label class="control-label">Protocol</label>
+                                       <select class="form-control select2">
+                                          <option selected="selected">Postback Url</option>
+                                          <option>Alaska</option>
+                                          <option>Delaware</option>
+                                          <option>Tennessee</option>
+                                          <option>Texas</option>
+                                          <option>Washington</option>
+                                       </select>
+                                    </div>
+                                    <div class="form-group">
+                                       <label class="control-label">Code</label>
+                                       <textarea class="form-control" id="message" placeholder="Textarea"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                       <button class="btn btn-success btn-lg">Create</button>
                                     </div>
                                  </form>
                               </div>
@@ -95,59 +127,48 @@
                      </div>
                      <div class="col-md-6">
                         <div class="page-box">
-                           <div class="form-example">
-                              <h3>select 2 elements</h3>
-                              <div class="form-wrap">
-                                 <form>
-                                    <div class="form-group">
-                                       <label class="control-label">Basic Select</label>
-                                       <select class="form-control select2">
-                                          <option selected="selected">Alabama</option>
-                                          <option>Alaska</option>
-                                          <option>California</option>
-                                          <option>Delaware</option>
-                                          <option>Tennessee</option>
-                                          <option>Texas</option>
-                                          <option>Washington</option>
-                                       </select>
+                           <div class="accordian-example">
+                              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                 <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                       <h4 class="panel-title">
+                                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                           Tracking Parameters <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                                          </a>
+                                       </h4>
                                     </div>
-                                    <div class="form-group">
-                                       <label class="control-label">Disabled Select</label>
-                                       <select class="form-control select2" disabled="disabled">
-                                          <option selected="selected">Alabama</option>
-                                          <option>Alaska</option>
-                                          <option>California</option>
-                                          <option>Delaware</option>
-                                          <option>Tennessee</option>
-                                          <option>Texas</option>
-                                          <option>Washington</option>
-                                       </select>
+                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                       <div class="panel-body">
+                                          <div class="table-responsive">
+                                                      <table class="table">
+                                                         <tbody>
+                                                            <tr>
+                                                               <td>{click_id}</td>
+                                                               <td>{offer_id}</td>
+                                                               <td>{event_id}</td>
+                                                               <td>{country_id}</td>
+                                                               <td>{aff_id}</td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td>{adv_id}</td>
+                                                               <td>{adv_sub1}</td>
+                                                               <td>{adv_sub2}</td>
+                                                               <td>{adv_sub3}</td>
+                                                               <td>{aff_sub1}</td>
+                                                            </tr>
+                                                            <tr>
+                                                               <td>{aff_sub2}</td>
+                                                               <td>{aff_sub3}</td>
+                                                               <td>{aff_sub4}</td>
+                                                               <td>{aff_sub5}</td>
+                                                               <td>{source_id}</td>
+                                                            </tr>
+                                                         </tbody>
+                                                      </table>
+                                                   </div> 
+                                       </div>
                                     </div>
-                                    <div class="form-group">
-                                       <label class="control-label">Multiple Select</label>
-                                       <select class="form-control select2" multiple="multiple" data-placeholder="Select a State">
-                                          <option>Alabama</option>
-                                          <option>Alaska</option>
-                                          <option>California</option>
-                                          <option>Delaware</option>
-                                          <option>Tennessee</option>
-                                          <option>Texas</option>
-                                          <option>Washington</option>
-                                       </select>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="control-label">Disabled Result</label>
-                                       <select class="form-control select2">
-                                          <option selected="selected">Alabama</option>
-                                          <option>Alaska</option>
-                                          <option disabled="disabled">California (disabled)</option>
-                                          <option>Delaware</option>
-                                          <option>Tennessee</option>
-                                          <option>Texas</option>
-                                          <option>Washington</option>
-                                       </select>
-                                    </div>
-                                 </form>
+                                 </div>
                               </div>
                            </div>
                         </div>
