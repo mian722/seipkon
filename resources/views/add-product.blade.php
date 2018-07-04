@@ -294,13 +294,166 @@
                                           </div>
                                        </div>
                                        <div id="Restriction" class="tab-pane fade in">
-
+                                          <div class="row">
+                                             <div class="col-md-12">
+                                                <p>
+                                                   <label>Advertiser Caps Type <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <select class="form-control select2">
+                                                      <option selected="selected">None</option>
+                                                      <option>Total</option>
+                                                      <option>Daily</option>
+                                                      <option>Revenue</option>
+                                                   </select>
+                                                </p>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <p>
+                                                   <label>Affiliate Caps Type <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <select class="form-control select2">
+                                                      <option selected="selected">None</option>
+                                                      <option>Total</option>
+                                                      <option>Daily</option>
+                                                      <option>Revenue</option>
+                                                   </select>
+                                                </p>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <p>
+                                                   <label>Caps Timezone <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <select class="form-control select2" style="width: 60%;">
+                                                      <option selected="selected">(GMT -11:00)Pacific/Midway,Niue,Pago_Pago</option>
+                                                      <option>(GMT -10:00)Pacific/Honolulu,Rarotonga</option>
+                                                      <option>(GMT -09:30)Pacific/Marquesas</option>
+                                                      <option>(GMT -09:00)America/Adak</option>
+                                                   </select>
+                                                </p>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <p>
+                                                   <label>Redirect Offer <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <select class="form-control select2" style="width: 60%;">
+                                                      <option selected="selected">test offer #1</option>
+                                                      <option>test offer #2</option>
+                                                      <option>test offer #3</option>
+                                                      <option>test offer #4</option>
+                                                   </select>
+                                                </p>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <p>
+                                                   <label>Offer Pool <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;">
+                                                      <option>Offer 1</option>
+                                                      <option>Offer 2</option>
+                                                      <option>Offer 3</option>
+                                                   </select>
+                                                </p>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <p>
+                                                   <label>Tracking Domain <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <select class="form-control select2" style="width: 40%;">
+                                                      <option selected="selected">test offer #1</option>
+                                                      <option>test offer #2</option>
+                                                      <option>test offer #3</option>
+                                                      <option>test offer #4</option>
+                                                   </select>
+                                                </p>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <p>
+                                                   <label>SSL <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <div class="form-wrap toggle-switches-flex">
+                                                      <div class="form-group">
+                                                         <div class="toggle toggle-modern"></div>
+                                                      </div>
+                                                   </div>
+                                                </p>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <p>
+                                                   <label>Lead Traffic to Preview URL <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <div class="form-wrap toggle-switches-flex">
+                                                      <div class="form-group">
+                                                         <div class="toggle toggle-modern"></div>
+                                                      </div>
+                                                   </div>
+                                                </p>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <p>
+                                                   <label>Unique IP Tracking <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <div class="form-wrap toggle-switches-flex">
+                                                      <div class="form-group">
+                                                         <div class="toggle toggle-modern"></div>
+                                                      </div>
+                                                   </div>
+                                                </p>
+                                             </div>
+                                          </div>
                                        </div>
                                        <div id="Targeting" class="tab-pane fade in">
-
+                                          <div class="row">
+                                             <div class="col-md-12">
+                                                <p>
+                                                   <label>Geo Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;">
+                                                      <option>Offer 1</option>
+                                                      <option>Offer 2</option>
+                                                      <option>Offer 3</option>
+                                                   </select>
+                                                   <select class="form-control select2">
+                                                      <option selected="selected">Include</option>
+                                                      <option>Exclude</option>
+                                                   </select>
+                                                </p>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <p>
+                                                   <label>Mobile Carrier Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;">
+                                                      <option>Offer 1</option>
+                                                      <option>Offer 2</option>
+                                                      <option>Offer 3</option>
+                                                   </select>
+                                                </p>
+                                             </div>
+                                             <div class="col-md-12">
+                                                <p>
+                                                   <label>Platform Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 30%;">
+                                                      <option>Offer 1</option>
+                                                      <option>Offer 2</option>
+                                                      <option>Offer 3</option>
+                                                   </select>
+                                                </p>
+                                             </div>
+                                          </div>
                                        </div>
                                        <div id="Creative" class="tab-pane fade in">
-
+                                          <div class="row">
+                                             <div class="col-md-12">
+                                                <div class="col-md-4" style="padding: 0;"><label>Maximum files: </label><span>10</span></div>
+                                                <div class="col-md-4" style="padding: 0;"><label>Supported formats:</label><span>zip, jpeg, jpg, png, gi</span></div>
+                                                <div class="col-md-4" style="padding: 0;"><label>Maximum size per file: </label><span>20M</span></div>
+                                                <p>
+                                                   <label>Image Pixel between 50 to 3200 in both length and width. </label>
+                                                   <div class="product-upload-action" style="text-align: left;">
+                                                      <div class="product-upload btn btn-info">
+                                                         <p>
+                                                            <i class="fa fa-upload"></i>
+                                                            Upload Image
+                                                         </p>
+                                                         <input type="file">
+                                                      </div>
+                                                      <!-- <button type="submit" class="btn btn-danger">
+                                                      <i class="fa fa-trash"></i>
+                                                      Delete Image
+                                                      </button> -->
+                                                   </div>
+                                                </p>
+                                             </div>
+                                          </div>
                                        </div>
                                     </div>
                                  </form>

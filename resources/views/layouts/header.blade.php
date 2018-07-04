@@ -45,7 +45,7 @@
       <link rel="stylesheet" href="{{ asset('public/assets/css/seipkon.css') }}">
       <!-- Responsive CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
-
+      
       <style type="text/css">
          .profile-widget-img {
             text-align: center;
@@ -565,6 +565,10 @@
       <script src="{{ asset('public/assets/plugins/daterangepicker/js/daterangepicker.js') }}"></script>
       <!-- Perfect Scrollbar JS -->
       <script src="{{ asset('public/assets/plugins/perfect-scrollbar/jquery-perfect-scrollbar.min.js') }}"></script>
+      <!-- Toggles JS -->
+      <script src="{{ asset('public/assets/plugins/jquery-toggle/js/toggles.min.js') }}"></script>
+      <!-- General Form Custom JS For Only This Page -->
+      <script src="{{ asset('public/assets/js/general_form_custom.js') }}"></script>
       <!-- Masked Input JS -->
       <script src="{{ asset('public/assets/plugins/masked-input/js/jquery.maskedinput.min.js') }}"></script>
       <script src="{{ asset('public/assets/bootstrap3-editable/js/bootstrap-editable.min.js') }}"></script>
