@@ -127,16 +127,6 @@
                                     <div class="row">
                                        <div class="col-md-3">
                                           <div class="form-group">
-                                             <label class="control-label">Manager:<span data-toggle="tooltip" title="" data-original-title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                             <select class="form-control select2">
-                                                <option selected="selected">IM</option>
-                                                <option>Skype</option>
-                                                <option>facebook</option>
-                                             </select>
-                                          </div>
-                                       </div>
-                                       <div class="col-md-3">
-                                          <div class="form-group">
                                              <label class="control-label">Status:</label>
                                              <select class="form-control select2">
                                                 <option selected="selected">Active</option>
@@ -150,7 +140,7 @@
                                              <input type="password" class="form-control" >
                                           </div>
                                        </div>
-                                       <div class="col-md-3">
+                                       <div class="col-md-2">
                                           <div class="form-group">
                                              <label class="control-label">Tier:</label>
                                              <select class="form-control select2" data-placeholder="Select a State">
@@ -162,6 +152,12 @@
                                                 <option>Texas</option>
                                                 <option>Washington</option>
                                              </select>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-4">
+                                          <div class="form-group">
+                                             <label class="control-label">&nbsp;</label>
+                                             <input type="text" class="form-control" name="" disabled="">
                                           </div>
                                        </div>
                                     </div>

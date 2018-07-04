@@ -12,19 +12,13 @@
                      <div class="col-md-12">
                         <div class="breadcromb-area">
                            <div class="row">
-                              <div class="col-md-6 col-sm-6">
+                              <div class="col-md-11 col-sm-11">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Order List</h3>
+                                    <h3>Affiliate Invoices</h3>
                                  </div>
                               </div>
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="seipkon-breadcromb-right">
-                                    <ul>
-                                       <li><a href="index-2.html">home</a></li>
-                                       <li>e-Commerce</li>
-                                       <li>Product order list</li>
-                                    </ul>
-                                 </div>
+                              <div class="col-md-1 col-sm-1">
+                                 <a class="btn btn-success btn-xs" href="{{ url('affiliate-invoice-create') }}" >Create</a>
                               </div>
                            </div>
                         </div>
@@ -55,7 +49,7 @@
                                  <tbody>
                                     <tr>
                                        <td>#1</td>
-                                       <td>#120342</td>
+                                       <td><a href="{{ asset('invoice') }}" style="color: #1CD2C9;">#120342</a></td>
                                        <td>Angelica Ramos</td>
                                        <td>product title</td>
                                        <td>#120342</td>

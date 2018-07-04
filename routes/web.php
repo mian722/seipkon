@@ -50,6 +50,7 @@ Route::get('/affiliate-postback', function () { return view('affiliate-postback'
 Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payout-tiers'); });
 Route::get('/affiliate-invoices', function () { return view('affiliate-invoices'); });
 Route::get('/affiliate-create', function () { return view('affiliate-create'); });
+Route::get('/affiliate-invoice-create', function () { return view('affiliate-invoice-create'); });
 Route::get('/advertisers', function () { return view('advertisers'); });
 
 Route::get('/advertisers-pending', function () { return view('advertisers-pending'); });

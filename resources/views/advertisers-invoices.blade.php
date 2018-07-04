@@ -58,7 +58,7 @@
                                        <td>2018-07-11</td>
                                        <td>0 USD</td>
                                        <td>advertiser</td>
-                                       <td class="btn btn-rounded btn-success">Paid</td>
+                                       <td><span class="label label-success">Paid</span></td>
                                        <td>
                                           <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
@@ -75,7 +75,7 @@
                                        <td>2018-07-11</td>
                                        <td>0 USD</td>
                                        <td>advertiser</td>
-                                       <td><span class="btn btn-rounded btn-danger">Pending</span></td>
+                                       <td><span class="label label-danger">Pending</span></td>
                                        <td>
                                           <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
