@@ -14,7 +14,7 @@
                            <div class="row">
                               <div class="col-md-11 col-sm-11">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Advertisers</h3>
+                                    <h3>Advertisers Invoices</h3>
                                  </div>
                               </div>
                               <div class="col-md-1 col-sm-1">
@@ -34,25 +34,48 @@
                               <table id="responsive_datatables_example" class="table display table-striped table-bordered responsive nowrap">
                                  <thead>
                                     <tr>
-                                       <th>ID</th>
-                                       <th>Company</th>
-                                       <th>Name</th>
-                                       <th>IM</th>
+                                       <th>Date</th>
+                                       <th>Invoice No.</th>
+                                       <th>Advertiser</th>
                                        <th>Manager</th>
-                                       <th>Country</th>
-                                       <th>Mobile No.</th>
+                                       <th>Start Date</th>
+                                       <th>End Date</th>
+                                       <th>Due Date</th>
+                                       <th>Total Amount</th>
+                                       <th>Memo</th>
                                        <th>Action</th>
+                                       <th>Status</th>
                                     </tr>
                                  </thead>
                                  <tbody>
                                     <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>Angelica Ramos</td>
-                                       <td>22</td>
-                                       <td>product title</td>
-                                       <td>Pak</td>
-                                       <td>+92878324782</td>
+                                       <td>2018-07-02</td>
+                                       <td><a href="{{ asset('invoice') }}" style="color: #1CD2C9;">20180702-5-8623/amir</a></td>
+                                       <td>adf #5</td>
+                                       <td>Amir Ashraf</td>
+                                       <td>2018-07-04</td>
+                                       <td>2018-07-04</td>
+                                       <td>2018-07-11</td>
+                                       <td>0 USD</td>
+                                       <td>advertiser</td>
+                                       <td class="btn btn-rounded btn-success">Paid</td>
+                                       <td>
+                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>2018-07-02</td>
+                                       <td><a href="{{ asset('invoice') }}" style="color: #1CD2C9;">20180702-5-8623/amir</a></td>
+                                       <td>adf #5</td>
+                                       <td>Amir Ashraf</td>
+                                       <td>2018-07-04</td>
+                                       <td>2018-07-04</td>
+                                       <td>2018-07-11</td>
+                                       <td>0 USD</td>
+                                       <td>advertiser</td>
+                                       <td><span class="btn btn-rounded btn-danger">Pending</span></td>
                                        <td>
                                           <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>

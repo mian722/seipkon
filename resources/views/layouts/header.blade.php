@@ -373,8 +373,8 @@
                         </a>
                         <ul class="collapse list-unstyled" id="advertiser">
                            <li><a href="{{ asset('advertisers') }}">Advertiser</a></li>
-                           <li><a href="{{ asset('pending-affiliates') }}">Pending Advertiser</a></li>
-                           <li><a href="{{ asset('affiliate-payouts') }}">Advertiser Invoices</a></li>
+                           <li><a href="{{ asset('pending-advertisers') }}">Pending Advertiser</a></li>
+                           <li><a href="{{ asset('advertisers-invoices') }}">Advertiser Invoices</a></li>
                         </ul>
                      </li>
                      <li>

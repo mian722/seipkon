@@ -14,11 +14,8 @@
                            <div class="row">
                               <div class="col-md-11 col-sm-11">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Advertisers</h3>
+                                    <h3>Pending Advertisers</h3>
                                  </div>
-                              </div>
-                              <div class="col-md-1 col-sm-1">
-                                 <a class="btn btn-success btn-xs" href="{{ url('affiliate-create') }}" >Create</a>
                               </div>
                            </div>
                         </div>
