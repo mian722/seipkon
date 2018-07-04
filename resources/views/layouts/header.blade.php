@@ -348,18 +348,22 @@
                            <li><a href="{{ asset('add-product') }}">add new offer</a></li>
                            <li><a href="{{ asset('offer-application') }}">Offer Application</a></li>
                            <!-- <li><a href="{{ asset('edit-product') }}">Edit product</a></li> -->
+                           <li><a href="{{ asset('create-pool') }}">create a pool</a></li>
                            <li><a href="{{ asset('offer-pool') }}">Offer Pool</a></li>
                         </ul>
                      </li>
                      <li>
                         <a href="#createpage" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-file-text-o"></i>
-                        pages
+                        Affiliates
                         </a>
                         <ul class="collapse list-unstyled" id="createpage">
-                           <li><a href="{{ asset('pages') }}">all pages</a></li>
-                           <li><a href="{{ asset('create-pool') }}">create a pool</a></li>
-                           <li><a href="{{ asset('edit-page') }}">Edit Page</a></li>
+                           <li><a href="{{ asset('affiliates') }}">Affiliates</a></li>
+                           <li><a href="{{ asset('pending-affiliates') }}">Pending Affiliates</a></li>
+                           <li><a href="{{ asset('affiliate-payouts') }}">Affiliate Payouts</a></li>
+                           <li><a href="{{ asset('affiliate-postback') }}">Affiliate Postback</a></li>
+                           <li><a href="{{ asset('affiliate-payout-tiers') }}">Affiliate Payout Tiers</a></li>
+                           <li><a href="{{ asset('affiliate-invoices') }}">Affiliate Invoices</a></li>
                         </ul>
                      </li>
                      <li>

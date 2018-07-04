@@ -43,7 +43,12 @@ Route::get('/ui_progressbars', function () { return view('ui_progressbars'); });
 Route::get('/ui_carousel', function () { return view('ui_carousel'); });	
 Route::get('/ui_breadcrumbs', function () { return view('ui_breadcrumbs'); });	
 Route::get('/ui_pagination', function () { return view('ui_pagination'); });	
-
+Route::get('/affiliates', function () { return view('affiliates'); });
+Route::get('/pending-affiliates', function () { return view('pending-affiliates'); });	
+Route::get('/affiliate-payouts', function () { return view('affiliate-payouts'); });
+Route::get('/affiliate-postback', function () { return view('affiliate-postback'); });
+Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payout-tiers'); });
+Route::get('/affiliate-invoices', function () { return view('affiliate-invoices'); });
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
