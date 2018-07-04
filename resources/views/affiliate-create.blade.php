@@ -41,65 +41,128 @@
                               <div class="form-wrap top-label-exapmple form-layout-page">
                                  <form>
                                     <div class="row">
-                                       <div class="col-md-6">
+                                       <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">First Name:</label>
-                                             <input type="text" placeholder="Enter Your First Name" class="form-control" >
+                                             <input type="text" class="form-control" >
                                           </div>
                                        </div>
-                                       <div class="col-md-6">
+                                       <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Last Name:</label>
-                                             <input type="text" placeholder="Enter Your Last Name" class="form-control" >
+                                             <input type="text"  class="form-control" >
                                           </div>
                                        </div>
-                                    </div>
-                                    <div class="row">
-                                       <div class="col-md-6">
+                                       <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Email Address:</label>
-                                             <input type="email" placeholder="Enter Your Email Address" class="form-control" >
+                                             <input type="email"  class="form-control" >
                                           </div>
                                        </div>
-                                       <div class="col-md-6">
+                                       <div class="col-md-3">
                                           <div class="form-group">
-                                             <label class="control-label">Subject:</label>
-                                             <input type="email" placeholder="Enter Your Subject" class="form-control" >
+                                             <label class="control-label">Mobile NO:</label>
+                                             <input type="email"  class="form-control" >
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label class="control-label">IM:</label>
+                                             <select class="form-control select2">
+                                                <option selected="selected">IM</option>
+                                                <option>Skype</option>
+                                                <option>facebook</option>
+                                             </select>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label class="control-label">IM Account:</label>
+                                             <input type="text"  class="form-control" >
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label class="control-label">Country:</label>
+                                             <select class="form-control select2">
+                                                <option selected="selected">Alabama</option>
+                                                <option>Alaska</option>
+                                                <option>Delaware</option>
+                                                <option>Tennessee</option>
+                                                <option>Texas</option>
+                                                <option>Washington</option>
+                                             </select>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label class="control-label">Tags:<span data-toggle="tooltip" title="" data-original-title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                             <select class="form-control select2" multiple="multiple" data-placeholder="Select a State">
+                                                <option>Alabama</option>
+                                                <option>Alaska</option>
+                                                <option>California</option>
+                                                <option>Delaware</option>
+                                                <option>Tennessee</option>
+                                                <option>Texas</option>
+                                                <option>Washington</option>
+                                             </select>
                                           </div>
                                        </div>
                                     </div>
                                     <div class="row">
                                        <div class="col-md-6">
                                           <div class="form-group">
-                                             <label class="control-label">Occupation:</label>
-                                             <input type="email" placeholder="Enter Your Occupation" class="form-control" >
+                                             <label class="control-label">Website:</label>
+                                             <input type="email"  class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-6">
                                           <div class="form-group">
-                                             <label class="control-label">Gender:</label>
-                                             <div class="form-gender">
-                                                <div class="form-group form-radio">
-                                                   <input id="radio-7" name="radio" type="radio" checked="checked" >
-                                                   <label for="radio-7" class="inline control-label">male</label>
-                                                </div>
-                                                <div class="form-group form-radio">
-                                                   <input id="radio-8" name="radio" type="radio">
-                                                   <label for="radio-8" class="inline control-label">female</label>
-                                                </div>
-                                                <div class="form-group form-radio">
-                                                   <input id="radio-9" name="radio" type="radio">
-                                                   <label for="radio-9" class="inline control-label">other</label>
-                                                </div>
-                                             </div>
+                                             <label class="control-label">Company:</label>
+                                             <input type="email" class="form-control" >
                                           </div>
                                        </div>
                                     </div>
                                     <div class="row">
-                                       <div class="col-md-12">
+                                       <div class="col-md-3">
                                           <div class="form-group">
-                                             <label class="control-label">Present Address:</label>
-                                             <textarea placeholder="Your Present Address" class="form-control" ></textarea>
+                                             <label class="control-label">Manager:<span data-toggle="tooltip" title="" data-original-title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                             <select class="form-control select2">
+                                                <option selected="selected">IM</option>
+                                                <option>Skype</option>
+                                                <option>facebook</option>
+                                             </select>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label class="control-label">Status:</label>
+                                             <select class="form-control select2">
+                                                <option selected="selected">Active</option>
+                                                <option>Disable</option>
+                                             </select>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label class="control-label">Password:</label>
+                                             <input type="password" class="form-control" >
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label class="control-label">Tier:</label>
+                                             <select class="form-control select2" data-placeholder="Select a State">
+                                                <option>Alabama</option>
+                                                <option>Alaska</option>
+                                                <option>California</option>
+                                                <option>Delaware</option>
+                                                <option>Tennessee</option>
+                                                <option>Texas</option>
+                                                <option>Washington</option>
+                                             </select>
                                           </div>
                                        </div>
                                     </div>
