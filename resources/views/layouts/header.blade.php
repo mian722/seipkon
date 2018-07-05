@@ -41,6 +41,8 @@
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/datatables/css/dataTables.bootstrap.min.css') }}" >
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/datatables/css/buttons.bootstrap.min.css') }}" >
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/datatables/css/responsive.bootstrap.min.css') }}" >
+      <!-- Color Picker CSS -->
+      <link rel="stylesheet" href="{{ asset('public/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
       <!-- Main CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/css/seipkon.css') }}">
       <!-- Responsive CSS -->
@@ -535,6 +537,8 @@
       <!-- Summernote JS -->
       <script src="{{ asset('public/assets/plugins/summernote/js/summernote.js') }}"></script>
       <script src="{{ asset('public/assets/plugins/summernote/js/custom-summernote.js') }}"></script>
+      <!-- Color Picker JS -->
+      <script src="assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
       <!-- Dashboard JS -->
       <script src="{{ asset('public/assets/js/dashboard.js') }}"></script>
        <!-- Form Wizard Custom JS For Only This Page -->
