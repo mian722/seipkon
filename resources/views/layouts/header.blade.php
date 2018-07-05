@@ -373,175 +373,84 @@
                         </a>
                         <ul class="collapse list-unstyled" id="advertiser">
                            <li><a href="{{ asset('advertisers') }}">Advertiser</a></li>
-                           <li><a href="{{ asset('pending-advertisers') }}">Pending Advertiser</a></li>
+                           <li><a href="{{ asset('advertisers-pending') }}">Pending Advertiser</a></li>
                            <li><a href="{{ asset('advertisers-invoices') }}">Advertiser Invoices</a></li>
                         </ul>
                      </li>
                      <li>
-                        <a href="#apps" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-th"></i>
-                        Advance apps
+                        <a href="#accounts" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-user-o"></i>
+                        Accounts
                         </a>
-                        <ul class="collapse list-unstyled" id="apps">
-                           <li><a href="{{ asset('chatting') }}">Chatting</a></li>
-                           <li><a href="{{ asset('notes') }}">notes</a></li>
-                           <li><a href="{{ asset('apps-contact-list') }}">Contact/Employee</a></li>
+                        <ul class="collapse list-unstyled" id="accounts">
+                           <li><a href="{{ asset('accounts') }}">Accounts</a></li>
+                           <li><a href="{{ asset('roles') }}">Roles</a></li>
+                           <li><a href="{{ asset('teams') }}">Teams</a></li>
                         </ul>
                      </li>
                      <li>
-                        <a href="#mail" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-envelope"></i>
-                        mailbox
+                        <a href="#reports" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-user-o"></i>
+                        Reports
                         </a>
-                        <ul class="collapse list-unstyled" id="mail">
-                           <li><a href="{{ asset('compose') }}">compose</a></li>
-                           <li><a href="{{ asset('inbox') }}">inbox</a></li>
-                           <li><a href="{{ asset('mail-read') }}">read</a></li>
+                        <ul class="collapse list-unstyled" id="reports">
+                           <li><a href="{{ asset('advertisers-reports') }}">Advertiser Report</a></li>
+                           <li><a href="{{ asset('affiliate-reports') }}">Affiliate Report</a></li>
+                           <li><a href="{{ asset('operation-report') }}">Operation Report</a></li>
+                           <li><a href="{{ asset('generat-report') }}">General Report</a></li>
+                           <li><a href="{{ asset('conversion-report') }}">Conversion Report</a></li>
+                           <li><a href="{{ asset('conversion-status-report') }}">Conversion Status Report</a></li>
+                           <li><a href="{{ asset('test-conversion-report') }}">Test Conversion Report</a></li>
+                           <li><a href="{{ asset('server-log') }}">Server Log</a></li>
+                           <li><a href="{{ asset('activity-log') }}">Activity Log</a></li>
+                        </ul>
+                     </li>
+                     <li>
+                        <a href="#setting" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-user-o"></i>
+                        Setting
+                        </a>
+                        <ul class="collapse list-unstyled" id="setting">
+                           <li><a href="{{ asset('customization') }}">Customization</a></li>
+                           <li><a href="{{ asset('email-templates') }}">Email Templates</a></li>
                         </ul>
                      </li>
                      <li>
                         <a href="#ui_elements" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-laptop"></i>
-                        UI Elements
+                        Tools
                         </a>
                         <ul class="collapse list-unstyled" id="ui_elements">
-                           <li><a href="{{ asset('ui_button') }}">Button</a></li>
-                           <li><a href="{{ asset('ui_panels') }}">Panels</a></li>
                            <li>
-                              <a href="#icon" data-toggle="collapse" aria-expanded="false">
-                              Icons
+                              <a href="#email" data-toggle="collapse" aria-expanded="false">
+                              Email Marketing
                               </a>
-                              <ul class="collapse list-unstyled" id="icon">
-                                 <li><a href="{{ asset('icon-fontawesome') }}">Font awesome</a></li>
-                                 <li><a href="{{ asset('icon-glyphicons') }}">Glyphicons</a></li>
-                                 <li><a href="{{ asset('icon-themify') }}">Themify Icons</a></li>
+                              <ul class="collapse list-unstyled" id="email">
+                                 <li><a href="{{ asset('mail-box') }}">Mail Box</a></li>
+                                 <li><a href="{{ asset('unsubscribe-list') }}">Unsubscribe List</a></li>
                               </ul>
                            </li>
-                           <li><a href="{{ asset('ui_tab_accordion') }}">Tabs & Accordions</a></li>
-                           <li><a href="{{ asset('ui_sweet_alerts') }}">sweet Alerts</a></li>
-                           <li><a href="{{ asset('ui_progressbars') }}">Progress bars</a></li>
-                           <li><a href="{{ asset('ui_carousel') }}">Carousel</a></li>
-                           <li><a href="{{ asset('ui_breadcrumbs') }}">breadcrumbs</a></li>
-                           <li><a href="{{ asset('ui_pagination') }}">pagination</a></li>
-                        </ul>
-                     </li>
-                  </ul>
-               </div>
-               <!-- Menu Section End -->
-                
-               <!-- Menu Section Start -->
-               <div class="menu-section">
-                  <h3>Forms,Table & widget</h3>
-                  <ul class="list-unstyled components">
-                     <li>
-                        <a href="seipcon_widget.html">
-                        <i class="fa fa-th"></i>
-                        Widgets
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#charts" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-pie-chart"></i>
-                        Charts
-                        </a>
-                        <ul class="collapse list-unstyled" id="charts">
-                           <li><a href="chartsjs.html">chart js</a></li>
-                           <li><a href="morrris.html">morris</a></li>
-                           <li><a href="sparkline.html">sparkline</a></li>
-                        </ul>
-                     </li>
-                     <li>
-                        <a href="#forms" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-edit"></i>
-                        Forms
-                        </a>
-                        <ul class="collapse list-unstyled" id="forms">
-                           <li><a href="general-form.html">General Form</a></li>
-                           <li><a href="advance-components.html">Advance Components</a></li>
-                           <li><a href="form-layouts.html">Form layouts</a></li>
-                           <li><a href="form-validation.html">form validation</a></li>
-                           <li><a href="form-wizards.html">form wizards</a></li>
-                        </ul>
-                     </li>
-                     <li>
-                        <a href="#table" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-table"></i>
-                        Tables
-                        </a>
-                        <ul class="collapse list-unstyled" id="table">
-                           <li><a href="basic-table.html">basic table</a></li>
-                           <li><a href="advance-table.html">table Advance</a></li>
-                        </ul>
-                     </li>
-                  </ul>
-               </div>
-               <!-- Menu Section End -->
-                
-               <!-- Menu Section Start -->
-               <div class="menu-section">
-                  <h3>Extra components</h3>
-                  <ul class="list-unstyled components">
-                     <li>
-                        <a href="#ex_components" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-book"></i>
-                        Additional Pages
-                        </a>
-                        <ul class="collapse list-unstyled" id="ex_components">
-                           <li><a href="profile.html">profile page</a></li>
-                           <li><a href="invoice.html">Invoice</a></li>
-                           <li><a href="gallery.html">gallery</a></li>
-                           <li><a href="blank.html">Blank</a></li>
-                        </ul>
-                     </li>
-                     <li>
-                        <a href="#ex_authentication" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-unlock-alt"></i>
-                        Authentication 
-                        </a>
-                        <ul class="collapse list-unstyled" id="ex_authentication">
-                           <li><a href="login.html">Login</a></li>
-                           <li><a href="register.html">Register</a></li>
-                           <li><a href="lockscreen.html">Lockscreen</a></li>
-                           <li><a href="recover-pass.html">Recover password</a></li>
-                        </ul>
-                     </li>
-                     <li>
-                        <a href="#ex_error" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-exclamation-circle"></i>
-                        Error Pages 
-                        </a>
-                        <ul class="collapse list-unstyled" id="ex_error">
-                           <li><a href="error-404.html">404 Not Found</a></li>
-                           <li><a href="error-505.html">505 Forbidden</a></li>
-                           <li><a href="error-500.html">500 Internal Server</a></li>
-                           <li><a href="error-503.html">503 Service Unavailable</a></li>
-                        </ul>
-                     </li>
-                     <li>
-                        <a href="#ex_multlable" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-map-signs"></i>
-                        Multilevel
-                        </a>
-                        <ul class="collapse list-unstyled" id="ex_multlable">
-                           <li><a href="#">Level One</a></li>
                            <li>
-                              <a href="#ex_multlable_2" data-toggle="collapse" aria-expanded="false">
-                              Level One
+                              <a href="#smart" data-toggle="collapse" aria-expanded="false">
+                              Smart Puller
                               </a>
-                              <ul class="collapse list-unstyled" id="ex_multlable_2">
-                                 <li><a href="#">Level Two</a></li>
-                                 <li>
-                                    <a href="#ex_multlable_3" data-toggle="collapse" aria-expanded="false">
-                                    Level Two
-                                    </a>
-                                    <ul class="collapse list-unstyled" id="ex_multlable_3">
-                                       <li><a href="#">Level Three</a></li>
-                                       <li><a href="#">Level Three</a></li>
-                                    </ul>
-                                 </li>
+                              <ul class="collapse list-unstyled" id="smart">
+                                 <li><a href="{{ asset('puller-sources') }}">Sources</a></li>
+                                 <li><a href="{{ asset('puller-compaigns') }}">Compaigns</a></li>
+                                 <li><a href="{{ asset('source-offers') }}">Source Offers</a></li>
                               </ul>
                            </li>
-                           <li><a href="#">Level One</a></li>
+                           <li><a href="{{ asset('smart-alert') }}">Smart Alert</a></li>
+                           <li><a href="{{ asset('smart-link') }}">Smart Link</a></li>
+                           <li>
+                              <a href="#fraud" data-toggle="collapse" aria-expanded="false">
+                              Fraud Detection
+                              </a>
+                              <ul class="collapse list-unstyled" id="fraud">
+                                 <li><a href="{{ asset('integration') }}">Integration</a></li>
+                                 <li><a href="{{ asset('compaigns') }}">Compaigns</a></li>
+                              </ul>
+                           </li>
                         </ul>
                      </li>
                   </ul>

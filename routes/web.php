@@ -58,8 +58,32 @@ Route::get('/advertisers-invoices', function () { return view('advertisers-invoi
 Route::get('/invoice', function () { return view('invoice'); });
 Route::get('/advertisers-invoice-create', function () { return view('advertisers-invoice-create'); });
 Route::get('/advertisers-create', function () { return view('advertisers-create'); });
+Route::get('/accounts', function () { return view('accounts'); });
+Route::get('/roles', function () { return view('roles'); });
+Route::get('/teams', function () { return view('teams'); });
+Route::get('/advertisers-reports', function () { return view('advertisers-reports'); });
+Route::get('/affiliate-reports', function () { return view('affiliate-reports'); });
+Route::get('/operation-report', function () { return view('operation-report'); });
+Route::get('/generat-report', function () { return view('generat-report'); });
+Route::get('/conversion-report', function () { return view('conversion-report'); });
+Route::get('/conversion-status-report', function () { return view('conversion-status-report'); });
+Route::get('/test-conversion-report', function () { return view('test-conversion-report'); });
+Route::get('/server-log', function () { return view('server-log'); });
+Route::get('/activity-log', function () { return view('activity-log'); });
+Route::get('/customization', function () { return view('customization'); });
+Route::get('/email-templates', function () { return view('email-templates'); });
+Route::get('/mail-box', function () { return view('mail-box'); });
+Route::get('/unsubscribe-list', function () { return view('unsubscribe-list'); });
+Route::get('/puller-sources', function () { return view('puller-sources'); });
+Route::get('/puller-compaigns', function () { return view('puller-compaigns'); });
+Route::get('/source-offers', function () { return view('source-offers'); });
+Route::get('/smart-alert', function () { return view('smart-alert'); });
+Route::get('/smart-link', function () { return view('smart-link'); });
+Route::get('/integration', function () { return view('integration'); });
+Route::get('/compaigns', function () { return view('compaigns'); });
 
 Route::get('/postback-create', function () { return view('postback-create'); });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
