@@ -549,7 +549,8 @@
          $(document).ready(function() {
             $.fn.editable.defaults.mode = 'popup';
     $('.username').editable();
-});
+     CKEDITOR.replace('page-editor1');
+});   
       </script>
    </body>
 
