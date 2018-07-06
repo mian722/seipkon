@@ -543,13 +543,19 @@
       <script src="{{ asset('public/assets/js/dashboard.js') }}"></script>
        <!-- Form Wizard Custom JS For Only This Page -->
       <script src="{{ asset('public/assets/js/advance_table_custom.js') }}"></script>
+      <!-- Jquery Steps JS -->
+      <script src="{{ asset('public/assets/plugins/jquery-steps/js/jquery.steps.min.js') }}"></script>
+      <!-- Jquery parsley JS -->
+      <script src="{{ asset('public/assets/plugins/parsley/js/parsley.min.js') }}"></script>
+      <!-- Form Wizard Custom JS For Only This Page -->
+      <script src="{{ asset('public/assets/js/form_wizard_custom.js') }}"></script>
       <!-- Custom JS -->
       <script src="{{ asset('public/assets/js/seipkon.js') }}"></script>
       <script type="text/javascript">
          $(document).ready(function() {
             $.fn.editable.defaults.mode = 'popup';
     $('.username').editable();
-     CKEDITOR.replace('page-editor1');
+    $('#page-editor1').summernote();
 });   
       </script>
    </body>

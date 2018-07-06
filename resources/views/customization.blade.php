@@ -1198,18 +1198,436 @@
                                              <div class="col-md-12">
                                                    <p>
                                                       <div id="page-editor1">
-                                                         &nbsp;
-                                                         <br />
-                                                         &nbsp;
-                                                         <br />
-                                                         &nbsp;
-                                                         <br />
-                                                         &nbsp;
-                                                         <br />
-                                                         &nbsp;
-                                                         <br />
-                                                         &nbsp;
-                                                         <br />
+                                                        <p><b>Terms &amp; Conditions</b></p>
+
+<p>This Affiliate Program Operating Agreement (the
+"Agreement") is made and entered into by and between amir
+("amir " or "we"), and you, ("you" or
+"Affiliate") the party submitting an application to become a
+amir affiliate). The terms and conditions contained in this
+Agreement apply to your participation with amir.offerslook.com ("Affiliate
+Program"). Each Affiliate Program offer (an "Offer") may be for
+any offering by amir or a third party (each such third party a
+"Client") and may link to a specific web site for that particular
+Offer ("Program Web Site"). Furthermore, each Offer may have
+additional terms and conditions on pages within the Affiliate Program and are
+incorporated as part of this Agreement. By submitting an application or
+participating in an Offer, you expressly consent to all the terms and
+conditions of this Agreement.</p>
+
+<p><b>1. &nbsp; &nbsp; Sign up as an Affiliate</b></p>
+
+<p>You must submit an Affiliate Program application from our
+website. You must accurately complete the application to become an affiliate
+(and provide us with future updates) and not use any aliases or other means to
+mask your true identity or contact information. After we review your application,
+we will notify you of your acceptance or rejection to the Affiliate Program,
+generally within two (2) business days. We may accept or reject your
+application at our sole discretion for any reason.</p>
+
+<p><b>2. &nbsp; &nbsp; Obligations of both Parties</b></p>
+
+<p>Subject to our acceptance of you as an affiliate and your
+continued compliance with the terms and conditions of this Agreement,
+amir agrees as follows:</p>
+
+<p>&nbsp; &nbsp; I. &nbsp; We will make available to you via
+the Affiliate Program graphic and textual links to the Program Web Site and/or
+other creative materials (collectively, the "Links") which you may
+display on web sites owned or controlled by you, in emails sent by you and
+clearly identified as coming from you and in online advertisements
+(collectively, "Media"). The Links will serve to identify you as a
+member of our Affiliate Program and will establish a link from your Media to
+the Program Web Site.</p>
+
+<p>&nbsp; &nbsp; II. &nbsp; We will pay Affiliate for each
+Qualified Action (the "Commission"). A "Qualified Action"
+means an individual person who (i) accesses the Program Web Site via the Link,
+where the Link is the last link to the Program Web Site, (ii) is not a computer
+generated user, such as a robot, spider, computer script or other automated,
+artificial or fraudulent method to appear like an individual, real live person,
+(iii) is not using pre-populated fields (iv) completes all of the information
+required for such action within the time period allowed by amir and
+(v) is not later determined by amir to be fraudulent, incomplete,
+unqualified or a duplicate.</p>
+
+<p>&nbsp; III. &nbsp; We will pay you any Commissions earned
+monthly, provided that your account is currently greater than $50. Accounts
+with a balance of less than $50 will roll over to the next month, and will
+continue to roll over monthly until $50 is reached. We reserve the right to
+charge back to your account any previously paid Qualified Actions that are
+later determined to have not met the requirements to be a Qualified Action.</p>
+
+<p>&nbsp; IV. &nbsp; Payment for Commissions is dependent upon
+Clients providing such funds to amir, and therefore, you agree that
+amir shall only be liable to you for Commissions to the extent that
+amir has received such funds from the Clients. You hereby release
+amir from any claim for Commissions if amir has not
+received such funds from the Clients.</p>
+
+<p>&nbsp; V. &nbsp; amir shall automatically
+generate an invoice on behalf of Affiliate for all Commissions payable under
+this Agreement and shall remit payment to Affiliate based upon that invoice.
+All tracking of Links and determinations of Qualified Actions and Commissions
+shall be made by amir in its sole discretion. In the event that
+Affiliate disputes in good faith any portion of an invoice, Affiliate must
+submit that dispute to amir in writing and in sufficient detail
+within thirty (30) days of the date on the invoice. If Affiliate does not
+dispute the invoice as set forth herein, then Affiliate agrees that it
+irrevocably waives any claims based upon that invoice. In the event that
+Affiliate is also tracking Qualified Actions and Affiliate claims a
+discrepancy, Affiliate must provide amir with Affiliate's reports
+within three (3) days after 30th day of the calendar month, and if amir
+and Affiliate's reported statistics vary by more than 10% and amir
+reasonably determines that Affiliate has used generally accepted industry
+methods to track Qualified Actions, then amir and Affiliate agree to
+make a good faith effort to arrive at a reconciliation. If the parties are
+unable to arrive at a reconciliation, then amir numbers shall
+govern.</p>
+
+<p>&nbsp; VI. &nbsp; If Affiliate has an outstanding balance
+due to amir under this Agreement or any other agreement between the
+Affiliate and amir, whether or not related to the Affiliate Program,
+Affiliate agrees that amir may offset any such amounts due to
+amir from amounts payable to Affiliate under this Agreement.</p>
+
+<p>Affiliate also agrees to:</p>
+
+<p>I. &nbsp; Have sole responsibility for the development,
+operation, and maintenance of, and all content on or linked to, your Media.</p>
+
+<p>II. &nbsp; Ensure that all materials posted on your Media
+or otherwise used in connection with the Affiliate Program (i) are not illegal,
+(ii) do not infringe upon the intellectual property or personal rights of any
+third party and (iii) do not contain or link to any material which is harmful,
+threatening, defamatory, obscene, sexually explicit, harassing, promotes
+violence, promotes discrimination (whether based on sex, religion, race,
+ethnicity, nationality, disability or age), promotes illegal activities (such
+as gambling), contains profanity or otherwise contains materials that
+amir informs you that it considers objectionable (collectively,
+"Objectionable Content").</p>
+
+<p>III. &nbsp; Not make any representations, warranties or
+other statements concerning amir or Client or any of their
+respective products or services, except as expressly authorized herein.</p>
+
+<p>IV. Make sure that your Media does not copy or resemble the
+look and feel of the Program Web Site or create the impression that your Media
+is endorsed by amir or Clients or a part of the Program Web Site,
+without prior written permission from us.</p>
+
+<p>V. &nbsp; Comply with all (i) obligations, requirements and
+restrictions under this Agreement and (ii) laws, rules and regulations as they
+relate to your business, your Media or your use of the Links.</p>
+
+<p>VI. Comply with the terms, conditions, guidelines and
+policies of any third party services used by Affiliate in connection with the
+Affiliate Program, including but not limited to, email providers, social
+networking services and ad networks.</p>
+
+<p>VII. Always prominently post and make available to
+end-users, including prior to the collection of any personally identifiable
+information, a privacy policy in compliance with all applicable laws that
+clearly and thoroughly discloses all information collection, use and sharing
+practices, including providing for the collection of such personally
+identifiable information in connection with the Affiliate Program and the
+provision of such personally identifiable information to amir and
+Clients for use as intended by amir and Clients.</p>
+
+<p>VIII. &nbsp; &nbsp; Always prominently post and make
+available to end-users any terms and conditions in connection with the Offer
+set forth by amir or Client, or as required by applicable laws
+regarding such Offers.</p>
+
+<p>IX. Make sure to not place amir ads on any
+online auction platform (i.e. eBay, Amazon, Taobao, etc).</p>
+
+<p>The following additional program-specific terms shall apply
+to any promotional programs set forth below:</p>
+
+<p>I. &nbsp; &nbsp; Email Campaigns. For all email campaigns,
+Affiliate must download the "Suppression List" from the Offers section
+of amir. Affiliate shall filter its email list by removing any
+entries appearing on the Suppression List and will only send emails to the
+remaining addresses on its email list. amir will provide an opt-out
+method in all Links, however, if any opt-out requests come directly to
+Affiliate, Affiliate shall immediately forward them to amir at
+amirali2418@gmail.com. Affiliate's emails containing the Links may not include any
+content other than the Links, except as required by applicable law.</p>
+
+<p>A. &nbsp; &nbsp; Affiliate agrees that failure to download
+the Suppression List and remove all emails from the database before mailing may
+result in Commission withholdings, removal or suspension from all or part of
+the Affiliate Program, possible legal action and any other rights or remedies
+available to amir pursuant to this Agreement or otherwise. Affiliate
+further agrees that it will not mail or market to any suppression files
+generated through the amir network, and that doing so may result in
+Commission withholdings, removal or suspension from the Affiliate Program,
+possible legal action and any other rights or remedies available to
+amir pursuant to this Agreement or otherwise.</p>
+
+<p>II. &nbsp; Advertising Campaigns. No Links can appear to be
+associated with or be positioned on chat rooms or bulletin boards unless
+otherwise agreed by amir in writing. Any pop-ups/unders used for the
+Affiliate Program shall be clearly identified as Affiliate served in the title
+bar of the window and any client-side ad serving software used by Affiliate
+shall only have been installed on an end-user's computer if the function of the
+software is clearly disclosed to end-users prior to installation, the
+installation is pursuant to an affirmatively accepted and plain-english end
+user license agreement and the software be easily removed according to
+generally accepted methods.</p>
+
+<p>III. &nbsp; Affiliate Network Campaigns. For all
+Affiliate's that maintain their own affiliate networks, Affiliate agrees to
+place the Links in its affiliate network (the "Network") for access
+and use by those affiliates in Affiliate's Network (each a "Third Party
+Affiliate"). Affiliate agrees that it will expressly forbid any Third
+Party Affiliate to modify the Links in any way. Affiliate agrees to maintain
+its Network according to the highest industry standards. Affiliate shall not
+permit any party to be a Third Party Affiliate whose web site or business model
+involves content containing Objectionable Content. All Third Party Affiliates
+must be in good standing with Affiliate. Affiliate must require and confirm
+that all Third Party Affiliates affirmatively accept, through verifiable means,
+this Agreement prior to obtaining access to the Links. Affiliate shall promptly
+terminate any Third Party Affiliate who takes, or could reasonably be expected
+to take, any action that violates the terms and conditions of this Agreement.
+In the event that either party suspects any wrongdoing by a Third Party
+Affiliate with respect to the Links, Affiliate shall promptly disclose to
+amir the identity and contact information for such Third Party
+Affiliate. Affiliate shall promptly remove any Third Party Affiliate from the
+Affiliate Program and terminate their access to future Offers of amir
+in the Network upon written notice from amir. Unless amir
+has been provided with all truthful and complete contact information for a
+Third Party Affiliate and such Third Party Affiliate has affirmatively accepted
+this Agreement as recorded by amir, Affiliate shall remain liable
+for all acts or omissions of any Third Party Affiliate.</p>
+
+<p><b>3. &nbsp; &nbsp; Consensus of Confidentiality</b></p>
+
+<p>Except as otherwise provided in this Agreement or with the
+consent of amir, you agree that all information, including, without
+limitation, the terms of this Agreement, business and financial information,
+customer and vendor lists, and pricing and sales information, concerning us or
+any of our affiliates provided by or on behalf of any of them shall remain
+strictly confidential and secret and shall not be utilized, directly or
+indirectly, by you for any purpose other than your participation in the
+Affiliate Program, except and solely to the extent that any such information is
+generally known or available to the public through a source other than you.
+Affiliate shall not use any information obtained from the Affiliate Program to
+develop, enhance or operate a service that competes with the Affiliate Program,
+or assist another party to do the same.</p>
+
+<p><b>4. &nbsp; &nbsp; Limited License &amp; Intellectual
+Property</b></p>
+
+<p>We grant you a nonexclusive, nontransferable, revocable
+right to use the Links and to access our web site through the Links solely in
+accordance with the terms of this Agreement, for the sole purpose of
+identifying your Media as a participant in the Affiliate Program and assisting
+in increasing sales through the Program Web Site.</p>
+
+<p>You may not alter, modify, manipulate or create derivative
+works of the Links or any amir graphics, creative, copy or other
+materials owned by, or licensed to, amir in any way. You are only
+entitled to use the Links to the extent that you are a member in good standing
+of the Affiliate Program. We may revoke your license anytime by giving you
+written notice. Except as expressly stated herein, nothing in this Agreement is
+intended to grant you any rights to any of amir’s trademarks,
+service marks, copyrights, patents or trade secrets. You agree that
+amir may use any suggestion, comment or recommendation you choose to
+provide to amir without compensation. All rights not expressly
+granted in this Agreement are reserved by amir.</p>
+
+<p><b>5. &nbsp; &nbsp; Termination</b></p>
+
+<p>This Agreement shall commence on the date of our approval
+of your Affiliate Program application and shall continue thereafter until
+terminated as provided herein. You may terminate your participation in the
+Affiliate Program at any time by removing all Links from your Media, deleting
+all copies of the Links. We may terminate your participation in one or more
+Offers or this Agreement at any time and for any reason which we deem
+appropriate with or without prior notice to you by disabling the Links or
+providing you with a written notice. Upon termination of your participation in
+one or more Offers or this Agreement for any reason, you will immediately cease
+all use of and delete all Links, plus all amir or Client
+intellectual property, and will cease representing yourself as a
+amir or Client affiliate for such one or more Offers. All rights to
+validly accrued payments, causes of action and any provisions, which by their
+terms are intended to survive termination, shall survive any termination.</p>
+
+<p><b>6. &nbsp; &nbsp; Amendments</b></p>
+
+<p>In addition to any other rights and remedies available to
+us under this Agreement amir reserves the right to delete any
+actions submitted through your Links and withhold and freeze any unpaid Commissions
+or charge back paid Commissions to your account if (i) amir
+determines that you have violated this Agreement, (ii) amir receives
+any complaints about your participation in the Affiliate Program which
+amir reasonably believes to violate this Agreement or (iii) any
+Qualified Action is later determined to have not met the requirements set forth
+in this Agreement or on the Affiliate Program. Such withholding or freezing of
+Commissions, or charge backs for paid Commissions, shall be without regard as
+to whether or not such Commissions were earned as a result of such breach. In
+the event of a material breach of this Agreement, amir reserves the
+right to disclose your identity and contact information to appropriate law
+enforcement or regulatory authorities or any third party that has been directly
+damaged by your actions.</p>
+
+<p><b>7. &nbsp; &nbsp; Counter-Spam Policy</b></p>
+
+<p>You must strictly comply with the federal CAN-SPAM Act of
+2003 (the "Act"). All emails sent in connection with the Affiliate
+Program must include the appropriate party's opt-out link. From time to time,
+we may request - prior to your sending emails containing linking or referencing
+the Affiliate Program that you submit the final version of your email to
+amir for approval by sending it to your amir
+representative and upon receiving written approval from amir of your
+email the email may be transmitted to third parties.</p>
+
+<p>It is solely your obligation to ensure that the email
+complies with the Act. You agree not to rely upon amir’s approval of
+your email for compliance with the Act, or assert any claim that you are in
+compliance with the Act based upon amir’s approval.</p>
+
+<p><b>8. &nbsp; &nbsp; About Fraud</b></p>
+
+<p>You are expressly prohibited from using any persons, means,
+devices or arrangements to commit fraud, violate any applicable law, interfere
+with other affiliates or falsify information in connection with referrals
+through the Links or the generation of Commissions or exceed your permitted access
+to the Affiliate Program. Such acts include, but are in no way limited to,
+using automated means to increase the number of clicks through the Links or
+completion of any required information, using spyware, using stealware,
+cookie-stuffing and other deceptive acts or click-fraud. amir shall
+make all determinations about fraudulent activity in its sole discretion.</p>
+
+<p><b>9. &nbsp; &nbsp; Representations and Warranties</b></p>
+
+<p>You hereby represent and warrant that this Agreement
+constitutes your legal, valid, and binding obligation, enforceable against you
+in accordance with its terms and that you have the authority to enter into this
+Agreement. Subject to the other terms and conditions of this Agreement,
+amir represents and warrants that it shall not knowingly violate any
+law, rule or regulation which is applicable to amir’s own business
+operations or amir’s proprietary products or services.</p>
+
+<p><b>10. Modifications</b></p>
+
+<p>In addition to any notice permitted to be given under this
+Agreement, we may modify any of the terms and conditions of this Agreement at
+any time by providing you with a notification by email. The changes will become
+effective ten (10) business days after such notice. If the modifications are
+unacceptable to you, you may terminate this Agreement without penalty solely on
+the account of such termination within such ten (10) business day period. Your
+continued participation in this Affiliate Program ten (10) business days after
+a change notice has been posted will constitute your acceptance of such change.
+In addition, amir may change, suspend or discontinue any aspect of
+an Offer or Link or remove, alter, or modify any tags, text, graphic or banner
+ad in connection with a Link. Affiliate agrees to promptly implement any request
+from amir to remove, alter or modify any Link, graphic or banner ad
+that is being used by Affiliate as part of the Affiliate Program.</p>
+
+<p><b>11. Independent Investigation</b></p>
+
+<p>You acknowledge that you have read this Agreement and agree
+to all its terms and conditions. You have independently evaluated the
+desirability of participating in the Affiliate Program and each Offer and are
+not relying on any representation, guarantee or statement other than as set
+forth in this Agreement or on the Affiliate Program.</p>
+
+<p><b>12. Mutual Indemnification</b></p>
+
+<p>Affiliate hereby agrees to indemnify, defend and hold
+harmless amir and Clients and their respective subsidiaries,
+affiliates, partners and licensors, directors, officers, employees, owners and
+agents against any and all claims, actions, demands, liabilities, losses,
+damages, judgments, settlements, costs, and expenses (including reasonable
+attorneys' fees and costs) based on (i) any failure or breach of this
+Agreement, including any representation, warranty, covenant, restriction or
+obligation made by Affiliate herein, (ii) any misuse by Affiliate, or by a
+party under the reasonable control of Affiliate or obtaining access through
+Affiliate, of the Links, Offers or amir or Client intellectual
+property, or (iii) any claim related to your Media, including but not limited
+to, the content contained on such Media (except for the Links).</p>
+
+<p>amir hereby agrees to indemnify, defend and hold
+harmless Affiliate and its subsidiaries, affiliates, partners, and their
+respective directors, officers, employees, owners and agents against any and
+all claims, actions, demands, liabilities, losses, damages, judgments,
+settlements, costs, and expenses (including reasonable attorneys' fees and
+costs) based on a claim that amir is not authorized to provide you
+with the Links.</p>
+
+<p><b>13. Disclaimers</b></p>
+
+<p>THE AFFILIATE PROGRAM AND LINKS, AND THE PRODUCTS AND
+SERVICES PROVIDED IN CONNECTION THEREWITH, ARE PROVIDED TO AFFILIATE "AS
+IS". EXCEPT AS EXPRESSLY SET FORTH HEREIN, AMIR EXPRESSLY
+DISCLAIMS ALL WARRANTIES, EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT
+LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE, AND NONINFRINGEMENT, AND ANY WARRANTIES ARISING OUT OF COURSE OF
+DEALING, USAGE, OR TRADE. AMIR DOES NOT WARRANT THAT THE
+AFFILIATE PROGRAM OR LINKS WILL MEET AFFILIATE'S SPECIFIC REQUIREMENTS OR THAT
+THE OPERATION OF THE AFFILIATE PROGRAM OR LINKS WILL BE COMPLETELY ERROR- FREE
+OR UNINTERRUPTED. AMIR EXPRESSLY DISCLAIMS ANY LIABILITY FOR
+ANY ACT OR OMISSION OF A CLIENT OR THEIR PRODUCTS OR SERVICES. AMIR
+DOES NOT GUARANTEE THAT AFFILIATE WILL EARN ANY SPECIFIC AMOUNT OF COMMISSIONS.</p>
+
+<p><b>14. Limitation of Liability</b></p>
+
+<p>IN NO EVENT SHALL AMIR BE LIABLE FOR ANY
+UNAVAILABILITY OR INOPERABILITY OF THE LINKS, PROGRAM WEB SITES, TECHNICAL
+MALFUNCTION, COMPUTER ERROR, CORRUPTION OR LOSS OF INFORMATION, OR OTHER
+INJURY, DAMAGE OR DISRUPTION OF ANY KIND BEYOND THE REASONABLE CONTROL OF AMIR.
+IN NO EVENT WILL AMIR BE LIABLE FOR ANY INDIRECT, INCIDENTAL,
+CONSEQUENTIAL, PERSONAL INJURY / WRONGFUL DEATH, SPECIAL OR EXEMPLARY DAMAGES,
+INCLUDING BUT NOT LIMITED TO, LOSS OF PROFITS OR LOSS OF BUSINESS OPPORTUNITY,
+EVEN IF SUCH DAMAGES ARE FORESEEABLE AND WHETHER OR NOT AMIR
+HAS BEEN ADVISED OF THE POSSIBILITY THEREOF. AMIR'S CUMULATIVE
+LIABILITY TO AFFILIATE, FROM ALL CAUSES OF ACTION AND ALL THEORIES OF LIABILITY,
+WILL BE LIMITED TO AND WILL NOT EXCEED THE AMOUNTS PAID TO AFFILIATE BY AMIR
+IN COMMISSIONS DURING THE SIX (6) MONTHS IMMEDIATELY PRIOR TO SUCH CLAIM.</p>
+
+<p><b>15. Governing Law &amp; Miscellaneous</b></p>
+
+<p>Affiliate shall be responsible for the payment of all
+attorneys fees and expenses incurred by amir to enforce the terms of
+this Agreement. This Agreement contains the entire agreement between
+amir and Affiliate with respect to the subject matter hereof, and
+supersedes all prior and/or contemporaneous agreements or understandings,
+written or oral. Affiliate agrees that amir shall not be subject to
+or bound by any Affiliate insertion order or online terms and conditions that
+amend, conflict with or supplement this Agreement, regardless of whether
+amir "clicks through" or otherwise indicates its
+acceptance thereof. Affiliate may not assign all or any part of this Agreement
+without amir prior written consent. amir may assign this
+Agreement at any time with notice to Affiliate. This Agreement will be binding
+on and will inure to the benefit of the legal representatives, successors and
+valid assigns of the parties hereto. The provisions of Section 3, 4(b), 6, 7,
+8, 12-15 and any accrued payment obligations shall survive the termination of
+this Agreement. Except as set forth in the "Modifications" section
+above, this Agreement may not be modified without the prior written consent of
+both parties. If any provision of this Agreement is held to be void, invalid or
+inoperative, the remaining provisions of this Agreement shall continue in
+effect and the invalid portion of any provision shall be deemed modified to the
+least degree necessary to remedy such invalidity while retaining the original
+intent of the parties. Each party to this Agreement is an independent
+contractor in relation to the other party with respect to all matters arising
+under this Agreement. Nothing herein shall be deemed to establish a
+partnership, joint venture, association or employment relationship between the
+parties. No course of dealing nor any delay in exercising any rights hereunder
+shall operate as a waiver of any such rights. No waiver of any default or
+breach shall be deemed a continuing waiver or a waiver of any other breach or
+default.</p>
+
+<p>By submitting and application to Affiliate Program, you
+affirm and acknowledge that you have read this Agreement in its entirety and
+agree to be bound by all of its terms and conditions. If you do not wish to be
+bound by this Agreement, you should not submit an application to Affiliate
+Program. If an individual is accessing this Agreement on behalf of a business
+entity, by doing so, such individual represents that they have the legal
+capacity and authority to bind such business entity to this Agreement. This
+Agreement was last revised on 20-06-2016.</p><p></p>
                                                       </div>
                                                    </p>
                                                    <button type="submit" class="pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
