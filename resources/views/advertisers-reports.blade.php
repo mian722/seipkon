@@ -45,7 +45,7 @@
                                        <li role="Custom Report3"><a href="#custom_r3" role="tab" data-toggle="tab">Custom Report3</a></li>
                                        <li role="Custom Report4"><a href="#custom_r4" role="tab" data-toggle="tab">Custom Report4</a></li>
                                     </ul>
-                                    <div id="advertisers_tab_content" class="tab-content">
+                                    <div id="advertisers_tab_content" class="tab-content ">
                                        <div id="custom_r1" class="tab-pane fade in active">
                                           <div class="row">
                                              <div class="col-md-1"><label>Duration</label></div>
@@ -895,7 +895,7 @@
                                        <td>1</td>
                                        <td>2018-07-01</td>
                                        <td><a href="#">sss #2</a></td>
-                                       <td><a href="#">offer test google #4</a></td>
+                                       <td><a href="{{ asset('offers-detail-page') }}">offer test google #4</a></td>
                                        <td>5</td>
                                        <td>0</td>
                                        <td>0.000%</td>

@@ -84,7 +84,8 @@ Route::get('/smart-alert', function () { return view('smart-alert'); });
 Route::get('/smart-link', function () { return view('smart-link'); });
 Route::get('/integration', function () { return view('integration'); });
 Route::get('/compaigns', function () { return view('compaigns'); });
-Route::get('/offers-details-page', function () { return view('offers-details-page'); });
+Route::get('/offers-detail-page', function () { return view('offers-detail-page'); });
+Route::get('/affiliate-detail-page', function () { return view('affiliate-detail-page'); });
 
 Route::get('/postback-create', function () { return view('postback-create'); });
 
