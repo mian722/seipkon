@@ -13,15 +13,15 @@
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Add Offer</h3>
+                                    <h3>Affiliate Details #3 </h3>
                                  </div>
                               </div>
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-right">
                                     <ul>
-                                       <li><a href="{{ asset('') }}">home</a></li>
-                                       <li>All-Offers</li>
-                                       <li>Add Offer</li>
+                                       <li><a href="{{ asset('') }}">Dashboard</a></li>
+                                       <li>Affiliates</li>
+                                       <li>Affiliate Details #3</li>
                                     </ul>
                                  </div>
                               </div>
@@ -91,6 +91,8 @@
                                                    <tr><td colspan="6"><button type="button" class="btn btn-success">Login</button><button type="button" class="btn btn-default">Update</button></td></tr>
                                                 </tbody>
                                              </table>
+
+
                                           </div>
 
                                           <div class="advance-table">
@@ -176,14 +178,329 @@
                                           </div>
                                        </div>
                                        <div id="postback" class="tab-pane fade in">
+                                          <div class="advance-table">
+                                             <h4><i class="fa fa-list"></i> Offer Postback</h4><br />
+                                             <table id="responsive_datatables_example" class="table display table-striped table-bordered responsive nowrap">
+                                                <thead>
+                                                   <tr>
+                                                      <th>ID</th>
+                                                      <th>Affiliate</th>
+                                                      <th>Name</th>
+                                                      <th>Type</th>
+                                                      <th>Event</th>
+                                                      <th>Test</th>
+                                                      <th>Protocol</th>
+                                                      <th>Code</th>
+                                                      <th>Create Time</th>
+                                                      <th>Status</th>
+                                                      <th>Action</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr>
+                                                      <td>4</td>
+                                                      <td><a href="{{ asset('affiliate-detail-page') }}">asdf #3</a></td>
+                                                      <td><a href="{{ asset('offers-detail-page') }}">offer test google #4</a></td>
+                                                      <td>Offer</td>
+                                                      <td>Initial Event #1</td>
+                                                      <td>Test</td>
+                                                      <td>Postback URL</td>
+                                                      <td><a href="#" id="username" class="username" data-type="text" data-pk="1" data-url="/post" data-title="Link">View</a></td>
+                                                      <td>2018-07-02 08:40:34</td>
+                                                      <td><label class="label label-success">Approved</label></td>
+                                                      <td>
+                                                         <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                                      </td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
                                        </div>
                                        <div id="tracking_domain" class="tab-pane fade in">
+                                          <div class="advance-table">
+                                             <h4><i class="fa fa-list"></i> Tracking Domain <button class="btn btn-success pull-right">Create</button></h4><br />
+                                             <table width="100%" id="postback_table" class="table display table-striped table-bordered responsive nowrap">
+                                                <thead>
+                                                   <tr>
+                                                      <th>ID</th>
+                                                      <th>Offer</th>
+                                                      <th>Tracking Domain</th>
+                                                      <th>SSL</th>
+                                                      <th>Action</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr>
+                                                      <td>4</td>
+                                                      <td><a href="{{ asset('affiliate-detail-page') }}">asdf #3</a></td>
+                                                      <td><a href="{{ asset('offers-detail-page') }}">offer test google #4</a></td>
+                                                      <td>SSL</td>
+                                                      <td>
+                                                         <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                                      </td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
                                        </div>
                                        <div id="sub_affiliate" class="tab-pane fade in">
+                                          <div class="advance-table">
+                                             <h4><i class="fa fa-list"></i> Sub-Affiliate Blocked List <button class="btn btn-success pull-right">Create</button></h4><br />
+                                             <table width="100%" id="sub_affiliate_block_list" class="table display table-striped table-bordered responsive nowrap">
+                                                <thead>
+                                                   <tr>
+                                                      <th>ID</th>
+                                                      <th>Create Time</th>
+                                                      <th>Offer</th>
+                                                      <th>Value</th>
+                                                      <th>Action</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr>
+                                                      <td>4</td>
+                                                      <td><a href="{{ asset('affiliate-detail-page') }}">asdf #3</a></td>
+                                                      <td><a href="{{ asset('offers-detail-page') }}">offer test google #4</a></td>
+                                                      <td>SSL</td>
+                                                      <td>
+                                                         <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                                      </td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
                                        </div>
-                                       <div id="invoice_setting" class="tab-pane fade in">
+                                       <div id="invoice_setting" class="tab-pane fade in input-style">
+                                          <div class="invoice-setting">
+                                             <h4><i class="fa fa-list-alt"></i> Financial Details</h4>
+                                             <form action="">
+                                                <div class="row">
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>First Name</label>
+                                                         <input type="text" placeholder="Enter Product Name">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>Last Name</label>
+                                                         <input type="text" placeholder="Enter Product Name">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>Email</label>
+                                                         <input type="text" placeholder="Enter Product Name">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>Phone NO.</label>
+                                                         <input type="text" placeholder="Enter Product Name">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-4">
+                                                      <p>
+                                                         <label>Company</label>
+                                                         <input type="text" placeholder="Enter Product Name">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-8">
+                                                      <p>
+                                                         <label>Address</label>
+                                                         <input type="text" placeholder="Enter Product Name">
+                                                      </p>
+                                                   </div>
+                                                </div>
+                                                <div class="row" style="margin-top: 20px;">
+                                                   <div class="col-md-12">
+                                                      <button class="btn btn-success">Save</button>
+                                                   </div>
+                                                </div>
+                                             </form>
+                                          </div>
+                                          <div class="invoice-setting">
+                                             <form action="">
+                                                <h4><i class="fa fa-credit-card"></i> Payment Details</h4>
+                                                <div class="row">
+                                                   <div class="col-md-12">
+                                                      <p>
+                                                         <label style="display: block;">Default Payment Method</label>
+                                                         <select class="form-control select2" style="width: 30%;" data-placeholder="Select Method">
+                                                            <option>Bank Transfer</option>
+                                                            <option>PayPal</option>
+                                                         </select>
+                                                      </p>
+                                                   </div>
+                                                   
+                                                </div>
+                                                <h4><i class="fa fa-bank"></i> Bank Transfer</h4>
+                                                <div class="row">
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label style="display: block;">Currency</label>
+                                                         <select class="form-control select2" style="width: 100%;" data-placeholder="Select Currency">
+                                                            <option>United States, Dollars(USD)</option>
+                                                            <option>PayPal</option>
+                                                         </select>
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>Account Name</label>
+                                                         <input type="text">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>Phone NO.</label>
+                                                         <input id="phoneMask" type="text" class="form-control" placeholder="(999) 999-9999">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      &nbsp;
+                                                   </div>
+                                                   
+                                                </div>
+                                                <div class="row">
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>IBAN</label>
+                                                         <input type="text">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>Swift Code</label>
+                                                         <input type="text">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>Zip Code</label>
+                                                         <input type="text">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label style="display: block;">Country</label>
+                                                         <select class="form-control select2" style="width: 100%;" data-placeholder="Select Currency">
+                                                            <option>United States</option>
+                                                            <option>Pakistan</option>
+                                                         </select>
+                                                      </p>
+                                                   </div>
+                                                </div>
+                                                <div class="row">
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>Bank Name</label>
+                                                         <input type="text">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>Branch Name</label>
+                                                         <input type="text">
+                                                      </p>
+                                                   </div>
+                                                </div>
+                                                <h4><i class="fa fa-paypal"></i> PayPal</h4>
+                                                <div class="row">
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label style="display: block;">Currency</label>
+                                                         <select class="form-control select2" style="width: 100%;" data-placeholder="Select Currency">
+                                                            <option>United States, Dollars(USD)</option>
+                                                            <option>PayPal</option>
+                                                         </select>
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>Account Name</label>
+                                                         <input type="text">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>Paypal Email</label>
+                                                         <input id="phoneMask" type="text" class="form-control" placeholder="(999) 999-9999">
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      &nbsp;
+                                                   </div>
+                                                   
+                                                </div>
+                                                <div class="row" style="margin-top: 20px;">
+                                                   <div class="col-md-12">
+                                                      <button class="btn btn-success">Save</button>
+                                                   </div>
+                                                </div>
+                                             </form>
+                                          </div>
+                                          <div class="invoice-setting">
+                                             <h4><i class="fa fa-link"></i>  Invoice Automation Setting</h4>
+                                             <form action="">
+                                                <div class="row">
+                                                   <div class="col-md-2">
+                                                      <p>
+                                                         <label>Invoice Frequency</label>
+                                                         <select class="form-control select2" style="width: 100%;" data-placeholder="Select one Option">
+                                                            <option>Enable</option>
+                                                            <option>Disable</option>
+                                                         </select>
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <p>
+                                                         <label>Bill Interval</label>
+                                                         <select class="form-control select2" style="width: 100%;" data-placeholder="Select Bill Interval">
+                                                            <option>Weekly</option>
+                                                            <option>Bi-Weekly</option>
+                                                            <option>Monthly</option>
+                                                            <option>Bi-Monthly</option>
+                                                         </select>
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-4">
+                                                      <p>
+                                                         <label>Timezone </label>
+                                                         <select class="form-control select2" style="width: 100%;" data-placeholder="Select Timezone">
+                                                            <option>(GMT -11:00)Pacific/Midway,Niue,Pago_Pago</option>
+                                                            <option>(GMT -11:00)Pacific/Midway,Niue,Pago_Pago</option>
+                                                         </select>
+                                                      </p>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      &nbsp;
+                                                   </div>
+                                                </div>
+                                                <div class="row">
+                                                   <div class="col-md-12">
+                                                      <p>
+                                                         <label style="width: 100%;">Account Name</label>
+                                                         <textarea rows="6" class="form-control"></textarea>
+                                                      </p>
+                                                   </div>
+                                                </div>
+                                                <div class="row" style="margin-top: 20px;">
+                                                   <div class="col-md-12">
+                                                      <button class="btn btn-success">Save</button>
+                                                   </div>
+                                                </div>
+                                             </form>
+                                          </div>
                                        </div>
                                        <div id="alert_setting" class="tab-pane fade in">
+                                          <div class="row"></div>
                                        </div>
                                     </div>
                                  </form>                                 
@@ -195,6 +512,7 @@
                   </div>
                   <!-- End Add Product Area -->
                    
+
                </div>
             </div>
          @endsection
