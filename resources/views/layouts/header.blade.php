@@ -548,8 +548,14 @@
       <script type="text/javascript">
          $(document).ready(function() {
             $.fn.editable.defaults.mode = 'popup';
-    $('.username').editable();
-});
+                $('.username').editable();
+            });
+         $(document).ready( function () {
+             $('#postback_table').DataTable();
+         } );
+         $(document).ready( function () {
+             $('#sub_affiliate_block_list').DataTable();
+         } );
       </script>
    </body>
 
