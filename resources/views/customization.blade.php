@@ -595,13 +595,27 @@
                                                   <td>Administrator</td>
                                               </tr>
                                               <tr>
-                                                  <td rowspan="2">Affiliate Sign Up</td>
-                                                  <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
+                                                  <td rowspan="2">Affiliate Postback Created</td>
+                                                  <td rowspan="2"></td>
                                                 <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
+                                                <td rowspan="2"></td>
+                                                <td rowspan="2"><div class="form-group">
+                                                   <div class="toggle toggle-modern"></div>
+                                                </div></td>
+                                              </tr>
+                                              <tr>
+                                                  <td><div class="form-group">
+                                                   <div class="toggle toggle-modern"></div>
+                                                </div></td>
+                                              </tr>
+                                              <tr>
+                                                  <td rowspan="2">Affiliate Postback Approved</td>
+                                                  <td rowspan="2"><div class="form-group">
+                                                   <div class="toggle toggle-modern"></div>
+                                                </div></td>
+                                                <td rowspan="2"></td>
                                                 <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
@@ -615,33 +629,11 @@
                                                 </div></td>
                                               </tr>
                                               <tr>
-                                                  <td rowspan="2">Affiliate Sign Up Approval</td>
+                                                  <td rowspan="2">Affiliate Postback Rejected</td>
                                                   <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
-                                              </tr>
-                                              <tr>
-                                                  <td><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
-                                              </tr>
-                                              <tr>
-                                                  <td rowspan="2">Affiliate Sign Up Rejection</td>
-                                                  <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
+                                                <td rowspan="2"></td>
                                                 <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
@@ -970,9 +962,7 @@
                                                 <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
+                                                <td rowspan="2"></td>
                                                 <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
@@ -996,9 +986,7 @@
                                                 <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
+                                                <td rowspan="2"></td>
                                                 <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
@@ -1022,15 +1010,11 @@
                                                 <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
+                                                <td rowspan="2"></td>
                                                 <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
+                                                <td rowspan="2"></td>
                                               </tr>
                                               <tr>
                                                   <td><div class="form-group">
@@ -1054,9 +1038,7 @@
                                                 <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
+                                                <td rowspan="2"></td>
                                               </tr>
                                               <tr>
                                                   <td><div class="form-group">
@@ -1065,15 +1047,9 @@
                                               </tr>
                                               <tr>
                                                   <td rowspan="2">Advertiser Caps Approaching</td>
-                                                  <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
+                                                  <td rowspan="2"></td>
+                                                <td rowspan="2"></td>
+                                                <td rowspan="2"></td>
                                                 <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
@@ -1091,15 +1067,9 @@
                                               </tr>
                                               <tr>
                                                   <td rowspan="2">Advertiser Caps Reached</td>
-                                                  <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
-                                                <td rowspan="2"><div class="form-group">
-                                                   <div class="toggle toggle-modern"></div>
-                                                </div></td>
+                                                  <td rowspan="2"></td>
+                                                <td rowspan="2"></td>
+                                                <td rowspan="2"></td>
                                                 <td rowspan="2"><div class="form-group">
                                                    <div class="toggle toggle-modern"></div>
                                                 </div></td>
