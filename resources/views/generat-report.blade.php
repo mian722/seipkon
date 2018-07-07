@@ -52,26 +52,26 @@
                                              <div class="col-md-11">
                                                 <div class="col-md-2 col-sm-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-1" checked="" name="radio" type="radio">
-                                                      <label for="radio-1" class="inline control-label">Date</label>
+                                                      <input id="checkbox1" checked="" name="check1" type="checkbox">
+                                                      <label for="checkbox1" class="inline control-label">Date</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-2" name="radio" type="radio">
-                                                      <label for="radio-2" class="inline control-label">Month</label>
+                                                      <input id="checkbox2" name="check2" type="checkbox">
+                                                      <label for="checkbox2" class="inline control-label">Month</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-3" name="radio" type="radio">
-                                                      <label for="radio-3" class="inline control-label">Year</label>
+                                                      <input id="checkbox3" name="check3" type="checkbox">
+                                                      <label for="checkbox3" class="inline control-label">Year</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-4" name="radio" type="radio">
-                                                      <label for="radio-4" class="inline control-label">Hour</label>
+                                                      <input id="checkbox4" name="check4" type="checkbox">
+                                                      <label for="checkbox4" class="inline control-label">Hour</label>
                                                    </div>
                                                 </div>
                                              </div>
@@ -82,13 +82,31 @@
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
                                                       <input checked="checked" id="chk_1" type="checkbox">
-                                                      <label class="inline control-label" for="chk_1">Affiliate</label>
+                                                      <label class="inline control-label" for="chk_1">Advertiser</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_11" type="checkbox">
+                                                      <label class="inline control-label" for="chk_11">Affiliate</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
                                                       <input id="chk_2" type="checkbox">
-                                                      <label class="inline control-label" for="chk_2"> Affiliate Manager</label>
+                                                      <label class="inline control-label" for="chk_2"> Advertiser Manager</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input id="chk_21" type="checkbox">
+                                                      <label class="inline control-label" for="chk_21"> Affiliate Manager</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input id="chk_22" type="checkbox">
+                                                      <label class="inline control-label" for="chk_22">SmartLink</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -129,9 +147,24 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_81" type="checkbox">
+                                                      <label class="inline control-label" for="chk_81">Country</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_82" type="checkbox">
+                                                      <label class="inline control-label" for="chk_82">Source ID</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
                                                       <input id="chk_9" type="checkbox">
                                                       <label class="inline control-label" for="chk_9">Currency</label>
                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   &nbsp;
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
@@ -157,6 +190,18 @@
                                                       <label class="inline control-label" for="chk_13">Profit</label>
                                                    </div>
                                                 </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_13" type="checkbox">
+                                                      <label class="inline control-label" for="chk_13">Platform</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_13" type="checkbox">
+                                                      <label class="inline control-label" for="chk_13">Mobile Carrier</label>
+                                                   </div>
+                                                </div>
                                              </div>
                                           </div>
                                           <div class="row">
@@ -179,35 +224,78 @@
                                           <div class="row">
                                              <div class="col-md-1"><label>Filter</label></div>
                                              <div class="col-md-11">
-                                                <div class="col-md-5">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Affiliate">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
-                                                   </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Offer">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
-                                                   </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Currency">
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select SmartLink">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
                                                 </div>
-                                                <div class="col-md-5">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Affiliate Manager">
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Offer">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Event">
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Event">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Conversion Status">
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Country">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Affiliate">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Affiliate Manager">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Advertiser">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Advertiser Manager">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Currency">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Platform">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Approved & Pending Conversions">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
@@ -243,40 +331,41 @@
                                                 <div class="col-md-4">
                                                          <input type="text" class="form-control" id="reservation" placeholder="Date" />
                                                 </div>
-                                                <div class="col-md-2">&nbsp;</div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                    <button class="btn btn-success">Generate Report</button>
-                                                   <button class="btn btn-default">Update Custom Report</button>
+                                                   <button class="btn btn-default">Export to CSV</button>
+                                                   <button class="btn btn-default">Save Custom Report</button>
                                                 </div>
                                              </div>
                                           </div>
                                        </div>
                                        <div id="custom_r2" class="tab-pane fade in">
+
                                           <div class="row">
                                              <div class="col-md-1"><label>Duration</label></div>
                                              <div class="col-md-11">
                                                 <div class="col-md-2 col-sm-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-1" checked="" name="radio" type="radio">
-                                                      <label for="radio-1" class="inline control-label">Date</label>
+                                                      <input id="checkbox1" checked="" name="check1" type="checkbox">
+                                                      <label for="checkbox1" class="inline control-label">Date</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-2" name="radio" type="radio">
-                                                      <label for="radio-2" class="inline control-label">Month</label>
+                                                      <input id="checkbox2" name="check2" type="checkbox">
+                                                      <label for="checkbox2" class="inline control-label">Month</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-3" name="radio" type="radio">
-                                                      <label for="radio-3" class="inline control-label">Year</label>
+                                                      <input id="checkbox3" name="check3" type="checkbox">
+                                                      <label for="checkbox3" class="inline control-label">Year</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-4" name="radio" type="radio">
-                                                      <label for="radio-4" class="inline control-label">Hour</label>
+                                                      <input id="checkbox4" name="check4" type="checkbox">
+                                                      <label for="checkbox4" class="inline control-label">Hour</label>
                                                    </div>
                                                 </div>
                                              </div>
@@ -287,13 +376,31 @@
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
                                                       <input checked="checked" id="chk_1" type="checkbox">
-                                                      <label class="inline control-label" for="chk_1">Affiliate</label>
+                                                      <label class="inline control-label" for="chk_1">Advertiser</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_11" type="checkbox">
+                                                      <label class="inline control-label" for="chk_11">Affiliate</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
                                                       <input id="chk_2" type="checkbox">
-                                                      <label class="inline control-label" for="chk_2"> Affiliate Manager</label>
+                                                      <label class="inline control-label" for="chk_2"> Advertiser Manager</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input id="chk_21" type="checkbox">
+                                                      <label class="inline control-label" for="chk_21"> Affiliate Manager</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input id="chk_22" type="checkbox">
+                                                      <label class="inline control-label" for="chk_22">SmartLink</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -334,9 +441,24 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_81" type="checkbox">
+                                                      <label class="inline control-label" for="chk_81">Country</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_82" type="checkbox">
+                                                      <label class="inline control-label" for="chk_82">Source ID</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
                                                       <input id="chk_9" type="checkbox">
                                                       <label class="inline control-label" for="chk_9">Currency</label>
                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   &nbsp;
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
@@ -362,6 +484,18 @@
                                                       <label class="inline control-label" for="chk_13">Profit</label>
                                                    </div>
                                                 </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_13" type="checkbox">
+                                                      <label class="inline control-label" for="chk_13">Platform</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_13" type="checkbox">
+                                                      <label class="inline control-label" for="chk_13">Mobile Carrier</label>
+                                                   </div>
+                                                </div>
                                              </div>
                                           </div>
                                           <div class="row">
@@ -384,35 +518,78 @@
                                           <div class="row">
                                              <div class="col-md-1"><label>Filter</label></div>
                                              <div class="col-md-11">
-                                                <div class="col-md-5">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Affiliate">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
-                                                   </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Offer">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
-                                                   </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Currency">
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select SmartLink">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
                                                 </div>
-                                                <div class="col-md-5">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Affiliate Manager">
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Offer">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Event">
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Event">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Conversion Status">
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Country">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Affiliate">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Affiliate Manager">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Advertiser">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Advertiser Manager">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Currency">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Platform">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Approved & Pending Conversions">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
@@ -448,40 +625,41 @@
                                                 <div class="col-md-4">
                                                          <input type="text" class="form-control" id="reservation" placeholder="Date" />
                                                 </div>
-                                                <div class="col-md-2">&nbsp;</div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                    <button class="btn btn-success">Generate Report</button>
-                                                   <button class="btn btn-default">Update Custom Report</button>
+                                                   <button class="btn btn-default">Export to CSV</button>
+                                                   <button class="btn btn-default">Save Custom Report</button>
                                                 </div>
                                              </div>
                                           </div>
                                        </div>
                                        <div id="custom_r3" class="tab-pane fade in">
+
                                           <div class="row">
                                              <div class="col-md-1"><label>Duration</label></div>
                                              <div class="col-md-11">
                                                 <div class="col-md-2 col-sm-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-1" checked="" name="radio" type="radio">
-                                                      <label for="radio-1" class="inline control-label">Date</label>
+                                                      <input id="checkbox1" checked="" name="check1" type="checkbox">
+                                                      <label for="checkbox1" class="inline control-label">Date</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-2" name="radio" type="radio">
-                                                      <label for="radio-2" class="inline control-label">Month</label>
+                                                      <input id="checkbox2" name="check2" type="checkbox">
+                                                      <label for="checkbox2" class="inline control-label">Month</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-3" name="radio" type="radio">
-                                                      <label for="radio-3" class="inline control-label">Year</label>
+                                                      <input id="checkbox3" name="check3" type="checkbox">
+                                                      <label for="checkbox3" class="inline control-label">Year</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-4" name="radio" type="radio">
-                                                      <label for="radio-4" class="inline control-label">Hour</label>
+                                                      <input id="checkbox4" name="check4" type="checkbox">
+                                                      <label for="checkbox4" class="inline control-label">Hour</label>
                                                    </div>
                                                 </div>
                                              </div>
@@ -492,13 +670,31 @@
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
                                                       <input checked="checked" id="chk_1" type="checkbox">
-                                                      <label class="inline control-label" for="chk_1">Affiliate</label>
+                                                      <label class="inline control-label" for="chk_1">Advertiser</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_11" type="checkbox">
+                                                      <label class="inline control-label" for="chk_11">Affiliate</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
                                                       <input id="chk_2" type="checkbox">
-                                                      <label class="inline control-label" for="chk_2"> Affiliate Manager</label>
+                                                      <label class="inline control-label" for="chk_2"> Advertiser Manager</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input id="chk_21" type="checkbox">
+                                                      <label class="inline control-label" for="chk_21"> Affiliate Manager</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input id="chk_22" type="checkbox">
+                                                      <label class="inline control-label" for="chk_22">SmartLink</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -539,9 +735,24 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_81" type="checkbox">
+                                                      <label class="inline control-label" for="chk_81">Country</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_82" type="checkbox">
+                                                      <label class="inline control-label" for="chk_82">Source ID</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
                                                       <input id="chk_9" type="checkbox">
                                                       <label class="inline control-label" for="chk_9">Currency</label>
                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   &nbsp;
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
@@ -567,6 +778,18 @@
                                                       <label class="inline control-label" for="chk_13">Profit</label>
                                                    </div>
                                                 </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_13" type="checkbox">
+                                                      <label class="inline control-label" for="chk_13">Platform</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_13" type="checkbox">
+                                                      <label class="inline control-label" for="chk_13">Mobile Carrier</label>
+                                                   </div>
+                                                </div>
                                              </div>
                                           </div>
                                           <div class="row">
@@ -589,35 +812,78 @@
                                           <div class="row">
                                              <div class="col-md-1"><label>Filter</label></div>
                                              <div class="col-md-11">
-                                                <div class="col-md-5">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Affiliate">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
-                                                   </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Offer">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
-                                                   </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Currency">
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select SmartLink">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
                                                 </div>
-                                                <div class="col-md-5">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Affiliate Manager">
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Offer">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Event">
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Event">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Conversion Status">
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Country">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Affiliate">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Affiliate Manager">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Advertiser">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Advertiser Manager">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Currency">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Platform">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Approved & Pending Conversions">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
@@ -653,10 +919,10 @@
                                                 <div class="col-md-4">
                                                          <input type="text" class="form-control" id="reservation" placeholder="Date" />
                                                 </div>
-                                                <div class="col-md-2">&nbsp;</div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                    <button class="btn btn-success">Generate Report</button>
-                                                   <button class="btn btn-default">Update Custom Report</button>
+                                                   <button class="btn btn-default">Export to CSV</button>
+                                                   <button class="btn btn-default">Save Custom Report</button>
                                                 </div>
                                              </div>
                                           </div>
@@ -667,26 +933,26 @@
                                              <div class="col-md-11">
                                                 <div class="col-md-2 col-sm-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-1" checked="" name="radio" type="radio">
-                                                      <label for="radio-1" class="inline control-label">Date</label>
+                                                      <input id="checkbox1" checked="" name="check1" type="checkbox">
+                                                      <label for="checkbox1" class="inline control-label">Date</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-2" name="radio" type="radio">
-                                                      <label for="radio-2" class="inline control-label">Month</label>
+                                                      <input id="checkbox2" name="check2" type="checkbox">
+                                                      <label for="checkbox2" class="inline control-label">Month</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-3" name="radio" type="radio">
-                                                      <label for="radio-3" class="inline control-label">Year</label>
+                                                      <input id="checkbox3" name="check3" type="checkbox">
+                                                      <label for="checkbox3" class="inline control-label">Year</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="radio-4" name="radio" type="radio">
-                                                      <label for="radio-4" class="inline control-label">Hour</label>
+                                                      <input id="checkbox4" name="check4" type="checkbox">
+                                                      <label for="checkbox4" class="inline control-label">Hour</label>
                                                    </div>
                                                 </div>
                                              </div>
@@ -697,13 +963,31 @@
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
                                                       <input checked="checked" id="chk_1" type="checkbox">
-                                                      <label class="inline control-label" for="chk_1">Affiliate</label>
+                                                      <label class="inline control-label" for="chk_1">Advertiser</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_11" type="checkbox">
+                                                      <label class="inline control-label" for="chk_11">Affiliate</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
                                                       <input id="chk_2" type="checkbox">
-                                                      <label class="inline control-label" for="chk_2"> Affiliate Manager</label>
+                                                      <label class="inline control-label" for="chk_2"> Advertiser Manager</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input id="chk_21" type="checkbox">
+                                                      <label class="inline control-label" for="chk_21"> Affiliate Manager</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input id="chk_22" type="checkbox">
+                                                      <label class="inline control-label" for="chk_22">SmartLink</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -744,9 +1028,24 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_81" type="checkbox">
+                                                      <label class="inline control-label" for="chk_81">Country</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_82" type="checkbox">
+                                                      <label class="inline control-label" for="chk_82">Source ID</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
                                                       <input id="chk_9" type="checkbox">
                                                       <label class="inline control-label" for="chk_9">Currency</label>
                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   &nbsp;
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
@@ -772,6 +1071,18 @@
                                                       <label class="inline control-label" for="chk_13">Profit</label>
                                                    </div>
                                                 </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_13" type="checkbox">
+                                                      <label class="inline control-label" for="chk_13">Platform</label>
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                   <div class="form-group form-checkbox">
+                                                      <input checked="checked" id="chk_13" type="checkbox">
+                                                      <label class="inline control-label" for="chk_13">Mobile Carrier</label>
+                                                   </div>
+                                                </div>
                                              </div>
                                           </div>
                                           <div class="row">
@@ -794,35 +1105,78 @@
                                           <div class="row">
                                              <div class="col-md-1"><label>Filter</label></div>
                                              <div class="col-md-11">
-                                                <div class="col-md-5">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Affiliate">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
-                                                   </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Offer">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
-                                                   </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Currency">
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select SmartLink">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
                                                 </div>
-                                                <div class="col-md-5">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Affiliate Manager">
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Offer">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Event">
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Event">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Conversion Status">
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Country">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Affiliate">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Affiliate Manager">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Advertiser">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Advertiser Manager">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Currency">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Platform">
+                                                      <option>Alabama</option>
+                                                      <option>Alaska</option>
+                                                      <option>California</option>
+                                                   </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Approved & Pending Conversions">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
@@ -858,10 +1212,10 @@
                                                 <div class="col-md-4">
                                                          <input type="text" class="form-control" id="reservation" placeholder="Date" />
                                                 </div>
-                                                <div class="col-md-2">&nbsp;</div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                    <button class="btn btn-success">Generate Report</button>
-                                                   <button class="btn btn-default">Update Custom Report</button>
+                                                   <button class="btn btn-default">Export to CSV</button>
+                                                   <button class="btn btn-default">Save Custom Report</button>
                                                 </div>
                                              </div>
                                           </div>
@@ -880,8 +1234,6 @@
                                     <tr>
                                        <th>NO.</th>
                                        <th>Date</th>
-                                       <th>Affiliate</th>
-                                       <th>Offer</th>
                                        <th>Clicks</th>
                                        <th>Conversions</th>
                                        <th>CR</th>
@@ -894,8 +1246,6 @@
                                     <tr>
                                        <td>1</td>
                                        <td>2018-07-01</td>
-                                       <td><a href="#">sss #2</a></td>
-                                       <td><a href="#">offer test google #4</a></td>
                                        <td>5</td>
                                        <td>0</td>
                                        <td>0.000%</td>

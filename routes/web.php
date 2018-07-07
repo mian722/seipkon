@@ -86,6 +86,7 @@ Route::get('/integration', function () { return view('integration'); });
 Route::get('/compaigns', function () { return view('compaigns'); });
 Route::get('/offers-detail-page', function () { return view('offers-detail-page'); });
 Route::get('/affiliate-detail-page', function () { return view('affiliate-detail-page'); });
+Route::get('/log-detail', function () { return view('log-detail'); });
 
 Route::get('/postback-create', function () { return view('postback-create'); });
 

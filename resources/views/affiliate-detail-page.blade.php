@@ -499,8 +499,44 @@
                                              </form>
                                           </div>
                                        </div>
-                                       <div id="alert_setting" class="tab-pane fade in">
-                                          <div class="row"></div>
+                                       <div id="alert_setting" class="tab-pane fade in input-style">
+                                          <form action="">  
+                                          <div class="row">
+                                             <div class="col-md-3">
+                                                <p>
+                                                   <input type="text" placeholder="Keyword" name="kayword" />
+                                                </p>
+                                             </div>
+                                             <div class="col-md-3">
+                                                <p>
+                                                   <select class="form-control select2" style="width: 100%;" data-placeholder="Offer">
+                                                      <option>(GMT -11:00)Pacific/Midway,Niue,Pago_Pago</option>
+                                                      <option>(GMT -11:00)Pacific/Midway,Niue,Pago_Pago</option>
+                                                   </select>
+                                                </p>
+                                             </div>
+                                             <div class="col-md-6">
+                                                <p><button type="button" class="btn btn-success">Search</button></p>
+                                             </div>
+                                          </div>
+                                          </form>
+                                          <div class="row" style="margin-top: 20px;">
+                                             <div class="col-md-12">
+                                                <table class="table display table-striped table-bordered responsive nowrap">
+                                                   <thead>
+                                                      <tr>
+                                                         <th>Offer</th>
+                                                         <th>Alert Setting</th>
+                                                      </tr>
+                                                   </thead>
+                                                   <tbody>
+                                                      <tr>
+                                                         <td colspan="2">No results found.</td>
+                                                      </tr>
+                                                   </tbody>
+                                                </table>
+                                             </div>
+                                          </div>
                                        </div>
                                     </div>
                                  </form>                                 

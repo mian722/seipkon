@@ -548,20 +548,17 @@
       <script type="text/javascript">
          $(document).ready(function() {
             $.fn.editable.defaults.mode = 'popup';
-<<<<<<< HEAD
                 $('.username').editable();
             });
          $(document).ready( function () {
              $('#postback_table').DataTable();
-         } );
-         $(document).ready( function () {
              $('#sub_affiliate_block_list').DataTable();
+             $('#c1').DataTable();
+             $('#c2').DataTable();
+             $('#c3').DataTable();
          } );
-=======
     $('.username').editable();
      CKEDITOR.replace('page-editor1');
-});   
->>>>>>> 0b11f320c67de3682f7bd863dd3c97edbe0138ff
       </script>
    </body>
 
