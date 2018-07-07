@@ -564,13 +564,9 @@
              $('#c3').DataTable();
          } );
     $('.username').editable();
-<<<<<<< HEAD
      CKEDITOR.replace('page-editor1');
-=======
     $('#page-editor1').summernote();
 });   
->>>>>>> 0b11f320c67de3682f7bd863dd3c97edbe0138ff
->>>>>>> e0bcc413d2a7d122aed3418c32da5c04657acce8
       </script>
    </body>
 
