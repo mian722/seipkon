@@ -5480,7 +5480,7 @@ span.required {
 
 .step-wizard .steps>ul li {
 	display: inline-block;
-	margin-right: 30px
+	margin-right: 10px
 }
 
 .step-wizard .steps>ul li:last-child {
@@ -6552,7 +6552,34 @@ ul.work_history>li>p>span {
 .invoice-setting h4 {
 	margin: 10px 0px;
 }
-
+.custom-tab-wizard ul {
+	text-align: center;
+}
+.custom-tab-wizard ul > li {
+	float: none;
+	clear: both;
+	display: inline-block;
+}
+.custom-tab-wizard ul > li a {
+	border: 0 !important;
+}
+.custom-tab-wizard ul > li a::after {
+	display: none !important;
+}
+.custom-tab-wizard #service_pro a span {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 50px;
+	background-color: #14beb5;
+	color: #fff;
+	line-height: 21px;
+	margin-right: 10px;
+}
+.custom-tab-wizard #service_pro li.active a span {
+	background-color: #fff;
+	color: #14beb5;
+}
 
 
 

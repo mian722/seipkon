@@ -557,8 +557,9 @@
                 $('.username').editable();
             });
     $('.username').editable();
-     CKEDITOR.replace('page-editor1');
     $('#page-editor1').summernote();
+    $('#page-editor2').summernote();
+    $('#page-editor3').summernote();
 
    $(document).ready( function () {
              $('#postback_table').DataTable();
