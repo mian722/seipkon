@@ -556,17 +556,17 @@
             $.fn.editable.defaults.mode = 'popup';
                 $('.username').editable();
             });
-         $(document).ready( function () {
+    $('.username').editable();
+     CKEDITOR.replace('page-editor1');
+    $('#page-editor1').summernote();
+
+   $(document).ready( function () {
              $('#postback_table').DataTable();
              $('#sub_affiliate_block_list').DataTable();
              $('#c1').DataTable();
              $('#c2').DataTable();
              $('#c3').DataTable();
          } );
-    $('.username').editable();
-     CKEDITOR.replace('page-editor1');
-    $('#page-editor1').summernote();
-});   
       </script>
    </body>
 
