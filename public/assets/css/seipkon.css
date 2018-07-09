@@ -6560,13 +6560,16 @@ ul.work_history>li>p>span {
 	clear: both;
 	display: inline-block;
 }
-.custom-tab-wizard ul > li a {
-	border: 0 !important;
+.horizontal-tab-example .custom-tab-wizard ul > li a {
+	border: 2px solid #14beb5 !important;
+}
+.horizontal-tab-example .custom-tab-wizard ul > li.active a {
+	border: 2px solid #14beb5 !important;
 }
 .custom-tab-wizard ul > li a::after {
 	display: none !important;
 }
-.custom-tab-wizard #service_pro a span {
+.custom-tab-wizard .tabbable a span {
 	display: inline-block;
 	width: 20px;
 	height: 20px;
@@ -6576,7 +6579,10 @@ ul.work_history>li>p>span {
 	line-height: 21px;
 	margin-right: 10px;
 }
-.custom-tab-wizard #service_pro li.active a span {
+.custom-tab-wizard .nav.nav-tabs {
+	margin: 50px 0px 30px;
+}
+.custom-tab-wizard .tabbable li.active a span {
 	background-color: #fff;
 	color: #14beb5;
 }

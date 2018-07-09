@@ -28,8 +28,6 @@
                   <!-- Add Product Area Start -->
                   <div class="row">
                      <div class="col-md-12">
-
-
                         <div class="page-box">
                            <div class="table-responsive advance-table">
                               <table id="button_datatables_example" class="table display table-striped table-bordered">
@@ -43,6 +41,7 @@
                                        <th>Action</th>
                                     </tr>
                                  </thead>
+
                                  <tbody>
                                     <tr>
                                        <td>1</td>
@@ -52,6 +51,7 @@
                                        <td>39.53.226.213</td>
                                        <td>Admin</td>
                                     </tr>
+
                                     <tr>
                                        <td>2</td>
                                        <td>Amir Ashraf#1</td>

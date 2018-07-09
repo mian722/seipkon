@@ -36,845 +36,810 @@
                <div class="page-box">
                   <div class="tabs-example">
                      <div class="tabs-box-example horizontal-tab-example">
-                        <ul class="nav nav-tabs" id="service_pro" role="tablist">
-                           <li class="active" role="appearance"><a href="#appearance" role="tab" data-toggle="tab">Affiliate</a></li>
-                           <li role="preferences"><a href="#preferences" role="tab" data-toggle="tab">Advertiser</a></li>
-                           <li  role="message"><a href="#message" role="tab" data-toggle="tab">Offer</a>
-                        </li>
-                     </ul>
-                     <div id="seipkkon_tab_content" class="tab-content">
+
                         <div id="appearance" class="tab-pane fade in active">
 
-                           <div class="tabs-example custom-tab-wizard">
-                              <div class="tabs-box-example horizontal-tab-example">
-                                 <ul class="nav nav-tabs" id="service_pro" role="tablist">
-                                    <li class="active" role="presentation"><a href="#signup" role="tab" data-toggle="tab"><span>1</span> Affiliate Sign Up</a>
-                                    </li>
-                                    <li role="presentation"><a href="#approval" role="tab" data-toggle="tab"><span>2</span> Affiliate Approval</a></li>
-                                    <li role="presentation"><a href="#rejection" role="tab" data-toggle="tab"><span>3</span> Affiliate Rejection</a></li>
-                                    <li role="presentation"><a href="#password" role="tab" data-toggle="tab"><span>4</span> Affiliate Password Re-setting</a></li>
-                                 </ul>
-                                 <div id="seipkkon_tab_content" class="tab-content">
-                                    <div id="signup" class="tab-pane fade in active">
-                                 <section>
-                                    <div class="form-group">
-                                       <div class="row">
-                                          <div class="col-md-12 col-sm-12">
-                                             <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
-                                          </div>
-                                       </div><br />
-                                       <div class="row">
-                                          <div class="col-md-12 col-sm-12">
-                                             <div id="page-editor">
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <div class="row">
-                                          
-                                          <div class="col-md-12">
-                                             <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
-                                             <div class="table-responsive">
-                                                <table class="table">
-                                                   <tbody>
-                                                      <tr>
-                                                         <td>{click_id}</td>
-                                                         <td>{offer_id}</td>
-                                                         <td>{event_id}</td>
-                                                         <td>{country_id}</td>
-                                                         <td>{aff_id}</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>{adv_id}</td>
-                                                         <td>{adv_sub1}</td>
-                                                         <td>{adv_sub2}</td>
-                                                         <td>{adv_sub3}</td>
-                                                         <td>{aff_sub1}</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>{aff_sub2}</td>
-                                                         <td>{aff_sub3}</td>
-                                                         <td>{aff_sub4}</td>
-                                                         <td>{aff_sub5}</td>
-                                                         <td>{source_id}</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table>
-                                             </div>
-                                                
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </section>
-                                    </div>
-                                    <div id="approval" class="tab-pane fade in">
-                                 <section>
-                                    <div class="form-group">
-                                       <div class="row">
-                                          <div class="col-md-12 col-sm-12">
-                                             <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
-                                          </div>
-                                       </div><br />
-                                       <div class="row">
-                                          <div class="col-md-12 col-sm-12">
-                                             <div id="page-editor1">
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <div class="row">
-                                          
-                                          <div class="col-md-12">
-                                             <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
-                                             <div class="table-responsive">
-                                                <table class="table">
-                                                   <tbody>
-                                                      <tr>
-                                                         <td>{click_id}</td>
-                                                         <td>{offer_id}</td>
-                                                         <td>{event_id}</td>
-                                                         <td>{country_id}</td>
-                                                         <td>{aff_id}</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>{adv_id}</td>
-                                                         <td>{adv_sub1}</td>
-                                                         <td>{adv_sub2}</td>
-                                                         <td>{adv_sub3}</td>
-                                                         <td>{aff_sub1}</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>{aff_sub2}</td>
-                                                         <td>{aff_sub3}</td>
-                                                         <td>{aff_sub4}</td>
-                                                         <td>{aff_sub5}</td>
-                                                         <td>{source_id}</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table>
-                                             </div>
-                                                
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </section>
-                                    </div>
-                                    <div id="rejection" class="tab-pane fade in">
-                                 <section>
-                                    <div class="form-group">
-                                       <div class="row">
-                                          <div class="col-md-12 col-sm-12">
-                                             <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
-                                          </div>
-                                       </div><br />
-                                       <div class="row">
-                                          <div class="col-md-12 col-sm-12">
-                                             <div id="page-editor2">
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <div class="row">
-                                          
-                                          <div class="col-md-12">
-                                             <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
-                                             <div class="table-responsive">
-                                                <table class="table">
-                                                   <tbody>
-                                                      <tr>
-                                                         <td>{click_id}</td>
-                                                         <td>{offer_id}</td>
-                                                         <td>{event_id}</td>
-                                                         <td>{country_id}</td>
-                                                         <td>{aff_id}</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>{adv_id}</td>
-                                                         <td>{adv_sub1}</td>
-                                                         <td>{adv_sub2}</td>
-                                                         <td>{adv_sub3}</td>
-                                                         <td>{aff_sub1}</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>{aff_sub2}</td>
-                                                         <td>{aff_sub3}</td>
-                                                         <td>{aff_sub4}</td>
-                                                         <td>{aff_sub5}</td>
-                                                         <td>{source_id}</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table>
-                                             </div>
-                                                
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </section>
-                                    </div>
-                                    <div id="password" class="tab-pane fade in">
-                                 <section>
-                                    <div class="form-group">
-                                       <div class="row">
-                                          <div class="col-md-12 col-sm-12">
-                                             <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
-                                          </div>
-                                       </div><br />
-                                       <div class="row">
-                                          <div class="col-md-12 col-sm-12">
-                                             <div id="page-editor3">
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                                &nbsp;
-                                                <br />
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <div class="row">
-                                          
-                                          <div class="col-md-12">
-                                             <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
-                                             <div class="table-responsive">
-                                                <table class="table">
-                                                   <tbody>
-                                                      <tr>
-                                                         <td>{click_id}</td>
-                                                         <td>{offer_id}</td>
-                                                         <td>{event_id}</td>
-                                                         <td>{country_id}</td>
-                                                         <td>{aff_id}</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>{adv_id}</td>
-                                                         <td>{adv_sub1}</td>
-                                                         <td>{adv_sub2}</td>
-                                                         <td>{adv_sub3}</td>
-                                                         <td>{aff_sub1}</td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>{aff_sub2}</td>
-                                                         <td>{aff_sub3}</td>
-                                                         <td>{aff_sub4}</td>
-                                                         <td>{aff_sub5}</td>
-                                                         <td>{source_id}</td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table>
-                                             </div>
-                                                
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </section>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           
-                        </div>
+                            <div class="tabbable boxed parentTabs">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#set1">Affiliate</a></li>
+                                <li><a href="#set2">Advertiser</a></li>
+                                <li><a href="#set3">Offer</a></li>
+                            </ul>
+                            <div class="tab-content">
 
-                        <div id="preferences" class="tab-pane fade in">
-                           <div class="tabs-example custom-tab-wizard">
-                              <div class="tabs-box-example horizontal-tab-example">
-                                 <ul class="nav nav-tabs" id="service_pro" role="tablist">
-                                    <li class="active" role="presentation"><a href="#signup2" role="tab" data-toggle="tab"><span>1</span> Affiliate Sign Up</a>
-                                    </li>
-                                    <li role="presentation"><a href="#approval2" role="tab" data-toggle="tab"><span>2</span> Affiliate Approval</a></li>
-                                    <li role="presentation"><a href="#rejection2" role="tab" data-toggle="tab"><span>3</span> Affiliate Rejection</a></li>
-                                    <li role="presentation"><a href="#password2" role="tab" data-toggle="tab"><span>4</span> Affiliate Password Re-setting</a></li>
-                                 </ul>
-                                 <div id="seipkkon_tab_content" class="tab-content">
-                                    <div id="signup2" class="tab-pane fade in active">
-                                       <section>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
-                                                </div>
-                                             </div><br />
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <div id="page-editor">
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                
-                                                <div class="col-md-12">
-                                                   <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
-                                                   <div class="table-responsive">
-                                                      <table class="table">
-                                                         <tbody>
-                                                            <tr>
-                                                               <td>{click_id}</td>
-                                                               <td>{offer_id}</td>
-                                                               <td>{event_id}</td>
-                                                               <td>{country_id}</td>
-                                                               <td>{aff_id}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{adv_id}</td>
-                                                               <td>{adv_sub1}</td>
-                                                               <td>{adv_sub2}</td>
-                                                               <td>{adv_sub3}</td>
-                                                               <td>{aff_sub1}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{aff_sub2}</td>
-                                                               <td>{aff_sub3}</td>
-                                                               <td>{aff_sub4}</td>
-                                                               <td>{aff_sub5}</td>
-                                                               <td>{source_id}</td>
-                                                            </tr>
-                                                         </tbody>
-                                                      </table>
-                                                   </div>
-                                                      
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </section>
-                                    </div>
-                                    <div id="approval2" class="tab-pane fade in">
-                                       <section>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
-                                                </div>
-                                             </div><br />
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <div id="page-editor1">
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                
-                                                <div class="col-md-12">
-                                                   <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
-                                                   <div class="table-responsive">
-                                                      <table class="table">
-                                                         <tbody>
-                                                            <tr>
-                                                               <td>{click_id}</td>
-                                                               <td>{offer_id}</td>
-                                                               <td>{event_id}</td>
-                                                               <td>{country_id}</td>
-                                                               <td>{aff_id}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{adv_id}</td>
-                                                               <td>{adv_sub1}</td>
-                                                               <td>{adv_sub2}</td>
-                                                               <td>{adv_sub3}</td>
-                                                               <td>{aff_sub1}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{aff_sub2}</td>
-                                                               <td>{aff_sub3}</td>
-                                                               <td>{aff_sub4}</td>
-                                                               <td>{aff_sub5}</td>
-                                                               <td>{source_id}</td>
-                                                            </tr>
-                                                         </tbody>
-                                                      </table>
-                                                   </div>
-                                                      
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </section>
-                                    </div>
-                                    <div id="rejection2" class="tab-pane fade in">
-                                       <section>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
-                                                </div>
-                                             </div><br />
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <div id="page-editor2">
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                
-                                                <div class="col-md-12">
-                                                   <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
-                                                   <div class="table-responsive">
-                                                      <table class="table">
-                                                         <tbody>
-                                                            <tr>
-                                                               <td>{click_id}</td>
-                                                               <td>{offer_id}</td>
-                                                               <td>{event_id}</td>
-                                                               <td>{country_id}</td>
-                                                               <td>{aff_id}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{adv_id}</td>
-                                                               <td>{adv_sub1}</td>
-                                                               <td>{adv_sub2}</td>
-                                                               <td>{adv_sub3}</td>
-                                                               <td>{aff_sub1}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{aff_sub2}</td>
-                                                               <td>{aff_sub3}</td>
-                                                               <td>{aff_sub4}</td>
-                                                               <td>{aff_sub5}</td>
-                                                               <td>{source_id}</td>
-                                                            </tr>
-                                                         </tbody>
-                                                      </table>
-                                                   </div>
-                                                      
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </section>
-                                    </div>
-                                    <div id="password2" class="tab-pane fade in">
-                                       <section>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
-                                                </div>
-                                             </div><br />
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <div id="page-editor3">
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                
-                                                <div class="col-md-12">
-                                                   <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
-                                                   <div class="table-responsive">
-                                                      <table class="table">
-                                                         <tbody>
-                                                            <tr>
-                                                               <td>{click_id}</td>
-                                                               <td>{offer_id}</td>
-                                                               <td>{event_id}</td>
-                                                               <td>{country_id}</td>
-                                                               <td>{aff_id}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{adv_id}</td>
-                                                               <td>{adv_sub1}</td>
-                                                               <td>{adv_sub2}</td>
-                                                               <td>{adv_sub3}</td>
-                                                               <td>{aff_sub1}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{aff_sub2}</td>
-                                                               <td>{aff_sub3}</td>
-                                                               <td>{aff_sub4}</td>
-                                                               <td>{aff_sub5}</td>
-                                                               <td>{source_id}</td>
-                                                            </tr>
-                                                         </tbody>
-                                                      </table>
-                                                   </div>
-                                                      
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </section>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
 
-                        <div id="message" class="tab-pane fade in">
-                           <div class="tabs-example custom-tab-wizard">
-                              <div class="tabs-box-example horizontal-tab-example">
-                                 <ul class="nav nav-tabs" id="service_pro" role="tablist">
-                                    <li class="active" role="presentation"><a href="#signup3" role="tab" data-toggle="tab"><span>1</span> Affiliate Sign Up</a>
-                                    </li>
-                                    <li role="presentation"><a href="#approval3" role="tab" data-toggle="tab"><span>2</span> Affiliate Approval</a></li>
-                                    <li role="presentation"><a href="#rejection3" role="tab" data-toggle="tab"><span>3</span> Affiliate Rejection</a></li>
-                                    <li role="presentation"><a href="#password3" role="tab" data-toggle="tab"><span>4</span> Affiliate Password Re-setting</a></li>
-                                 </ul>
-                                 <div id="seipkkon_tab_content" class="tab-content">
-                                    <div id="signup3" class="tab-pane fade in active">
-                                       <section>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
-                                                </div>
-                                             </div><br />
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <div id="page-editor">
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
+
+
+                                <div class="tab-pane fade active in custom-tab-wizard" id="set1">
+                                    <div class="tabbable">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#sub11"><span>1</span> Affiliate Sign Up</a></li>
+                                            <li><a href="#sub12"><span>2</span> Affiliate Approval</a></li>
+                                            <li><a href="#sub13"><span>3</span> Affiliate Rejection</a></li>
+                                            <li><a href="#sub14"><span>4</span> Affiliate Password Re-setting</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade active in" id="sub11">
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
+                                                      </div>
+                                                   </div><br />
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <div id="page-editor">
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                         </div>
+                                                      </div>
                                                    </div>
                                                 </div>
-                                             </div>
-                                          </div>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                
-                                                <div class="col-md-12">
-                                                   <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
-                                                   <div class="table-responsive">
-                                                      <table class="table">
-                                                         <tbody>
-                                                            <tr>
-                                                               <td>{click_id}</td>
-                                                               <td>{offer_id}</td>
-                                                               <td>{event_id}</td>
-                                                               <td>{country_id}</td>
-                                                               <td>{aff_id}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{adv_id}</td>
-                                                               <td>{adv_sub1}</td>
-                                                               <td>{adv_sub2}</td>
-                                                               <td>{adv_sub3}</td>
-                                                               <td>{aff_sub1}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{aff_sub2}</td>
-                                                               <td>{aff_sub3}</td>
-                                                               <td>{aff_sub4}</td>
-                                                               <td>{aff_sub5}</td>
-                                                               <td>{source_id}</td>
-                                                            </tr>
-                                                         </tbody>
-                                                      </table>
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
+                                                         <div class="table-responsive">
+                                                            <table class="table">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td>{click_id}</td>
+                                                                     <td>{offer_id}</td>
+                                                                     <td>{event_id}</td>
+                                                                     <td>{country_id}</td>
+                                                                     <td>{aff_id}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{adv_id}</td>
+                                                                     <td>{adv_sub1}</td>
+                                                                     <td>{adv_sub2}</td>
+                                                                     <td>{adv_sub3}</td>
+                                                                     <td>{aff_sub1}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{aff_sub2}</td>
+                                                                     <td>{aff_sub3}</td>
+                                                                     <td>{aff_sub4}</td>
+                                                                     <td>{aff_sub5}</td>
+                                                                     <td>{source_id}</td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </div>
+                                                      </div>
                                                    </div>
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <button type="button" class="btn btn-success">Save</button>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="sub12">
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
+                                                      </div>
+                                                   </div><br />
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <div id="page-editor1">
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="form-group">
+                                                   <div class="row">
                                                       
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </section>
-                                    </div>
-                                    <div id="approval3" class="tab-pane fade in">
-                                       <section>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
-                                                </div>
-                                             </div><br />
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <div id="page-editor1">
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
+                                                      <div class="col-md-12">
+                                                         <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
+                                                         <div class="table-responsive">
+                                                            <table class="table">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td>{click_id}</td>
+                                                                     <td>{offer_id}</td>
+                                                                     <td>{event_id}</td>
+                                                                     <td>{country_id}</td>
+                                                                     <td>{aff_id}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{adv_id}</td>
+                                                                     <td>{adv_sub1}</td>
+                                                                     <td>{adv_sub2}</td>
+                                                                     <td>{adv_sub3}</td>
+                                                                     <td>{aff_sub1}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{aff_sub2}</td>
+                                                                     <td>{aff_sub3}</td>
+                                                                     <td>{aff_sub4}</td>
+                                                                     <td>{aff_sub5}</td>
+                                                                     <td>{source_id}</td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </div>
+                                                            
+                                                      </div>
+                                                   </div>
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <button type="button" class="btn btn-success">Save</button>
+                                                      </div>
                                                    </div>
                                                 </div>
-                                             </div>
-                                          </div>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                
-                                                <div class="col-md-12">
-                                                   <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
-                                                   <div class="table-responsive">
-                                                      <table class="table">
-                                                         <tbody>
-                                                            <tr>
-                                                               <td>{click_id}</td>
-                                                               <td>{offer_id}</td>
-                                                               <td>{event_id}</td>
-                                                               <td>{country_id}</td>
-                                                               <td>{aff_id}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{adv_id}</td>
-                                                               <td>{adv_sub1}</td>
-                                                               <td>{adv_sub2}</td>
-                                                               <td>{adv_sub3}</td>
-                                                               <td>{aff_sub1}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{aff_sub2}</td>
-                                                               <td>{aff_sub3}</td>
-                                                               <td>{aff_sub4}</td>
-                                                               <td>{aff_sub5}</td>
-                                                               <td>{source_id}</td>
-                                                            </tr>
-                                                         </tbody>
-                                                      </table>
+                                            </div>
+                                            <div class="tab-pane fade" id="sub13">
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
+                                                      </div>
+                                                   </div><br />
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <div id="page-editor2">
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                         </div>
+                                                      </div>
                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                   <div class="row">
                                                       
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </section>
-                                    </div>
-                                    <div id="rejection3" class="tab-pane fade in">
-                                       <section>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
-                                                </div>
-                                             </div><br />
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <div id="page-editor2">
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
+                                                      <div class="col-md-12">
+                                                         <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
+                                                         <div class="table-responsive">
+                                                            <table class="table">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td>{click_id}</td>
+                                                                     <td>{offer_id}</td>
+                                                                     <td>{event_id}</td>
+                                                                     <td>{country_id}</td>
+                                                                     <td>{aff_id}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{adv_id}</td>
+                                                                     <td>{adv_sub1}</td>
+                                                                     <td>{adv_sub2}</td>
+                                                                     <td>{adv_sub3}</td>
+                                                                     <td>{aff_sub1}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{aff_sub2}</td>
+                                                                     <td>{aff_sub3}</td>
+                                                                     <td>{aff_sub4}</td>
+                                                                     <td>{aff_sub5}</td>
+                                                                     <td>{source_id}</td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </div>
+                                                            
+                                                      </div>
+                                                   </div>
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <button type="button" class="btn btn-success">Save</button>
+                                                      </div>
                                                    </div>
                                                 </div>
-                                             </div>
-                                          </div>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                
-                                                <div class="col-md-12">
-                                                   <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
-                                                   <div class="table-responsive">
-                                                      <table class="table">
-                                                         <tbody>
-                                                            <tr>
-                                                               <td>{click_id}</td>
-                                                               <td>{offer_id}</td>
-                                                               <td>{event_id}</td>
-                                                               <td>{country_id}</td>
-                                                               <td>{aff_id}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{adv_id}</td>
-                                                               <td>{adv_sub1}</td>
-                                                               <td>{adv_sub2}</td>
-                                                               <td>{adv_sub3}</td>
-                                                               <td>{aff_sub1}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{aff_sub2}</td>
-                                                               <td>{aff_sub3}</td>
-                                                               <td>{aff_sub4}</td>
-                                                               <td>{aff_sub5}</td>
-                                                               <td>{source_id}</td>
-                                                            </tr>
-                                                         </tbody>
-                                                      </table>
+                                            </div>
+                                            <div class="tab-pane fade" id="sub14">
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
+                                                      </div>
+                                                   </div><br />
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <div id="page-editor3">
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                         </div>
+                                                      </div>
                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                   <div class="row">
                                                       
+                                                      <div class="col-md-12">
+                                                         <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
+                                                         <div class="table-responsive">
+                                                            <table class="table">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td>{click_id}</td>
+                                                                     <td>{offer_id}</td>
+                                                                     <td>{event_id}</td>
+                                                                     <td>{country_id}</td>
+                                                                     <td>{aff_id}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{adv_id}</td>
+                                                                     <td>{adv_sub1}</td>
+                                                                     <td>{adv_sub2}</td>
+                                                                     <td>{adv_sub3}</td>
+                                                                     <td>{aff_sub1}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{aff_sub2}</td>
+                                                                     <td>{aff_sub3}</td>
+                                                                     <td>{aff_sub4}</td>
+                                                                     <td>{aff_sub5}</td>
+                                                                     <td>{source_id}</td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </div>
+                                                            
+                                                      </div>
+                                                   </div>
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <button type="button" class="btn btn-success">Save</button>
+                                                      </div>
+                                                   </div>
                                                 </div>
-                                             </div>
-                                          </div>
-                                       </section>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div id="password3" class="tab-pane fade in">
-                                       <section>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
-                                                </div>
-                                             </div><br />
-                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12">
-                                                   <div id="page-editor3">
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
-                                                      &nbsp;
-                                                      <br />
+                                </div>
+
+                                <div class="tab-pane fade custom-tab-wizard" id="set2">
+                                    <div class="tabbable">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#sub21"><span>1</span> Advertiser Sign Up</a></li>
+                                            <li><a href="#sub22"><span>2</span> Advertiser Approval</a></li>
+                                            <li><a href="#sub23"><span>3</span> Advertiser Rejection</a></li>
+                                            <li><a href="#sub24"><span>4</span> Advertiser Password Re-setting</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade active in" id="sub11">
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
+                                                      </div>
+                                                   </div><br />
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <div id="page-editor4">
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                         </div>
+                                                      </div>
                                                    </div>
                                                 </div>
-                                             </div>
-                                          </div>
-                                          <div class="form-group">
-                                             <div class="row">
-                                                
-                                                <div class="col-md-12">
-                                                   <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
-                                                   <div class="table-responsive">
-                                                      <table class="table">
-                                                         <tbody>
-                                                            <tr>
-                                                               <td>{click_id}</td>
-                                                               <td>{offer_id}</td>
-                                                               <td>{event_id}</td>
-                                                               <td>{country_id}</td>
-                                                               <td>{aff_id}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{adv_id}</td>
-                                                               <td>{adv_sub1}</td>
-                                                               <td>{adv_sub2}</td>
-                                                               <td>{adv_sub3}</td>
-                                                               <td>{aff_sub1}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <td>{aff_sub2}</td>
-                                                               <td>{aff_sub3}</td>
-                                                               <td>{aff_sub4}</td>
-                                                               <td>{aff_sub5}</td>
-                                                               <td>{source_id}</td>
-                                                            </tr>
-                                                         </tbody>
-                                                      </table>
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
+                                                         <div class="table-responsive">
+                                                            <table class="table">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td>{click_id}</td>
+                                                                     <td>{offer_id}</td>
+                                                                     <td>{event_id}</td>
+                                                                     <td>{country_id}</td>
+                                                                     <td>{aff_id}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{adv_id}</td>
+                                                                     <td>{adv_sub1}</td>
+                                                                     <td>{adv_sub2}</td>
+                                                                     <td>{adv_sub3}</td>
+                                                                     <td>{aff_sub1}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{aff_sub2}</td>
+                                                                     <td>{aff_sub3}</td>
+                                                                     <td>{aff_sub4}</td>
+                                                                     <td>{aff_sub5}</td>
+                                                                     <td>{source_id}</td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </div>
+                                                      </div>
                                                    </div>
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <button type="button" class="btn btn-success">Save</button>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="sub12">
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
+                                                      </div>
+                                                   </div><br />
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <div id="page-editor5">
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="form-group">
+                                                   <div class="row">
                                                       
+                                                      <div class="col-md-12">
+                                                         <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
+                                                         <div class="table-responsive">
+                                                            <table class="table">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td>{click_id}</td>
+                                                                     <td>{offer_id}</td>
+                                                                     <td>{event_id}</td>
+                                                                     <td>{country_id}</td>
+                                                                     <td>{aff_id}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{adv_id}</td>
+                                                                     <td>{adv_sub1}</td>
+                                                                     <td>{adv_sub2}</td>
+                                                                     <td>{adv_sub3}</td>
+                                                                     <td>{aff_sub1}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{aff_sub2}</td>
+                                                                     <td>{aff_sub3}</td>
+                                                                     <td>{aff_sub4}</td>
+                                                                     <td>{aff_sub5}</td>
+                                                                     <td>{source_id}</td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </div>
+                                                            
+                                                      </div>
+                                                   </div>
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <button type="button" class="btn btn-success">Save</button>
+                                                      </div>
+                                                   </div>
                                                 </div>
-                                             </div>
-                                          </div>
-                                       </section>
+                                            </div>
+                                            <div class="tab-pane fade" id="sub13">
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
+                                                      </div>
+                                                   </div><br />
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <div id="page-editor6">
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      
+                                                      <div class="col-md-12">
+                                                         <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
+                                                         <div class="table-responsive">
+                                                            <table class="table">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td>{click_id}</td>
+                                                                     <td>{offer_id}</td>
+                                                                     <td>{event_id}</td>
+                                                                     <td>{country_id}</td>
+                                                                     <td>{aff_id}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{adv_id}</td>
+                                                                     <td>{adv_sub1}</td>
+                                                                     <td>{adv_sub2}</td>
+                                                                     <td>{adv_sub3}</td>
+                                                                     <td>{aff_sub1}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{aff_sub2}</td>
+                                                                     <td>{aff_sub3}</td>
+                                                                     <td>{aff_sub4}</td>
+                                                                     <td>{aff_sub5}</td>
+                                                                     <td>{source_id}</td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </div>
+                                                            
+                                                      </div>
+                                                   </div>
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <button type="button" class="btn btn-success">Save</button>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="sub14">
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
+                                                      </div>
+                                                   </div><br />
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <div id="page-editor7">
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      
+                                                      <div class="col-md-12">
+                                                         <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
+                                                         <div class="table-responsive">
+                                                            <table class="table">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td>{click_id}</td>
+                                                                     <td>{offer_id}</td>
+                                                                     <td>{event_id}</td>
+                                                                     <td>{country_id}</td>
+                                                                     <td>{aff_id}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{adv_id}</td>
+                                                                     <td>{adv_sub1}</td>
+                                                                     <td>{adv_sub2}</td>
+                                                                     <td>{adv_sub3}</td>
+                                                                     <td>{aff_sub1}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{aff_sub2}</td>
+                                                                     <td>{aff_sub3}</td>
+                                                                     <td>{aff_sub4}</td>
+                                                                     <td>{aff_sub5}</td>
+                                                                     <td>{source_id}</td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </div>
+                                                            
+                                                      </div>
+                                                   </div>
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <button type="button" class="btn btn-success">Save</button>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                 </div>
-                              </div>
-                           </div>
+                                </div>
+
+
+
+
+
+                                <div class="tab-pane fade custom-tab-wizard" id="set3">
+                                    <div class="tabbable">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#sub31"><span>1</span> Offers Approval</a></li>
+                                            <li><a href="#sub32"><span>2</span> Offers Payout Change</a></li>
+                                            <li><a href="#sub33"><span>3</span> Offers Status Change</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade active in" id="sub11">
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
+                                                      </div>
+                                                   </div><br />
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <div id="page-editor8">
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
+                                                         <div class="table-responsive">
+                                                            <table class="table">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td>{click_id}</td>
+                                                                     <td>{offer_id}</td>
+                                                                     <td>{event_id}</td>
+                                                                     <td>{country_id}</td>
+                                                                     <td>{aff_id}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{adv_id}</td>
+                                                                     <td>{adv_sub1}</td>
+                                                                     <td>{adv_sub2}</td>
+                                                                     <td>{adv_sub3}</td>
+                                                                     <td>{aff_sub1}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{aff_sub2}</td>
+                                                                     <td>{aff_sub3}</td>
+                                                                     <td>{aff_sub4}</td>
+                                                                     <td>{aff_sub5}</td>
+                                                                     <td>{source_id}</td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <button type="button" class="btn btn-success">Save</button>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="sub12">
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
+                                                      </div>
+                                                   </div><br />
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <div id="page-editor9">
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      
+                                                      <div class="col-md-12">
+                                                         <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
+                                                         <div class="table-responsive">
+                                                            <table class="table">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td>{click_id}</td>
+                                                                     <td>{offer_id}</td>
+                                                                     <td>{event_id}</td>
+                                                                     <td>{country_id}</td>
+                                                                     <td>{aff_id}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{adv_id}</td>
+                                                                     <td>{adv_sub1}</td>
+                                                                     <td>{adv_sub2}</td>
+                                                                     <td>{adv_sub3}</td>
+                                                                     <td>{aff_sub1}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{aff_sub2}</td>
+                                                                     <td>{aff_sub3}</td>
+                                                                     <td>{aff_sub4}</td>
+                                                                     <td>{aff_sub5}</td>
+                                                                     <td>{source_id}</td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </div>
+                                                            
+                                                      </div>
+                                                   </div>
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <button type="button" class="btn btn-success">Save</button>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="sub13">
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <input class="form-control" value="Notification of Account Registration" placeholder="Enter Your First Name" id="firstnam1" type="text">
+                                                      </div>
+                                                   </div><br />
+                                                   <div class="row">
+                                                      <div class="col-md-12 col-sm-12">
+                                                         <div id="page-editor10">
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                            &nbsp;
+                                                            <br />
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="form-group">
+                                                   <div class="row">
+                                                      
+                                                      <div class="col-md-12">
+                                                         <h3>Short Codes <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></h3>
+                                                         <div class="table-responsive">
+                                                            <table class="table">
+                                                               <tbody>
+                                                                  <tr>
+                                                                     <td>{click_id}</td>
+                                                                     <td>{offer_id}</td>
+                                                                     <td>{event_id}</td>
+                                                                     <td>{country_id}</td>
+                                                                     <td>{aff_id}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{adv_id}</td>
+                                                                     <td>{adv_sub1}</td>
+                                                                     <td>{adv_sub2}</td>
+                                                                     <td>{adv_sub3}</td>
+                                                                     <td>{aff_sub1}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{aff_sub2}</td>
+                                                                     <td>{aff_sub3}</td>
+                                                                     <td>{aff_sub4}</td>
+                                                                     <td>{aff_sub5}</td>
+                                                                     <td>{source_id}</td>
+                                                                  </tr>
+                                                               </tbody>
+                                                            </table>
+                                                         </div>
+                                                            
+                                                      </div>
+                                                   </div>
+                                                   <div class="row">
+                                                      <div class="col-md-12">
+                                                         <button type="button" class="btn btn-success">Save</button>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
                         </div>
-                        
-                        
-                     </div>
                      
                   </div>
                </div>

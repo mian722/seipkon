@@ -83,6 +83,7 @@ Route::get('/source-offers', function () { return view('source-offers'); });
 Route::get('/smart-alert', function () { return view('smart-alert'); });
 Route::get('/smart-link', function () { return view('smart-link'); });
 Route::get('/integration', function () { return view('integration'); });
+
 Route::get('/compaigns', function () { return view('compaigns'); });
 Route::get('/offers-detail-page', function () { return view('offers-detail-page'); });
 Route::get('/affiliate-detail-page', function () { return view('affiliate-detail-page'); });

@@ -277,6 +277,7 @@
                                        </li>
                                     </ul>
                                  </div>
+
                                  <div class="notification-footer">
                                     <a href="#"><i class="fa fa-angle-down"></i>see all notification</a>
                                  </div>
@@ -340,6 +341,7 @@
                         Dashboard
                         </a>
                      </li>
+
                      <li>
                         <a href="#ecommerce" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-shopping-cart"></i>
@@ -556,18 +558,30 @@
             $.fn.editable.defaults.mode = 'popup';
                 $('.username').editable();
             });
-    $('.username').editable();
-    $('#page-editor1').summernote();
-    $('#page-editor2').summernote();
-    $('#page-editor3').summernote();
+      $('.username').editable();
+      $('#page-editor1').summernote();
+      $('#page-editor2').summernote();
+      $('#page-editor3').summernote();
+      $('#page-editor4').summernote();
+      $('#page-editor5').summernote();
+      $('#page-editor6').summernote();
+      $('#page-editor7').summernote();
+      $('#page-editor8').summernote();
+      $('#page-editor9').summernote();
+      $('#page-editor10').summernote();
 
-   $(document).ready( function () {
+      $(document).ready( function () {
              $('#postback_table').DataTable();
              $('#sub_affiliate_block_list').DataTable();
              $('#c1').DataTable();
              $('#c2').DataTable();
              $('#c3').DataTable();
          } );
+
+      $("ul.nav-tabs a").click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+      });
       </script>
    </body>
 
