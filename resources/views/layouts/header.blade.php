@@ -358,7 +358,7 @@
                      </li>
                      <li>
                         <a href="#createpage" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-file-text-o"></i>
+                        <i class="fa fa-sitemap"></i>
                         Affiliates
                         </a>
                         <ul class="collapse list-unstyled" id="createpage">
@@ -383,7 +383,7 @@
                      </li>
                      <li>
                         <a href="#accounts" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-user-o"></i>
+                        <i class="fa fa-vcard"></i>
                         Accounts
                         </a>
                         <ul class="collapse list-unstyled" id="accounts">
@@ -394,7 +394,7 @@
                      </li>
                      <li>
                         <a href="#reports" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-user-o"></i>
+                        <i class="fa fa-bar-chart-o"></i>
                         Reports
                         </a>
                         <ul class="collapse list-unstyled" id="reports">
@@ -411,7 +411,7 @@
                      </li>
                      <li>
                         <a href="#setting" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-user-o"></i>
+                        <i class="fa fa-gear"></i>
                         Setting
                         </a>
                         <ul class="collapse list-unstyled" id="setting">
