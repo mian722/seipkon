@@ -30,6 +30,7 @@ class CreateOfferRestrictions extends Migration
         $table->string('geo_type')->defalut(0);
         $table->string('mobile_carrier_targeting')->nullable();
         $table->string('platform_targeting')->nullable();
+        $table->tinyInteger('admin_id');
         $table->timestamps();
     }
 
