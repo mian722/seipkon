@@ -26,6 +26,10 @@ class CreateOfferRestrictions extends Migration
         $table->tinyInteger('ssl')->defalut(0);
         $table->tinyInteger('lead_traffic_preview_url')->defalut(0);
         $table->tinyInteger('unique_ip_tracking')->defalut(0);
+        $table->string('geo_targeting')->nullable();
+        $table->string('geo_type')->defalut(0);
+        $table->string('mobile_carrier_targeting')->nullable();
+        $table->string('platform_targeting')->nullable();
         $table->rememberToken();
         $table->timestamps();
     }
