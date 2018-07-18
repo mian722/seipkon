@@ -28,9 +28,9 @@ class CreateUsersTable extends Migration
             $table->string('managerid')->nullable();
             $table->string('whitelist')->nullable();
             $table->string('securitycode')->nullable();
-            $table->tinyInteger('roleid')->nullable();
+            $table->tinyInteger('roles_id')->nullable();
             $table->tinyInteger('admin_id');
-            $table->tinyInteger('status')->defalut(0);
+            $table->tinyInteger('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

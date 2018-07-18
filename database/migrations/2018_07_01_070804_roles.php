@@ -18,7 +18,6 @@ class Roles extends Migration
             $table->string('name');
             $table->tinyInteger('value');
             $table->tinyInteger('status')->defalut(1);
-            $table->tinyInteger('admin_id');
             $table->timestamps();
         });
     }

@@ -300,7 +300,19 @@
                                     <li><a href="#"><i class="fa fa-pencil-square-o"></i> Edit profile</a></li>
                                     <li><a href="#"><i class="fa fa-flash"></i> Activity Log</a></li>
                                     <li><a href="#"><i class="fa fa-wrench"></i> Setting</a></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> sign out</a></li>
+                                    @if (!Auth::guest())
+                                       <li>
+                                           <a href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                              <i class="fa fa-power-off"></i> Logout
+                                           </a>
+
+                                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                               {{ csrf_field() }}
+                                           </form>
+                                       </li>
+                                    @endif
                                  </ul>
                               </div>
                            </li>

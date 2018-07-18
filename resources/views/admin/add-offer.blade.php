@@ -37,7 +37,8 @@
                         <div class="page-box">
                            <div class="tabs-example add-product-form-group">
                               <div class="tabs-box-example horizontal-tab-example">
-                                 <form action="">
+                                <form class="form-horizontal" method="POST" action="{{ route('add-offer.store') }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                     <ul class="nav nav-tabs" id="service_pro" role="tablist">
                                        <li class="active" role="presentation"><a href="#Details" role="tab" data-toggle="tab">Details</a>
                                        </li>
@@ -58,7 +59,7 @@
                                                    <div class="col-md-12">
                                                       <p>
                                                          <label>Product Name</label>
-                                                         <input type="text" placeholder="Enter Product Name">
+                                                         <input type="text" name="offer_name" required="required" placeholder="Enter Product Name">
                                                       </p>
                                                    </div>
                                                 </div>
@@ -66,13 +67,7 @@
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Advertiser</label>
-                                                         <input type="text" placeholder="Advertiser">
-                                                      </p>
-                                                   </div>
-                                                   <div class="col-md-4">
-                                                      <p>
-                                                         <label>Tag <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <select class="form-control select2" multiple="multiple" data-placeholder="Select a State">
+                                                         <select class="form-control select2" data-placeholder="Select Tags" name="adv_id" required="required">
                                                             <option>Alabama</option>
                                                             <option>Alaska</option>
                                                             <option>California</option>
@@ -85,8 +80,16 @@
                                                    </div>
                                                    <div class="col-md-4">
                                                       <p>
-                                                         <label>Advertiser's Offer ID</label>
-                                                         <input type="text" placeholder="Advertiser's Offer ID">
+                                                         <label>Tag <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                         <select class="form-control select2" multiple="multiple" data-placeholder="Select Tags" name="tags[]" required="required">
+                                                            <option>Alabama</option>
+                                                            <option>Alaska</option>
+                                                            <option>California</option>
+                                                            <option>Delaware</option>
+                                                            <option>Tennessee</option>
+                                                            <option>Texas</option>
+                                                            <option>Washington</option>
+                                                         </select>
                                                       </p>
                                                    </div>
                                                 </div>
@@ -94,28 +97,17 @@
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Duration <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <input type="text" id="reservation" placeholder="Date" />
+                                                         <input type="text" name="duration" required="required" id="reservation" placeholder="Date" />
                                                       </p>
                                                    </div>
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Status <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <select class="form-control select2">
+                                                         <select class="form-control select2" name="status" required="required">
                                                             <option selected="selected">Active</option>
                                                             <option>Paused</option>
                                                             <option>Pending</option>
                                                             <option>Deleted</option>
-                                                         </select>
-                                                      </p>
-                                                   </div>
-                                                   <div class="col-md-4">
-                                                      <p>
-                                                         <label>Currency <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <select class="form-control select2">
-                                                            <option selected="selected">United States, Dollars(USD)</option>
-                                                            <option>Euro(EUR)</option>
-                                                            <option>Australia, Dollars(AUD)</option>
-                                                            <option>Brazil, Reais(BRL)</option>
                                                          </select>
                                                       </p>
                                                    </div>
@@ -126,7 +118,7 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Revenue Type</label>
-                                                      <select class="form-control select2">
+                                                      <select class="form-control select2" name="revenue_type" required="required">
                                                          <option selected="selected">RPA</option>
                                                          <option>RPS</option>
                                                          <option>RPA+RPS</option>
@@ -136,13 +128,13 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Revenue</label>
-                                                      <input type="text" placeholder="Tags">
+                                                      <input type="text" placeholder="Revenue" name="revenue" required="required">
                                                    </p>
                                                 </div>
                                                 <div class="col-md-3">
                                                       <p>
                                                          <label>Offer Approval <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <select class="form-control select2">
+                                                         <select class="form-control select2" name="offer_approval" required="required">
                                                             <option selected="selected">Require Approval</option>
                                                             <option>Public</option>
                                                             <option>Private</option>
@@ -155,7 +147,7 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Payout Type</label>
-                                                      <select class="form-control select2">
+                                                      <select class="form-control select2" name="payout_type" required="required">
                                                          <option selected="selected">CPA</option>
                                                          <option>CPS</option>
                                                          <option>CPA+CPS</option>
@@ -165,13 +157,13 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Payout</label>
-                                                      <input type="text" placeholder="Tags">
+                                                      <input type="text" placeholder="Payout" name="" required="required">
                                                    </p>
                                                 </div>
                                                 <div class="col-md-3">
                                                       <p>
                                                          <label>Affiliate Payout Tiers <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <select class="form-control select2">
+                                                         <select class="form-control select2" name="payout" required="required">
                                                             <option selected="selected">Disable</option>
                                                             <option>Enable</option>
                                                          </select>
@@ -183,7 +175,7 @@
                                                 <div class="col-md-12">
                                                    <p>
                                                       <label>Preview URL <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <input type="text" placeholder="Tags">
+                                                      <input type="text" placeholder="Preview URL" name="preview_url" required="required">
                                                    </p>
                                                 </div>
                                              </div>
@@ -191,7 +183,7 @@
                                                 <div class="col-md-12">
                                                    <p>
                                                       <label>Destination URL <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <input type="text" placeholder="Tags">
+                                                      <input type="text" placeholder="Destination URL" name="destination_url" required="required">
                                                    </p>
                                                 </div>
                                              </div>
@@ -236,7 +228,7 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Conversion Protocol <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <select class="form-control select2">
+                                                      <select class="form-control select2" name="signup_protocol" required="required">
                                                          <option selected="selected">Postback URL</option>
                                                          <option>CPS</option>
                                                          <option>CPA+CPS</option>
@@ -246,25 +238,10 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Conversions Need Approval <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <select class="form-control select2">
+                                                      <select class="form-control select2" name="signup_need_approval" required="required">
                                                          <option selected="selected">Disable</option>
                                                          <option>Enable</option>
                                                       </select>
-                                                   </p>
-                                                </div>
-                                                <div class="col-md-3">
-                                                   <p>
-                                                      <label>Hide Referral <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <select class="form-control select2">
-                                                         <option selected="selected">Default</option>
-                                                         <option>Enable</option>
-                                                      </select>
-                                                   </p>
-                                                </div>
-                                                <div class="col-md-3">
-                                                   <p>
-                                                      <label>Application ID</label>
-                                                      <input type="text" placeholder="Application ID">
                                                    </p>
                                                 </div>
                                              </div>
@@ -272,7 +249,7 @@
                                                 <div class="col-md-12">
                                                    <p>
                                                       <label>Description <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <div id="page-editor">
+                                                      <div id="page-editor" name="description">
                                                          &nbsp;
                                                          <br />
                                                          &nbsp;
@@ -287,7 +264,7 @@
                                                          <br />
                                                       </div>
                                                    </p>
-                                                   <button type="submit" class="pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
+                                                   <button type="button" class="pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
                                                 </div>
                                              </div>
 
@@ -450,6 +427,11 @@
                                                       <i class="fa fa-trash"></i>
                                                       Delete Image
                                                       </button> -->
+                                                   </div>
+                                                </p>
+                                                <p>
+                                                   <div class="pull-right">
+                                                      <button type="button" class="pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
                                                    </div>
                                                 </p>
                                              </div>

@@ -11,10 +11,21 @@
 |
 */
 
+Route::group(['middleware'=> 'boss'], function(){
+	Route::get('/boss/home', 'BossController@index')->name('boss/home');
+});
+
+Route::group(['middleware'=> 'admin'], function(){
+	Route::get('/add-offer', 'AddOfferController@index')->name('add-offer');
+	Route::get('/admin/home', 'AdminController@index')->name('admin.home');
+	Route::post('/add-offer/store', 'AddOfferController@store')->name('add-offer.store');
+});
+
+
+
 Route::get('/', function () { return view('index'); });
-Route::get('/product', function () { return view('product'); });
-Route::get('/add-product', function () { return view('add-product'); });
-Route::get('/edit-product', function () { return view('edit-product'); });
+Route::get('/offer', function () { return view('offer'); });
+Route::get('/edit-offer', function () { return view('edit-offer'); });
 Route::get('/all-offers', function () { return view('all-offers'); });
 Route::get('/offer-pool', function () { return view('offer-pool'); });
 Route::get('/create-pool', function () { return view('create-pool'); });
@@ -94,3 +105,5 @@ Route::get('/postback-create', function () { return view('postback-create'); });
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
