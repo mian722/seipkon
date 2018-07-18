@@ -19,6 +19,8 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/add-offer', 'AddOfferController@index')->name('add-offer');
 	Route::get('/admin/home', 'AdminController@index')->name('admin.home');
 	Route::post('/add-offer/store', 'AddOfferController@store')->name('add-offer.store');
+	Route::post('/add-affliate/create', 'UserController@createaffilate')->name('affiliate.create');
+	Route::post('/add-advertiser/create', 'UserController@createadvertiser')->name('affiliate.create');
 });
 
 

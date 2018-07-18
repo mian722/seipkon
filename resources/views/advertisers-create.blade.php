@@ -38,30 +38,31 @@
                         <div class="page-box">
                            <div class="form-example">
                               <div class="form-wrap top-label-exapmple form-layout-page">
-                                 <form>
+                                 <form data-parsley-validate  method="POST" action="{{ route('affiliate.create') }}">
                                     <div class="row">
                                        <div class="col-md-3">
+                                          <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                           <div class="form-group">
                                              <label class="control-label">First Name:</label>
-                                             <input type="text" class="form-control" >
+                                             <input type="text" name="fname" class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Last Name:</label>
-                                             <input type="text"  class="form-control" >
+                                             <input type="text" name="lname"  class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Email Address:</label>
-                                             <input type="email"  class="form-control" >
+                                             <input type="email" name="email"  class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Mobile NO:</label>
-                                             <input type="email"  class="form-control" >
+                                             <input type="text" name="mobile" class="form-control" >
                                           </div>
                                        </div>
                                     </div>
@@ -69,7 +70,7 @@
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">IM:</label>
-                                             <select class="form-control select2">
+                                             <select name="imtype" class="form-control select2">
                                                 <option selected="selected">IM</option>
                                                 <option>Skype</option>
                                                 <option>facebook</option>
@@ -79,13 +80,13 @@
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">IM Account:</label>
-                                             <input type="text"  class="form-control" >
+                                             <input type="text" name="imaccount" class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Country:</label>
-                                             <select class="form-control select2">
+                                             <select name="country" class="form-control select2">
                                                 <option selected="selected">Alabama</option>
                                                 <option>Alaska</option>
                                                 <option>Delaware</option>
@@ -98,8 +99,8 @@
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Manager:<span data-toggle="tooltip" title="" data-original-title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                             <select class="form-control select2" data-placeholder="Select a State">
-                                                <option>Alabama</option>
+                                             <select name="manager" class="form-control select2" data-placeholder="Select a State">
+                                                <option value="1">Alabama</option>
                                                 <option>Alaska</option>
                                                 <option>California</option>
                                                 <option>Delaware</option>
@@ -114,13 +115,13 @@
                                        <div class="col-md-6">
                                           <div class="form-group">
                                              <label class="control-label">Company:</label>
-                                             <input type="email"  class="form-control" >
+                                             <input type="text" name="company"  class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-6">
                                           <div class="form-group">
                                              <label class="control-label">Website:</label>
-                                             <input type="email" class="form-control" >
+                                             <input type="text" name="website" class="form-control" >
                                           </div>
                                        </div>
                                     </div>
@@ -128,36 +129,32 @@
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Status:</label>
-                                             <select class="form-control select2">
-                                                <option selected="selected">Active</option>
-                                                <option>Disable</option>
+                                             <select name="status" class="form-control select2">
+                                                <option selected="selected" value="1">Active</option>
+                                                <option value="0">Disable</option>
                                              </select>
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Password:</label>
-                                             <input type="password" class="form-control" >
+                                             <input type="password" name="password" class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-2">
                                           <div class="form-group">
-                                             <label class="control-label">Tier:</label>
-                                             <select class="form-control select2" data-placeholder="Select a State">
-                                                <option>Alabama</option>
-                                                <option>Alaska</option>
-                                                <option>California</option>
-                                                <option>Delaware</option>
-                                                <option>Tennessee</option>
-                                                <option>Texas</option>
-                                                <option>Washington</option>
+                                             <label class="control-label">Security Code:</label>
+                                             <select name="security" class="form-control select2" data-placeholder="Select a State">
+                                                <option value="yes">yes</option>
+                                                <option value="no">no</option>
+                                                
                                              </select>
                                           </div>
                                        </div>
                                        <div class="col-md-4">
                                           <div class="form-group">
                                              <label class="control-label">&nbsp;</label>
-                                             <input type="text" class="form-control" name="" disabled="">
+                                             <input name="scode" type="text" class="form-control" >
                                           </div>
                                        </div>
                                     </div>
