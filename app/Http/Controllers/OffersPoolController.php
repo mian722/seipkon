@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\OffersPool;
 
-class AddOfferController extends Controller
+class OffersPoolController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +15,18 @@ class AddOfferController extends Controller
      */
     public function index()
     {
-        return view('admin.add-offer');
+        $pools = OffersPool::all();
+        return view('admin.offer-pool', compact('pools'));
+    }
+
+    /**
+     * Create a Pool resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create_pool()
+    {
+        return view('admin.create-pool');
     }
 
     /**
@@ -36,7 +47,16 @@ class AddOfferController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        //return $request->all();
+        $offer_pool = new OffersPool;
+        $offer_pool->name = $request->name;
+        $offer_pool->note = $request->note;
+        $offer_pool->status = ($request->status == "Active") ? 1 : 0;
+        $offer_pool->admin_id = Auth::user()->id;
+        $offer_pool->save();
+        if (!empty($offer_pool) ) {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
     }
 
     /**
@@ -58,7 +78,8 @@ class AddOfferController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        
     }
 
     /**

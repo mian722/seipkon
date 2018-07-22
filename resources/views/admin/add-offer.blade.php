@@ -37,7 +37,7 @@
                         <div class="page-box">
                            <div class="tabs-example add-product-form-group">
                               <div class="tabs-box-example horizontal-tab-example">
-                                <form class="form-horizontal" method="POST" action="{{ route('add-offer.store') }}">
+                                <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('add-offer.store') }}">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                     <ul class="nav nav-tabs" id="service_pro" role="tablist">
                                        <li class="active" role="presentation"><a href="#Details" role="tab" data-toggle="tab">Details</a>
@@ -68,13 +68,13 @@
                                                       <p>
                                                          <label>Advertiser</label>
                                                          <select class="form-control select2" data-placeholder="Select Tags" name="adv_id" required="required">
-                                                            <option>Alabama</option>
-                                                            <option>Alaska</option>
-                                                            <option>California</option>
-                                                            <option>Delaware</option>
-                                                            <option>Tennessee</option>
-                                                            <option>Texas</option>
-                                                            <option>Washington</option>
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                            <option>6</option>
+                                                            <option>7</option>
                                                          </select>
                                                       </p>
                                                    </div>
@@ -104,10 +104,10 @@
                                                       <p>
                                                          <label>Status <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                          <select class="form-control select2" name="status" required="required">
-                                                            <option selected="selected">Active</option>
-                                                            <option>Paused</option>
-                                                            <option>Pending</option>
-                                                            <option>Deleted</option>
+                                                            <option selected="selected" value="1">Active</option>
+                                                            <option value="2">Paused</option>
+                                                            <option value="3">Pending</option>
+                                                            <option value="4">Deleted</option>
                                                          </select>
                                                       </p>
                                                    </div>
@@ -220,7 +220,6 @@
                                                          </tbody>
                                                       </table>
                                                    </div>
-                                                      
                                                 </div>
                                              </div>
 
@@ -249,22 +248,10 @@
                                                 <div class="col-md-12">
                                                    <p>
                                                       <label>Description <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <div id="page-editor" name="description">
-                                                         &nbsp;
-                                                         <br />
-                                                         &nbsp;
-                                                         <br />
-                                                         &nbsp;
-                                                         <br />
-                                                         &nbsp;
-                                                         <br />
-                                                         &nbsp;
-                                                         <br />
-                                                         &nbsp;
-                                                         <br />
-                                                      </div>
+                                                      <textarea id="page-editor" name="description" rows="6">
+                                                      </textarea>
                                                    </p>
-                                                   <button type="button" class="pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
+                                                   <button type="submit" onclick="return false;" class="changetabbutton pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
                                                 </div>
                                              </div>
 
@@ -275,29 +262,39 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Advertiser Caps Type <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2">
-                                                      <option selected="selected">None</option>
-                                                      <option>Total</option>
-                                                      <option>Daily</option>
-                                                      <option>Revenue</option>
-                                                   </select>
+                                                   <div class="col-md-2">
+                                                      <select class="form-control select2" name="advertiser_caps_type" required="required">
+                                                         <option selected="selected">None</option>
+                                                         <option>Total</option>
+                                                         <option>Daily</option>
+                                                         <option>Revenue</option>
+                                                      </select>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <input type="text" name="advertiser_caps_value" class="form-control" required="required" placeholder="Enter Product Name">
+                                                   </div>
                                                 </p>
                                              </div>
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Affiliate Caps Type <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2">
-                                                      <option selected="selected">None</option>
-                                                      <option>Total</option>
-                                                      <option>Daily</option>
-                                                      <option>Revenue</option>
-                                                   </select>
+                                                   <div class="col-md-2">
+                                                      <select class="form-control select2" name="affiliate_caps_type" required="required">
+                                                         <option selected="selected">None</option>
+                                                         <option>Total</option>
+                                                         <option>Daily</option>
+                                                         <option>Revenue</option>
+                                                      </select>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <input type="text" name="affiliate_caps_value" class="form-control" required="required" placeholder="Enter Product Name">
+                                                   </div>
                                                 </p>
                                              </div>
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Caps Timezone <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" style="width: 60%;">
+                                                   <select class="form-control select2" style="width: 60%;" name="caps_timezone" required="required">
                                                       <option selected="selected">(GMT -11:00)Pacific/Midway,Niue,Pago_Pago</option>
                                                       <option>(GMT -10:00)Pacific/Honolulu,Rarotonga</option>
                                                       <option>(GMT -09:30)Pacific/Marquesas</option>
@@ -308,7 +305,7 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Redirect Offer <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" style="width: 60%;">
+                                                   <select class="form-control select2" style="width: 60%;" name="redirect_offer" required="required">
                                                       <option selected="selected">test offer #1</option>
                                                       <option>test offer #2</option>
                                                       <option>test offer #3</option>
@@ -319,7 +316,7 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Offer Pool <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;" name="offer_pool[]" required="required">
                                                       <option>Offer 1</option>
                                                       <option>Offer 2</option>
                                                       <option>Offer 3</option>
@@ -329,7 +326,7 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Tracking Domain <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" style="width: 40%;">
+                                                   <select class="form-control select2" style="width: 40%;" name="   tracking_domain" required="required">
                                                       <option selected="selected">test offer #1</option>
                                                       <option>test offer #2</option>
                                                       <option>test offer #3</option>
@@ -342,7 +339,7 @@
                                                    <label>SSL <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="form-wrap toggle-switches-flex">
                                                       <div class="form-group">
-                                                         <div class="toggle toggle-modern"></div>
+                                                         <input checked class="ssl_toggle" name="ssl" data-toggle="toggle" type="checkbox">
                                                       </div>
                                                    </div>
                                                 </p>
@@ -352,7 +349,7 @@
                                                    <label>Lead Traffic to Preview URL <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="form-wrap toggle-switches-flex">
                                                       <div class="form-group">
-                                                         <div class="toggle toggle-modern"></div>
+                                                         <input checked class="ssl_toggle" name="lead_traffic_preview_url" data-toggle="toggle" type="checkbox">
                                                       </div>
                                                    </div>
                                                 </p>
@@ -362,10 +359,11 @@
                                                    <label>Unique IP Tracking <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="form-wrap toggle-switches-flex">
                                                       <div class="form-group">
-                                                         <div class="toggle toggle-modern"></div>
+                                                         <input checked class="ssl_toggle" name="unique_ip_tracking" data-toggle="toggle" type="checkbox">
                                                       </div>
                                                    </div>
                                                 </p>
+                                                   <button type="button" class="changetabbutton pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
                                              </div>
                                           </div>
                                        </div>
@@ -374,12 +372,12 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Geo Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" name="geo_targeting[]" style="width: 60%;">
                                                       <option>Offer 1</option>
                                                       <option>Offer 2</option>
                                                       <option>Offer 3</option>
                                                    </select>
-                                                   <select class="form-control select2">
+                                                   <select class="form-control select2" name="geo_type">
                                                       <option selected="selected">Include</option>
                                                       <option>Exclude</option>
                                                    </select>
@@ -388,7 +386,7 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Mobile Carrier Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;" name="mobile_carrier_targeting[]">
                                                       <option>Offer 1</option>
                                                       <option>Offer 2</option>
                                                       <option>Offer 3</option>
@@ -398,12 +396,13 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Platform Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 30%;">
+                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 30%;" name="platform_targeting[]">
                                                       <option>Offer 1</option>
                                                       <option>Offer 2</option>
                                                       <option>Offer 3</option>
                                                    </select>
                                                 </p>
+                                                   <button type="button" class="changetabbutton pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
                                              </div>
                                           </div>
                                        </div>
@@ -421,7 +420,7 @@
                                                             <i class="fa fa-upload"></i>
                                                             Upload Image
                                                          </p>
-                                                         <input type="file">
+                                                         <input type="file" name="offer_image">
                                                       </div>
                                                       <!-- <button type="submit" class="btn btn-danger">
                                                       <i class="fa fa-trash"></i>
@@ -431,7 +430,7 @@
                                                 </p>
                                                 <p>
                                                    <div class="pull-right">
-                                                      <button type="button" class="pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
+                                                      <button type="submit" class="pull-right btn btn-success"><i class="fa fa-check"></i>Finish</button>
                                                    </div>
                                                 </p>
                                              </div>

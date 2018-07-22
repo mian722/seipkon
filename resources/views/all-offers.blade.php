@@ -19,9 +19,7 @@
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-right">
                                     <ul>
-                                       <li><a href="index-2.html">home</a></li>
-                                       <li>e-Commerce</li>
-                                       <li>Product order list</li>
+                                       <li><a href="{{ asset('add-offer') }}" class="btn btn-success">Create</a></li>
                                     </ul>
                                  </div>
                               </div>

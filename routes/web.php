@@ -16,20 +16,21 @@ Route::group(['middleware'=> 'boss'], function(){
 });
 
 Route::group(['middleware'=> 'admin'], function(){
-	Route::get('/add-offer', 'AddOfferController@index')->name('add-offer');
 	Route::get('/admin/home', 'AdminController@index')->name('admin.home');
-	Route::post('/add-offer/store', 'AddOfferController@store')->name('add-offer.store');
+	Route::get('/admin', 'AdminController@index')->name('admin.home');
+	Route::post('/add-offer/store', 'OfferController@store')->name('add-offer.store');
+	Route::get('/add-offer', 'OfferController@index')->name('add-offer');
+	Route::get('/offer-pool', 'OffersPoolController@index')->name('offer-pool');
+	Route::get('/create-pool', 'OffersPoolController@create_pool')->name('create-pool');
+	Route::post('/create-pool/store', 'OffersPoolController@store')->name('create-pool.store');
+	Route::get('/detail-pool', function () { return view('detail-pool'); });
 });
-
 
 
 Route::get('/', function () { return view('index'); });
 Route::get('/offer', function () { return view('offer'); });
 Route::get('/edit-offer', function () { return view('edit-offer'); });
 Route::get('/all-offers', function () { return view('all-offers'); });
-Route::get('/offer-pool', function () { return view('offer-pool'); });
-Route::get('/create-pool', function () { return view('create-pool'); });
-Route::get('/detail-pool', function () { return view('detail-pool'); });
 Route::get('/offer-application', function () { return view('offer-application'); });
 Route::get('/pages', function () { return view('pages'); });
 Route::get('/basic-table', function () { return view('basic-table'); });

@@ -38,24 +38,23 @@
                            <div class="row">
                               <div class="col-md-12">
                                  <div class="create-page-left">
-                                    <form>
+                                    <form class="form-horizontal" method="post" action="{{ route('create-pool.store') }}">
+                                       <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                        <p>
                                           <label>Page Title</label>
-                                          <input type="text" placeholder="Enter Page Title" >
+                                          <input type="text" name="name" placeholder="Enter Page Title" />
                                        </p>
                                        <p>
-                                          <div class="form-group">
-                                             <label class="control-label">Status</label>
-                                             <select class="form-control select2">
-                                                <option selected="selected">Active</option>
-                                                <option>Paused</option>
-                                                
-                                             </select>
-                                          </div>
+                                          <label class="control-label">Status</label>
+                                          <select class="form-control select2" name="status">
+                                             <option selected="selected">Active</option>
+                                             <option>Paused</option>
+                                             
+                                          </select>
                                        </p>
                                        <div class="page-editor-box">
                                           <label>Page Content</label>
-                                          <div id="page-editor"></div>
+                                          <textarea id="page-editor" name="note" ></textarea>
                                        </div>
                                        <p>
                                           <button type="submit" class="btn btn-success" ><i class="fa fa-check"></i>publish pool</button>

@@ -41,6 +41,7 @@
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/datatables/css/dataTables.bootstrap.min.css') }}" >
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/datatables/css/buttons.bootstrap.min.css') }}" >
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/datatables/css/responsive.bootstrap.min.css') }}" >
+      <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
       <!-- Color Picker CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
       <!-- Main CSS -->
@@ -361,10 +362,8 @@
                         </a>
                         <ul class="collapse list-unstyled" id="ecommerce">
                            <li><a href="{{ asset('all-offers') }}">all offers</a></li>
-                           <li><a href="{{ asset('add-product') }}">add new offer</a></li>
                            <li><a href="{{ asset('offer-application') }}">Offer Application</a></li>
                            <!-- <li><a href="{{ asset('edit-product') }}">Edit product</a></li> -->
-                           <li><a href="{{ asset('create-pool') }}">create a pool</a></li>
                            <li><a href="{{ asset('offer-pool') }}">Offer Pool</a></li>
                         </ul>
                      </li>
@@ -565,6 +564,7 @@
       <script src="{{ asset('public/assets/js/form_wizard_custom.js') }}"></script>
       <!-- Custom JS -->
       <script src="{{ asset('public/assets/js/seipkon.js') }}"></script>
+      <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
       <script type="text/javascript">
          $(document).ready(function() {
             $.fn.editable.defaults.mode = 'popup';
@@ -594,6 +594,32 @@
         e.preventDefault();
         $(this).tab('show');
       });
+
+      $('.changetabbutton').click(function(e){
+         e.preventDefault();
+         var next_tab = $('.nav-tabs > .active').next('li').find('a');
+         if(next_tab.length>0){
+            next_tab.trigger('click');
+         }else{
+            $('.nav-tabs li:eq(0) a').trigger('click');
+         }
+      });
+
+      $(function() {
+         $('.ssl_toggle').bootstrapToggle();
+      })
+
+      // $('.changetabbutton').click(function(){
+      //     $('input').each(function() {
+      //         if(!$(this).val()){
+      //             alert('Some fields are empty');
+      //            return false;
+      //         }
+      //     });
+      // });
+
+
+
       </script>
    </body>
 

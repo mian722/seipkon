@@ -6586,7 +6586,9 @@ ul.work_history>li>p>span {
 	background-color: #fff;
 	color: #14beb5;
 }
-
+.note-editable {
+	min-height: 200px;
+}
 
 
 

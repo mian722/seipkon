@@ -50,10 +50,10 @@
                                     <tr>
                                        <td>#1</td>
                                        <td>{{ $pool->name }}</td>
-                                       <td>product title</td>
-                                       <td>product title</td>
+                                       <td>2</td>
+                                       <td>{{ $pool->note }}</td>
                                        <td>
-                                          <span class="label label-success">Active</span>
+                                          <span class="label label-{{ ($pool->status == '1') ? 'success' : 'warning' }}">{{ ($pool->status == '1') ? 'Active' : 'Paused' }}</span>
                                        </td>
                                        <td>
                                           <a href="{{ url('/create-page') }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
@@ -61,6 +61,7 @@
                                        </td>
                                     </tr>
                                     @endforeach
+                                    
 
                                  </tbody>
                               </table>
