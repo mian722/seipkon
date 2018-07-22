@@ -594,7 +594,6 @@
         e.preventDefault();
         $(this).tab('show');
       });
-<<<<<<< HEAD
 
       $('.changetabbutton').click(function(e){
          e.preventDefault();
@@ -622,11 +621,11 @@
 
 
       $("#theSelect").change(function(){          
-  var value = $("#theSelect option:selected").val();
-  var theDiv = $(".is" + value);
+        var value = $("#theSelect option:selected").val();
+        var theDiv = $(".is" + value);
 
-  theDiv.slideDown().removeClass("hidden");
-});
+        theDiv.slideDown().removeClass("hidden");
+      });
       </script>
    </body>
 
