@@ -38,6 +38,18 @@ class UserController extends Controller
     {
         //
     }
+    public function getaffiliate()
+    {
+        $countries = $this->getcountry();
+        $managers = $this->getmanagers();
+        return view('affiliate-create',compact('countries','managers'));
+    }
+    public function getadvertiser()
+    {
+        $countries = $this->getcountry();
+        $managers = $this->getmanagers();
+        return view('advertisers-create',compact('countries','managers'));
+    }
     public function createaffilate(Request $request)
     {
         $affilate = new User;
@@ -68,7 +80,6 @@ class UserController extends Controller
     {
         //return $request->all();
         $advertiser = new User;
-
         $advertiser->fname = $request->fname;
         $advertiser->lname = $request->lname;
         $advertiser->email = $request->email;
@@ -137,4 +148,5 @@ class UserController extends Controller
     {
         //
     }
+
 }

@@ -89,12 +89,9 @@
                                           <div class="form-group">
                                              <label class="control-label">Country:</label>
                                              <select name="country" class="form-control select2" required>
-                                                <option value="Alabama" selected="selected">Alabama</option>
-                                                <option value="Alabama">Alaska</option>
-                                                <option value="Alabama">Delaware</option>
-                                                <option value="Alabama">Tennessee</option>
-                                                <option value="Alabama">Texas</option>
-                                                <option value="Alabama">Washington</option>
+                                                @foreach($countries as $country)
+                                                <option value="{{ $country }}">{{ $country }}</option>
+                                                @endforeach
                                              </select>
                                           </div>
                                        </div>
@@ -118,9 +115,9 @@
                                           <div class="form-group">
                                              <label class="control-label">Manager:<span data-toggle="tooltip" title="" data-original-title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                              <select class="form-control select2" name="manager"  required>
-                                                <option value="1">manger1</option>
-                                                <option value="2">manager2</option>
-                                                <option value="3">manager3</option>
+                                                @foreach($managers as $manager)
+                                                <option value="{{ $manager->id }}">{{ $manager->fname }}</option>
+                                                @endforeach
                                              </select>
                                           </div>
                                        </div>

@@ -19,8 +19,10 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/add-offer', 'AddOfferController@index')->name('add-offer');
 	Route::get('/admin/home', 'AdminController@index')->name('admin.home');
 	Route::post('/add-offer/store', 'AddOfferController@store')->name('add-offer.store');
+	Route::get('/advertisers-create', 'UserController@getadvertiser')->name('advertiser.get');
+	Route::get('/affiliate-create', 'UserController@getaffiliate')->name('affiliate.get');
 	Route::post('/add-affliate/create', 'UserController@createaffilate')->name('affiliate.create');
-	Route::post('/add-advertiser/create', 'UserController@createadvertiser')->name('affiliate.create');
+	Route::post('/add-advertiser/create', 'UserController@createadvertiser')->name('advertiser.create');
 });
 
 
@@ -62,7 +64,7 @@ Route::get('/affiliate-payouts', function () { return view('affiliate-payouts');
 Route::get('/affiliate-postback', function () { return view('affiliate-postback'); });
 Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payout-tiers'); });
 Route::get('/affiliate-invoices', function () { return view('affiliate-invoices'); });
-Route::get('/affiliate-create', function () { return view('affiliate-create'); });
+
 Route::get('/affiliate-invoice-create', function () { return view('affiliate-invoice-create'); });
 Route::get('/advertisers', function () { return view('advertisers'); });
 
@@ -70,7 +72,6 @@ Route::get('/advertisers-pending', function () { return view('advertisers-pendin
 Route::get('/advertisers-invoices', function () { return view('advertisers-invoices'); });
 Route::get('/invoice', function () { return view('invoice'); });
 Route::get('/advertisers-invoice-create', function () { return view('advertisers-invoice-create'); });
-Route::get('/advertisers-create', function () { return view('advertisers-create'); });
 Route::get('/accounts', function () { return view('accounts'); });
 Route::get('/accounts-create', function () { return view('accounts-create'); });
 Route::get('/roles', function () { return view('roles'); });

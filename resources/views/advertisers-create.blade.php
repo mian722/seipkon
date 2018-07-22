@@ -87,12 +87,9 @@
                                           <div class="form-group">
                                              <label class="control-label">Country:</label>
                                              <select name="country" class="form-control select2">
-                                                <option selected="selected">Alabama</option>
-                                                <option>Alaska</option>
-                                                <option>Delaware</option>
-                                                <option>Tennessee</option>
-                                                <option>Texas</option>
-                                                <option>Washington</option>
+                                                @foreach($countries as $country)
+                                                <option value="{{ $country }}">{{ $country }}</option>
+                                                @endforeach
                                              </select>
                                           </div>
                                        </div>
@@ -100,13 +97,9 @@
                                           <div class="form-group">
                                              <label class="control-label">Manager:<span data-toggle="tooltip" title="" data-original-title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                              <select name="manager" class="form-control select2" data-placeholder="Select a State">
-                                                <option value="1">Alabama</option>
-                                                <option>Alaska</option>
-                                                <option>California</option>
-                                                <option>Delaware</option>
-                                                <option>Tennessee</option>
-                                                <option>Texas</option>
-                                                <option>Washington</option>
+                                                @foreach($managers as $manager)
+                                                <option value="{{ $manager->id }}">{{ $manager->fname }}</option>
+                                                @endforeach
                                              </select>
                                           </div>
                                        </div>
@@ -144,7 +137,7 @@
                                        <div class="col-md-2">
                                           <div class="form-group">
                                              <label class="control-label">Security Code:</label>
-                                             <select name="security" class="form-control select2" data-placeholder="Select a State">
+                                             <select name="security" name="co" class="form-control select2" data-placeholder="Select a State">
                                                 <option value="yes">yes</option>
                                                 <option value="no">no</option>
                                                 
@@ -183,11 +176,6 @@
                </div>
             </div>
              
-            <!-- Footer Area Start -->
-            <footer class="seipkon-footer-area">
-               <p>Seipkon - Bootstrap Admin Template by <a href="#">Themescare</a></p>
-            </footer>
-            <!-- End Footer Area -->
              
          </section>
          <!-- End Right Side Content -->

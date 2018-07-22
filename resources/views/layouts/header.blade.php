@@ -594,6 +594,12 @@
         e.preventDefault();
         $(this).tab('show');
       });
+      $("#theSelect").change(function(){          
+  var value = $("#theSelect option:selected").val();
+  var theDiv = $(".is" + value);
+
+  theDiv.slideDown().removeClass("hidden");
+});
       </script>
    </body>
 
