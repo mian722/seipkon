@@ -46,22 +46,23 @@
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    @foreach($pools as $pool)
-                                    <tr>
-                                       <td>#1</td>
-                                       <td>{{ $pool->name }}</td>
-                                       <td>2</td>
-                                       <td>{{ $pool->note }}</td>
-                                       <td>
-                                          <span class="label label-{{ ($pool->status == '1') ? 'success' : 'warning' }}">{{ ($pool->status == '1') ? 'Active' : 'Paused' }}</span>
-                                       </td>
-                                       <td>
-                                          <a href="{{ url('/create-page') }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
-                                    @endforeach
-                                    
+                                    @if(!$pools->isEmpty())
+                                       @foreach($pools as $pool)
+                                       <tr>
+                                          <td>#1</td>
+                                          <td>{{ $pool->name }}</td>
+                                          <td>2</td>
+                                          <td>{{ $pool->note }}</td>
+                                          <td>
+                                             <span class="label label-{{ ($pool->status == '1') ? 'success' : 'warning' }}">{{ ($pool->status == '1') ? 'Active' : 'Paused' }}</span>
+                                          </td>
+                                          <td>
+                                             <a href="{{ url('/details/show/'.$pool->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                             <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                          </td>
+                                       </tr>
+                                       @endforeach
+                                    @endif
 
                                  </tbody>
                               </table>

@@ -23,17 +23,30 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/offer-pool', 'OffersPoolController@index')->name('offer-pool');
 	Route::get('/create-pool', 'OffersPoolController@create_pool')->name('create-pool');
 	Route::post('/create-pool/store', 'OffersPoolController@store')->name('create-pool.store');
+<<<<<<< HEAD
 	Route::get('/detail-pool', function () { return view('detail-pool'); });
 	Route::post('/add-offer/store', 'OfferController@store')->name('add-offer.store');
+=======
+	Route::get('/details/show/{id}', 'OffersPoolController@show')->name('create-pool.show');
+	Route::post('/create-pool/updatename/{id}', 'OffersPoolController@updatename')->name('create-pool.updatename');
+	Route::post('/create-pool/updatestatus/{id}', 'OffersPoolController@updatestatus')->name('create-pool.updatestatus');
+	Route::post('/create-pool/updatenote/{id}', 'OffersPoolController@updatenote')->name('create-pool.updatenote');
+
+	Route::post('/add-offer/store', 'AddOfferController@store')->name('add-offer.store');
+>>>>>>> 604b290e8eb795b8bf622aee234bea98ca43151d
 	Route::get('/advertisers-create', 'UserController@getadvertiser')->name('advertiser.get');
 	
 	Route::post('/add-affliate/create', 'UserController@createaffilate')->name('affiliate.create');
 	Route::post('/add-advertiser/create', 'UserController@createadvertiser')->name('advertiser.create');
 
+<<<<<<< HEAD
 	Route::get('/affiliates',  'AffiliateController@index')->name('affiliates');
 	Route::get('/affiliate-create', 'AffiliateController@create')->name('affiliate.create');
 	Route::get('/affiliate-detail/{id}', 'AffiliateController@show')->name('affiliate.show');
 	Route::get('/all-offers', 'OfferController@index')->name('all-offers.get');
+=======
+
+>>>>>>> 604b290e8eb795b8bf622aee234bea98ca43151d
 });
 
 
