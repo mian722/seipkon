@@ -43,6 +43,6 @@ class CreateOfferRestrictions extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('offer_restrictions');
     }
 }

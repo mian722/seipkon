@@ -51,240 +51,27 @@
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    @foreach($offers as $offer)
                                     <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
+                                       <td>{{ $offer->id }}</td>
+                                       <td><img src="{{ $offer->offer_image }}" alt="order image"  /></td>
+                                       <td>{{ $offer->offer_name }}</td>
+                                       <td>{{ $offer->tags }}</td>
+                                       <td>{{ $offer->adv_id }}</td>
+                                       <td>{{ $offer['restrictions']->geo_targeting }}</td>
+                                       <td>{{ $offer['restrictions']->advertiser_caps_value }}</td>
+                                       <td>{{ $offer->revenue }}</td>
+                                       <td>{{ $offer->payout }}</td>
                                        <td>
-                                          <span class="label label-success">paid</span>
+                                          <span class="label label-{{ $offer->status == 1 ? 'success' : 'danger' }}">{{ $offer->status == 1 ? 'Active' : 'Deactive' }}</span>
                                        </td>
                                        <td>
                                           <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                        </td>
                                     </tr>
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
-
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr><tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
-                                    </tr>
+                                    @endforeach
+                                    
 
                                  </tbody>
                               </table>

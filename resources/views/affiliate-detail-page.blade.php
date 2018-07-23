@@ -13,7 +13,7 @@
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Affiliate Details #3 </h3>
+                                    <h3>Affiliate Details #{{ $affilates->id }} </h3>
                                  </div>
                               </div>
                               <div class="col-md-6 col-sm-6">
@@ -21,7 +21,7 @@
                                     <ul>
                                        <li><a href="{{ asset('') }}">Dashboard</a></li>
                                        <li>Affiliates</li>
-                                       <li>Affiliate Details #3</li>
+                                       <li>Affiliate Details #$affilates->id</li>
                                     </ul>
                                  </div>
                               </div>
@@ -37,7 +37,6 @@
                         <div class="page-box">
                            <div class="tabs-example">
                               <div class="tabs-box-example horizontal-tab-example">
-                                 <form action="">
                                     <ul class="nav nav-tabs" id="service_pro" role="tablist">
                                        <li class="active" role="Custom Report1"><a href="#details_offer" role="tab" data-toggle="tab">Details & Offer List</a>
                                        </li>
@@ -57,36 +56,36 @@
                                                 <tbody>
                                                    <tr>
                                                       <th>ID</th>
-                                                      <td>3</td>
+                                                      <td>{{ $affilates->id }}</td>
                                                       <th>Country</th>
-                                                      <td>Pakistan</td>
+                                                      <td>{{ $affilates->country }}</td>
                                                       <th>Status</th>
-                                                      <td>Active</td>
+                                                      <td>{{ $affilates->status == 1 ? "Active" : "Deactive" }}</td>
                                                    </tr>
                                                    <tr>
                                                       <th>Company</th>
-                                                      <td>asdf</td>
+                                                      <td>{{ $affilates->company }}</td>
                                                       <th>First Name</th>
-                                                      <td>Nancy</td>
+                                                      <td>{{ $affilates->fname }}</td>
                                                       <th>Last Name</th>
-                                                      <td>Ortega</td>
+                                                      <td>{{ $affilates->lname }}</td>
                                                    </tr>
                                                    <tr>
                                                       <th>Email</th>
-                                                      <td>nancy@gmail.com</td>
+                                                      <td>{{ $affilates->email }}</td>
                                                       <th>IM</th>
-                                                      <td> Skype: kjj </td>
+                                                      <td>{{ $affilates->imid }}: {{ $affilates->imaccount }}</td>
                                                       <th>Mobile NO.</th>
-                                                      <td>+500-00000</td>
+                                                      <td>{{ $affilates->contactno }}</td>
                                                    </tr>
                                                    <tr>
                                                       <th>Website</th>
-                                                      <td>http://asdf.com</td>
+                                                      <td>{{ $affilates->webiste }}</td>
                                                       <th>Manager</th>
-                                                      <td>Amir Ashraf<br />
-                                                         amirali2418@gmail.com </td>
+                                                      <td>{{ $managers->imid }}: {{ $managers->imaccount }}<br />
+                                                         {{ $managers->email }} </td>
                                                       <th>Tier</th>
-                                                      <td>asdfsadf</td>
+                                                      <td>{{ $affilates->tire }}</td>
                                                    </tr>
                                                    <tr><td colspan="6"><button type="button" class="btn btn-success">Login</button><button type="button" class="btn btn-default">Update</button></td></tr>
                                                 </tbody>
@@ -538,8 +537,7 @@
                                              </div>
                                           </div>
                                        </div>
-                                    </div>
-                                 </form>                                 
+                                    </div>                          
                               </div>
                            </div>
                         </div>

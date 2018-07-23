@@ -41,31 +41,32 @@
                                        <th>Manager</th>
                                        <th>Country</th>
                                        <th>Website</th>
-                                       <th>Tag</th>
                                        <th>Status</th>
                                        <th>Action</th>
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
-                                       </td>
-                                    </tr>
-                                    
+                                    @foreach($affilates as $affilate)
+                                       <tr>
+                                          <td>{{ $loop->iteration }}</td>
+                                          <td>{{ $affilate->company }}</td>
+                                          <td><a href="{{ url('/affiliate-detail/'.$affilate->id) }}" >{{ $affilate->fname }}  {{ $affilate->lname }}</a></td>
+                                          <td>{{ $affilate->imid }}: {{ $affilate->imaccount }}</td>
+                                          <?php  $manager = App\User::select('fname')->where('id', $affilate->admin_id)->first(); ?>
+                                          <td>{{ $manager->fname }}</td>
+                                          <td>{{ $affilate->country }}</td>
+                                          <td>{{ $affilate->website }}</td>
+
+                                          <td>
+                                             <span class="label {{ $affilate->status == 1 ? 'label-success' : 'label-danger' }} ">{{ $affilate->status == 1 ? "Active" : "Deactive" }}</span>
+                                          </td>
+                                          <td>
+                                             <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                             <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                             <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                          </td>
+                                       </tr>
+                                    @endforeach
 
                                  </tbody>
                               </table>

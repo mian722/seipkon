@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Roles extends Migration
+class Assignoffers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class Roles extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('assignoffers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->tinyInteger('value');
-            $table->tinyInteger('status')->defalut(1);
+            $table->tinyInteger('affiliate_id');
+            $table->tinyInteger('offer_id');
+            $table->string('postbacklink');
+            $table->string('usertracklink');
+            $table->tinyInteger('status')->default('0');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class Roles extends Migration
      */
     public function down()
     {
-       Schema::dropIfExists('roles');
+        Schema::dropIfExists('assignoffers');
     }
 }

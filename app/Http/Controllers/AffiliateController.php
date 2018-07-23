@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Auth;
-
-class UserController extends Controller
+class AffiliateController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. 
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $affilates = User::Where('roles_id',4)->get();
+
+        return view('affiliates',compact('affilates'));
     }
 
     /**
@@ -25,7 +25,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $countries = $this->getcountry();
+        $managers = $this->getmanagers();
+        return view('affiliate-create',compact('countries','managers'));
     }
 
     /**
@@ -36,50 +38,31 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-    public function getaffiliate()
-    {
-        
-    }
-    public function getadvertiser()
-    {
-        $countries = $this->getcountry();
-        $managers = $this->getmanagers();
-        return view('advertisers-create',compact('countries','managers'));
-    }
-    public function createaffilate(Request $request)
-    {
-        
-    }
-    public function createadvertiser(Request $request)
-    {
-        //return $request->all();
-        $advertiser = new User;
-        $advertiser->fname = $request->fname;
-        $advertiser->lname = $request->lname;
-        $advertiser->email = $request->email;
-        $advertiser->contactno = $request->mobile;
-        $advertiser->imid = $request->imtype;
-        $advertiser->imaccount = $request->imaccount;
-        $advertiser->country = $request->country;
-        $advertiser->website = $request->website;
-        $advertiser->company = $request->company;
-        $advertiser->managerid = $request->manager;
-        $advertiser->password = bcrypt($request->password);
-        $advertiser->securitycode = ($request->security == 'yes') ? $request->scode : "" ;
-        $advertiser->status = $request->status;
-        $advertiser->roles_id = '3';
-        $advertiser->admin_id = Auth::user()->id;
+        $affilate = new User;
+        $affilate->fname = $request->fname;
+        $affilate->lname = $request->lname;
+        $affilate->email = $request->email;
+        $affilate->contactno = $request->mobile;
+        $affilate->imid = $request->imtype;
+        $affilate->imaccount = $request->imaccount;
+        $affilate->country = $request->country;
+        $affilate->website = $request->website;
+        $affilate->company = $request->company;
+        $affilate->managerid = $request->manager;
+        $affilate->password = bcrypt($request->password);
+        $affilate->tire = $request->tire;
+        $affilate->roles_id = '4';
+        $affilate->admin_id = Auth::user()->id;
         //return $offer;
-        $advertiser->save();
+        $affilate->save();
         
-        if (empty($advertiser) ) {
+        if (empty($affilate) ) {
             return redirect()->back()->with('fail', 'Something Wrong!');
         } else {
             return redirect()->back()->with('success','Succfully Added!');
         }
     }
+
     /**
      * Display the specified resource.
      *
@@ -88,7 +71,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $affilates = User::Where('roles_id',4)->Where('id',$id)->first();
+        $managers = User::Where('id',$affilates->admin_id)->first();
+        $payouts = Offer::Where('id',$affilates->admin_id)->first();
+        return view('affiliate-detail-page',compact('affilates','managers'));
     }
 
     /**
@@ -124,5 +110,4 @@ class UserController extends Controller
     {
         //
     }
-
 }

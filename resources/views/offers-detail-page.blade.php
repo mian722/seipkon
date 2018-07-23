@@ -616,9 +616,12 @@
                                                                               </thead>
                                                                               <tbody>
                                                                                  <tr>
-                                                                                    <td colspan="7">
-                                                                                       <div class="empty">No results found.</div>
-                                                                                    </td>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                    <td></td>
                                                                                  </tr>
                                                                               </tbody>
                                                                            </table>

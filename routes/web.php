@@ -17,28 +17,30 @@ Route::group(['middleware'=> 'boss'], function(){
 
 Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/admin/home', 'AdminController@index')->name('admin.home');
-
 	Route::get('/admin', 'AdminController@index')->name('admin.home');
 	Route::post('/add-offer/store', 'OfferController@store')->name('add-offer.store');
-	Route::get('/add-offer', 'OfferController@index')->name('add-offer');
+	Route::get('/add-offer', 'OfferController@create')->name('add-offer');
 	Route::get('/offer-pool', 'OffersPoolController@index')->name('offer-pool');
 	Route::get('/create-pool', 'OffersPoolController@create_pool')->name('create-pool');
 	Route::post('/create-pool/store', 'OffersPoolController@store')->name('create-pool.store');
 	Route::get('/detail-pool', function () { return view('detail-pool'); });
-
-	Route::post('/add-offer/store', 'AddOfferController@store')->name('add-offer.store');
+	Route::post('/add-offer/store', 'OfferController@store')->name('add-offer.store');
 	Route::get('/advertisers-create', 'UserController@getadvertiser')->name('advertiser.get');
-	Route::get('/affiliate-create', 'UserController@getaffiliate')->name('affiliate.get');
+	
 	Route::post('/add-affliate/create', 'UserController@createaffilate')->name('affiliate.create');
 	Route::post('/add-advertiser/create', 'UserController@createadvertiser')->name('advertiser.create');
 
+	Route::get('/affiliates',  'AffiliateController@index')->name('affiliates');
+	Route::get('/affiliate-create', 'AffiliateController@create')->name('affiliate.create');
+	Route::get('/affiliate-detail/{id}', 'AffiliateController@show')->name('affiliate.show');
+	Route::get('/all-offers', 'OfferController@index')->name('all-offers.get');
 });
 
 
 Route::get('/', function () { return view('index'); });
 Route::get('/offer', function () { return view('offer'); });
 Route::get('/edit-offer', function () { return view('edit-offer'); });
-Route::get('/all-offers', function () { return view('all-offers'); });
+
 Route::get('/offer-application', function () { return view('offer-application'); });
 Route::get('/pages', function () { return view('pages'); });
 Route::get('/basic-table', function () { return view('basic-table'); });
@@ -63,7 +65,7 @@ Route::get('/ui_progressbars', function () { return view('ui_progressbars'); });
 Route::get('/ui_carousel', function () { return view('ui_carousel'); });	
 Route::get('/ui_breadcrumbs', function () { return view('ui_breadcrumbs'); });	
 Route::get('/ui_pagination', function () { return view('ui_pagination'); });	
-Route::get('/affiliates', function () { return view('affiliates'); });
+
 Route::get('/pending-affiliates', function () { return view('pending-affiliates'); });	
 Route::get('/affiliate-payouts', function () { return view('affiliate-payouts'); });
 Route::get('/affiliate-postback', function () { return view('affiliate-postback'); });

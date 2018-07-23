@@ -21,7 +21,8 @@ class OfferController extends Controller
      */
     public function index()
     {
-        return view('admin.add-offer');
+        $offers = Offer::with('restrictions')->get();
+        return view('all-offers',compact('offers'));
     }
 
     /**
@@ -31,7 +32,7 @@ class OfferController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.add-offer');
     }
 
     /**

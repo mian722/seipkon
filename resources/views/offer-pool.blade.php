@@ -48,10 +48,10 @@
                                  <tbody>
                                     @foreach($pools as $pool)
                                     <tr>
-                                       <td>#1</td>
+                                       <td>{{ $pools->itration }}</td>
                                        <td>{{ $pool->name }}</td>
-                                       <td>product title</td>
-                                       <td>product title</td>
+                                       <td>{{ $pool->offers_ids }}</td>
+                                       <td>{{ $pool->note }}</td>
                                        <td>
                                           <span class="label label-success">Active</span>
                                        </td>
