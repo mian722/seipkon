@@ -67,7 +67,8 @@ class OffersPoolController extends Controller
      */
     public function show($id)
     {
-        //
+        $pool = OffersPool::find($id);
+        return view('admin.detail-pool', compact('pool', 'offers'));
     }
 
     /**
@@ -80,6 +81,27 @@ class OffersPoolController extends Controller
     {
         
         
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatename(Request $request, $id)
+    {
+        return OffersPool::where('id', $id)->update(['name' => $request->value]);
+        
+    }
+    public function updatestatus(Request $request, $id)
+    {
+        return OffersPool::where('id', $id)->update(['status' => $request->value]);
+        
+    }
+    public function updatenote(Request $request, $id)
+    {
+        return OffersPool::where('id', $id)->update(['note' => $request->value]);   
     }
 
     /**

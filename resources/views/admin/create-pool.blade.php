@@ -54,7 +54,7 @@
                                        </p>
                                        <div class="page-editor-box">
                                           <label>Page Content</label>
-                                          <textarea id="page-editor" name="note" ></textarea>
+                                          <textarea class="form-control" style="margin-bottom: 20px;" name="note" ></textarea>
                                        </div>
                                        <p>
                                           <button type="submit" class="btn btn-success" ><i class="fa fa-check"></i>publish pool</button>

@@ -9,6 +9,7 @@
       <meta name="description" content="Seipkon is a Premium Quality Admin Site Responsive Template" />
       <meta name="keywords" content="admin template, admin, admin dashboard, cms, Seipkon Admin, premium admin templates, responsive admin, panel, software, ui, web app, application" />
       <meta name="author" content="Themescare">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
       <!-- Title -->
       <title>{{ config('app.name', 'Laravel') }}</title>
       <!-- Favicon -->
@@ -48,11 +49,16 @@
       <link rel="stylesheet" href="{{ asset('public/assets/css/seipkon.css') }}">
       <!-- Responsive CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
+      <!-- jQuery -->
+      <script src="{{ asset('public/assets/js/jquery-3.1.0.min.js') }}"></script>
       
       <style type="text/css">
          .profile-widget-img {
             text-align: center;
             padding-top: 40px;
+         }
+         .create-page-right form {
+            display: inline-block;
          }
       </style>
    </head>
@@ -492,8 +498,6 @@
       <!-- End Wrapper -->
        
        
-      <!-- jQuery -->
-      <script src="{{ asset('public/assets/js/jquery-3.1.0.min.js') }}"></script>
       <!-- Bootstrap JS -->
       <script src="{{ asset('public/assets/plugins/bootstrap/bootstrap.min.js') }}"></script>
       
