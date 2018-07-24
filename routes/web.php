@@ -23,35 +23,27 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/offer-pool', 'OffersPoolController@index')->name('offer-pool');
 	Route::get('/create-pool', 'OffersPoolController@create_pool')->name('create-pool');
 	Route::post('/create-pool/store', 'OffersPoolController@store')->name('create-pool.store');
-
-	Route::get('/detail-pool', function () { return view('detail-pool'); });
 	Route::post('/add-offer/store', 'OfferController@store')->name('add-offer.store');
-
 	Route::get('/details/show/{id}', 'OffersPoolController@show')->name('create-pool.show');
 	Route::post('/create-pool/updatename/{id}', 'OffersPoolController@updatename')->name('create-pool.updatename');
 	Route::post('/create-pool/updatestatus/{id}', 'OffersPoolController@updatestatus')->name('create-pool.updatestatus');
 	Route::post('/create-pool/updatenote/{id}', 'OffersPoolController@updatenote')->name('create-pool.updatenote');
-
-	Route::post('/add-offer/store', 'AddOfferController@store')->name('add-offer.store');
-
+	Route::post('/add-offer/store', 'OfferController@store')->name('add-offer.store');
 	Route::get('/advertisers-create', 'UserController@getadvertiser')->name('advertiser.get');
-	
 	Route::post('/add-affliate/create', 'UserController@createaffilate')->name('affiliate.create');
 	Route::post('/add-advertiser/create', 'UserController@createadvertiser')->name('advertiser.create');
-
-
 	Route::get('/affiliates',  'AffiliateController@index')->name('affiliates');
 	Route::get('/affiliate-create', 'AffiliateController@create')->name('affiliate.create');
 	Route::get('/affiliate-detail/{id}', 'AffiliateController@show')->name('affiliate.show');
 	Route::get('/all-offers', 'OfferController@index')->name('all-offers.get');
-
+	Route::get('/pending-affiliates', 'AffiliateController@pendingaffiliates')->name('pendingaffiliates');
+	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliates')->name('approve.affiliate');	
+	Route::get('/affiliate-payouts', function () { return view('affiliate-payouts'); });	
 });
-
 
 Route::get('/', function () { return view('index'); });
 Route::get('/offer', function () { return view('offer'); });
 Route::get('/edit-offer', function () { return view('edit-offer'); });
-
 Route::get('/offer-application', function () { return view('offer-application'); });
 Route::get('/pages', function () { return view('pages'); });
 Route::get('/basic-table', function () { return view('basic-table'); });
@@ -75,17 +67,14 @@ Route::get('/ui_sweet_alerts', function () { return view('ui_sweet_alerts'); });
 Route::get('/ui_progressbars', function () { return view('ui_progressbars'); });	
 Route::get('/ui_carousel', function () { return view('ui_carousel'); });	
 Route::get('/ui_breadcrumbs', function () { return view('ui_breadcrumbs'); });	
-Route::get('/ui_pagination', function () { return view('ui_pagination'); });	
+Route::get('/ui_pagination', function () { return view('ui_pagination'); });
 
-Route::get('/pending-affiliates', function () { return view('pending-affiliates'); });	
-Route::get('/affiliate-payouts', function () { return view('affiliate-payouts'); });
+
 Route::get('/affiliate-postback', function () { return view('affiliate-postback'); });
 Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payout-tiers'); });
 Route::get('/affiliate-invoices', function () { return view('affiliate-invoices'); });
-
 Route::get('/affiliate-invoice-create', function () { return view('affiliate-invoice-create'); });
 Route::get('/advertisers', function () { return view('advertisers'); });
-
 Route::get('/advertisers-pending', function () { return view('advertisers-pending'); });
 Route::get('/advertisers-invoices', function () { return view('advertisers-invoices'); });
 Route::get('/invoice', function () { return view('invoice'); });
@@ -115,14 +104,11 @@ Route::get('/source-offers', function () { return view('source-offers'); });
 Route::get('/smart-alert', function () { return view('smart-alert'); });
 Route::get('/smart-link', function () { return view('smart-link'); });
 Route::get('/integration', function () { return view('integration'); });
-
 Route::get('/compaigns', function () { return view('compaigns'); });
 Route::get('/offers-detail-page', function () { return view('offers-detail-page'); });
 Route::get('/affiliate-detail-page', function () { return view('affiliate-detail-page'); });
 Route::get('/log-detail', function () { return view('log-detail'); });
-
 Route::get('/postback-create', function () { return view('postback-create'); });
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

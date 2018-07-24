@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use DB;
 class AffiliateController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class AffiliateController extends Controller
     {
         $affilates = User::Where('roles_id',4)->get();
 
-        return view('affiliates',compact('affilates'));
+        return view('admin.affiliates',compact('affilates'));
     }
 
     /**
@@ -27,7 +28,7 @@ class AffiliateController extends Controller
     {
         $countries = $this->getcountry();
         $managers = $this->getmanagers();
-        return view('affiliate-create',compact('countries','managers'));
+        return view('admin.affiliate-create',compact('countries','managers'));
     }
 
     /**
@@ -74,9 +75,21 @@ class AffiliateController extends Controller
         $affilates = User::Where('roles_id',4)->Where('id',$id)->first();
         $managers = User::Where('id',$affilates->admin_id)->first();
         $payouts = Offer::Where('id',$affilates->admin_id)->first();
-        return view('affiliate-detail-page',compact('affilates','managers'));
+        return view('admin.affiliate-detail-page',compact('affilates','managers'));
     }
 
+    public function pendingaffiliates()
+    {
+        $affiliates = User::Where('roles_id',4)->Where('status',0)->get();
+        return view('admin.pending-affiliates',compact('affiliates'));
+    }
+    public function aproveaffiliates($id)
+    {
+        $update = DB::table('users')
+            ->where('id', $id)
+            ->update(['status' => 1]);
+        return redirect()->back();
+    }
     /**
      * Show the form for editing the specified resource.
      *
