@@ -49,7 +49,7 @@
                                     @if(!$pools->isEmpty())
                                        @foreach($pools as $pool)
                                        <tr>
-                                          <td>#1</td>
+                                          <td>#{{ $loop->iteration }}</td>
                                           <td>{{ $pool->name }}</td>
                                           <td>2</td>
                                           <td>{{ $pool->note }}</td>

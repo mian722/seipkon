@@ -13,7 +13,7 @@
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Create a Page</h3>
+                                    <h3>Offer Pool Detail Page</h3>
                                  </div>
                               </div>
                               <div class="col-md-6 col-sm-6">
@@ -40,12 +40,25 @@
                                  <div class="create-page-left">
                                     <div class="row" style="margin-bottom: 20px;">
                                        <div class="add-offers">
-                                          <form action="">
+                                          <form action="{{ route('detail.addoffer') }}">
                                              <div class="col-md-12">
-                                                <label>Add Offers <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                <select class="form-control select2" multiple="multiple" data-placeholder="Select Tags" name="offers[]" required="required">
-                                                   <option value="2">Alabama</option>
+                                                <label style="display: block;">Add Offers <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                <select style="width: 88%; margin-right: 2%;" class="form-control select2" multiple="multiple" data-placeholder="Select Tags" name="offers[]" required="required">
+                                                   @foreach($alloffer as $offer)
+                                                   <?php 
+                                                   $poolid = $pool['0']->id;
+                                                      $check = DB::table('offers')
+                                                       ->select('offers.id')
+                                                       ->leftjoin('pool_relation', 'pool_relation.offerspool_id', '=', 'offers.id')
+                                                       ->where('pool_relation.offerspool_id', $poolid)
+                                                       ->where('pool_relation.offer_id', $offer->id)
+                                                       ->first();
+                                                   ?>
+                                                   <option value="{{ $offer->id }}" {{ !empty($check) ? 'disabled="disabled"':'' }}>{{ $offer->offer_name }}</option>
+                                                   @endforeach
                                                 </select>
+                                                <input type="hidden" name="poolid" value="{{ $pool['0']->id }}">
+                                                <button class="btn btn-success" type="submit" style="width: 10%; height: 40px;">Add</button>
                                              </div>
                                           </form>
                                        </div>
@@ -62,29 +75,30 @@
                                                       <th>GEO</th>
                                                       <th>Platform</th>
                                                       <th>Caps</th>
-                                                      <th>Tag</th>
                                                       <th>Mobile Carrier</th>
                                                       <th>Status</th>
                                                       <th>Revenue</th>
                                                    </tr>
                                                 </thead>
                                                 <tbody>
+                                                   @foreach($pool['0']->offers as $offer)
                                                    <tr>
                                                       <td>
-                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Decline"><i class="fa fa-times"></i></a>
+                                                         <a href="{{ route('detail.deleteoffer', [$offer->id, $pool['0']->id]) }}" class="product-table-danger" data-toggle="tooltip" title="Decline"><i class="fa fa-times"></i></a>
                                                       </td>
-                                                      <td>#120342</td>
+                                                      <td>{{ $offer->offer_name }}</td>
+                                                      <td>{{ $offer->duration }}</td>
+                                                      <td>{{ $offer->restrictions['geo_targeting'] }}</td>
+                                                      <td>{{ $offer->restrictions['platform_targeting'] }}</td>
+                                                      <td>{{ $offer->restrictions['affiliate_caps_type'] }} : {{ $offer->restrictions['affiliate_caps_value'] }}</td>
+                                                      <td>{{ $offer->restrictions['mobile_carrier_targeting'] }}</td>
                                                       <td>
-                                                         <span class="label label-success">Approve</span>
+                                                         <span class="label label-{{ ($offer->offer_name == 1) ? 'success': 'warning' }}">
+                                                            {{ ($offer->offer_name == 1) ? 'Approve': 'Pending' }}</span>
                                                       </td>
-                                                      <td>#120342</td>
-                                                      <td>#120342</td>
-                                                      <td>Angelica Ramos</td>
-                                                      <td>product title</td>
-                                                      <td>22</td>
-                                                      <td>22</td>
-                                                      <td>09/08/2017</td>
+                                                      <td>{{ $offer->revenue_type }} : {{ $offer->revenue }}</td>
                                                    </tr>
+                                                   @endforeach
                                                 </tbody>
                                              </table>
                                           </div>
@@ -96,23 +110,23 @@
                                  <div class="create-page-right">
                                        <div>
                                           <label>Name:</label>
-                                          <form action="{{route('create-pool.updatename', $pool->id)}}" method="post">
+                                          <form action="{{route('create-pool.updatename', $pool['0']->id)}}" method="post">
                                              {{csrf_field()}}
-                                             <a href="#" id="pool-name" class="pool-name" data-url="{{ route('create-pool.updatename', $pool->id) }}" data-pk="{{ $pool->id }}" data-type="text"data-placement="bottom" data-title="Edit Comment">{{ $pool->name }}</a>
+                                             <a href="#" id="pool-name" class="pool-name" data-url="{{ route('create-pool.updatename', $pool['0']->id) }}" data-pk="{{ $pool['0']->id }}" data-type="text"data-placement="bottom" data-title="Edit Comment">{{ $pool['0']->name }}</a>
                                           </form>  
                                        </div>
                                        <div>
                                           <label>Status:</label>  
-                                          <form action="{{route('create-pool.updatestatus', $pool->id)}}" method="post">
+                                          <form action="{{route('create-pool.updatestatus', $pool['0']->id)}}" method="post">
                                              {{csrf_field()}}
-                                             <a href="#" id="pool-status" class="pool-status" data-type="select" data-pk="{{ $pool->id }}" data-url="{{ route('create-pool.updatestatus', $pool->id) }}" data-title="Select status" data-source="[{value:'1',text:'Active'},{value:'0',text:'Deactive'}]" data-placement="bottom">{{ ($pool->status == 1) ? "Active" : "Deactive" }}</a>
+                                             <a href="#" id="pool-status" class="pool-status" data-type="select" data-pk="{{ $pool['0']->id }}" data-url="{{ route('create-pool.updatestatus', $pool['0']->id) }}" data-title="Select status" data-source="[{value:'1',text:'Active'},{value:'0',text:'Deactive'}]" data-placement="bottom">{{ ($pool['0']->status == 1) ? "Active" : "Deactive" }}</a>
                                           </form>  
                                        </div>
                                        <div>
                                           <label>Note:</label>
-                                          <form action="{{route('create-pool.updatenote', $pool->id)}}" method="post">
+                                          <form action="{{route('create-pool.updatenote', $pool['0']->id)}}" method="post">
                                              {{csrf_field()}}
-                                             <a href="#" id="pool-note" class="pool-note" data-url="{{ route('create-pool.updatenote', $pool->id) }}" data-pk="{{ $pool->id }}" data-type="text"data-placement="bottom" data-title="Edit Comment">{{ $pool->note }}</a>
+                                             <a href="#" id="pool-note" class="pool-note" data-url="{{ route('create-pool.updatenote', $pool['0']->id) }}" data-pk="{{ $pool['0']->id }}" data-type="text"data-placement="bottom" data-title="Edit Comment">{{ $pool['0']->note }}</a>
                                           </form>   
                                        </div>
                                  </div>

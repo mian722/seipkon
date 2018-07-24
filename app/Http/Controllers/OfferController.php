@@ -22,7 +22,8 @@ class OfferController extends Controller
     public function index()
     {
         $offers = Offer::with('restrictions')->get();
-        return view('all-offers',compact('offers'));
+
+        return view('admin.all-offers',compact('offers'));
     }
 
     /**
@@ -41,7 +42,7 @@ class OfferController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($request)
     {
         //return $request->all();
         $file = Input::file('offer_image');

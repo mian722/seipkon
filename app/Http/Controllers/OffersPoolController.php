@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\OffersPool;
+use App\Offer;
+use DB;
 
 class OffersPoolController extends Controller
 {
@@ -16,6 +18,7 @@ class OffersPoolController extends Controller
     public function index()
     {
         $pools = OffersPool::all();
+
         return view('admin.offer-pool', compact('pools'));
     }
 
@@ -67,8 +70,9 @@ class OffersPoolController extends Controller
      */
     public function show($id)
     {
-        $pool = OffersPool::find($id);
-        return view('admin.detail-pool', compact('pool', 'offers'));
+        $pool = OffersPool::with('offers.restrictions')->where('id', $id)->get();
+        $alloffer = Offer::all();
+        return view('admin.detail-pool', compact('pool', 'alloffer'));
     }
 
     /**
@@ -81,6 +85,33 @@ class OffersPoolController extends Controller
     {
         
         
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function addoffertopool(Request $request)
+    {
+        foreach ($request->offers as $offerid) {
+            $values = array('offer_id' => $offerid,'offerspool_id' => $request->poolid);
+            DB::table('pool_relation')->insert($values);
+        }
+        return redirect()->back()->with('success', 'Succesfully Added');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteofferfrompool($oid, $pid)
+    {
+        DB::table('pool_relation')->where('offerspool_id', $pid)->where('offer_id', $oid)->delete();
+        return redirect()->back()->with('success', 'Succesfully Deleted');
     }
 
     /**

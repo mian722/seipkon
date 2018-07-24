@@ -58,8 +58,13 @@
                                        <td>{{ $offer->offer_name }}</td>
                                        <td>{{ $offer->tags }}</td>
                                        <td>{{ $offer->adv_id }}</td>
+                                       @if( $offer['restrictions'] != null)
                                        <td>{{ $offer['restrictions']->geo_targeting }}</td>
                                        <td>{{ $offer['restrictions']->advertiser_caps_value }}</td>
+                                       @else
+                                       <td>&nbsp;</td>
+                                       <td>&nbsp;</td>
+                                       @endif
                                        <td>{{ $offer->revenue }}</td>
                                        <td>{{ $offer->payout }}</td>
                                        <td>
