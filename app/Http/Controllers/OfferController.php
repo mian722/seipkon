@@ -22,7 +22,6 @@ class OfferController extends Controller
     public function index()
     {
         $offers = Offer::with('restrictions')->get();
-
         return view('admin.all-offers',compact('offers'));
     }
 

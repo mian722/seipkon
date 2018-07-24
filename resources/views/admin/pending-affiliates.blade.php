@@ -14,7 +14,7 @@
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Order List</h3>
+                                    <h3>Pending Affiliates</h3>
                                  </div>
                               </div>
                               <div class="col-md-6 col-sm-6">
@@ -46,7 +46,6 @@
                                        <th>Website</th>
                                        <th>IM</th>
                                        <th>GEO</th>
-                                       <th>Referer</th>
                                        <th>Mobile NO.</th>
                                        <th>Register Time</th>
                                        <th>Status</th>
@@ -54,26 +53,27 @@
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    @if(!empty($affiliates))
+                                    @foreach($affiliates as $affiliate)
                                     <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>22</td>
+                                       <td>#{{ $loop->iteration }}</td>
+                                       <td>{{ $affiliate->company }}</td>
+                                       <td>{{ $affiliate->fname }} {{ $affiliate->lname }}</td>
+                                       <td>{{ $affiliate->website }}</td>
+                                       <td>{{ $affiliate->imid }} {{ $affiliate->imaccount }}</td>
+                                       <td>{{ $affiliate->geo }}</td>
+                                       <td>{{ $affiliate->contactno }}</td>
+                                       <td>{{ $affiliate->created_at }}</td>
                                        <td>
-                                          <span class="label label-success">paid</span>
+                                          <span class="label label-warning">Pending</span>
                                        </td>
                                        <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                          <a href="{{ route('approve.affiliate', $affiliate->id) }}" class="product-table-info" data-toggle="tooltip" title="Approve"><i class="fa fa-check"></i></a>
+                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Decline"><i class="fa fa-times"></i></a>
                                        </td>
                                     </tr>
-                                    
+                                    @endforeach
+                                    @endif
 
                                  </tbody>
                               </table>
