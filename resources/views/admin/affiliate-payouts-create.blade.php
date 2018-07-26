@@ -40,19 +40,18 @@
                               <h3>Affiliate Payout</h3>
                               <div class="form-validation-box">
                                  <div class="form-wrap">
-                                    <form data-parsley-validate >
+                                    <form data-parsley-validate method="POST" action="{{ route('affiliatepayoutsave') }}">
+                                       {{ csrf_field() }}
                                        <div class="row">
                                           <div class="col-md-6">
                                              <div class="form-group">
                                                 <label class="control-label">Offers:</label>
                                                 <div id="slWrapper" class="parsley-select wd-250">
-                                                   <select class="form-control" data-placeholder="Choose one" data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer"  required>
+                                                   <select class="form-control" data-placeholder="Choose one" data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" id="offerrate" required>
                                                       <option label="Choose one"></option>
-                                                      <option value="India">India</option>
-                                                      <option value="America">America</option>
-                                                      <option value="Indoneshia">Indoneshia</option>
-                                                      <option value="Pakistan">Pakistan</option>
-                                                      <option value="Bangladesh Explorer">Bangladesh</option>
+                                                      @foreach($offers as $offer)
+                                                      <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
+                                                      @endforeach
                                                    </select>
                                                    <div id="slErrorContainer"></div>
                                                 </div>
@@ -64,11 +63,9 @@
                                                 <div id="slWrapper" class="parsley-select wd-250">
                                                    <select class="form-control" data-placeholder="Choose one" data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer"  required>
                                                       <option label="Choose one"></option>
-                                                      <option value="India">India</option>
-                                                      <option value="America">America</option>
-                                                      <option value="Indoneshia">Indoneshia</option>
-                                                      <option value="Pakistan">Pakistan</option>
-                                                      <option value="Bangladesh Explorer">Bangladesh</option>
+                                                      @foreach($affiliates as $affiliate)
+                                                      <option value="{{ $affiliate->id }}">{{ $affiliate->fname }} {{ $affiliate->lname }}</option>
+                                                      @endforeach
                                                    </select>
                                                    <div id="slErrorContainer"></div>
                                                 </div>
@@ -79,11 +76,9 @@
                                           <div class="col-md-6">
                                              <div class="form-group">
                                                 <div id="slWrapper" class="parsley-select wd-250">
-                                                   </br>
-                                                   <label class="control-label">Payout Type
-                                          : CPA</label></br>
-                                                   <label class="control-label">Offer Payout
-                                          : $1</label>
+                                                   <div id="offerResponse">
+                                                   
+                                                   </div>
                                                 </div>
                                              </div>
                                           </div>
@@ -127,6 +122,23 @@
              
              
          </section>
+         <script type="text/javascript">
+            $(document).ready(function() {
+                $('#offerrate').on('change', function (e) {
+                    e.preventDefault();
+                    var offerid  = $(this).val();
+                    var token = "{{ csrf_token() }}";
+                    $.ajax({
+                        type: "POST",
+                        url: '{{ route("offerrate") }}',
+                        data: { "_token": token, "offerid": offerid},
+                        success: function( response ) {
+                            $("#offerResponse").html("</br>"+response['msg']);
+                        }
+                    });
+                });
+            });
+         </script>
          <!-- End Right Side Content -->
          @endsection
 

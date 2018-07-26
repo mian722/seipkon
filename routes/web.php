@@ -41,6 +41,9 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/pending-affiliates', 'AffiliateController@pendingaffiliates')->name('pendingaffiliates');
 	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliates')->name('approve.affiliate');	
 	Route::get('/affiliate-payouts', 'AffiliateController@affiliatepayouts')->name('affiliate-payouts');
+	Route::get('/affiliate-payout-create', 'AffiliateController@affiliatepayoutcreate')->name('affiliatepayoutcreate');
+	Route::post('/affiliate-payout-save', 'AffiliateController@affiliatepayoutsave')->name('affiliatepayoutsave');
+	Route::post('/offerrate', 'AffiliateController@offerrate')->name('offerrate');
 });
 
 Route::get('/', function () { return view('index'); });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use DB;
+use App\Offer;
 class AffiliateController extends Controller
 {
     /**
@@ -90,8 +91,26 @@ class AffiliateController extends Controller
             ->update(['status' => 1]);
         return redirect()->back();
     }
-    public function affiliatepayouts(){return view('admin.affiliate-payouts-create');
+    public function affiliatepayouts(){
         return view('admin.affiliate-payouts');
+    }
+    public function affiliatepayoutcreate(){
+        $affiliates = User::Where('roles_id',5)->Where('status',1)->get();
+        $offers = Offer::with('restrictions')->get();
+        return view('admin.affiliate-payouts-create',compact('affiliates','offers'));
+    }
+    public function affiliatepayoutsave(Request $request){
+        return $request->all();
+        return view('admin.affiliate-payouts-create');
+    }
+    public function offerrate(Request $request)
+    {
+        $offers = Offer::with('restrictions')->where('id', $request->offerid)->first();
+        $response = array(
+            'msg' => '<label class="control-label">Payout Type : '.$offers->payout_type.'</label></br>
+                                                   <label class="control-label">Offer Payout : '.$offers->payout.'</label>',
+        );
+        return \Response::json($response);
     }
     /**
      * Show the form for editing the specified resource.
