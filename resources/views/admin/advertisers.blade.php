@@ -40,27 +40,38 @@
                                        <th>IM</th>
                                        <th>Manager</th>
                                        <th>Country</th>
-                                       <th>Mobile No.</th>
+                                       <th>Website</th>
+                                       <th>Status</th>
                                        <th>Action</th>
                                     </tr>
                                  </thead>
                                  <tbody>
-                                    <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>Angelica Ramos</td>
-                                       <td>22</td>
-                                       <td>product title</td>
-                                       <td>Pak</td>
-                                       <td>+92878324782</td>
-                                       <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
-                                       </td>
-                                    </tr>
-                                    
+                                    @if(!empty($advertisers))
+                                    @foreach($advertisers as $advertiser)
+                                       <tr>
+                                          <td>#{{ $loop->iteration }}</td>
+                                          <td>{{ $advertiser->company }}</td>
+                                          <td><a href="{{ url('/affiliate-detail/'.$advertiser->id) }}" >{{ $advertiser->fname }}  {{ $advertiser->lname }}</a></td>
+                                          <td>{{ $advertiser->imid }}: {{ $advertiser->imaccount }}</td>
+                                          <?php $manager = null;
+                                          if ($advertiser->admin_id != 0) {
+                                             $manager = App\User::select('fname')->where('id', $advertiser->admin_id)->first();
+                                          }  ?>
+                                          <td>{{ ($manager != null) ? $manager->fname : '&nbsp;' }}</td>
+                                          <td>{{ $advertiser->country }}</td>
+                                          <td>{{ $advertiser->website }}</td>
 
+                                          <td>
+                                             <span class="label {{ $advertiser->status == 1 ? 'label-success' : 'label-danger' }} ">{{ $advertiser->status == 1 ? "Active" : "Deactive" }}</span>
+                                          </td>
+                                          <td>
+                                             <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                             <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                             <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                          </td>
+                                       </tr>
+                                    @endforeach
+                                    @endif
                                  </tbody>
                               </table>
                            </div>

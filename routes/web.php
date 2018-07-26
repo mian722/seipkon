@@ -32,15 +32,15 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::post('/create-pool/updatenote/{id}', 'OffersPoolController@updatenote')->name('create-pool.updatenote');
 	Route::post('/add-offer/store', 'OfferController@store')->name('add-offer.store');
 	Route::get('/advertisers-create', 'UserController@getadvertiser')->name('advertiser.get');
-	Route::post('/add-affliate/create', 'UserController@createaffilate')->name('affiliate.create');
-	Route::post('/add-advertiser/create', 'UserController@createadvertiser')->name('advertiser.create');
+	Route::post('/add-affliate/create', 'UserController@createaffilate')->name('add-affliate.create');
+	Route::post('/add-advertiser/create', 'UserController@createadvertiser')->name('add-advertiser.create');
 	Route::get('/affiliates',  'AffiliateController@index')->name('affiliates');
 	Route::get('/affiliate-create', 'AffiliateController@create')->name('affiliate.create');
 	Route::get('/affiliate-detail/{id}', 'AffiliateController@show')->name('affiliate.show');
 	Route::get('/all-offers', 'OfferController@index')->name('all-offers.get');
 	Route::get('/pending-affiliates', 'AffiliateController@pendingaffiliates')->name('pendingaffiliates');
 	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliates')->name('approve.affiliate');	
-	Route::get('/affiliate-payouts', function () { return view('affiliate-payouts'); });	
+	Route::get('/advertisers', 'AdvertiserController@index')->name('advertisers');	
 });
 
 Route::get('/', function () { return view('index'); });
@@ -76,7 +76,6 @@ Route::get('/affiliate-postback', function () { return view('affiliate-postback'
 Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payout-tiers'); });
 Route::get('/affiliate-invoices', function () { return view('affiliate-invoices'); });
 Route::get('/affiliate-invoice-create', function () { return view('affiliate-invoice-create'); });
-Route::get('/advertisers', function () { return view('advertisers'); });
 Route::get('/advertisers-pending', function () { return view('advertisers-pending'); });
 Route::get('/advertisers-invoices', function () { return view('advertisers-invoices'); });
 Route::get('/invoice', function () { return view('invoice'); });

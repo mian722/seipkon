@@ -48,17 +48,20 @@
                                  <tbody>
                                     @foreach($affilates as $affilate)
                                        <tr>
-                                          <td>{{ $loop->iteration }}</td>
+                                          <td>#{{ $loop->iteration }}</td>
                                           <td>{{ $affilate->company }}</td>
                                           <td><a href="{{ url('/affiliate-detail/'.$affilate->id) }}" >{{ $affilate->fname }}  {{ $affilate->lname }}</a></td>
                                           <td>{{ $affilate->imid }}: {{ $affilate->imaccount }}</td>
-                                          <?php  $manager = App\User::select('fname')->where('id', $affilate->admin_id)->first(); ?>
-                                          <td>{{ $manager->fname }}</td>
+                                          <?php $manager = null;
+                                          if ($affilate->admin_id != 0) {
+                                             $manager = App\User::select('fname')->where('id', $affilate->admin_id)->first();
+                                          }  ?>
+                                          <td>{{ ($manager != null) ? $manager->fname : '&nbsp;' }}</td>
                                           <td>{{ $affilate->country }}</td>
                                           <td>{{ $affilate->website }}</td>
 
                                           <td>
-                                             <span class="label {{ $affilate->status == 1 ? 'label-success' : 'label-danger' }} ">{{ $affilate->status == 1 ? "Active" : "Deactive" }}</span>
+                                             <span class="label {{ $affilate->status == 1 ? 'label-success' : 'label-warning' }} ">{{ $affilate->status == 1 ? "Active" : "Deactive" }}</span>
                                           </td>
                                           <td>
                                              <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
