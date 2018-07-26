@@ -40,7 +40,7 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/all-offers', 'OfferController@index')->name('all-offers.get');
 	Route::get('/pending-affiliates', 'AffiliateController@pendingaffiliates')->name('pendingaffiliates');
 	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliates')->name('approve.affiliate');	
-	Route::get('/affiliate-payouts', function () { return view('affiliate-payouts'); });	
+	Route::get('/affiliate-payouts', 'AffiliateController@affiliatepayouts')->name('affiliate-payouts');
 });
 
 Route::get('/', function () { return view('index'); });

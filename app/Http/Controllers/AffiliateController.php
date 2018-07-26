@@ -90,6 +90,9 @@ class AffiliateController extends Controller
             ->update(['status' => 1]);
         return redirect()->back();
     }
+    public function affiliatepayouts(){return view('admin.affiliate-payouts-create');
+        return view('admin.affiliate-payouts');
+    }
     /**
      * Show the form for editing the specified resource.
      *
