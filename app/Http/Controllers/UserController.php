@@ -50,7 +50,31 @@ class UserController extends Controller
     }
     public function createaffilate(Request $request)
     {
+        //return $request->all();
+        $affilate = new User;
+        $affilate->fname = $request->fname;
+        $affilate->lname = $request->lname;
+        $affilate->email = $request->email;
+        $affilate->contactno = $request->mobile;
+        $affilate->imid = $request->imtype;
+        $affilate->imaccount = $request->imaccount;
+        $affilate->country = $request->country;
+        $affilate->website = $request->website;
+        $affilate->company = $request->company;
+        $affilate->managerid = $request->manager;
+        $affilate->password = bcrypt($request->password);
+        $affilate->securitycode = ($request->security == 'yes') ? $request->scode : "" ;
+        $affilate->status = $request->status;
+        $affilate->roles_id = '5';
+        $affilate->admin_id = Auth::user()->id;
+        //return $offer;
+        $affilate->save();
         
+        if (empty($affilate) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }        
     }
     public function createadvertiser(Request $request)
     {
@@ -69,7 +93,7 @@ class UserController extends Controller
         $advertiser->password = bcrypt($request->password);
         $advertiser->securitycode = ($request->security == 'yes') ? $request->scode : "" ;
         $advertiser->status = $request->status;
-        $advertiser->roles_id = '3';
+        $advertiser->roles_id = '4';
         $advertiser->admin_id = Auth::user()->id;
         //return $offer;
         $advertiser->save();

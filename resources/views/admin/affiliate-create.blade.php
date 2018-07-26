@@ -39,7 +39,7 @@
                            <div class="form-example">
                               <h3>Create Affliate</h3>
                               <div class="form-wrap top-label-exapmple form-layout-page">
-                                 <form data-parsley-validate  method="POST" action="{{ route('advertiser.create') }}">
+                                 <form data-parsley-validate  method="POST" action="{{ route('add-affliate.create') }}">
                                     
                                     <div class="row">
                                        <div class="col-md-3">

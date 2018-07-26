@@ -34,28 +34,37 @@
                                        <th>ID</th>
                                        <th>Company</th>
                                        <th>Name</th>
+                                       <th>Website</th>
                                        <th>IM</th>
-                                       <th>Manager</th>
-                                       <th>Country</th>
-                                       <th>Mobile No.</th>
+                                       <th>GEO</th>
+                                       <th>Mobile NO.</th>
+                                       <th>Register Time</th>
+                                       <th>Status</th>
                                        <th>Action</th>
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    @if(!empty($advertisers))
+                                    @foreach($advertisers as $advertiser)
                                     <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>Angelica Ramos</td>
-                                       <td>22</td>
-                                       <td>product title</td>
-                                       <td>Pak</td>
-                                       <td>+92878324782</td>
+                                       <td>#{{ $loop->iteration }}</td>
+                                       <td>{{ $advertiser->company }}</td>
+                                       <td>{{ $advertiser->fname }} {{ $advertiser->lname }}</td>
+                                       <td>{{ $advertiser->website }}</td>
+                                       <td>{{ $advertiser->imid }} {{ $advertiser->imaccount }}</td>
+                                       <td>{{ $advertiser->geo }}</td>
+                                       <td>{{ $advertiser->contactno }}</td>
+                                       <td>{{ $advertiser->created_at }}</td>
                                        <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                          <span class="label label-warning">Pending</span>
+                                       </td>
+                                       <td>
+                                          <a href="{{ route('approve.advertiser', $advertiser->id) }}" class="product-table-info" data-toggle="tooltip" title="Approve"><i class="fa fa-check"></i></a>
+                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Decline"><i class="fa fa-times"></i></a>
                                        </td>
                                     </tr>
+                                    @endforeach
+                                    @endif
                                     
 
                                  </tbody>

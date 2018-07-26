@@ -38,7 +38,7 @@
                         <div class="page-box">
                            <div class="form-example">
                               <div class="form-wrap top-label-exapmple form-layout-page">
-                                 <form data-parsley-validate  method="POST" action="{{ route('affiliate.create') }}">
+                                 <form data-parsley-validate  method="POST" action="{{ route('add-advertiser.create') }}">
                                     <div class="row">
                                        <div class="col-md-3">
                                           <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -97,8 +97,9 @@
                                           <div class="form-group">
                                              <label class="control-label">Manager:<span data-toggle="tooltip" title="" data-original-title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                              <select name="manager" class="form-control select2" data-placeholder="Select a State">
+                                                <option value="&nbsp;" selected="">&nbsp;</option>
                                                 @foreach($managers as $manager)
-                                                <option value="{{ $manager->id }}">{{ $manager->fname }}</option>
+                                                <option value="{{ $manager->id }}">{{ $manager->fname }} {{ $manager->lname }}</option>
                                                 @endforeach
                                              </select>
                                           </div>
