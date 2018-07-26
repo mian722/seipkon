@@ -40,33 +40,25 @@
                               <table id="responsive_datatables_example" class="table display table-striped table-bordered responsive nowrap">
                                  <thead>
                                     <tr>
-                                       <th>ID</th>
-                                       <th>Company</th>
-                                       <th>Name</th>
-                                       <th>Website</th>
-                                       <th>IM</th>
-                                       <th>GEO</th>
-                                       <th>Referer</th>
-                                       <th>Mobile NO.</th>
-                                       <th>Register Time</th>
-                                       <th>Status</th>
+                                       <th>Create Time</th>
+                                       <th>Offer</th>
+                                       <th>Event</th>
+                                       <th>Affiliate</th>
+                                       <th>Currency</th>
+                                       <th>Offer Payout</th>
+                                       <th>Affiliate Payout</th>
                                        <th>Action</th>
                                     </tr>
                                  </thead>
                                  <tbody>
                                     <tr>
                                        <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
+                                       <td>asd</td>
                                        <td>#120342</td>
                                        <td>Angelica Ramos</td>
                                        <td>product title</td>
                                        <td>22</td>
-                                       <td>09/08/2017</td>
-                                       <td>22</td>
-                                       <td>22</td>
-                                       <td>
-                                          <span class="label label-success">paid</span>
-                                       </td>
+                                      <td>22</td>
                                        <td>
                                           <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>

@@ -40,7 +40,11 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/all-offers', 'OfferController@index')->name('all-offers.get');
 	Route::get('/pending-affiliates', 'AffiliateController@pendingaffiliates')->name('pendingaffiliates');
 	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliates')->name('approve.affiliate');	
+<<<<<<< HEAD
 	Route::get('/advertisers', 'AdvertiserController@index')->name('advertisers');	
+=======
+	Route::get('/affiliate-payouts', 'AffiliateController@affiliatepayouts')->name('affiliate-payouts');
+>>>>>>> d428b0bc44a4e32f6621dcbfc65730d795b18caf
 });
 
 Route::get('/', function () { return view('index'); });
