@@ -380,7 +380,7 @@
                         </a>
                         <ul class="collapse list-unstyled" id="createpage">
                            <li><a href="{{ asset('affiliates') }}">Affiliates</a></li>
-                           <li><a href="{{ asset('pending-affiliates') }}">Pending Affiliates</a></li>
+                           <li><a href="{{ asset('affiliates-pending') }}">Pending Affiliates</a></li>
                            <li><a href="{{ asset('affiliate-payouts') }}">Affiliate Payouts</a></li>
                            <li><a href="{{ asset('affiliate-postback') }}">Affiliate Postback</a></li>
                            <li><a href="{{ asset('affiliate-payout-tiers') }}">Affiliate Payout Tiers</a></li>

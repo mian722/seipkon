@@ -157,13 +157,13 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Payout</label>
-                                                      <input type="text" placeholder="Payout" name="" required="required">
+                                                      <input type="text" placeholder="Payout" name="payout" required="required">
                                                    </p>
                                                 </div>
                                                 <div class="col-md-3">
                                                       <p>
                                                          <label>Affiliate Payout Tiers <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <select class="form-control select2" name="payout" required="required">
+                                                         <select class="form-control select2" required="required">
                                                             <option selected="selected">Disable</option>
                                                             <option>Enable</option>
                                                          </select>

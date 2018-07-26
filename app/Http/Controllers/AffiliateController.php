@@ -14,7 +14,7 @@ class AffiliateController extends Controller
      */
     public function index()
     {
-        $affilates = User::Where('roles_id',4)->get();
+        $affilates = User::Where('roles_id',5)->where('status', 1)->get();
 
         return view('admin.affiliates',compact('affilates'));
     }
@@ -52,9 +52,8 @@ class AffiliateController extends Controller
         $affilate->managerid = $request->manager;
         $affilate->password = bcrypt($request->password);
         $affilate->tire = $request->tire;
-        $affilate->roles_id = '4';
+        $affilate->roles_id = '5';
         $affilate->admin_id = Auth::user()->id;
-        //return $offer;
         $affilate->save();
         
         if (empty($affilate) ) {
@@ -72,7 +71,7 @@ class AffiliateController extends Controller
      */
     public function show($id)
     {
-        $affilates = User::Where('roles_id',4)->Where('id',$id)->first();
+        $affilates = User::Where('roles_id',5)->Where('id',$id)->first();
         $managers = User::Where('id',$affilates->admin_id)->first();
         $payouts = Offer::Where('id',$affilates->admin_id)->first();
         return view('admin.affiliate-detail-page',compact('affilates','managers'));
@@ -80,8 +79,8 @@ class AffiliateController extends Controller
 
     public function pendingaffiliates()
     {
-        $affiliates = User::Where('roles_id',4)->Where('status',0)->get();
-        return view('admin.pending-affiliates',compact('affiliates'));
+        $affiliates = User::Where('roles_id',5)->Where('status',0)->get();
+        return view('admin.affiliates-pending',compact('affiliates'));
     }
     public function aproveaffiliates($id)
     {

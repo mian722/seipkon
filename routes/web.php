@@ -38,8 +38,10 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/affiliate-create', 'AffiliateController@create')->name('affiliate.create');
 	Route::get('/affiliate-detail/{id}', 'AffiliateController@show')->name('affiliate.show');
 	Route::get('/all-offers', 'OfferController@index')->name('all-offers.get');
-	Route::get('/pending-affiliates', 'AffiliateController@pendingaffiliates')->name('pendingaffiliates');
-	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliates')->name('approve.affiliate');	
+	Route::get('/affiliates-pending', 'AffiliateController@pendingaffiliates')->name('pendingaffiliates');
+	Route::get('/advertisers-pending', 'AdvertiserController@pendingadvertisers')->name('pendingadvertisers');
+	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliates')->name('approve.affiliate');
+	Route::get('/approve-advertiser/{id}', 'AdvertiserController@aproveadvertiser')->name('approve.advertiser');	
 	Route::get('/advertisers', 'AdvertiserController@index')->name('advertisers');	
 	Route::get('/affiliate-payouts', 'AffiliateController@affiliatepayouts')->name('affiliate-payouts');
 });
@@ -77,7 +79,6 @@ Route::get('/affiliate-postback', function () { return view('affiliate-postback'
 Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payout-tiers'); });
 Route::get('/affiliate-invoices', function () { return view('affiliate-invoices'); });
 Route::get('/affiliate-invoice-create', function () { return view('affiliate-invoice-create'); });
-Route::get('/advertisers-pending', function () { return view('advertisers-pending'); });
 Route::get('/advertisers-invoices', function () { return view('advertisers-invoices'); });
 Route::get('/invoice', function () { return view('invoice'); });
 Route::get('/advertisers-invoice-create', function () { return view('advertisers-invoice-create'); });
