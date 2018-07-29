@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use DB;
 use App\Offer;
+use App\AffiliatePayout;
 class AffiliateController extends Controller
 {
     /**
@@ -99,15 +100,23 @@ class AffiliateController extends Controller
         return view('admin.affiliate-payouts-create',compact('affiliates','offers'));
     }
     public function affiliatepayoutsave(Request $request){
-        return $request->all();
-        return view('admin.affiliate-payouts-create');
+        $payout = new AffiliatePayout;
+        $payout->offer_id = $request->offerid;
+        $payout->affiliate_id = $request->affiliateid;
+        $payout->rate = $request->payout;
+        $payout->save();
+        if (empty($payout) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
     }
     public function offerrate(Request $request)
     {
         $offers = Offer::with('restrictions')->where('id', $request->offerid)->first();
         $response = array(
             'msg' => '<label class="control-label">Payout Type : '.$offers->payout_type.'</label></br>
-                                                   <label class="control-label">Offer Payout : '.$offers->payout.'</label>',
+                                                   <label class="control-label">Offer Payout : $'.$offers->payout.'</label>',
         );
         return \Response::json($response);
     }

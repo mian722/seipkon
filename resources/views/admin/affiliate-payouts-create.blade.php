@@ -47,7 +47,7 @@
                                              <div class="form-group">
                                                 <label class="control-label">Offers:</label>
                                                 <div id="slWrapper" class="parsley-select wd-250">
-                                                   <select class="form-control" data-placeholder="Choose one" data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" id="offerrate" required>
+                                                   <select class="form-control" name="offerid" data-placeholder="Choose one" data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" id="offerrate" required>
                                                       <option label="Choose one"></option>
                                                       @foreach($offers as $offer)
                                                       <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
@@ -61,7 +61,7 @@
                                              <div class="form-group">
                                                 <label class="control-label">Affiliate:</label>
                                                 <div id="slWrapper" class="parsley-select wd-250">
-                                                   <select class="form-control" data-placeholder="Choose one" data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer"  required>
+                                                   <select class="form-control" name="affiliateid" data-placeholder="Choose one" data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer"  required>
                                                       <option label="Choose one"></option>
                                                       @foreach($affiliates as $affiliate)
                                                       <option value="{{ $affiliate->id }}">{{ $affiliate->fname }} {{ $affiliate->lname }}</option>
@@ -86,7 +86,7 @@
                                              <div class="form-group">
                                                 <label class="control-label">Affiliate Payout:</label>
                                                 <div id="slWrapper" class="parsley-select wd-250">
-                                                    <input type="text" placeholder="Value" class="form-control" required >
+                                                    <input type="text" name="payout" placeholder="Value" class="form-control" required >
                                                    <div id="slErrorContainer"></div>
                                                 </div>
                                              </div>
