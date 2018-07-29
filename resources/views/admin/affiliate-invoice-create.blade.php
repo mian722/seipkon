@@ -1,11 +1,12 @@
 @extends('layouts.header')
-         
+        
          @section('content') 
         <!-- Right Side Content Start -->
          <section id="content" class="seipkon-content-wrapper">
             <div class="page-content">
                <div class="container-fluid">
-                   
+               <form class="form-horizontal" method="post" action="{{ route('affiliateaddinvoices') }}">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}" />    
                   <!-- Breadcromb Row Start -->
                   <div class="row">
                      <div class="col-md-12">
@@ -39,8 +40,7 @@
                            <div class="form-example add-product-form-group">
                               <h3>Details</h3>
                               <div class="form-wrap top-label-exapmple form-layout-page">
-                                 <form class="form-horizontal" method="post" action="{{ route('affiliateaddinvoices') }}">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                 
                                     <div class="row">
                                        <div class="col-md-5">
                                           <p>
