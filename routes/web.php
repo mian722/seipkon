@@ -47,6 +47,12 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/affiliate-payout-create', 'AffiliateController@affiliatepayoutcreate')->name('affiliatepayoutcreate');
 	Route::post('/affiliate-payout-save', 'AffiliateController@affiliatepayoutsave')->name('affiliatepayoutsave');
 	Route::post('/offerrate', 'AffiliateController@offerrate')->name('offerrate');
+	Route::post('/affiliateoffersdetails', 'AffiliateController@affiliateoffersdetails')->name('affiliateoffersdetails');
+
+	Route::get('/affiliate-invoices', 'AffiliateController@affiliateinvoices')->name('affiliateinvoices');
+	Route::get('/affiliate-invoice-create', 'AffiliateController@affiliateinvoicescreate')->name('affiliateinvoicescreate'); 
+	Route::post('/affiliate-invoice/add', 'AffiliateController@affiliateaddinvoices')->name('affiliateaddinvoices'); 
+	Route::post('/affiliate-update-clicks/{id}', 'AffiliateController@affiliateupdateclicks')->name('affiliateupdateclicks'); 
 });
 
 Route::get('/', function () { return view('index'); });
@@ -80,8 +86,6 @@ Route::get('/ui_pagination', function () { return view('ui_pagination'); });
 
 Route::get('/affiliate-postback', function () { return view('affiliate-postback'); });
 Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payout-tiers'); });
-Route::get('/affiliate-invoices', function () { return view('affiliate-invoices'); });
-Route::get('/affiliate-invoice-create', function () { return view('affiliate-invoice-create'); });
 Route::get('/advertisers-invoices', function () { return view('advertisers-invoices'); });
 Route::get('/invoice', function () { return view('invoice'); });
 Route::get('/advertisers-invoice-create', function () { return view('advertisers-invoice-create'); });
