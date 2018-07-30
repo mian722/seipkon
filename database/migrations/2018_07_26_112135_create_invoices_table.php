@@ -22,8 +22,10 @@ class CreateInvoicesTable extends Migration
             $table->string('timezone');
             $table->string('daterange');
             $table->string('memo');
-            $table->string('timezone');
-            $table->string('offerdetails');
+            $table->string('offer_names');
+            $table->string('offer_clicks');
+            $table->string('offer_signups');
+            $table->string('offer_amounts');
             $table->string('note');
             $table->timestamps();
         });

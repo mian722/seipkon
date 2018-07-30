@@ -6589,7 +6589,9 @@ ul.work_history>li>p>span {
 .note-editable {
 	min-height: 200px;
 }
-
+.invoice{
+	display: none;
+}
 
 
 

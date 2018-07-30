@@ -67,23 +67,23 @@ class AffiliateController extends Controller
         $offers = Offer::with('restrictions')->where('id', $request->offerid)->first();
         $response = array(
             'msg' => '<tr>
-                         <td>'.$offers->offer_name.'</td>
+                         <td><input type="hidden" class="name" name="name[]" value="'.$offers->offer_name.'" />'.$offers->offer_name.'</td>
                          <td>
-                                 <input type="hidden"  name="clicks[]" value="0" />
+                                 <input type="hidden" class="clicks" name="clicks[]" value="0" />
                               <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
                                  <input type="hidden" name="_token" value="'.csrf_token().'" />
                                  <a href="#" id="clicks" class="tclicks" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">0</a>
                               </form>
                          </td>
                          <td>
-                                 <input type="hidden"  name="signup[]" value="0" />
+                                 <input type="hidden" class="signups" name="signup[]" value="0" />
                               <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
                                  <input type="hidden" name="_token" value="'.csrf_token().'" />
                                  <a href="#" id="signup" class="tsignup" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">0</a>
                               </form>
                          </td>
                          <td>
-                                 <input type="hidden"  name="amount[]" value="0" />
+                                 <input type="hidden" class="amounts" name="amount[]" value="0" />
                               <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
                                  <input type="hidden" name="_token" value="'.csrf_token().'" />
                                  <a href="#" id="amount" class="tamount" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">0</a>
@@ -96,7 +96,7 @@ class AffiliateController extends Controller
     }
 
     public function affiliateupdateclicks(Request $request, $id){
-        return $id;
+        return $request->all();
     }
 
     /**
@@ -110,6 +110,10 @@ class AffiliateController extends Controller
         return $request->all();
     }
 
+    public function affiliatedetail(Request $request){
+        return $user = User::with('role')->where('id', $request->userid)->first();
+        
+    }
 
     /**
      * Store a newly created resource in storage.

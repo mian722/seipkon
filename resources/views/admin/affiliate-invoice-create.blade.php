@@ -45,7 +45,8 @@
                                        <div class="col-md-5">
                                           <p>
                                              <label>Affiliate</label>
-                                             <select name="affiliate_id" class="form-control select2">
+                                             <select name="affiliate_id" id="affiliate_id" class="form-control select2" required="">
+                                                   <option disabled="disabled" selected="selected">Select Affiliate</option>
                                                    @foreach($affiliates as $affiliate)
                                                    <option value="{{ $affiliate->id }}">{{ $affiliate->fname }} {{ $affiliate->lname }}</option>
                                                    @endforeach
@@ -63,7 +64,8 @@
                                        <div class="col-md-3">
                                           <p>
                                              <label>Currency</label>
-                                             <select name="currency" class="form-control select2">
+                                             <select name="currency" class="form-control select2" required="">
+                                                <option disabled="disabled" selected="selected">Select Currency</option>
                                                 @foreach($currencies as $currency)
                                                 <option value="{{ $currency }}">{{ $currency }}</option>
                                                 @endforeach
@@ -75,7 +77,8 @@
                                        <div class="col-md-5">
                                           <p>
                                              <label>Timezone</label>
-                                             <select name="timezone" class="form-control select2">
+                                             <select name="timezone" class="form-control select2" required="">
+                                                <option disabled="disabled" selected="selected">Select TimeZone</option>
                                                 @foreach($timezones as $timezone)
                                                 <option value="{{ $timezone }}">{{ $timezone }}</option>
                                                 @endforeach
@@ -85,7 +88,7 @@
                                        <div class="col-md-4">
                                           <p>
                                              <label>Duration <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                             <input name="daterange" type="text" id="reservation" placeholder="Date" />
+                                             <input name="daterange" type="text" class="form-control" id="reservation" placeholder="Date" />
                                           </p>
                                        </div>
                                     </div>
@@ -98,7 +101,7 @@
                                     <div class="row">
                                        <div class="col-md-12">
                                           <div class="form-layout-submit" style="text-align: left;">
-                                             <button type="button" class="btn btn-info" >Generate Invoice</button>
+                                             <button type="button" id="generate_button" class="btn btn-info" >Generate Invoice</button>
                                           </div>
                                        </div>
                                     </div>
@@ -111,13 +114,13 @@
 
 
                   <!-- Invoice Generated Layout Row -->
-                  <div class="row">
+                  <div class="row invoice" id="generated">
                      <div class="col-md-12">
                         <div class="page-box">
                            <div class="row">
                               <div class="col-md-6">
                                  <span><b>INVOICE NO.</b></span>
-                                 <input placeholder="Invoice Number" value="" name="invoice_no" style="padding: 0 10px; border:1px solid #ccc;" />
+                                 <input placeholder="Invoice Number" id="invoice_no" name="invoice_no" style="padding: 0 10px; border:1px solid #ccc;" />
                               </div>
                               <div class="col-md-6">
                                  <h3 class="pull-right">Sub Domain</h3>
@@ -128,38 +131,38 @@
                               <div class="col-sm-6 invoice-column">
                                  <p class="info-p"><b>Customer Information</b></p>
                                  <p class="info-p">Company:
-                                    <b>shd</b>
+                                    <b id="companyname">shd</b>
                                  </p>
                                  <p class="info-p">Name:
-                                    <b>Shahid Ashraf</b>
+                                    <b id="username">Shahid Ashraf</b>
                                  </p>
                                  <p class="info-p">Address:
-                                    <b></b>
+                                    <b id="useraddress"></b>
                                  </p>
                                  <p class="info-p">Email:
-                                    <b>mian722@hotmail.com</b>
+                                    <b id="useremail">mian722@hotmail.com</b>
                                  </p>
                               </div>
                               <div class="col-sm-6 invoice-column">
                                  <p class="info-p"><b>Contact Information</b></p>
                                  <p class="info-p">Name: 
-                                    <b>Fadhel F</b>
+                                    <b id="adminname">Fadhel F</b>
                                  </p>
                                  <p class="info-p">Address:
-                                    <b></b>
+                                    <b id="adminaddress"></b>
                                  </p>
                                  <p class="info-p">Phone:
-                                    <b>+09988373737</b>
+                                    <b id="admincontact">+09988373737</b>
                                  </p>
                                  <p class="info-p">Email:
-                                    <b>mian722@hotmail.com</b>
+                                    <b id="adminemail">mian722@hotmail.com</b>
                                  </p>
                               </div>
                            </div>
                            <br />
                            <div class="row">
                               <div class="col-md-12">
-                                 <h5><strong>Invoice Date Range: <b id="bill-range">2018-07-04 to 2018-07-04 (GMT -09:30)</b></strong></h5>
+                                 <h5><strong>Invoice Date Range: <b id="daterange">2018-07-04 to 2018-07-04 (GMT -09:30)</b></strong></h5>
                               </div>
                            </div>
                            <div class="row" style="margin-top: 10px;">
@@ -254,6 +257,7 @@
                                 }
                               },
                               success: function(response) {
+                                 $(this).closest('td').find('input.clicks').val(response['value']);
                                  console.log(response);
                                }
                             });
@@ -268,6 +272,7 @@
                                 }
                               },
                               success: function(response) {
+                                 $(this).closest('td').find('input.signups').val(response['value']);
                                  console.log(response);
                                }
                             });
@@ -282,6 +287,7 @@
                                 }
                               },
                               success: function(response) {
+                                 $(this).closest('td').find('input.amounts').val(response['value']);
                                  console.log(response);
                                }
                             });
@@ -299,6 +305,33 @@
             });
 
       $(document).ready(function(){
+
+         $('#generate_button').on('click', function(){
+            var value = $('#affiliate_id').val();
+            var token = "{{ csrf_token() }}";
+            $.ajax({
+               type: "POST",
+               url: '{{ route("affiliatedetail") }}',
+               data: { "_token": token, "userid": value},
+               success: function( user ) {
+                  $('#companyname').html(user['company']);
+                  $('#username').html(user['fname']+' '+user['lname']);
+                  $('#useraddress').html(user['country']);
+                  $('#useremail').html(user['email']);
+                  $('#adminname').html('{{ Auth::user()->fname }} {{ Auth::user()->lname }}');
+                  $('#adminaddress').html('{{ Auth::user()->country }}');
+                  $('#admincontact').html('{{ Auth::user()->contactno }}');
+                  $('#adminemail').html('{{ Auth::user()->email }}');
+                  $('#offerdetails').html('');
+                  var d = new Date();
+                  var strDate = d.getFullYear() + "" + (d.getMonth()+1) + "" + d.getDate();
+                  var random = Math.floor(1000 + Math.random() * 9000);
+                  var invoice_no = strDate+"-"+value+"-"+random+"/fadhal";
+                  $('#invoice_no').val(invoice_no);
+                  $('#generated').show();
+               }
+           });
+         });
 
             $('#convert_json').on('click', function(){
                // Loop through grabbing everything
