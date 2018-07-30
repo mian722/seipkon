@@ -38,28 +38,28 @@
                                        <th>Name</th>
                                        <th>Email</th>
                                        <th>Mobile NO.</th>
-                                       <th>Team</th>
-                                       <th>Team Leader</th>
+                                       <th>Manager</th>
                                        <th>Create Time</th>
                                        <th>Action</th>
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    @foreach($accounts as $account)
                                     <tr>
-                                       <td>#1</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>22</td>
-                                       <td>product title</td>
-                                       <td>Pak</td>
-                                       <td>+92878324782</td>
+                                       <td>#{{ $account->id }}</td>
+                                       <td>{{ $account->fname }} {{ $account->lname }}</td>
+                                       <td>{{ $account->email }}</td>
+                                       <td>{{ $account->contactno }}</td>
+                                       <?php $manager = App\User::where('id', $account->managerid)->first(); ?>
+                                       <td>{{ $manager->fname }} {{ $manager->lname }}</td>
+                                       <td>{{ $account->created_at }}</td>
                                        <td>
                                           <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
                                        </td>
                                     </tr>
-                                    
+                                    @endforeach
 
                                  </tbody>
                               </table>

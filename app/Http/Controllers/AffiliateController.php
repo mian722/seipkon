@@ -113,6 +113,11 @@ class AffiliateController extends Controller
     public function affiliatedetail(Request $request){
         return $user = User::with('role')->where('id', $request->userid)->first();
         
+    public function createaffiliatepostback()
+    {
+        $affiliates = User::Where('roles_id',5)->where('status', 1)->get();
+        $offers = Offer::where('status', 1)->get();
+        return view('admin.postback-create',compact('affiliates','offers'));
     }
 
     /**

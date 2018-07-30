@@ -38,30 +38,31 @@
                         <div class="page-box">
                            <div class="form-example">
                               <div class="form-wrap top-label-exapmple form-layout-page">
-                                 <form>
+                                 <form action="{{ route('storeaccount') }}"  method="post">
+                                     {{ csrf_field() }}
                                     <div class="row">
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">First Name:</label>
-                                             <input type="text" class="form-control" >
+                                             <input type="text" name="fname" class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Last Name:</label>
-                                             <input type="text"  class="form-control" >
+                                             <input type="text"  name="lname" class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Email Address:</label>
-                                             <input type="email"  class="form-control" >
+                                             <input type="email" name="email"  class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Password:</label>
-                                             <input type="password" class="form-control" >
+                                             <input type="password" name="password" class="form-control" >
                                           </div>
                                        </div>
                                        
@@ -70,63 +71,54 @@
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">IM:</label>
-                                             <select class="form-control select2">
-                                                <option selected="selected">IM</option>
-                                                <option>Skype</option>
-                                                <option>facebook</option>
+                                             <select name="imid" class="form-control select2">
+                                                <option  selected="selected">IM</option>
+                                                <option value="skype">Skype</option>
+                                                <option value="facebook">facebook</option>
                                              </select>
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">IM Account:</label>
-                                             <input type="text"  class="form-control" >
+                                             <input type="text" name="imaccount" class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Mobile NO:</label>
-                                             <input type="email"  class="form-control" >
+                                             <input type="text" name="mobile" class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Country:</label>
-                                             <select class="form-control select2">
-                                                <option selected="selected">Alabama</option>
-                                                <option>Alaska</option>
-                                                <option>Delaware</option>
-                                                <option>Tennessee</option>
-                                                <option>Texas</option>
-                                                <option>Washington</option>
+                                             <select name="country" class="form-control select2">
+                                                <option selected="selected">Select Country</option>
+                                                @foreach($countries as $country)
+                                                <option value="{{ $country }}">{{ $country }}</option>
+                                                @endforeach
                                              </select>
                                           </div>
                                        </div>
                                        
                                     </div>
                                     <div class="row">
-                                       <div class="col-md-4">
+                                       <div class="col-md-6">
                                           <div class="form-group">
-                                             <label class="control-label">Team:</label>
-                                             <select class="form-control select2">
-                                                <option selected="selected">team1</option>
-                                                <option>team2</option>
+                                             <label class="control-label">Manager:</label>
+                                             <select name="manager" class="form-control select2">
+                                                <option selected="selected">Select Manager</option>
+                                                @foreach($managers as $manager)
+                                                <option value="{{ $manager->id }}">{{ $manager->fname }} {{ $manager->lname }}</option>
+                                                @endforeach
                                              </select>
                                           </div>
                                        </div>
-                                       <div class="col-md-4">
-                                          <div class="form-group">
-                                             <label class="control-label">Team Leader:</label>
-                                             <select class="form-control select2">
-                                                <option selected="selected">team1</option>
-                                                <option>team2</option>
-                                             </select>
-                                          </div>
-                                       </div>
-                                       <div class="col-md-4">
+                                       <div class="col-md-6">
                                           <div class="form-group">
                                              <label class="control-label">Address:</label>
-                                             <input type="text" class="form-control" >
+                                             <input name="address" type="text" class="form-control" >
                                           </div>
                                        </div>
                                     </div>
@@ -136,7 +128,7 @@
                                              <div class="row">
                                                 <div class="col-md-12">
                                                    <div class="form-layout-submit">
-                                                      <button type="submit" class="btn btn-info" >Submit</button>
+                                                      <button type="submit" name="submit" class="btn btn-info" >Submit</button>
                                                       <button type="submit" class="btn btn-danger">cancel</button>
                                                    </div>
                                                 </div>
@@ -154,12 +146,7 @@
                    
                </div>
             </div>
-             
-            <!-- Footer Area Start -->
-            <footer class="seipkon-footer-area">
-               <p>Seipkon - Bootstrap Admin Template by <a href="#">Themescare</a></p>
-            </footer>
-            <!-- End Footer Area -->
+            
              
          </section>
          <!-- End Right Side Content -->

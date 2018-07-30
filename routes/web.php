@@ -54,6 +54,12 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::post('/affiliate-invoice/add', 'AffiliateController@affiliateaddinvoices')->name('affiliateaddinvoices'); 
 	Route::post('/affiliate-update-clicks/{id}', 'AffiliateController@affiliateupdateclicks')->name('affiliateupdateclicks'); 
 	Route::post('/affiliatedetail', 'AffiliateController@affiliatedetail')->name('affiliatedetail'); 
+	Route::get('/postback-create', 'AffiliateController@createaffiliatepostback')->name('createaffiliatepostback');
+
+	Route::get('/accounts', 'UserController@accountslist')->name('admin.accountslist');
+	Route::get('/accounts-create', 'UserController@createaccount')->name('createaccount');
+	Route::post('/accounts-create/store', 'UserController@storeaccount')->name('storeaccount');
+	
 });
 
 Route::get('/', function () { return view('index'); });
@@ -90,8 +96,7 @@ Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payou
 Route::get('/advertisers-invoices', function () { return view('advertisers-invoices'); });
 Route::get('/invoice', function () { return view('invoice'); });
 Route::get('/advertisers-invoice-create', function () { return view('advertisers-invoice-create'); });
-Route::get('/accounts', function () { return view('accounts'); });
-Route::get('/accounts-create', function () { return view('accounts-create'); });
+
 Route::get('/roles', function () { return view('roles'); });
 Route::get('/roles-create', function () { return view('roles-create'); });
 Route::get('/teams', function () { return view('teams'); });
@@ -119,7 +124,7 @@ Route::get('/compaigns', function () { return view('compaigns'); });
 Route::get('/offers-detail-page', function () { return view('offers-detail-page'); });
 Route::get('/affiliate-detail-page', function () { return view('affiliate-detail-page'); });
 Route::get('/log-detail', function () { return view('log-detail'); });
-Route::get('/postback-create', function () { return view('postback-create'); });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
