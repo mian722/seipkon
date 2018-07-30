@@ -109,7 +109,12 @@ class AffiliateController extends Controller
         //return Auth::user()->id;
         return $request->all();
     }
-
+public function createaffiliatepostback()
+    {
+        $affiliates = User::Where('roles_id',5)->where('status', 1)->get();
+        $offers = Offer::where('status', 1)->get();
+        return view('admin.postback-create',compact('affiliates','offers'));
+    }
 
     /**
      * Store a newly created resource in storage.

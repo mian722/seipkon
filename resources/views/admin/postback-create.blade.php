@@ -43,13 +43,10 @@
                                     <div class="form-group">
                                        <label class="control-label">Affiliate</label>
                                        <select class="form-control select2">
-                                          <option selected="selected">Alabama</option>
-                                          <option>Alaska</option>
-                                          <option>California</option>
-                                          <option>Delaware</option>
-                                          <option>Tennessee</option>
-                                          <option>Texas</option>
-                                          <option>Washington</option>
+                                          <option disabled="disabled" selected="selected">Select Affiliate</option>
+                                          @foreach($affiliates as $ffiliate)
+                                          <option value="{{ $ffiliate->id }}">{{ $ffiliate->fname }} {{ $ffiliate->lname }}</option>
+                                          @endforeach
                                        </select>
                                     </div>
                                     <div class="form-group">
@@ -64,33 +61,27 @@
                                        </div>
                                        <div class="form-group form-radio col-md-4">
                                           <input id="radio-3" name="radio" type="radio" />
-                                         <label  for="radio-2" class="inline control-label">Global</label>
+                                         <label  for="radio-3" class="inline control-label">Global</label>
                                        </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group smartlinklist" >
                                        <label class="control-label">Smartlink</label>
-                                       <select class="form-control select2" >
-                                          <option selected="selected">Smartlink 1</option>
-                                          <option>Alaska</option>
-                                          <option>California</option>
-                                          <option>Delaware</option>
-                                          <option>Tennessee</option>
-                                          <option>Texas</option>
-                                          <option>Washington</option>
+                                       <select class="form-control select2">
+                                          <option disabled="disabled" selected="selected">Select Smartlink</option>
+                                          @foreach($offers as $offer)
+                                          <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
+                                          @endforeach
                                        </select>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group offerlist" >
                                        <label class="control-label">Offer</label>
-                                       <select class="form-control select2" >
-                                          <option selected="selected">Offer 1</option>
-                                          <option>Alaska</option>
-                                          <option>California</option>
-                                          <option>Delaware</option>
-                                          <option>Tennessee</option>
-                                          <option>Texas</option>
-                                          <option>Washington</option>
+                                       <select class="form-control select2">
+                                          <option disabled="disabled" selected="selected">Select Offer</option>
+                                          @foreach($offers as $offer)
+                                          <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
+                                          @endforeach
                                        </select>
-                                    </div>
+                                    </div><!-- 
                                     <div class="form-group">
                                        <label class="control-label">Event</label>
                                        <select class="form-control select2">
@@ -101,16 +92,13 @@
                                           <option>Texas</option>
                                           <option>Washington</option>
                                        </select>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                        <label class="control-label">Protocol</label>
                                        <select class="form-control select2">
                                           <option selected="selected">Postback Url</option>
-                                          <option>Alaska</option>
-                                          <option>Delaware</option>
-                                          <option>Tennessee</option>
-                                          <option>Texas</option>
-                                          <option>Washington</option>
+                                          <option>Smart Link</option>
+                                          <option>Image Pixel</option>
                                        </select>
                                     </div>
                                     <div class="form-group">
@@ -179,12 +167,22 @@
                    
                </div>
             </div>
-             
-            <!-- Footer Area Start -->
-            <footer class="seipkon-footer-area">
-               <p>Seipkon - Bootstrap Admin Template by <a href="#">Themescare</a></p>
-            </footer>
-            <!-- End Footer Area -->
+            <script type="text/javascript">
+               $(document).ready(function () { 
+                  $("#radio-2").click(function() {
+                     $(".smartlinklist").show();
+                     $(".offerlist").hide();
+                   });
+                  $("#radio-1").click(function() {
+                     $(".smartlinklist").hide();
+                     $(".offerlist").show();
+                   });
+                  $("#radio-3").click(function() {
+                     $(".smartlinklist").hide();
+                     $(".offerlist").hide();
+                   });
+               });
+            </script>
              
          </section>
          <!-- End Right Side Content -->
