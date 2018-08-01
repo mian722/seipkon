@@ -43,18 +43,18 @@
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    @foreach($managers as $manager)
                                     <tr>
-                                       <td>#1</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>22</td>
+                                       <td>#{{ $manager->id }}</td>
+                                       <td>{{ $manager->name }}</td>
+                                       <td>{{ $manager->description }}</td>
+                                       <td>Global</td>
                                        <td>
-                                          <a href="{{ url('roles-create') }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                          <a href="#" data-pk="{{ $manager->id }}" class="product-table-info viewbtn" data-toggle="tooltip" title="View"><i class="fa fa-search"></i></a>
+                                          
                                        </td>
                                     </tr>
-                                    
+                                    @endforeach
 
                                  </tbody>
                               </table>
@@ -63,10 +63,43 @@
                      </div>
                   </div>
                   <!-- End Advance Table Row -->
-                   
+                   <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel" style="display: inline-block;">Role Details</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" id="detailtable">
+                          
+                       </div>
+                     </div>
+                  </div>
                </div>
             </div>
-         </section> 
+         </div>
+      </section> 
+      <script >
+         $(document).ready(function(){
+            $('.viewbtn').on('click', function(){
+            var id = $(this).data('pk');
+            var token = "{{ csrf_token() }}";
+            $.ajax({
+               type: "POST",
+               url: '{{ route("getmanagerrole") }}',
+               data: { "_token": token, "id": id},
+               success: function( data ) {
+                 $('#detailtable').html(data);
+                 $('#exampleModal').modal();
+               }
+           });
+         });
+         });
+         
+      </script>
          <!-- End Right Side Content -->
          @endsection
 
