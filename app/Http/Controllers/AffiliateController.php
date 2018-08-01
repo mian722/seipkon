@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use DB;
 use App\Offer;
+use App\Invoices;
+use DB;
 use Auth;
 use App\AffiliatePayout;
 class AffiliateController extends Controller
@@ -40,7 +41,8 @@ class AffiliateController extends Controller
      */
     public function affiliateinvoices()
     {
-        return view('admin.affiliate-invoices');
+        $invoices = Invoices::where('admin_id', Auth::user()->id)->get();
+        return view('admin.affiliate-invoices', compact('invoices'));
     }
 
     /**
@@ -52,9 +54,14 @@ class AffiliateController extends Controller
     {
         $currencies = $this->getcurrency();
         $timezones = $this->gettimezones();
-        $offers = $this->getalloffers();
         $affiliates = $this->getaffiliates();
         return view('admin.affiliate-invoice-create',compact('currencies', 'timezones', 'offers', 'affiliates'));
+    }
+
+    public function affiliateinvoicesedit($id)
+    {
+        $offeredit = Invoices::find($id);
+        return view('admin.affiliate-invoice-edit',compact('offeredit'));
     }
 
     /**
@@ -95,7 +102,7 @@ class AffiliateController extends Controller
         return \Response::json($response);
     }
 
-    public function affiliateupdateclicks(Request $request, $id){
+    public function affiliateupdateclicks(Request $request){
         return $request->all();
     }
 
@@ -107,11 +114,54 @@ class AffiliateController extends Controller
     public function affiliateaddinvoices(Request $request)
     {
         //return Auth::user()->id;
+        $request->merge(['name' => json_encode($request->name)]);
+        $request->merge(['clicks' => json_encode($request->clicks)]);
+        $request->merge(['signup' => json_encode($request->signup)]);
+        $request->merge(['amount' => json_encode($request->amount)]);
+
+        $invoices = new Invoices;
+        $invoices->invoiceno = $request->invoice_no;
+        $invoices->affiliate_id = $request->affiliate_id;
+        $invoices->status = $request->status;
+        $invoices->currency = $request->currency;
+        $invoices->timezone = $request->timezone;
+        $invoices->daterange = $request->daterange;
+        $invoices->memo = $request->memo;
+        $invoices->offer_names = $request->name;
+        $invoices->offer_clicks = $request->clicks;
+        $invoices->offer_signups = $request->signup;
+        $invoices->offer_amounts = $request->amount;
+        $invoices->note = $request->note;
+        $invoices->admin_id = Auth::user()->id;
+        $invoices->save();
+        
+        if (empty($invoices) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
+    public function affiliateupdateinvoices(Request $request, $id){
         return $request->all();
     }
 
     public function affiliatedetail(Request $request){
-        return $user = User::with('role')->where('id', $request->userid)->first();
+        $user = User::with('role')->where('id', $request->userid)->first();
+        $offers = Offer::leftJoin('assignoffers', 'offers.id', '=', 'assignoffers.offer_id')
+                        ->where('assignoffers.affiliate_id', $request->userid)
+                        ->get();
+        $msg = '<option disabled="disabled" selected="selected">Select Offer</option>';
+        foreach ($offers as $offer) {
+            $msg .= '<option value="'.$offer->id.'">'.$offer->offer_name.'</option>';
+        }
+        $response = array(
+            'user' => $user,
+            'msg' => $msg,
+        );
+        return \Response::json($response);
+
+    }
         
     public function createaffiliatepostback()
     {

@@ -47,26 +47,46 @@
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    @if(!empty($invoices))
+                                    @foreach($invoices as $invoice)
                                     <tr>
-                                       <td>#1</td>
-                                       <td><a href="{{ asset('invoice') }}" style="color: #1CD2C9;">#120342</a></td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>#120342</td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
+                                       <td>#{{ $loop->iteration }}</td>
+                                       <td><a href="{{ asset('invoice') }}" style="color: #1CD2C9;">{{ $invoice->invoiceno }}</a></td>
+                                       <?php $user = null;
+                                       if ($invoice->affiliate_id != 0) {
+                                          $user = App\User::select('fname', 'lname', 'managerid')->where('id', $invoice->affiliate_id)->first();
+                                       }  ?>
+                                       <td>{{ ($user != null) ? $user->fname : '&nbsp;' }} {{ ($user != null) ? $user->lname : '&nbsp;' }}</td>
+                                       <?php $manager = null;
+                                       if ($invoice->affiliate_id != 0) {
+                                          $manager = App\User::select('fname', 'lname')->where('id', ($user != null) ? $user->managerid : '&nbsp;')->first();
+                                       }  ?>
+                                       <td>{{ ($manager != null) ? $manager->fname : '&nbsp;' }} {{ ($manager != null) ? $manager->lname : '&nbsp;' }}</td>
+
+                                       <?php $date = explode('-',$invoice->daterange) ?>
+                                       <td><?php echo $date[0]; ?></td>
+                                       <td><?php echo $date[1]; ?></td>
+                                       <td>tamount</td>
+                                       <?php
+                                       $text = $invoice->memo;
+                                       $limit = 10;
+                                       if (str_word_count($text, 0) > $limit) {
+                                           $words = str_word_count($text, 2);
+                                           $pos = array_keys($words);
+                                           $text = substr($text, 0, $pos[$limit]) . '...';
+                                       }
+                                       ?>
+                                       <td><?php echo $text; ?></td>
                                        <td>
-                                          <span class="label label-success">paid</span>
+                                          <span class="label label-{{ $invoice->status == '1' ? 'success' : 'warning'}}">{{ $invoice->status == '1' ? 'Paid' : 'Pending'}}</span>
                                        </td>
                                        <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                          <a href="{{ route('affiliateinvoicesedit',$invoice->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
                                        </td>
                                     </tr>
-                                    
-
+                                    @endforeach
+                                    @endif
                                  </tbody>
                               </table>
                            </div>

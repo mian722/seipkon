@@ -28,6 +28,7 @@ class CreateInvoicesTable extends Migration
             $table->string('offer_amounts');
             $table->string('offerdetails');
             $table->string('note');
+            $table->string('admin_id');
             $table->timestamps();
         });
     }

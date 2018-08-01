@@ -52,6 +52,9 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/affiliate-invoices', 'AffiliateController@affiliateinvoices')->name('affiliateinvoices');
 	Route::get('/affiliate-invoice-create', 'AffiliateController@affiliateinvoicescreate')->name('affiliateinvoicescreate'); 
 	Route::post('/affiliate-invoice/add', 'AffiliateController@affiliateaddinvoices')->name('affiliateaddinvoices'); 
+	Route::post('/affiliate-invoice/update/{id}', 'AffiliateController@affiliateupdateinvoices')->name('affiliateupdateinvoices'); 
+
+	Route::get('/affiliate-invoice/edit/{id}', 'AffiliateController@affiliateinvoicesedit')->name('affiliateinvoicesedit'); 
 	Route::post('/affiliate-update-clicks/{id}', 'AffiliateController@affiliateupdateclicks')->name('affiliateupdateclicks'); 
 	Route::post('/affiliatedetail', 'AffiliateController@affiliatedetail')->name('affiliatedetail'); 
 	Route::get('/postback-create', 'AffiliateController@createaffiliatepostback')->name('createaffiliatepostback');

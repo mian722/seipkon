@@ -131,31 +131,31 @@
                               <div class="col-sm-6 invoice-column">
                                  <p class="info-p"><b>Customer Information</b></p>
                                  <p class="info-p">Company:
-                                    <b id="companyname">shd</b>
+                                    <b id="companyname"></b>
                                  </p>
                                  <p class="info-p">Name:
-                                    <b id="username">Shahid Ashraf</b>
+                                    <b id="username"></b>
                                  </p>
                                  <p class="info-p">Address:
                                     <b id="useraddress"></b>
                                  </p>
                                  <p class="info-p">Email:
-                                    <b id="useremail">mian722@hotmail.com</b>
+                                    <b id="useremail"></b>
                                  </p>
                               </div>
                               <div class="col-sm-6 invoice-column">
                                  <p class="info-p"><b>Contact Information</b></p>
                                  <p class="info-p">Name: 
-                                    <b id="adminname">Fadhel F</b>
+                                    <b id="adminname"></b>
                                  </p>
                                  <p class="info-p">Address:
                                     <b id="adminaddress"></b>
                                  </p>
                                  <p class="info-p">Phone:
-                                    <b id="admincontact">+09988373737</b>
+                                    <b id="admincontact"></b>
                                  </p>
                                  <p class="info-p">Email:
-                                    <b id="adminemail">mian722@hotmail.com</b>
+                                    <b id="adminemail"></b>
                                  </p>
                               </div>
                            </div>
@@ -184,16 +184,12 @@
                                           <tr>
                                              <td>
                                                 <select id="offers_select" name="offers[]" class="form-control select">
-                                                   <option disabled="disabled" selected="selected">Select Offer</option>
-                                                   @foreach($offers as $offer)
-                                                   <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
-                                                   @endforeach
                                                 </select>
                                              </td>
                                              <td>&nbsp;</td>
                                              <td>&nbsp;</td>
-                                             <td>&nbsp;</td>
-                                             <td>&nbsp;</td>
+                                             <td><b><h4>Total:</h4></b></td>
+                                             <td><b><h4>$00.00</h4></b></td>
                                           </tr>
                                        </tfooter>
                                     </table>
@@ -313,11 +309,12 @@
                type: "POST",
                url: '{{ route("affiliatedetail") }}',
                data: { "_token": token, "userid": value},
-               success: function( user ) {
-                  $('#companyname').html(user['company']);
-                  $('#username').html(user['fname']+' '+user['lname']);
-                  $('#useraddress').html(user['country']);
-                  $('#useremail').html(user['email']);
+               success: function( response ) {
+                  $('#companyname').html(response['user']['company']);
+                  $('#username').html(response['user']['fname']+' '+response['user']['lname']);
+                  $('#useraddress').html(response['user']['country']);
+                  $('#useremail').html(response['user']['email']);
+                  $('#offers_select').html(response['msg']);
                   $('#adminname').html('{{ Auth::user()->fname }} {{ Auth::user()->lname }}');
                   $('#adminaddress').html('{{ Auth::user()->country }}');
                   $('#admincontact').html('{{ Auth::user()->contactno }}');
