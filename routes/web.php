@@ -62,7 +62,10 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/accounts', 'UserController@accountslist')->name('admin.accountslist');
 	Route::get('/accounts-create', 'UserController@createaccount')->name('createaccount');
 	Route::post('/accounts-create/store', 'UserController@storeaccount')->name('storeaccount');
-	
+	Route::get('/roles', 'ManagerController@index')->name('admin.roleslist');
+	Route::get('/roles-create', 'ManagerController@createmanagerrole')->name('createmanagerrole');
+	Route::post('/roles-create/store', 'ManagerController@storemanagerrole')->name('storemanagerrole');
+	Route::post('/manager-role-detail', 'ManagerController@getmanagerrole')->name('getmanagerrole');
 });
 
 Route::get('/', function () { return view('index'); });
@@ -100,8 +103,6 @@ Route::get('/advertisers-invoices', function () { return view('advertisers-invoi
 Route::get('/invoice', function () { return view('invoice'); });
 Route::get('/advertisers-invoice-create', function () { return view('advertisers-invoice-create'); });
 
-Route::get('/roles', function () { return view('roles'); });
-Route::get('/roles-create', function () { return view('roles-create'); });
 Route::get('/teams', function () { return view('teams'); });
 Route::get('/teams-create', function () { return view('teams-create'); });
 Route::get('/advertisers-reports', function () { return view('advertisers-reports'); });
