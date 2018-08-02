@@ -38,7 +38,7 @@
                            <div class="invoice-box">
                               <h4 class="invoice-status">paid</h4>
                               <div class="invoice-head">
-                                 <h2>Invoice: #1947</h2>
+                                 <h2>Invoice: #{{ $invoices['invoiceno'] }}</h2>
                               </div>
                               <div class="invoice-address">
                                  <div class="row">
