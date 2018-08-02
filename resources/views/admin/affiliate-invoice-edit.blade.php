@@ -182,21 +182,20 @@
                                              <td>
                                                      <input type="hidden" class="clicks" name="clicks[]" value="{{ $offersclicks[$i] }}" />
                                                   <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
-                                                     <input type="hidden" name="_token" value="'.csrf_token().'" />
+                                                     
                                                      <a href="#" id="clicks" class="tclicks" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offersclicks[$i] }}</a>
                                                   </form>
                                              </td>
                                              <td>
                                                      <input type="hidden" class="signups" name="signup[]" value="{{ $offerssignups[$i] }}" />
                                                   <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
-                                                     <input type="hidden" name="_token" value="'.csrf_token().'" />
+                                                     
                                                      <a href="#" id="signup" class="tsignup" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offerssignups[$i] }}</a>
                                                   </form>
                                              </td>
                                              <td>
                                                      <input type="hidden" class="amounts" name="amount[]" value="{{ $offersamounts[$i] }}" />
                                                   <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
-                                                     <input type="hidden" name="_token" value="'.csrf_token().'" />
                                                      <a href="#" id="amount" class="tamount" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offersamounts[$i] }}</a>
                                                   </form>
                                              </td>

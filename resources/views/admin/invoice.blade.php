@@ -36,27 +36,48 @@
                      <div class="col-md-12">
                         <div class="page-box">
                            <div class="invoice-box">
-                              <h4 class="invoice-status">paid</h4>
+                              <style type="text/css">
+                                 .pending { background: #f0ad4e; }
+                                 .pending::after {  border-color: #f0ad4e transparent; }
+                              </style>
+                              <h4 class="invoice-status {{ ($invoice->status == 1 ) ? '' : 'pending' }}" >{{ ($invoice->status == 1 ) ? 'Paid' : 'Pending' }}</h4>
                               <div class="invoice-head">
-                                 <h2>Invoice: #{{ $invoices['invoiceno'] }}</h2>
+                                 <h2>Invoice: #{{ $invoice->invoiceno }}</h2>
                               </div>
                               <div class="invoice-address">
                                  <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                        <div class="invoice-company-address">
-                                          <h3>Themescare, Inc.</h3>
-                                          <p>201 Something St., Something Town, <br>YT 242, Country 6546</p>
-                                          <p>Tel No: 213 456-4557</p>
-                                          <p>Email: example@companyname.com</p>
+                                          <h3>Customer Information.</h3>
+                                          <p class="info-p">Company:
+                                             <b id="companyname">{{ $user->company }}</b>
+                                          </p>
+                                          <p class="info-p">Name:
+                                             <b id="username">{{ $user->fname }} {{ $user->lname }}</b>
+                                          </p>
+                                          <p class="info-p">Address:
+                                             <b id="useraddress">{{ $user->address }}</b>
+                                          </p>
+                                          <p class="info-p">Email:
+                                             <b id="useremail">{{ $user->email }}</b>
+                                          </p>
                                        </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                        <div class="billed-to-address">
-                                          <h3>billed to</h3>
-                                          <p>Philip Jensen</p>
-                                          <p>123 Century Los-Angeles, CA 90045</p>
-                                          <p>Tel No: +00 123-4567-88</p>
-                                          <p>Email: example@companyname.com</p>
+                                          <h3>Contact Information</h3>
+                                          <p class="info-p">Name: 
+                                             <b id="adminname">{{ $admin->fname }} {{ $admin->lname }}</b>
+                                          </p>
+                                          <p class="info-p">Address:
+                                             <b id="adminaddress">{{ $admin->address }}</b>
+                                          </p>
+                                          <p class="info-p">Phone:
+                                             <b id="admincontact">{{ $admin->contactno }}</b>
+                                          </p>
+                                          <p class="info-p">Email:
+                                             <b id="adminemail">{{ $admin->email }}</b>
+                                          </p>
                                        </div>
                                     </div>
                                  </div>
@@ -66,11 +87,11 @@
                                     <table class="table table-bordered">
                                        <thead>
                                           <tr>
-                                             <th>Item</th>
-                                             <th>Description</th>
-                                             <th>quantity</th>
-                                             <th>unit cost</th>
-                                             <th>total</th>
+                                             <th>#ID</th>
+                                             <th>Name</th>
+                                             <th>Clicks</th>
+                                             <th>Conversions</th>
+                                             <th>Total</th>
                                           </tr>
                                        </thead>
                                        <tbody>

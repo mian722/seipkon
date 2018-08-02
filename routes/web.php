@@ -66,6 +66,7 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/roles-create', 'ManagerController@createmanagerrole')->name('createmanagerrole');
 	Route::post('/roles-create/store', 'ManagerController@storemanagerrole')->name('storemanagerrole');
 	Route::post('/manager-role-detail', 'ManagerController@getmanagerrole')->name('getmanagerrole');
+	Route::get('/invoice/{id}', 'AffiliateController@getinvoice')->name('getinvoice');
 });
 
 Route::get('/', function () { return view('index'); });
@@ -100,7 +101,7 @@ Route::get('/ui_pagination', function () { return view('ui_pagination'); });
 Route::get('/affiliate-postback', function () { return view('affiliate-postback'); });
 Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payout-tiers'); });
 Route::get('/advertisers-invoices', function () { return view('advertisers-invoices'); });
-Route::get('/invoice', function () { return view('invoice'); });
+
 Route::get('/advertisers-invoice-create', function () { return view('advertisers-invoice-create'); });
 
 Route::get('/teams', function () { return view('teams'); });

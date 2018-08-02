@@ -51,7 +51,7 @@
                                     @foreach($invoices as $invoice)
                                     <tr>
                                        <td>#{{ $loop->iteration }}</td>
-                                       <td><a href="{{ asset('invoice') }}" style="color: #1CD2C9;">{{ $invoice->invoiceno }}</a></td>
+                                       <td><a href="{{ url('/invoice/'.$invoice->id) }}" style="color: #1CD2C9;">{{ $invoice->invoiceno }}</a></td>
                                        <?php $user = null;
                                        if ($invoice->affiliate_id != 0) {
                                           $user = App\User::select('fname', 'lname', 'managerid')->where('id', $invoice->affiliate_id)->first();

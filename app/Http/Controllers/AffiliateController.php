@@ -257,6 +257,12 @@ class AffiliateController extends Controller
         );
         return \Response::json($response);
     }
+    public function getinvoice($id){
+       $invoice = Invoices::Where('id',$id)->first();
+       $user = User::Where('id',$invoice->affiliate_id)->first();
+       $admin = User::Where('id',$invoice->admin_id)->first();
+        return view('admin.invoice',compact('invoice','user','admin'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
