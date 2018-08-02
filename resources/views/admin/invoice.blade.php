@@ -87,42 +87,44 @@
                                     <table class="table table-bordered">
                                        <thead>
                                           <tr>
-                                             <th>#ID</th>
                                              <th>Name</th>
                                              <th>Clicks</th>
                                              <th>Conversions</th>
                                              <th>Total</th>
                                           </tr>
                                        </thead>
-                                       <tbody>
-                                          <tr>
-                                             <td>Website Design</td>
-                                             <td>Sed ut perspiciatis unde omnis iste natus error...</td>
-                                             <td>2</td>
-                                             <td>$150.00</td>
-                                             <td>$300.00</td>
-                                          </tr>
-                                          <tr>
-                                             <td>Firefox Plugin</td>
-                                             <td>At vero eos et accusamus et iusto odio dignissimos ducimus qui...</td>
-                                             <td>1</td>
-                                             <td>$1,200.00</td>
-                                             <td>$1,200.00</td>
-                                          </tr>
-                                          <tr>
-                                             <td>iPhone App</td>
-                                             <td>Et harum quidem rerum facilis est et expedita distinctio</td>
-                                             <td>2</td>
-                                             <td>$850.00</td>
-                                             <td>$1,700.00</td>
-                                          </tr>
-                                          <tr>
-                                             <td>Android App</td>
-                                             <td>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet...</td>
-                                             <td>3</td>
-                                             <td>$850.00</td>
-                                             <td>$2,550.00</td>
-                                          </tr>
+                                       <?php
+                                          $offersnames = json_decode($invoice->offer_names);
+                                          $offersclicks = json_decode($invoice->offer_clicks);
+                                          $offerssignups = json_decode($invoice->offer_signups);
+                                          $offersamounts = json_decode($invoice->offer_amounts);
+                                       ?>
+                                       <tbody id="offerdetails">
+                                          @for($i = 0; $i<count($offersnames); $i++)
+                                            <tr>
+                                              <td><input type="hidden" class="name" name="name[]" value="{{ $offersnames[$i] }}" />{{ $offersnames[$i] }}</td>
+                                             <td>
+                                                     <input type="hidden" class="clicks" name="clicks[]" value="{{ $offersclicks[$i] }}" />
+                                                  <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
+                                                     
+                                                     <a href="#" id="clicks" class="tclicks" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offersclicks[$i] }}</a>
+                                                  </form>
+                                             </td>
+                                             <td>
+                                                     <input type="hidden" class="signups" name="signup[]" value="{{ $offerssignups[$i] }}" />
+                                                  <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
+                                                     
+                                                     <a href="#" id="signup" class="tsignup" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offerssignups[$i] }}</a>
+                                                  </form>
+                                             </td>
+                                             <td>
+                                                     <input type="hidden" class="amounts" name="amount[]" value="{{ $offersamounts[$i] }}" />
+                                                  <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
+                                                     <a href="#" id="amount" class="tamount" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offersamounts[$i] }}</a>
+                                                  </form>
+                                             </td>
+                                            </tr>
+                                          @endfor
                                        </tbody>
                                     </table>
                                  </div>
@@ -132,7 +134,7 @@
                                     <div class="col-md-8 col-sm-8">
                                        <div class="invoice-note">
                                           <h4>Note</h4>
-                                          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                                          <p>{{ $invoice->note }}</p>
                                        </div>
                                     </div>
                                     <div class="col-md-4 col-sm-4">
