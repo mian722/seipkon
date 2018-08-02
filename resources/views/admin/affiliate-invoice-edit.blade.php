@@ -87,7 +87,7 @@
                                     <div class="row">
                                        <div class="col-md-6">
                                           <label class="control-label">Memo</label>
-                                          <textarea name="memo" placeholder="Memo" class="form-control"></textarea>
+                                          <textarea name="memo" placeholder="Memo" class="form-control">{{ $offeredit->memo }}</textarea>
                                        </div>
                                     </div>
                                     <div class="row">
@@ -167,6 +167,7 @@
                                              <th>Clicks</th>
                                              <th>Conversions</th>
                                              <th>Amount</th>
+                                             <th>Action</th>
                                           </tr>
                                        </thead>
                                        <?php
@@ -178,28 +179,23 @@
                                        <tbody id="offerdetails">
                                           @for($i = 0; $i<count($offersnames); $i++)
                                             <tr>
-                                              <td><input type="hidden" class="name" name="name[]" value="{{ $offersnames[$i] }}" />{{ $offersnames[$i] }}</td>
+                                              <td><input type="hidden" class="name" name="name[]" value="{{ $offersnames[$i] }}" />
+                                                <?php $offerdetail = App\Offer::where('id', $offersnames[$i])->first(); ?>
+                                                {{ $offerdetail->offer_name }}
+                                              </td>
                                              <td>
-                                                     <input type="hidden" class="clicks" name="clicks[]" value="{{ $offersclicks[$i] }}" />
-                                                  <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
-                                                     <input type="hidden" name="_token" value="'.csrf_token().'" />
-                                                     <a href="#" id="clicks" class="tclicks" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offersclicks[$i] }}</a>
-                                                  </form>
+                                                   <input type="hidden" class="clicks" name="clicks[]" value="{{ $offersclicks[$i] }}" />
+                                                     <a href="#" id="clicks" class="tclicks" data-url="{{ route('affiliateupdateclicks', $offersnames[$i]) }}" data-pk="{{ $offersnames[$i] }}" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offersclicks[$i] }}</a>
                                              </td>
                                              <td>
-                                                     <input type="hidden" class="signups" name="signup[]" value="{{ $offerssignups[$i] }}" />
-                                                  <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
-                                                     <input type="hidden" name="_token" value="'.csrf_token().'" />
-                                                     <a href="#" id="signup" class="tsignup" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offerssignups[$i] }}</a>
-                                                  </form>
+                                                   <input type="hidden" class="signups" name="signup[]" value="{{ $offerssignups[$i] }}" />
+                                                     <a href="#" id="signup" class="tsignup" data-url="{{ route('affiliateupdateclicks', $offersnames[$i]) }}" data-pk="{{ $offersnames[$i] }}" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offerssignups[$i] }}</a>
                                              </td>
                                              <td>
-                                                     <input type="hidden" class="amounts" name="amount[]" value="{{ $offersamounts[$i] }}" />
-                                                  <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
-                                                     <input type="hidden" name="_token" value="'.csrf_token().'" />
-                                                     <a href="#" id="amount" class="tamount" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offersamounts[$i] }}</a>
-                                                  </form>
+                                                   <input type="hidden" class="amounts" name="amount[]" value="{{ $offersamounts[$i] }}" />
+                                                     <a href="#" id="amount" class="tamount" data-url="{{ $offersnames[$i] }}" data-pk="{{ $offersnames[$i] }}" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offersamounts[$i] }}</a>
                                              </td>
+                                              <td><span id="deloffer" class="btn btn-danger deloffer"><input type="hidden" value="{{ $offersnames[$i] }}" /><i style="font-size: 18px;" class="fa fa-trash"></i></span></td>
                                             </tr>
                                           @endfor
                                        </tbody>
@@ -213,10 +209,11 @@
                                                                   ->where('assignoffers.affiliate_id', $offeredit->affiliate_id)
                                                                   ->get(); ?>
                                                 @foreach($offers as $offer)
-                                                  <option value="{{$offer->offer_name}}">{{$offer->offer_name}}</option>
+                                                  <option value="{{$offer->offer_id}}" <?php if(in_array($offer->offer_id, $offersnames)) { echo 'disabled="disabled"'; } ?> >{{$offer->offer_name}}</option>
                                                 @endforeach
                                                 </select>
                                              </td>
+                                             <td>&nbsp;</td>
                                              <td>&nbsp;</td>
                                              <td><b><h4>Total:</h4></b></td>
                                              <td><b><h4>$00.00</h4></b></td>
@@ -247,5 +244,125 @@
                </div>
             </div>
              
+
+
+
+         <script type="text/javascript">
+
+
+      $(document).ready(function(){
+            xeditable();
+
+           $('#offers_select').on('change', function (e) {
+                    var value = $(this).val();
+                    $("#offers_select option:selected").attr('disabled','disabled');
+                    e.preventDefault();
+                    var token = "{{ csrf_token() }}";
+                    $.ajax({
+                        type: "POST",
+                        url: '{{ route("affiliateoffersdetails") }}',
+                        data: { "_token": token, "offerid": value},
+                        success: function( response ) {
+                          $("#offerdetails").append(response['msg']); 
+                          xeditable();
+                        }
+                    });
+                });
+
+
+         $('#generate_button').on('click', function(){
+            var value = $('#affiliate_id').val();
+            var token = "{{ csrf_token() }}";
+            $.ajax({
+               type: "POST",
+               url: '{{ route("affiliatedetail") }}',
+               data: { "_token": token, "userid": value},
+               success: function( response ) {
+                  $('#companyname').html(response['user']['company']);
+                  $('#username').html(response['user']['fname']+' '+response['user']['lname']);
+                  $('#useraddress').html(response['user']['country']);
+                  $('#useremail').html(response['user']['email']);
+                  $('#offers_select').html(response['msg']);
+                  $('#adminname').html('{{ Auth::user()->fname }} {{ Auth::user()->lname }}');
+                  $('#adminaddress').html('{{ Auth::user()->country }}');
+                  $('#admincontact').html('{{ Auth::user()->contactno }}');
+                  $('#adminemail').html('{{ Auth::user()->email }}');
+                  $('#offerdetails').html('');
+                  var d = new Date();
+                  var strDate = d.getFullYear() + "" + (d.getMonth()+1) + "" + d.getDate();
+                  var random = Math.floor(1000 + Math.random() * 9000);
+                  var invoice_no = strDate+"-"+value+"-"+random+"/fadhal";
+                  $('#invoice_no').val(invoice_no);
+                  $('#generated').show();
+               }
+           });
+         });
+
+      });
+
+      function xeditable(){
+        $(document).ready(function(){
+          $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+         });
+
+          //make username editable
+          $('.tclicks').editable({
+            url: $(this).data('url'),
+            pk: $(this).data('pk'),
+            type:"text",
+            validate:function(value){
+              if($.trim(value) === '')
+              {
+                return 'This field is required';
+              }
+            },
+            success: function(response) {
+               $(this).closest('td').find('input.clicks').val(response['value']);
+               console.log(response);
+             }
+          });
+          $('.tsignup').editable({
+            url: $(this).data('url'),
+            pk: $(this).data('pk'),
+            type:"text",
+            validate:function(value){
+              if($.trim(value) === '')
+              {
+                return 'This field is required';
+              }
+            },
+            success: function(response) {
+               $(this).closest('td').find('input.signups').val(response['value']);
+               console.log(response);
+             }
+          });
+          $('.tamount').editable({
+            url: $(this).data('url'),
+            pk: $(this).data('pk'),
+            type:"text",
+            validate:function(value){
+              if($.trim(value) === '')
+              {
+                return 'This field is required';
+              }
+            },
+            success: function(response) {
+               $(this).closest('td').find('input.amounts').val(response['value']);
+               console.log(response);
+             }
+          });
+
+
+         $('.deloffer').on('click', function(){
+            var id = $(this).find('input').val();
+            $(this).closest('tr').remove();
+            $("#offers_select option[value=" + id + "]").removeAttr('disabled');
+         });
+       });
+      }
+         </script>
          @endsection
 

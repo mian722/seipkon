@@ -74,7 +74,7 @@ class AffiliateController extends Controller
         $offers = Offer::with('restrictions')->where('id', $request->offerid)->first();
         $response = array(
             'msg' => '<tr>
-                         <td><input type="hidden" class="name" name="name[]" value="'.$offers->offer_name.'" />'.$offers->offer_name.'</td>
+                         <td><input type="hidden" class="name" name="name[]" value="'.$offers->id.'" />'.$offers->offer_name.'</td>
                          <td>
                                  <input type="hidden" class="clicks" name="clicks[]" value="0" />
                               <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
@@ -102,7 +102,7 @@ class AffiliateController extends Controller
         return \Response::json($response);
     }
 
-    public function affiliateupdateclicks(Request $request){
+    public function affiliateupdateclicks(Request $request, $id){
         return $request->all();
     }
 
@@ -143,7 +143,15 @@ class AffiliateController extends Controller
     }
 
     public function affiliateupdateinvoices(Request $request, $id){
-        return $request->all();
+
+        $request->merge(['name' => json_encode($request->name)]);
+        $request->merge(['clicks' => json_encode($request->clicks)]);
+        $request->merge(['signup' => json_encode($request->signup)]);
+        $request->merge(['amount' => json_encode($request->amount)]);
+
+        $update = DB::table('invoices')->where('id', $id)
+            ->update(['status' => $request->status, 'memo' => $request->memo, 'invoiceno' => $request->invoice_no, 'offer_names' => $request->name, 'offer_clicks' => $request->clicks, 'offer_signups' => $request->signup, 'offer_amounts' => $request->amount, 'note' => $request->note]);
+        return redirect()->back();
     }
 
     public function affiliatedetail(Request $request){
@@ -153,7 +161,7 @@ class AffiliateController extends Controller
                         ->get();
         $msg = '<option disabled="disabled" selected="selected">Select Offer</option>';
         foreach ($offers as $offer) {
-            $msg .= '<option value="'.$offer->id.'">'.$offer->offer_name.'</option>';
+            $msg .= '<option value="'.$offer->offer_id.'">'.$offer->offer_name.'</option>';
         }
         $response = array(
             'user' => $user,
