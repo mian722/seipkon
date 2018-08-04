@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Input;
 use App\Offer;
+use App\User;
+use App\AssignOffers;
 use App\OfferRestriction;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Routing\UrlGenerator;
@@ -101,6 +103,52 @@ class OfferController extends Controller
             return redirect()->back()->with('fail', 'Something Wrong!');
         }
     }
+
+    public function offerapplications(){
+        //$assignoffers = AssignOffers::where('admin_id', Auth::user()->id)->where('status', 0)->get();
+        $offerapplications = AssignOffers::leftJoin('users', 'users.id', '=', 'assignoffers.affiliate_id')
+        ->leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')
+        ->select('assignoffers.*', 'users.fname', 'users.lname', 'users.managerid', 'offers.adv_id', 'offers.offer_name')
+        ->where('assignoffers.admin_id', Auth::user()->id)->where('assignoffers.status', 0)->get();
+
+        return view('admin.offer-application', compact('offerapplications'));
+    }
+
+    public function approveapplication($id){
+        $update = AssignOffers::where('id', $id)->update(['status' => 1]);
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function createpostback($aid, $oid)
+    {
+        $offer = Offer::find($oid);
+        $user = User::where('roles_id', 5)->where('id', $aid)->first();
+
+        $assignoffer = new AssignOffers;
+        $assignoffer->affiliate_id = $user->id;
+        $assignoffer->offer_id = $offer->id;
+        $assignoffer->postbacklink = url('/').'/post/'.$user->id.'/'.$offer->id;
+        $assignoffer->usertracklink = url('/').'/link/'.$user->id.'/'.$offer->id;
+        $assignoffer->admin_id = Auth::user()->id;
+        $assignoffer->status = 0;
+        $assignoffer->save();
+        if(!empty($assignoffer)){
+            return redirect(url('/'))->with('success','Succfully Added!');
+        }else{
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        }
+    }
+
 
     /**
      * Display the specified resource.

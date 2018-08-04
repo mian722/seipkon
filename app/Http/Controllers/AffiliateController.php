@@ -150,7 +150,7 @@ class AffiliateController extends Controller
         $request->merge(['amount' => json_encode($request->amount)]);
 
         $update = DB::table('invoices')->where('id', $id)
-            ->update(['status' => $request->status, 'memo' => $request->memo, 'invoiceno' => $request->invoice_no, 'offer_names' => $request->name, 'offer_clicks' => $request->clicks, 'offer_signups' => $request->signup, 'offer_amounts' => $request->amount, 'note' => $request->note]);
+            ->update(['status' => $request->status, 'memo' => $request->memo, 'invoiceno' => $request->invoice_no, 'offer_names' => $request->name, 'offer_clicks' => $request->clicks, 'offer_signups' => $request->signup, 'offer_amountsa' => $request->amount, 'note' => $request->note]);
         return redirect()->back();
     }
 

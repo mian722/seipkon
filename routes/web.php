@@ -67,12 +67,15 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::post('/roles-create/store', 'ManagerController@storemanagerrole')->name('storemanagerrole');
 	Route::post('/manager-role-detail', 'ManagerController@getmanagerrole')->name('getmanagerrole');
 	Route::get('/invoice/{id}', 'AffiliateController@getinvoice')->name('getinvoice');
+
+	Route::get('/offer-application', 'OfferController@offerapplications')->name('offerapplications');
+	Route::get('/offer-application/approve/{id}', 'OfferController@approveapplication')->name('approveapplication');
+	Route::get('/link/{aid}/{oid}', 'OfferController@createpostback')->name('createpostback');
 });
 
 Route::get('/', function () { return view('index'); });
 Route::get('/offer', function () { return view('offer'); });
 Route::get('/edit-offer', function () { return view('edit-offer'); });
-Route::get('/offer-application', function () { return view('offer-application'); });
 Route::get('/pages', function () { return view('pages'); });
 Route::get('/basic-table', function () { return view('basic-table'); });
 Route::get('/advance-table', function () { return view('advance-table'); });

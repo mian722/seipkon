@@ -51,24 +51,32 @@
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    @foreach($offerapplications as $offerapplication)
                                     <tr>
-                                       <td>#1</td>
-                                       <td><img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="order image"  /></td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                       <td>09/08/2017</td>
+                                       <td>{{ $loop->iteration }}</td>
+                                       <?php $advertiser = null;
+                                       if ($offerapplication->affiliate_id != 0) {
+                                          $advertiser = App\User::select('fname', 'lname')->where('id', $offerapplication->adv_id)->first();
+                                       }  ?>
+                                       <td>{{ ($advertiser != null) ? $advertiser->fname : '&nbsp;' }} {{ ($advertiser != null) ? $advertiser->lname : '&nbsp;' }}</td>
+                                       <td>{{ $offerapplication->offer_name }}</td>
+                                       <td>{{ $offerapplication->fname }} {{ $offerapplication->lname }}</td>
+                                       <?php $advertiser = null;
+                                       if ($offerapplication->managerid != 0) {
+                                          $advertiser = App\User::select('fname', 'lname')->where('id', $offerapplication->managerid)->first();
+                                       }  ?>
+                                       <td>{{ ($advertiser != null) ? $advertiser->fname : '&nbsp;' }} {{ ($advertiser != null) ? $advertiser->lname : '&nbsp;' }}</td>
+                                       <td>{{ $offerapplication->created_at }}</td>
+                                       <td>{{ $offerapplication->updated_at }}</td>
                                        <td>
-                                          <span class="label label-success">Approve</span>
+                                          <span class="label label-{{ $offerapplication->status == 1 ? 'success' : 'warning' }}">{{ $offerapplication->status == 1 ? 'Active' : 'pending' }}</span>
                                        </td>
                                        <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Approve"><i class="fa fa-check"></i></a>
+                                          <?php echo $offerapplication->status == 1 ? '' : '<a href="'.route("approveapplication", $offerapplication->id) .'" class="product-table-info" data-toggle="tooltip" title="Approve"><i class="fa fa-check"></i></a>' ?>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Decline"><i class="fa fa-times"></i></a>
                                        </td>
                                     </tr>
-                                    
-
+                                    @endforeach
                                  </tbody>
                               </table>
                            </div>
