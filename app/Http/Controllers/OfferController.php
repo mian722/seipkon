@@ -34,7 +34,10 @@ class OfferController extends Controller
      */
     public function create()
     {
-        return view('admin.add-offer');
+        $users = $this->getuser(4);
+        $timezones = $this->gettimezones();
+        $countries = $this->getcountry();
+        return view('admin.add-offer', compact('users', 'timezones', 'countries'));
     }
 
     /**
@@ -43,7 +46,7 @@ class OfferController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($request)
+    public function store(Request $request)
     {
         //return $request->all();
         $file = Input::file('offer_image');
@@ -73,6 +76,7 @@ class OfferController extends Controller
         $offer->admin_id = Auth::user()->id;
         $basePath = url('/');
         $offer->offer_image = $basePath.'/public/offerimages/'.$newname;
+        $offer->offer_postback = url('/').'/advback?click_id={click_id}&adv_id='.$request->adv_id;
         $offer->save();
         if (!empty($offer) ) {
             //return $offer;

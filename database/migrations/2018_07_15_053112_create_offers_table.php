@@ -32,6 +32,7 @@ class CreateOffersTable extends Migration
             $table->string('description')->nullable();
             $table->tinyInteger('admin_id');
             $table->string('offer_image');
+            $table->string('offer_postback');
             $table->timestamps();
         });
     }

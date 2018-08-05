@@ -68,13 +68,9 @@
                                                       <p>
                                                          <label>Advertiser</label>
                                                          <select class="form-control select2" data-placeholder="Select Tags" name="adv_id" required="required">
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                            <option>6</option>
-                                                            <option>7</option>
+                                                            @foreach($users as $user)
+                                                               <option value="{{ $user->id }}">{{ $user->fname }} {{ $user->lname }}</option>
+                                                            @endforeach
                                                          </select>
                                                       </p>
                                                    </div>
@@ -106,8 +102,8 @@
                                                          <select class="form-control select2" name="status" required="required">
                                                             <option selected="selected" value="1">Active</option>
                                                             <option value="2">Paused</option>
-                                                            <option value="3">Pending</option>
-                                                            <option value="4">Deleted</option>
+                                                            <option value="0">Pending</option>
+                                                            <option value="3">Deleted</option>
                                                          </select>
                                                       </p>
                                                    </div>
@@ -295,10 +291,9 @@
                                                 <p>
                                                    <label>Caps Timezone <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" style="width: 60%;" name="caps_timezone" required="required">
-                                                      <option selected="selected">(GMT -11:00)Pacific/Midway,Niue,Pago_Pago</option>
-                                                      <option>(GMT -10:00)Pacific/Honolulu,Rarotonga</option>
-                                                      <option>(GMT -09:30)Pacific/Marquesas</option>
-                                                      <option>(GMT -09:00)America/Adak</option>
+                                                      @foreach($timezones as $timezone)
+                                                         <option value="{{ $timezone }}">{{ $timezone }}</option>
+                                                      @endforeach
                                                    </select>
                                                 </p>
                                              </div>
@@ -373,9 +368,9 @@
                                                 <p>
                                                    <label>Geo Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" name="geo_targeting[]" style="width: 60%;">
-                                                      <option>Offer 1</option>
-                                                      <option>Offer 2</option>
-                                                      <option>Offer 3</option>
+                                                      @foreach($countries as $countrie)
+                                                         <option value="{{ $countrie }}">{{ $countrie }}</option>
+                                                      @endforeach
                                                    </select>
                                                    <select class="form-control select2" name="geo_type">
                                                       <option selected="selected">Include</option>
@@ -387,9 +382,10 @@
                                                 <p>
                                                    <label>Mobile Carrier Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;" name="mobile_carrier_targeting[]">
-                                                      <option>Offer 1</option>
-                                                      <option>Offer 2</option>
-                                                      <option>Offer 3</option>
+                                                      <option value="desktop">Desktop</option>
+                                                      <option value="tablet">Tablet</option>
+                                                      <option value="android">Android</option>
+                                                      <option value="ios">IOS</option>
                                                    </select>
                                                 </p>
                                              </div>
@@ -397,9 +393,14 @@
                                                 <p>
                                                    <label>Platform Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 30%;" name="platform_targeting[]">
-                                                      <option>Offer 1</option>
-                                                      <option>Offer 2</option>
-                                                      <option>Offer 3</option>
+                                                      <option value="windows">Windows</option>
+                                                      <option value="mac">Mac</option>
+                                                      <option value="linux">Linux</option>
+                                                      <option value="ubuntu">Ubuntu</option>
+                                                      <option value="iphone">iPhone</option>
+                                                      <option value="ipad">iPod</option>
+                                                      <option value="android">Android</option>
+                                                      <option value="blackberry">BlackBerry</option>
                                                    </select>
                                                 </p>
                                                    <button type="button" class="changetabbutton pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>

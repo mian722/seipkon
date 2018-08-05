@@ -13,7 +13,21 @@ class CreateClicksTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('clicks', function (Blueprint $table) {
+            $table->increments('id');
+            $table->tinyInteger('affiliate_id');
+            $table->tinyInteger('offer_id');
+            $table->Integer('sub_id');
+            $table->tinyInteger('click')->default(1);
+            $table->string('reffer_link')->nullable();
+            $table->string('ip')->nullable();
+            $table->string('device')->nullable();
+            $table->string('browser')->nullable();
+            $table->string('os')->nullable();
+            $table->string('country')->nullable();
+            $table->string('proxy')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +37,6 @@ class CreateClicksTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('clicks');
     }
 }

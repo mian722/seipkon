@@ -70,7 +70,7 @@ Route::group(['middleware'=> 'admin'], function(){
 
 	Route::get('/offer-application', 'OfferController@offerapplications')->name('offerapplications');
 	Route::get('/offer-application/approve/{id}', 'OfferController@approveapplication')->name('approveapplication');
-	Route::get('/link/{aid}/{oid}', 'OfferController@createpostback')->name('createpostback');
+	Route::get('/tracking/{aid}/{oid}', 'Clicks@tracking')->name('tracking');
 });
 
 Route::get('/', function () { return view('index'); });

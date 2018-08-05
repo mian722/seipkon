@@ -45,7 +45,7 @@ class UserController extends Controller
     public function getadvertiser()
     {
         $countries = $this->getcountry();
-        $managers = $this->getmanagers();
+        $managers = $this->getuser(5);
         return view('admin.advertisers-create',compact('countries','managers'));
     }
     public function createaffilate(Request $request)

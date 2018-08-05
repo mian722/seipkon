@@ -30,7 +30,7 @@ class AffiliateController extends Controller
     public function create()
     {
         $countries = $this->getcountry();
-        $managers = $this->getmanagers();
+        $managers = $this->getuser(3);
         return view('admin.affiliate-create',compact('countries','managers'));
     }
 
@@ -54,7 +54,7 @@ class AffiliateController extends Controller
     {
         $currencies = $this->getcurrency();
         $timezones = $this->gettimezones();
-        $affiliates = $this->getaffiliates();
+        $affiliates = $this->getuser(5);
         return view('admin.affiliate-invoice-create',compact('currencies', 'timezones', 'offers', 'affiliates'));
     }
 
