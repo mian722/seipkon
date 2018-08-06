@@ -54,7 +54,7 @@
                                     @foreach($offers as $offer)
                                     <tr>
                                        <td>{{ $offer->id }}</td>
-                                       <td><img src="{{ $offer->offer_image }}" alt="order image"  /></td>
+                                       <td><img src="<?php echo url('/'); ?>/public/offerimages/{{ $offer->offer_image }}" alt="order image"  /></td>
                                        <td>{{ $offer->offer_name }}</td>
                                        <td>{{ $offer->tags }}</td>
                                        <td>{{ $offer->adv_id }}</td>

@@ -76,7 +76,7 @@ class OfferController extends Controller
         $offer->description = $request->description;
         $offer->admin_id = Auth::user()->id;
         $basePath = url('/');
-        $offer->offer_image = $basePath.'/public/offerimages/'.$newname;
+        $offer->offer_image = $newname;
         $offer->offer_postback = url('/').'/advback?click_id={click_id}&adv_id='.$request->adv_id;
         $offer->save();
         if (!empty($offer) ) {

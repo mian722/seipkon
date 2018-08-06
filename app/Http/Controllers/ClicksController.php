@@ -67,7 +67,7 @@ class ClicksController extends Controller
         $clicks->proxy = 'not proxy';
         //return $clicks;
         $offerdetail = Offer::with('restrictions')->where('id', $oid)->first();
-        if ($offerdetail->restrictions->affiliate_caps_type != null) {
+        if ($offerdetail->restrictions != null) {
             return $link =  $this->checkadvertisercap($offerdetail, $aid);
         }
         // switch ($offerdetail->restrictions->affiliate_caps_type) {
