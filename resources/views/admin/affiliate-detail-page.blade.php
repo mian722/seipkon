@@ -21,7 +21,7 @@
                                     <ul>
                                        <li><a href="{{ asset('') }}">Dashboard</a></li>
                                        <li>Affiliates</li>
-                                       <li>Affiliate Details #$affilates->id</li>
+                                       <li>Affiliate Details #{{ $affilates->id }}</li>
                                     </ul>
                                  </div>
                               </div>

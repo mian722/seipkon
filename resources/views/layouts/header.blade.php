@@ -60,6 +60,7 @@
          .create-page-right form {
             display: inline-block;
          }
+         .table { width: 100% !important; }
       </style>
    </head>
    <body>
