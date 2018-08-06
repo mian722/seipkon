@@ -34,10 +34,11 @@ class OfferController extends Controller
      */
     public function create()
     {
+        $offers = $this->getalloffers();
         $users = $this->getuser(4);
         $timezones = $this->gettimezones();
         $countries = $this->getcountry();
-        return view('admin.add-offer', compact('users', 'timezones', 'countries'));
+        return view('admin.add-offer', compact('offers', 'users', 'timezones', 'countries'));
     }
 
     /**

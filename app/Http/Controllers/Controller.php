@@ -8,7 +8,12 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\User;
 use App\Offer;
+use App\Clicks;
+use App\Signup;
 use Auth;
+use Request;
+use Redirect;
+use Carbon\Carbon;
 
 class Controller extends BaseController
 {
@@ -23,7 +28,7 @@ class Controller extends BaseController
     }
 
     public function getalloffers(){
-    	return Offer::all();
+    	return Offer::where('admin_id', Auth::user()->id)->get();
     }
 
     public function getcurrency() {
@@ -139,4 +144,91 @@ class Controller extends BaseController
 
                 return $os_platform;
         }
+
+
+
+
+
+    public function checkadvertisercap($offerdetail, $aid){
+      $oid = $offerdetail->id;
+      $advertiser_caps_type = $offerdetail->restrictions->advertiser_caps_type;
+      $advertiser_caps_value = $offerdetail->restrictions->advertiser_caps_value;
+      $offerrevenue = $offerdetail->revenue;
+      $redirectoffer = Offer::select('id', 'destination_url')->where('id', $offerdetail->restrictions->redirect_offer)->where('status', 1)->first();
+      $redirectofferid = $redirectoffer->id;
+      $redirectofferlink = $redirectoffer->destination_url;
+      if (empty($redirectofferlink)) {
+        $redirectofferlink = 'http://www.google.com/';
+      }
+      
+      $now = Carbon::today()->toDateString();
+      $todaysignups = Signup::orWhere('created_at', 'like', '%' . $now . '%')->where('offer_id', $oid)->get(); 
+      $signups = Signup::where('offer_id', $oid)->get(); 
+      switch ($advertiser_caps_type) {
+          case 'Total':
+              if(count($signups) >= $advertiser_caps_value){
+                return $this->rederecturl($redirectofferid, $redirectofferlink);
+              }else{
+                return $this->checkaffiliatecap($offerdetail, $redirectofferid,$redirectofferlink);
+              }
+              break;
+          case 'Daily':
+              if(count($todaysignups) >= $advertiser_caps_value){
+                return $this->rederecturl($redirectofferid, $redirectofferlink);
+              }else{
+                return $this->checkaffiliatecap($offerdetail, $redirectofferid, $redirectofferlink);
+              }
+              break;
+          case 'Revenue':
+              $total = count($signups) * $offerrevenue;
+              if ($total >= $advertiser_caps_value) {
+                return $this->rederecturl($redirectofferid, $redirectofferlink);
+              }else{
+                return $this->checkaffiliatecap($offerdetail, $redirectofferid, $redirectofferlink);
+              }
+              break;
+          default:
+              break;
+      }
+    } 
+    public function checkaffiliatecap($offerdetail, $redirectofferid, $redirectofferlink){
+      $oid = $offerdetail->id;
+      $affiliate_caps_type = $offerdetail->restrictions->affiliate_caps_type;
+      $affiliate_caps_value = $offerdetail->restrictions->affiliate_caps_value;
+      $offerpayout = $offerdetail->payout;
+      
+      $now = Carbon::today()->toDateString();
+      $todaysignups = Signup::orWhere('created_at', 'like', '%' . $now . '%')->where('offer_id', $oid)->get(); 
+      $signups = Signup::where('offer_id', $oid)->get(); 
+      switch ($affiliate_caps_type) {
+          case 'Total':
+              if(count($signups) >= $affiliate_caps_value){
+                return $this->rederecturl($redirectofferid, $redirectofferlink);
+              }else{
+                return 'Continue';
+              }
+              break;
+          case 'Daily':
+              if(count($todaysignups) >= $affiliate_caps_value){
+                return $this->rederecturl($redirectofferid, $redirectofferlink);
+              }else{
+                return 'Continue';
+              }
+              break;
+          case 'Revenue':
+              $total = count($signups) * $offerpayout;
+              if ($total >= $affiliate_caps_value) {
+                return $this->rederecturl($redirectofferid, $redirectofferlink);
+              }else{
+                return 'Continue';
+              }
+              break;
+          default:
+              break;
+      }
+    } 
+
+    public function rederecturl($redirectofferid, $redirectofferlink){
+      return $array = array(['id' => $redirectofferid, 'link' => $redirectofferlink]);
+    }
 }

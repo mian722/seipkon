@@ -301,10 +301,9 @@
                                                 <p>
                                                    <label>Redirect Offer <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" style="width: 60%;" name="redirect_offer" required="required">
-                                                      <option selected="selected">test offer #1</option>
-                                                      <option>test offer #2</option>
-                                                      <option>test offer #3</option>
-                                                      <option>test offer #4</option>
+                                                      @foreach($offers as $offer)
+                                                         <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
+                                                      @endforeach
                                                    </select>
                                                 </p>
                                              </div>
