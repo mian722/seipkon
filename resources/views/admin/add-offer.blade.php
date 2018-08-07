@@ -367,8 +367,8 @@
                                                 <p>
                                                    <label>Geo Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" name="geo_targeting[]" style="width: 60%;">
-                                                      @foreach($countries as $countrie)
-                                                         <option value="{{ $countrie }}">{{ $countrie }}</option>
+                                                      @foreach($countries as $key => $value)
+                                                         <option value="{{ $key }}">{{ $value[1] }}</option>
                                                       @endforeach
                                                    </select>
                                                    <select class="form-control select2" name="geo_type">

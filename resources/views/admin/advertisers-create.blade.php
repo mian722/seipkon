@@ -87,8 +87,8 @@
                                           <div class="form-group">
                                              <label class="control-label">Country:</label>
                                              <select name="country" class="form-control select2">
-                                                @foreach($countries as $country)
-                                                <option value="{{ $country }}">{{ $country }}</option>
+                                                @foreach($countries as $key => $value)
+                                                   <option value="{{ $key }}">{{ $value[1] }}</option>
                                                 @endforeach
                                              </select>
                                           </div>
