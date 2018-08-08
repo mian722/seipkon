@@ -473,8 +473,9 @@ class Controller extends BaseController
         $details = json_decode(file_get_contents("http://ipinfo.io/$ip/json")); 
         Session::put('country', $details->country);
         return $details->country;
+      }else{
+        return Session::get('country');
       }
-      return Session::get('country');
     }
 
     public function checkgeotargeting($offerdetail){
