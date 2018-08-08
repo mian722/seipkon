@@ -291,6 +291,7 @@
                                                 <p>
                                                    <label>Caps Timezone <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" style="width: 60%;" name="caps_timezone" required="required">
+                                                         <option value="" disabled="disabled" selected="selected">Please Select</option>
                                                       @foreach($timezones as $timezone)
                                                          <option value="{{ $timezone }}">{{ $timezone }}</option>
                                                       @endforeach
@@ -301,6 +302,7 @@
                                                 <p>
                                                    <label>Redirect Offer <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" style="width: 60%;" name="redirect_offer" required="required">
+                                                         <option value="" disabled="disabled" selected="selected">Please Select</option>
                                                       @foreach($offers as $offer)
                                                          <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
                                                       @endforeach
@@ -310,10 +312,11 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Offer Pool <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;" name="offer_pool[]" required="required">
-                                                      <option>Offer 1</option>
-                                                      <option>Offer 2</option>
-                                                      <option>Offer 3</option>
+                                                   <select class="form-control select2" data-placeholder="Select a Pool" style="width: 60%;" name="offer_pool[]" required="required">
+                                                      <option value="" disabled="disabled" selected="selected">Please Select</option>
+                                                      @foreach($offerspools as $offerspool)
+                                                         <option value="{{ $offerspool->id }}">{{ $offerspool->name }}</option>
+                                                      @endforeach
                                                    </select>
                                                 </p>
                                              </div>
@@ -367,6 +370,7 @@
                                                 <p>
                                                    <label>Geo Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" name="geo_targeting[]" style="width: 60%;">
+                                                         <option value="" disabled="disabled" selected="selected">Please Select</option>
                                                       @foreach($countries as $key => $value)
                                                          <option value="{{ $key }}">{{ $value[1] }}</option>
                                                       @endforeach
@@ -381,10 +385,10 @@
                                                 <p>
                                                    <label>Mobile Carrier Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;" name="mobile_carrier_targeting[]">
-                                                      <option value="desktop">Desktop</option>
+                                                      <option value="" disabled="disabled" selected="selected">Please Select</option>
+                                                      <option value="computer">Computer</option>
                                                       <option value="tablet">Tablet</option>
-                                                      <option value="android">Android</option>
-                                                      <option value="ios">IOS</option>
+                                                      <option value="mobile">Mobile</option>
                                                    </select>
                                                 </p>
                                              </div>
@@ -392,6 +396,7 @@
                                                 <p>
                                                    <label>Platform Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 30%;" name="platform_targeting[]">
+                                                      <option value="" disabled="disabled" selected="selected">Please Select</option>
                                                       <option value="windows">Windows</option>
                                                       <option value="mac">Mac</option>
                                                       <option value="linux">Linux</option>
