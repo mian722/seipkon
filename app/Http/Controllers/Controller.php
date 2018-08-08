@@ -547,13 +547,18 @@ class Controller extends BaseController
     }
 
     public function checkpools($offerpoolid){
-        $offersid = DB::table('pool_relation')->select('offer_id')->where('offerspool_id', $offerpoolid)->get();
-        foreach ($offersid as $offerid) {
-          $offersdetail = Offer::with('restrictions')->where('id', $offerid->offer_id)->first();
-          $result = $this->checkgeotargeting($offersdetail);
+
+        $offers = DB::table('offers')->leftJoin('offer_restrictions', 'offer_restrictions.offer_id', 'offers.id')
+            ->leftJoin('pool_relation', 'pool_relation.offer_id', 'offers.id')
+            ->leftJoin('offers_pool', 'offers_pool.id', 'pool_relation.offerspool_id')
+            ->where('offers_pool.id', $offerpoolid)->where('offers_pool.status', 1)->get();
+        // $offersid = DB::table('pool_relation')->select('offer_id')->where('offerspool_id', $offerpoolid)->get();
+        foreach ($offers as $offer) {
+          //$offersdetail = Offer::with('restrictions')->where('id', $offerid->offer_id)->first();
+          $result = $this->checkgeotargeting2($offer);
 
           if ($result == 'true') {
-            return 'true'.$offersdetail->id;
+            return 'true'.$offer->offer_id;
           }
         }
         if ($result == 'false') {
@@ -567,4 +572,61 @@ class Controller extends BaseController
         //     ->leftJoin('offers_pool', 'offers_pool.id', 'pool_relation.offerspool_id')
         //     ->where('offers_pool.id', $offerpoolid)->where('offers_pool.status', 1)->get();
     }
+
+
+    public function checkgeotargeting2($offerdetail){
+        $country = $this->iptocountry('39.53.218.175');
+        $geotargeting = $offerdetail->geo_targeting;
+        $inc = $offerdetail->geo_type;
+
+        if ($geotargeting != null) {
+          if ($inc == 'Include') {
+            if (strpos($geotargeting, $country) !== false) {
+                return $this->checkdevice2($offerdetail);
+            }else{
+                return 'false';
+            }
+          }else{
+            if (strpos($geotargeting, $country) === false) {
+                return $this->checkdevice2($offerdetail);
+            }else{
+                return 'false';
+            }
+          }
+        }else{
+          return $this->checkdevice2($offerdetail);
+        }        
+    }
+
+    public function checkdevice2($offerdetail){
+        $device = strtolower($this->detectDevice()); 
+        $mobiletargeting = $offerdetail->mobile_carrier_targeting;
+
+        if ($mobiletargeting != null) {
+          if (strpos($mobiletargeting, $device) !== false) {
+              return $this->checkplatform2($offerdetail);
+          }else{
+              return 'false';
+          }
+        }else{
+            return $this->checkplatform2($offerdetail);
+        }
+
+    }
+
+    public function checkplatform2($offerdetail){
+        $OS = explode(" ",strtolower($this->getOS()));
+        $platformtargeting = $offerdetail->platform_targeting;
+
+        if ($platformtargeting != null) {
+            if (strpos($platformtargeting, $OS[0]) !== false) {
+              return 'true';
+            }else{
+              return 'false';
+            }
+        }else{
+            return 'true';
+        }
+    }
+
 }
