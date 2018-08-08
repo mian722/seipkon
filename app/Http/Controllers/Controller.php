@@ -10,9 +10,7 @@ use App\User;
 use App\Offer;
 use App\Clicks;
 use App\Signup;
-use App\OffersPool;
 use Auth;
-use DB;
 use Request;
 use Redirect;
 use Carbon\Carbon;
@@ -261,11 +259,7 @@ class Controller extends BaseController
     }
 
     public function getalloffers(){
-      return Offer::where('admin_id', Auth::user()->id)->where('status',1)->get();
-    }
-
-    public function getallofferpools(){
-      return OffersPool::where('admin_id', Auth::user()->id)->where('status',1)->get();
+    	return Offer::where('admin_id', Auth::user()->id)->get();
     }
 
     public function getcurrency() {
@@ -391,8 +385,12 @@ class Controller extends BaseController
       $advertiser_caps_type = $offerdetail->restrictions->advertiser_caps_type;
       $advertiser_caps_value = $offerdetail->restrictions->advertiser_caps_value;
       $offerrevenue = $offerdetail->revenue;
-      $redirectofferid = $offerdetail->restrictions->redirect_offer;
-      $offerpoolid = $offerdetail->restrictions->offer_pool;
+      $redirectoffer = Offer::select('id', 'destination_url')->where('id', $offerdetail->restrictions->redirect_offer)->where('status', 1)->first();
+      $redirectofferid = $redirectoffer->id;
+      $redirectofferlink = $redirectoffer->destination_url;
+      if (empty($redirectofferlink)) {
+        $redirectofferlink = 'http://www.google.com/';
+      }
       
       $now = Carbon::today()->toDateString();
       $todaysignups = Signup::orWhere('created_at', 'like', '%' . $now . '%')->where('offer_id', $oid)->get(); 
@@ -400,37 +398,31 @@ class Controller extends BaseController
       switch ($advertiser_caps_type) {
           case 'Total':
               if(count($signups) >= $advertiser_caps_value){
-                $result = 'false';
+                return $this->rederecturl($redirectofferid, $redirectofferlink);
               }else{
-                $result = $this->checkaffiliatecap($offerdetail);
+                return $this->checkaffiliatecap($offerdetail, $redirectofferid,$redirectofferlink);
               }
               break;
           case 'Daily':
               if(count($todaysignups) >= $advertiser_caps_value){
-                $result = 'false';
+                return $this->rederecturl($redirectofferid, $redirectofferlink);
               }else{
-                $result = $this->checkaffiliatecap($offerdetail);
+                return $this->checkaffiliatecap($offerdetail, $redirectofferid, $redirectofferlink);
               }
               break;
           case 'Revenue':
               $total = count($signups) * $offerrevenue;
               if ($total >= $advertiser_caps_value) {
-                $result = 'false';
+                return $this->rederecturl($redirectofferid, $redirectofferlink);
               }else{
-                $result = $this->checkaffiliatecap($offerdetail);
+                return $this->checkaffiliatecap($offerdetail, $redirectofferid, $redirectofferlink);
               }
               break;
           default:
               break;
       }
-
-      if ($result == 'false') {
-        return $this->redirecturl($redirectofferid, $offerpoolid);
-      }else{
-        return 'true';
-      }
     } 
-    public function checkaffiliatecap($offerdetail){
+    public function checkaffiliatecap($offerdetail, $redirectofferid, $redirectofferlink){
       $oid = $offerdetail->id;
       $affiliate_caps_type = $offerdetail->restrictions->affiliate_caps_type;
       $affiliate_caps_value = $offerdetail->restrictions->affiliate_caps_value;
@@ -442,22 +434,22 @@ class Controller extends BaseController
       switch ($affiliate_caps_type) {
           case 'Total':
               if(count($signups) >= $affiliate_caps_value){
-                return 'false';
+                return $this->rederecturl($redirectofferid, $redirectofferlink);
               }else{
-                return $this->checkgeotargeting($offerdetail);
+                return 'Continue';
               }
               break;
           case 'Daily':
               if(count($todaysignups) >= $affiliate_caps_value){
-                return 'false';
+                return $this->rederecturl($redirectofferid, $redirectofferlink);
               }else{
-                return $this->checkgeotargeting($offerdetail);
+                return 'Continue';
               }
               break;
           case 'Revenue':
               $total = count($signups) * $offerpayout;
               if ($total >= $affiliate_caps_value) {
-                return 'false';
+                return $this->rederecturl($redirectofferid, $redirectofferlink);
               }else{
                 return $this->checkgeotargeting($offerdetail);
               }
@@ -474,97 +466,15 @@ class Controller extends BaseController
 
     public function checkgeotargeting($offerdetail){
         $country = $this->iptocountry('39.53.218.175');
-        $geotargeting = $offerdetail->restrictions->geo_targeting;
-        $inc = $offerdetail->restrictions->geo_type;
-
-        if ($geotargeting != null) {
-          if ($inc == 'Include') {
-            if (strpos($geotargeting, $country) !== false) {
-                return $this->checkdevice($offerdetail);
-            }else{
-                return 'false';
-            }
-          }else{
-            if (strpos($geotargeting, $country) === false) {
-                return $this->checkdevice($offerdetail);
-            }else{
-                return 'false';
-            }
-          }
-        }else{
-          return $this->checkdevice($offerdetail);
-        }        
-    }
-
-    public function checkdevice($offerdetail){
-        $device = strtolower($this->detectDevice()); 
-        $mobiletargeting = $offerdetail->restrictions->mobile_carrier_targeting;
-
-        if ($mobiletargeting != null) {
-          if (strpos($mobiletargeting, $device) !== false) {
-              return $this->checkplatform($offerdetail);
-          }else{
-              return 'false';
-          }
-        }else{
-            return $this->checkplatform($offerdetail);
-        }
-
-    }
-
-    public function checkplatform($offerdetail){
-        $OS = explode(" ",strtolower($this->getOS()));
-        $platformtargeting = $offerdetail->restrictions->platform_targeting;
-
-        if ($platformtargeting != null) {
-            if (strpos($platformtargeting, $OS[0]) !== false) {
-              return 'true';
-            }else{
-              return 'false';
-            }
-        }else{
+        $geo = $offerdetail->restrictions->geo_targeting;
+        if (strpos($geo, $country) !== false) {
             return 'true';
-        }
-    }
-
-    public function redirecturl($redirectofferid, $offerpoolid){
-      if (!empty($redirectofferid)) {
-        $redirectofferdetail = Offer::with('restrictions')->where('id', $redirectofferid)->where('status', 1)->first();
-        if (!empty($redirectofferdetail)) {
-          $result = $this->checkgeotargeting($redirectofferdetail);
-
-          if ($result == 'false') {
-            return $this->checkpools($offerpoolid);
-          }else{
-            return $array = array(['id' => $redirectofferdetail->id, 'link' => $redirectofferdetail->destination_url]);
-          }
         }else{
-          return $this->checkpools($offerpoolid);
+            return 'false';
         }
-      }else{
-        return $this->checkpools($offerpoolid);
-      }
     }
 
-    public function checkpools($offerpoolid){
-        $offersid = DB::table('pool_relation')->select('offer_id')->where('offerspool_id', $offerpoolid)->get();
-        foreach ($offersid as $offerid) {
-          $offersdetail = Offer::with('restrictions')->where('id', $offerid->offer_id)->first();
-          $result = $this->checkgeotargeting($offersdetail);
-
-          if ($result == 'true') {
-            return 'true'.$offersdetail->id;
-          }
-        }
-        if ($result == 'false') {
-          return 'false';
-        }
-
-        // $redirectofferpool = OffersPool::with('offers')->leftJoin('offer_restrictions', 'offer_restrictions.offer_id', 'offers.id')->where('offers_pool.id', $offerpoolid)->where('offers_pool.status', 1)->get();
-
-        // $offers = DB::table('offers')->leftJoin('offer_restrictions', 'offer_restrictions.offer_id', 'offers.id')
-        //     ->leftJoin('pool_relation', 'pool_relation.offer_id', 'offers.id')
-        //     ->leftJoin('offers_pool', 'offers_pool.id', 'pool_relation.offerspool_id')
-        //     ->where('offers_pool.id', $offerpoolid)->where('offers_pool.status', 1)->get();
+    public function rederecturl($redirectofferid, $redirectofferlink){
+      return $array = array(['id' => $redirectofferid, 'link' => $redirectofferlink]);
     }
 }
