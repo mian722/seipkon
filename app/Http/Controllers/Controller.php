@@ -12,6 +12,7 @@ use App\Clicks;
 use App\Signup;
 use App\OffersPool;
 use Auth;
+use Session;
 use DB;
 use Request;
 use Redirect;
@@ -467,9 +468,13 @@ class Controller extends BaseController
       }
     }
 
-    public function iptocountry($ip) {    
-        $details = json_decode(file_get_contents("http://ipinfo.io/$ip/json"));
+    public function iptocountry($ip) {   
+      if (empty(Session::get('country'))) {
+        $details = json_decode(file_get_contents("http://ipinfo.io/$ip/json")); 
+        Session::put('country', $details->country);
         return $details->country;
+      }
+      return Session::get('country');
     }
 
     public function checkgeotargeting($offerdetail){
@@ -562,7 +567,7 @@ class Controller extends BaseController
           }
         }
         if ($result == 'false') {
-          return 'false';
+          return 'not';
         }
 
         // $redirectofferpool = OffersPool::with('offers')->leftJoin('offer_restrictions', 'offer_restrictions.offer_id', 'offers.id')->where('offers_pool.id', $offerpoolid)->where('offers_pool.status', 1)->get();
