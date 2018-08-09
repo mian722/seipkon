@@ -542,7 +542,7 @@ class Controller extends BaseController
           if ($result == 'false') {
             return $this->checkpools($offerpoolid);
           }else{
-            return $array = array(['id' => $redirectofferdetail->id, 'link' => $redirectofferdetail->destination_url]);
+            return $array = array(['id' => $redirectofferdetail->id, 'link' => $redirectofferdetail->destination_url, 'admin_id' => $redirectofferdetail->admin_id]);
           }
         }else{
           return $this->checkpools($offerpoolid);

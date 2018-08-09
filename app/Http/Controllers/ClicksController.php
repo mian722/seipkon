@@ -68,7 +68,16 @@ class ClicksController extends Controller
         //return $clicks;
         $offerdetail = Offer::with('restrictions')->where('id', $oid)->first();
         if ($offerdetail->restrictions != null) {
-            return $link =  $this->checkadvertisercap($offerdetail, $aid);
+            $result =  $this->checkadvertisercap($offerdetail, $aid);
+            if ($result === 'true') {
+                $clicks->admin_id =  $offerdetail->admin_id;
+                $link = $offerdetail->destination_url.$subid;
+            } else {
+                $clicks->redirect_click =  1;
+                $clicks->offer_id =  $result[0]['id'];
+                $clicks->admin_id =  $result[0]['admin_id'];
+                $link = $result[0]['link'].$subid;
+            }
         }
         // switch ($offerdetail->restrictions->affiliate_caps_type) {
         //     case 'Total':
@@ -83,10 +92,10 @@ class ClicksController extends Controller
         //     default:
         //         break;
         // }
-        return $offerdetail;
+        //return $clicks;
         if($clicks->save())
         {  
-            $link = $offerdetail->destination_url.$subid;
+            // $link = $offerdetail->destination_url.$subid;
             return Redirect::away($link);
         }
 
