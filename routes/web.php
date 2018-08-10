@@ -72,6 +72,7 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/offer-application/approve/{id}', 'OfferController@approveapplication')->name('approveapplication');
 });
 Route::get('/tracking/{aid}/{oid}', 'ClicksController@tracking')->name('tracking');
+Route::get('/post/{subid}', 'SignupController@postback')->name('posttracking');
 
 Route::get('/', function () { return view('index'); });
 Route::get('/offer', function () { return view('offer'); });
