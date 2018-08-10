@@ -16,6 +16,7 @@ class CreateSignupsTable extends Migration
         Schema::create('signups', function (Blueprint $table) {
             $table->increments('id');
             $table->tinyInteger('affiliate_id');
+            $table->tinyInteger('admin_id');
             $table->tinyInteger('offer_id');
             $table->Integer('sub_id');
             $table->tinyInteger('signup')->default(1);
