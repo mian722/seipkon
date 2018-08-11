@@ -20,8 +20,10 @@ class SignupController extends Controller
         //$signup->save();
 		// $done = Clicks::where('subid', $subid)->where('admin_id',$clicks->admin_id)->update(array('signup' => '1'));
 		if ($signup->save()) {
-			return $getuserpostback = AssignOffers::select('postbacklink')->where('affiliate_id',$clicks->affiliate_id)->where('offer_id',$clicks->offer_id)->first();
-			$userpostback = str_replace('{sa}', $subid, $getuserpostback->postbacklink);
+			$getuserpostback = AssignOffers::select('postbacklink')->where('affiliate_id',$clicks->affiliate_id)->where('offer_id',$clicks->offer_id)->first();
+            if (strpos($getuserpostback->postbacklink, '{subid}') !== false) {
+                return $userpostback = str_replace('{subid}', $subid, $getuserpostback->postbacklink);
+            }
 			return redirect()->away($userpostback);
 		}
 		

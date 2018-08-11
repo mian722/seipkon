@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Request;
-//use Illuminate\Http\Request;
+// use Request;
+use Illuminate\Http\Request;
 use App\Offer;
 use Illuminate\Support\Facades\Redirect;
 use Location;
@@ -36,23 +36,17 @@ class ClicksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tracking($aid, $oid)
+    public function tracking(Request $request, $aid, $oid)
     {
+        //return $request->s1;
         $browser = $this->ExactBrowserName();
         $OS = $this->getOS();
         $device = $this->detectDevice();
-        $IP = Request::server('REMOTE_ADDR');
-        $reffer = Request::server('HTTP_REFERER');
-        $code = Clicks::orderBy('id', 'desc')->where('click', 1)->first();
-        if(empty($code)){
-            $subid = 1;
-        } else { 
-            $subid = $code->sub_id+1;
-        }
+        $IP = $_SERVER['REMOTE_ADDR'];
+        $reffer = $_SERVER['REMOTE_ADDR'];
         $clicks = new Clicks;
         $clicks->affiliate_id = $aid;
         $clicks->offer_id = $oid;
-        $clicks->sub_id = $subid;
         $clicks->click = 1;
         if($reffer == null){
             $clicks->reffer_link = 'direct';
@@ -65,7 +59,31 @@ class ClicksController extends Controller
         $clicks->os = $OS;
         $clicks->country = 'usa';
         $clicks->proxy = 'not proxy';
-        //return $clicks;
+        $code = Clicks::orderBy('id', 'desc')->where('click', 1)->first();
+        //return $request->all();
+        if(empty($code)){
+            $subid = 1;
+        } else { 
+            if ($code->sub_id != 0) {
+                $subid = $code->sub_id+1;
+            }else if ($code->sub_id2 != 0) {
+                $subid = $code->sub_id2+1;
+            }else if ($code->sub_id3 != 0) {
+                $subid = $code->sub_id3+1;
+            }else if ($code->sub_id4 != 0) {
+                $subid = $code->sub_id4+1;
+            }
+        }
+        if (isset($request->s2)) {
+            $clicks->sub_id2 = $subid;
+        }else if (isset($request->s3)) {
+            $clicks->sub_id3 = $subid;
+        }else if (isset($request->s4)) {
+            $clicks->sub_id4 = $subid;
+        }else {
+            $clicks->sub_id = $subid;
+        }
+        return $clicks;
         $offerdetail = Offer::with('restrictions')->where('id', $oid)->first();
         if ($offerdetail->restrictions != null) {
             $result =  $this->checkadvertisercap($offerdetail, $aid);
@@ -79,23 +97,8 @@ class ClicksController extends Controller
                 $link = $result[0]['link'].$subid;
             }
         }
-        // switch ($offerdetail->restrictions->affiliate_caps_type) {
-        //     case 'Total':
-
-        //         break;
-        //     case 'Daily':
-
-        //         break;
-        //     case 'Revenue':
-
-        //         break;
-        //     default:
-        //         break;
-        // }
-        //return $clicks;
         if($clicks->save())
         {  
-            // $link = $offerdetail->destination_url.$subid;
             return Redirect::away($link);
         }
 
@@ -157,5 +160,9 @@ class ClicksController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function matchstring(){
+
     }
 }

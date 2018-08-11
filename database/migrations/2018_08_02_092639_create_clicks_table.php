@@ -18,7 +18,10 @@ class CreateClicksTable extends Migration
             $table->tinyInteger('affiliate_id');
             $table->tinyInteger('offer_id');
             $table->tinyInteger('admin_id');
-            $table->Integer('sub_id');
+            $table->Integer('sub_id')->default(0);
+            $table->Integer('sub_id2')->default(0);
+            $table->Integer('sub_id3')->default(0);
+            $table->Integer('sub_id4')->default(0);
             $table->tinyInteger('redirect_click')->default(0);
             $table->tinyInteger('click')->default(1);
             $table->string('reffer_link')->nullable();
