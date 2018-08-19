@@ -18,7 +18,7 @@ class CreateSignupsTable extends Migration
             $table->tinyInteger('affiliate_id');
             $table->tinyInteger('admin_id');
             $table->tinyInteger('offer_id');
-            $table->Integer('sub_id');
+            $table->string('sub_id', 30)->nullable();
             $table->tinyInteger('signup')->default(1);
             $table->timestamps();
         });

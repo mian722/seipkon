@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 // use Request;
 use Illuminate\Http\Request;
 use App\Offer;
+use App\Parameters;
 use Illuminate\Support\Facades\Redirect;
 use Location;
 use DB;
+use Hash;
 use App\Clicks;
 
 class ClicksController extends Controller
@@ -38,21 +40,19 @@ class ClicksController extends Controller
      */
     public function tracking(Request $request, $aid, $oid)
     {
-        //return $request->s1;
         $browser = $this->ExactBrowserName();
         $OS = $this->getOS();
         $device = $this->detectDevice();
-        $IP = $_SERVER['REMOTE_ADDR'];
-        $reffer = $_SERVER['REMOTE_ADDR'];
         $clicks = new Clicks;
+        $IP = $_SERVER['REMOTE_ADDR'];
+        if (isset($_SERVER['HTTP_REFERER'])) {
+            $clicks->reffer_link = $_SERVER['HTTP_REFERER'];   
+        }else{
+            $clicks->reffer_link = 'direct';
+        }
         $clicks->affiliate_id = $aid;
         $clicks->offer_id = $oid;
         $clicks->click = 1;
-        if($reffer == null){
-            $clicks->reffer_link = 'direct';
-        } else {
-           $clicks->reffer_link = $reffer;
-        }
         $clicks->ip = $IP;
         $clicks->device = $device;
         $clicks->browser = $browser;
@@ -61,29 +61,14 @@ class ClicksController extends Controller
         $clicks->proxy = 'not proxy';
         $code = Clicks::orderBy('id', 'desc')->where('click', 1)->first();
         //return $request->all();
-        if(empty($code)){
+        if(empty($code) || $code->id == 0){
             $subid = 1;
         } else { 
-            if ($code->sub_id != 0) {
-                $subid = $code->sub_id+1;
-            }else if ($code->sub_id2 != 0) {
-                $subid = $code->sub_id2+1;
-            }else if ($code->sub_id3 != 0) {
-                $subid = $code->sub_id3+1;
-            }else if ($code->sub_id4 != 0) {
-                $subid = $code->sub_id4+1;
-            }
+            $subid = $code->id + 1;
         }
-        if (isset($request->s2)) {
-            $clicks->sub_id2 = $subid;
-        }else if (isset($request->s3)) {
-            $clicks->sub_id3 = $subid;
-        }else if (isset($request->s4)) {
-            $clicks->sub_id4 = $subid;
-        }else {
-            $clicks->sub_id = $subid;
-        }
-        return $clicks;
+        $subid = substr(bcrypt($subid), 0, 20);
+        $clicks->sub_id = $subid;
+        //return $clicks;
         $offerdetail = Offer::with('restrictions')->where('id', $oid)->first();
         if ($offerdetail->restrictions != null) {
             $result =  $this->checkadvertisercap($offerdetail, $aid);
@@ -94,11 +79,44 @@ class ClicksController extends Controller
                 $clicks->redirect_click =  1;
                 $clicks->offer_id =  $result[0]['id'];
                 $clicks->admin_id =  $result[0]['admin_id'];
-                $link = $result[0]['link'].$subid;
+                $link = str_replace("{click_id}",$subid,$result[0]['link']);
             }
         }
+        //return $link;
         if($clicks->save())
-        {  
+        { 
+            $parameters = new Parameters;
+            $parameters->sub_id = $subid;
+            if (isset($request->aff_sub1) && is_numeric($request->aff_sub1)) {
+                $parameters->aff_sub1 = $request->aff_sub1;
+            }
+            if (isset($request->aff_sub2) && is_numeric($request->aff_sub2)) {
+                $parameters->aff_sub2 = $request->aff_sub2;
+            }
+            if (isset($request->aff_sub3) && is_numeric($request->aff_sub3)) {
+                $parameters->aff_sub3 = $request->aff_sub3;
+            }
+            if (isset($request->aff_sub4) && is_numeric($request->aff_sub4)) {
+                $parameters->aff_sub4 = $request->aff_sub4;
+            }
+            if (isset($request->aff_sub5) && is_numeric($request->aff_sub5)) {
+                $parameters->aff_sub5 = $request->aff_sub5;
+            }
+            $dublicateclick = Clicks::where('ip', $IP)->where('offer_id', $oid)->where('affiliate_id', $aid)->first();
+            if (!empty($dublicateclick)) {
+                $parameters->unique_click = 0;
+            }
+            parse_str($link, $output);
+            if (strpos($link, 'adv_sub1=') !== false) {
+                $parameters->adv_sub1 = $output['adv_sub1'];
+            }
+            if (strpos($link, 'adv_sub2=') !== false) {
+                $parameters->adv_sub2 = $output['adv_sub2'];
+            }
+            if (strpos($link, 'adv_sub3=') !== false) {
+                $parameters->adv_sub3 = $output['adv_sub3'];
+            }
+            $parameters->save();
             return Redirect::away($link);
         }
 
