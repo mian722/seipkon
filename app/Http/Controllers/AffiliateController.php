@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Offer;
+use App\AssignOffers;
 use App\Invoices;
 use DB;
 use Auth;
@@ -219,8 +220,8 @@ class AffiliateController extends Controller
     public function show($id)
     {
         $affilates = User::Where('roles_id',5)->Where('id',$id)->first();
-        $managers = User::Where('id',$affilates->admin_id)->first();
-        $payouts = Offer::Where('id',$affilates->admin_id)->first();
+        $managers = User::Where('id',$affilates->managerid)->first();
+        return $payouts = AssignOffers::Where('affiliate_id',$id)->get();
         return view('admin.affiliate-detail-page',compact('affilates','managers'));
     }
 
