@@ -29,4 +29,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function assignoffers(){
+        return $this->belongsToMany(Offer::class,'assignoffers');
+    }
 }
