@@ -53,8 +53,8 @@
                                           <td><a href="{{ url('/affiliate-detail/'.$affilate->id) }}" >{{ $affilate->fname }}  {{ $affilate->lname }}</a></td>
                                           <td>{{ $affilate->imid }}: {{ $affilate->imaccount }}</td>
                                           <?php $manager = null;
-                                          if ($affilate->admin_id != 0) {
-                                             $manager = App\User::select('fname')->where('id', $affilate->admin_id)->first();
+                                          if ($affilate->managerid != 0) {
+                                             $manager = App\User::select('fname')->where('id', $affilate->managerid)->first();
                                           }  ?>
                                           <td>{{ ($manager != null) ? $manager->fname : '&nbsp;' }}</td>
                                           <td>{{ $affilate->country }}</td>

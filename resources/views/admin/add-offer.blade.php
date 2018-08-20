@@ -301,7 +301,7 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Redirect Offer <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" style="width: 60%;" name="redirect_offer" required="required">
+                                                   <select class="form-control select2" style="width: 60%;" name="redirect_offer">
                                                          <option value="" disabled="disabled" selected="selected">Please Select</option>
                                                       @foreach($offers as $offer)
                                                          <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
@@ -312,7 +312,7 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Offer Pool <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" data-placeholder="Select a Pool" style="width: 60%;" name="offer_pool[]" required="required">
+                                                   <select class="form-control select2" data-placeholder="Select a Pool" style="width: 60%;" name="offer_pool[]" >
                                                       <option value="" disabled="disabled" selected="selected">Please Select</option>
                                                       @foreach($offerspools as $offerspool)
                                                          <option value="{{ $offerspool->id }}">{{ $offerspool->name }}</option>
