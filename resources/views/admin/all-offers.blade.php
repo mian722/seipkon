@@ -51,11 +51,12 @@
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    @if(!empty($offers))
                                     @foreach($offers as $offer)
                                     <tr>
                                        <td>{{ $offer->id }}</td>
                                        <td><img src="<?php echo url('/'); ?>/public/offerimages/{{ $offer->offer_image }}" alt="order image"  /></td>
-                                       <td>{{ $offer->offer_name }}</td>
+                                       <td><a href="{{ route('offers-detail', $offer->id) }}"> {{ $offer->offer_name }}</a></td>
                                        <td>{{ $offer->tags }}</td>
                                        <td>{{ $offer->adv_id }}</td>
                                        @if( $offer['restrictions'] != null)
@@ -76,7 +77,7 @@
                                        </td>
                                     </tr>
                                     @endforeach
-                                    
+                                    @endif
 
                                  </tbody>
                               </table>

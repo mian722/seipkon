@@ -38,6 +38,7 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/affiliate-create', 'AffiliateController@create')->name('affiliate.create');
 	Route::get('/affiliate-detail/{id}', 'AffiliateController@show')->name('affiliate.show');
 	Route::get('/all-offers', 'OfferController@index')->name('all-offers.get');
+	Route::get('/offers-detail/{id}', 'OfferController@offerdetail')->name('offers-detail');
 	Route::get('/affiliates-pending', 'AffiliateController@pendingaffiliates')->name('pendingaffiliates');
 	Route::get('/advertisers-pending', 'AdvertiserController@pendingadvertisers')->name('pendingadvertisers');
 	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliates')->name('approve.affiliate');
@@ -130,7 +131,6 @@ Route::get('/smart-alert', function () { return view('smart-alert'); });
 Route::get('/smart-link', function () { return view('smart-link'); });
 Route::get('/integration', function () { return view('integration'); });
 Route::get('/compaigns', function () { return view('compaigns'); });
-Route::get('/offers-detail-page', function () { return view('offers-detail-page'); });
 Route::get('/affiliate-detail-page', function () { return view('affiliate-detail-page'); });
 Route::get('/log-detail', function () { return view('log-detail'); });
 
@@ -139,3 +139,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

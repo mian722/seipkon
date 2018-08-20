@@ -258,7 +258,7 @@ class Controller extends BaseController
     }
 
     public function getuser($id){
-    	return $user = User::where('roles_id',$id)->where('admin_id', Auth::user()->id)->where('status',1)->get();
+      return $user = User::where('roles_id',$id)->where('admin_id', Auth::user()->id)->where('status',1)->get();
     }
 
     public function getalloffers(){

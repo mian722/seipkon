@@ -93,8 +93,8 @@
                                                       <td>{{ $offer->restrictions['affiliate_caps_type'] }} : {{ $offer->restrictions['affiliate_caps_value'] }}</td>
                                                       <td>{{ $offer->restrictions['mobile_carrier_targeting'] }}</td>
                                                       <td>
-                                                         <span class="label label-{{ ($offer->offer_name == 1) ? 'success': 'warning' }}">
-                                                            {{ ($offer->offer_name == 1) ? 'Approve': 'Pending' }}</span>
+                                                         <span class="label label-{{ ($offer->status == 1) ? 'success': 'warning' }}">
+                                                            {{ ($offer->status == 1) ? 'Approve': 'Pending' }}</span>
                                                       </td>
                                                       <td>{{ $offer->revenue_type }} : {{ $offer->revenue }}</td>
                                                    </tr>

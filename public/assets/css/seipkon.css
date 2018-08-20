@@ -126,6 +126,10 @@ a {
 	color: inherit
 }
 
+td a {
+	color: #1cd2c9;
+}
+
 a:focus {
 	text-decoration: none;
 	outline: medium none;

@@ -20,6 +20,7 @@ class Assignoffers extends Migration
             $table->string('postbacklink');
             $table->string('usertracklink');
             $table->tinyInteger('status')->default('0');
+            $table->tinyInteger('admin_id');
             $table->timestamps();
         });
     }

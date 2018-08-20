@@ -38,14 +38,10 @@ class UserController extends Controller
     {
         //
     }
-    public function getaffiliate()
-    {
-        
-    }
     public function getadvertiser()
     {
         $countries = $this->getcountry();
-        $managers = $this->getuser(5);
+        $managers = $this->getuser(4);
         return view('admin.advertisers-create',compact('countries','managers'));
     }
     public function createaffilate(Request $request)
@@ -78,7 +74,6 @@ class UserController extends Controller
     }
     public function createadvertiser(Request $request)
     {
-        //return $request->all();
         $advertiser = new User;
         $advertiser->fname = $request->fname;
         $advertiser->lname = $request->lname;
@@ -95,7 +90,6 @@ class UserController extends Controller
         $advertiser->status = $request->status;
         $advertiser->roles_id = '4';
         $advertiser->admin_id = Auth::user()->id;
-        //return $offer;
         $advertiser->save();
         
         if (empty($advertiser) ) {
@@ -106,14 +100,14 @@ class UserController extends Controller
     }
     public function accountslist()
     {
-        $accounts = User::where('roles_id',4)->where('admin_id',Auth::user()->id)->get();
+        $accounts = User::where('roles_id',4)->where('admin_id', Auth::user()->id)->get();
         return view('admin.accounts', compact('accounts'));
         
     }
     public function createaccount()
     {
         $countries = $this->getcountry();
-        $managers = $this->getmanagers();
+        $managers = $this->getuser(3);
         return view('admin.accounts-create',compact('countries','managers'));
     }
     public function storeaccount(Request $request)
@@ -131,7 +125,7 @@ class UserController extends Controller
         $affilate->managerid = $request->manager;
         $affilate->password = bcrypt($request->password);
         $affilate->status = 1;
-        $affilate->roles_id = '5';
+        $affilate->roles_id = '3';
         $affilate->admin_id = Auth::user()->id;
         //return $affilate;
         $affilate->save();

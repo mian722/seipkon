@@ -167,6 +167,11 @@ class OfferController extends Controller
         //
     }
 
+    public function offerdetail($id){
+        $offer = Offer::with('restrictions')->where('id', $id)->first();
+        return view('admin.offers-detail-page', compact('offer'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -60,50 +60,53 @@
                                                          </div>
                                                          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                                             <div class="panel-body">
-                                                               <h3>offer test google</h3><br />
+                                                               <h3>{{ $offer->offer_name }}</h3><br />
                                                                <div class="row base-info">
                                                                   <div class="col-sm-3">
-                                                                     <button type="button" class="btn btn-success" name="">Upload Image</button>  
+                                                                     <img src="<?php echo url('/'); ?>/public/offerimages/{{ $offer->offer_image }}" alt="order image"  />  
                                                                   </div>
                                                                   <div class="col-sm-9 col-md-9">
                                                                      <div class="row">
                                                                         <div class="col-xs-6">
-                                                                           <p><label>Revenue: </label> RPA $2</p>
+                                                                           <p><label>Revenue: </label> {{ $offer->revenue_type }} ${{ $offer->revenue }}</p>
                                                                         </div>
                                                                         <div class="col-xs-6">
-                                                                           <p><label>Payout: </label> CPA $1</p>
+                                                                           <p><label>Payout: </label> {{ $offer->payout_type }} ${{ $offer->payout }}</p>
                                                                         </div>
                                                                         <div class="col-xs-6">
                                                                            <p><label>Currency: </label> USD</p>
                                                                         </div>
                                                                         <div class="col-xs-6">
-                                                                           <p><label>Status: </label> <span class="label label-success">Active</span></p>
+                                                                           <p><label>Status: </label> <span class="label label-{{ ($offer->status == 1) ? 'success': 'warning'  }}">{{ ($offer->status == 1) ? 'Active': 'Paused'  }}</span></p>
+                                                                        </div>
+                                                                        <?php $offerlink = explode(" - ",$offer->duration); ?>
+                                                                        <div class="col-xs-6">
+                                                                           <p><label>Start Date:</label> {{ $offerlink[0] }}</p>
                                                                         </div>
                                                                         <div class="col-xs-6">
-                                                                           <p><label>Start Date:</label> 2018-07-01</p>
-                                                                        </div>
-                                                                        <div class="col-xs-6">
-                                                                           <p><label>End Date:</label> 2019-07-01</p>
+                                                                           <p><label>End Date:</label> {{ $offerlink[1] }}</p>
                                                                         </div>
                                                                         <div class="col-xs-6">
                                                                            <p>
                                                                               <label>Advertiser: </label>
-                                                                              sss                        
+                                                                              <?php $advertiser = App\User::find($offer->adv_id); 
+                                                                              echo $advertiser->fname; ?>                      
                                                                            </p>
                                                                         </div>
                                                                         <div class="col-xs-6">
                                                                            <p>
                                                                               <label>Manager: </label>
-                                                                              <a title="amirali2418@gmail.com">Amir Ashraf</a>                        
+                                                                              <a href="#"><?php $manager = App\User::find($advertiser->managerid); 
+                                                                              echo $manager->fname; ?>  </a>                        
                                                                            </p>
                                                                         </div>
                                                                         <div class="col-xs-6">
-                                                                           <p><label>Type: </label> Require Approval</p>
+                                                                           <p><label>Type: </label> {{ $offer->offer_approval }}</p>
                                                                         </div>
                                                                         <div class="col-xs-12">
                                                                            <p>
                                                                               <label>Preview Link:</label>
-                                                                              <a href="http://google.com" target="_blank">http://google.com</a>
+                                                                              <a href="{{ $offer->preview_url }}" target="_blank">{{ $offer->preview_url }}</a>
                                                                            </p>
                                                                         </div>
                                                                      </div>
@@ -113,38 +116,16 @@
                                                                   <div class="col-xs-12 col-sm-6">
                                                                      <p>
                                                                         <label>Lead Traffic to Preview URL : </label>
-                                                                        OFF                
+                                                                        {{ ($offer->restrictions->lead_traffic_preview_url == 1) ? 'On' : 'Off' }}                
                                                                      </p>
                                                                   </div>
                                                                   <div class="col-xs-12 col-sm-6">
-                                                                     <p><label>Conversion Protocol: </label> Postback URL</p>
+                                                                     <p><label>Conversion Protocol: </label> {{ $offer->signup_protocol }}</p>
                                                                   </div>
                                                                   <div class="col-xs-12 col-sm-6">
                                                                      <p>
                                                                         <label>Conversions Need Approval : </label>
-                                                                        Disable                
-                                                                     </p>
-                                                                  </div>
-                                                                  <div class="col-xs-12 col-sm-6">
-                                                                     <label>Tag : </label>
-                                                                     <span class="not-set">not set</span>
-                                                                  </div>
-                                                                  <div class="col-xs-12 col-sm-6">
-                                                                     <p>
-                                                                        <label>Hide Referral : </label>
-                                                                        Default                
-                                                                     </p>
-                                                                  </div>
-                                                                  <div class="col-xs-12 col-sm-6">
-                                                                     <p>
-                                                                        <label>Advertiser's Offer ID : </label>
-                                                                        <span class="not-set">not set</span>
-                                                                     </p>
-                                                                  </div>
-                                                                  <div class="col-xs-12 col-sm-12">
-                                                                     <p>
-                                                                        <label>Application ID : </label>
-                                                                        <span class="not-set">not set</span>
+                                                                        {{ $offer->signup_need_approval }}               
                                                                      </p>
                                                                   </div>
                                                                </div>
@@ -154,7 +135,7 @@
                                                    </div>
                                                 </div>
 
-                                                <div class="accordian-example">
+                                                <!-- <div class="accordian-example">
                                                    <div class="panel-group" id="event_accordian" role="tablist" aria-multiselectable="true">
                                                       <div class="panel panel-default">
                                                          <div class="panel-heading" role="tab" id="headingOne">
@@ -231,7 +212,7 @@
                                                          </div>
                                                       </div>
                                                    </div>
-                                                </div>
+                                                </div> -->
 
 
                                                 <div class="accordian-example">
@@ -251,25 +232,39 @@
                                                                   <div class="row">
                                                                      <div class="col-sm-12">
                                                                         <p>
-                                                                           <b>Advertiser Total Cap</b>: 1 conversions (GMT +04:00)                
+                                                                           <b>Advertiser Total Cap</b>: @if($offer->restrictions->advertiser_caps_value != null)
+                                                                           {{ $offer->restrictions->advertiser_caps_type }} {{ $offer->restrictions->advertiser_caps_value }}
+                                                                           @else
+                                                                              No
+                                                                           @endif         
                                                                         </p>
                                                                      </div>
                                                                      <div class="col-sm-12">
                                                                         <p>
-                                                                           <b>Affiliate Total Cap</b>: 1 conversions (GMT +04:00)                
+                                                                           <b>Affiliate Total Cap</b>: @if($offer->restrictions->advertiser_caps_value != null)
+                                                                           {{ $offer->restrictions->advertiser_caps_type }} {{ $offer->restrictions->advertiser_caps_value }}
+                                                                           @else
+                                                                              No
+                                                                           @endif            
                                                                         </p>
                                                                      </div>
                                                                      <div class="col-sm-12 desc-content">
                                                                         <p><strong>Description</strong> :</p>
-                                                                        <p>sdgadasdga</p>
+                                                                        <p>{{ $offer->description }}</p>
                                                                      </div>
                                                                   </div>
                                                                   <div class="row">
                                                                      <div class="col-sm-12">
                                                                         <p>
                                                                            <strong>Redirect Offer
-                                                                           <i class="fa fa-question-circle" title="Current offer will be redirected to this offer if paused, passed expiration date, or cap (offer cap &amp; affiliate cap) is exceeded." data-toggle="tooltip" data-html="true"></i>                    </strong>
-                                                                           <a href="/adn/index.php?r=offer%2Fdetail&amp;id=3" target="_blank">dark link #3 </a>                
+                                                                           <i class="fa fa-question-circle" title="Current offer will be redirected to this offer if paused, passed expiration date, or cap (offer cap &amp; affiliate cap) is exceeded." data-toggle="tooltip" data-html="true"></i></strong>
+                                                                           <?php 
+                                                                           if ($offer->restrictions->redirect_offer != null) {
+                                                                              $redirectoffer = App\Offer::find($offer->restrictions->redirect_offer);
+                                                                              echo '<a href="#" target="_blank">'.$redirectoffer->offer_name.'</a>';
+                                                                           }
+                                                                           ?>
+                                                                                         
                                                                         </p>
                                                                      </div>
                                                                   </div>
@@ -278,7 +273,12 @@
                                                                         <p>
                                                                            <strong>Offer Pools
                                                                            <i class="fa fa-question-circle" title="A pool of offers in which traffic can be redirected to in the event that they don’t match Geo &amp; Platform targeting.You could multi-select more pools at the same time." data-toggle="tooltip" data-html="true"></i>                    </strong>
-                                                                           None                
+                                                                           <?php 
+                                                                           if ($offer->restrictions->offer_pool != null) {
+                                                                              $offerpool = App\OffersPool::find($offer->restrictions->offer_pool);
+                                                                              echo '<a href="#" target="_blank">'.$offerpool->name.'</a>';
+                                                                           }
+                                                                           ?>          
                                                                         </p>
                                                                      </div>
                                                                   </div>
@@ -287,7 +287,7 @@
                                                                         <p>
                                                                            <strong>Tracking Domain
                                                                            <i class="fa fa-question-circle" title="This allows you to host your offer tracking URLs on a custom domain." data-toggle="tooltip" data-html="true"></i>                    </strong>
-                                                                           amir.offerstrack.net                
+                                                                           {{ $offer->restrictions->tracking_domain }}               
                                                                         </p>
                                                                      </div>
                                                                   </div>
@@ -296,10 +296,9 @@
                                                                         <div>
                                                                            <strong class="pull-left">SSL
                                                                            <i class="fa fa-question-circle" title="Enforce SSL by generating affiliate tracking link and advertiser postback with https instead of http." data-toggle="tooltip" data-html="true"></i>                    </strong>
-                                                                           
                                                                            <div class="form-wrap toggle-switches-flex">
                                                                               <div class="form-group">
-                                                                                 <div class="toggle toggle-modern"></div>
+                                                                                 <input {{ ($offer->restrictions->ssl == 1) ? 'checked':'' }} class="ssl_toggle" name="ssl" data-toggle="toggle" type="checkbox">
                                                                               </div>
                                                                            </div>
                                                                         </div>
@@ -311,7 +310,7 @@
                                                                            <strong class="pull-left">Unique IP Tracking <i class="fa fa-question-circle" title="When you turn on the button, the system will filter the part of clicks out of the allowed repetition of independent IPs." data-toggle="tooltip" data-html="true"></i></strong>
                                                                            <div class="form-wrap toggle-switches-flex">
                                                                               <div class="form-group">
-                                                                                 <div class="toggle toggle-modern"></div>
+                                                                                 <input {{ ($offer->restrictions->unique_ip_tracking == 1) ? 'checked':'' }} class="ssl_toggle" name="unique_ip_tracking" data-toggle="toggle" type="checkbox">
                                                                               </div>
                                                                            </div>
                                                                         </div>
@@ -373,20 +372,16 @@
                                                                         <tbody>
                                                                            <tr>
                                                                               <th style="text-align: center;vertical-align: middle">Geo</th>
+
                                                                               <td>
                                                                                  <table class="table table-bordered no-margin">
                                                                                     <tbody>
                                                                                        <tr>
                                                                                           <th>Countries (Exclude)</th>
-                                                                                          <th>Cities</th>
                                                                                        </tr>
+
                                                                                        <tr>
-                                                                                          <td>AD</td>
-                                                                                          <td>All States and Cities</td>
-                                                                                       </tr>
-                                                                                       <tr>
-                                                                                          <td>AE</td>
-                                                                                          <td>All States and Cities</td>
+                                                                                          <td>{{ $offer->restrictions->geo_targeting }}</td>
                                                                                        </tr>
                                                                                     </tbody>
                                                                                  </table>
