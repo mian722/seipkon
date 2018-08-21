@@ -374,6 +374,7 @@
                                                                               <th style="text-align: center;vertical-align: middle">Geo</th>
 
                                                                               <td>
+                                                                                 @if($offer->restrictions->geo_targeting != null)
                                                                                  <table class="table table-bordered no-margin">
                                                                                     <tbody>
                                                                                        <tr>
@@ -381,33 +382,66 @@
                                                                                        </tr>
 
                                                                                        <tr>
-                                                                                          <td>{{ $offer->restrictions->geo_targeting }}</td>
+                                                                                          <td>
+                                                                                             <?php $geos = json_decode($offer->restrictions->geo_targeting); ?>
+                                                                                             @foreach($geos as $geo)
+                                                                                                {{ $geo }},
+                                                                                             @endforeach
+                                                                                          </td>
                                                                                        </tr>
                                                                                     </tbody>
                                                                                  </table>
+                                                                                 @else
+                                                                                 All Countries.
+                                                                                 @endif  
                                                                               </td>
                                                                            </tr>
                                                                            <tr>
                                                                               <th style="text-align: center;vertical-align: middle">Device</th>
                                                                               <td>
+                                                                                 @if($offer->restrictions->platform_targeting != null)
                                                                                  <table class="table table-bordered no-margin">
                                                                                     <tbody>
                                                                                        <tr>
-                                                                                          <th>Platform</th>
-                                                                                          <th>OS Version</th>
+                                                                                          <th>Mobile Carrier Targeting</th>
                                                                                        </tr>
                                                                                        <tr>
-                                                                                          <td>PC</td>
-                                                                                          <td><strong>Windows</strong> (Windows XP, Windows Vista, Windows 7, Windows 8, Windows 8.1, Windows 10)<br></td>
+                                                                                          <td>
+                                                                                             <?php $mobiles = json_decode($offer->restrictions->platform_targeting); ?>
+                                                                                             @foreach($mobiles as $mobile)
+                                                                                                {{ $mobile }},
+                                                                                             @endforeach
+                                                                                          </td>
                                                                                        </tr>
                                                                                     </tbody>
                                                                                  </table>
+                                                                                 @else
+                                                                                 All Devices.
+                                                                                 @endif  
                                                                               </td>
                                                                            </tr>
                                                                            <tr>
                                                                               <th style="width:110px;text-align: center;vertical-align: middle">Mobile Carrier</th>
                                                                               <td>
-                                                                                 All mobile carriers.                    
+                                                                                 @if($offer->restrictions->mobile_carrier_targeting != null)
+                                                                                 <table class="table table-bordered no-margin">
+                                                                                    <tbody>
+                                                                                       <tr>
+                                                                                          <th>Mobile Carrier Targeting</th>
+                                                                                       </tr>
+                                                                                       <tr>
+                                                                                          <td>
+                                                                                             <?php $mobiles = json_decode($offer->restrictions->mobile_carrier_targeting); ?>
+                                                                                             @foreach($mobiles as $mobile)
+                                                                                                {{ $mobile }},
+                                                                                             @endforeach
+                                                                                          </td>
+                                                                                       </tr>
+                                                                                    </tbody>
+                                                                                 </table>
+                                                                                 @else
+                                                                                 All mobile carriers.
+                                                                                 @endif                    
                                                                               </td>
                                                                            </tr>
                                                                         </tbody>
@@ -447,21 +481,14 @@
                                                                <div class="box-body">
                                                                   <p style="border-bottom: 1px solid #eee;">
                                                                      <label>Destination URL: </label><br>
-                                                                     <textarea readonly="readonly" onclick="$(this).select()" class="form-control" rows="2" style="background-color:white">https://www.google.com.pk?as=</textarea>
+                                                                     <textarea readonly="readonly" onclick="$(this).select()" class="form-control" rows="2" style="background-color:white">{{ $offer->destination_url }}</textarea>
                                                                      <br>
                                                                   </p>
                                                                   <div id="linkBox" data-pjax-container="" data-pjax-push-state="" data-pjax-timeout="5000" style="border-bottom: 1px solid #eee;margin-bottom:10px;">
                                                                      <div class="row">
                                                                         <div class="col-sm-12"><label>Event Postback :</label></div>
-                                                                        <div class="col-sm-12">
-                                                                           <select id="event_select" class="form-control select2-hidden-accessible" name="event" data-s2-options="s2options_d6851687" data-krajee-select2="select2_37946846" style="display:none" tabindex="-1" aria-hidden="true">
-                                                                              <option value="">Event</option>
-                                                                              <option value="1" selected="">Initial Event #1</option>
-                                                                           </select>
-                                                                           <span class="select2 select2-container select2-container--krajee" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-event_select-container"><span class="select2-selection__rendered" id="select2-event_select-container" title="Initial Event #1"><span class="select2-selection__clear">×</span>Initial Event #1</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>                    
-                                                                        </div>
                                                                         <div class="col-sm-12" style="margin-top: 5px">
-                                                                           <textarea id="event_link" readonly="readonly" onclick="$(this).select()" class="form-control" rows="2" placeholder="Select Event Firstly" style="background-color:white"></textarea>
+                                                                           <textarea id="event_link" readonly="readonly" onclick="$(this).select()" class="form-control" rows="2" placeholder="Select Event Firstly" style="background-color:white">{{ $offer->offer_postback }}</textarea>
                                                                         </div>
                                                                      </div>
                                                                      <br>
@@ -471,12 +498,11 @@
                                                                      <div class="row">
                                                                         <div class="col-sm-12"><label>Tracking Link :</label></div>
                                                                         <div class="col-sm-12">
-                                                                           <select id="aff_select" class="form-control select2-hidden-accessible" name="affiliate" data-s2-options="s2options_d6851687" data-krajee-select2="select2_f8bdd78e" style="display:none" tabindex="-1" aria-hidden="true">
-                                                                              <option value="">Affiliate</option>
-                                                                              <option value="1">james #1</option>
-                                                                              <option value="3">asdf #3</option>
-                                                                           </select>
-                                                                           <span class="select2 select2-container select2-container--krajee" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-aff_select-container"><span class="select2-selection__rendered" id="select2-aff_select-container"><span class="select2-selection__placeholder">Affiliate</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>                    
+                                                                           <select class="form-control select2" data-placeholder="Select Affiliate" name="tracking_link" required="required">
+                                                                              @foreach($users as $user)
+                                                                                 <option value="{{ $user->id }}">{{ $user->fname }}</option>
+                                                                              @endforeach
+                                                                           </select>                    
                                                                         </div>
                                                                         <div class="col-sm-12" style="margin-top: 5px">
                                                                            <textarea id="aff_tracking" readonly="readonly" onclick="$(this).select()" class="form-control" rows="2" placeholder="Please select an affiliate." style="background-color:white"></textarea>
@@ -743,3 +769,10 @@
                </div>
             </div>
          @endsection
+
+
+
+
+         <script type="text/javascript">
+            
+         </script>
