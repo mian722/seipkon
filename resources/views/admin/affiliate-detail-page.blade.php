@@ -148,30 +148,25 @@
                                                 <thead>
                                                    <tr>
                                                       <th>ID</th>
-                                                      <th>Event</th>
                                                       <th>Offer</th>
                                                       <th>Currency</th>
                                                       <th>Offer Payout</th>
                                                       <th>Affiliate Payout</th>
                                                       <th>Type</th>
-                                                      <th>Action</th>
                                                    </tr>
                                                 </thead>
                                                 <tbody>
+                                                   @foreach($payouts->assignoffers as $payout)
                                                    <tr>
-                                                      <td><a href="{{ asset('offers-detail-page') }}">offer test google #4</a></td>
-                                                      <td>None1</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>
-                                                         <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
-                                                      </td>
+                                                      <td>{{ $payout->id }}</td>
+                                                      <td><a href="{{ asset('offers-detail-page') }}">{{ $payout->offer_name }}</a></td>
+                                                      <td>USD</td>
+                                                      <td>${{ $payout->revenue }}</td>
+                                                      <td>${{ $payout->payout }}</td>
+                                                      <td>{{ $payout->revenue_type }}</td>
+                                                     
                                                    </tr>
+                                                   @endforeach
                                                 </tbody>
                                              </table>
                                           </div>
@@ -186,8 +181,6 @@
                                                       <th>Affiliate</th>
                                                       <th>Name</th>
                                                       <th>Type</th>
-                                                      <th>Event</th>
-                                                      <th>Test</th>
                                                       <th>Protocol</th>
                                                       <th>Code</th>
                                                       <th>Create Time</th>
@@ -196,23 +189,23 @@
                                                    </tr>
                                                 </thead>
                                                 <tbody>
+                                                   @foreach($postbacks as $postback)
                                                    <tr>
-                                                      <td>4</td>
-                                                      <td><a href="{{ asset('affiliate-detail-page') }}">asdf #3</a></td>
-                                                      <td><a href="{{ asset('offers-detail-page') }}">offer test google #4</a></td>
-                                                      <td>Offer</td>
-                                                      <td>Initial Event #1</td>
-                                                      <td>Test</td>
-                                                      <td>Postback URL</td>
-                                                      <td><a href="#" id="username" class="username" data-type="text" data-pk="1" data-url="/post" data-title="Link">View</a></td>
-                                                      <td>2018-07-02 08:40:34</td>
-                                                      <td><label class="label label-success">Approved</label></td>
+                                                      <td>{{ $postback->offer_id }}</td>
+                                                      <td><a href="{{ asset('affiliate-detail-page') }}">{{ $postback->fname }} {{ $postback->lname }}</a></td>
+                                                      <td><a href="{{ asset('offers-detail-page') }}">{{ $postback->offer_name }}</a></td>
+                                                      <td>{{ $postback->postback_type }}</td>
+                                                      <td>{{ $postback->postback_protocol }}</td>
+                                                      <td><a href="#" id="username" class="username" data-type="textarea" data-pk="1" data-url="/post" data-value="{{ $postback->postbacklink }}">View</a></td>
+                                                      <td>{{ $postback->created_at }}</td>
+                                                      <td><label class="label {{ ($postback->status == 1) ? 'label-success' : 'label-danger' }}">{{ ($postback->status == 1) ? 'Approved' : 'Disable' }}</label></td>
                                                       <td>
                                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
                                                       </td>
                                                    </tr>
+                                                   @endforeach
                                                 </tbody>
                                              </table>
                                           </div>
