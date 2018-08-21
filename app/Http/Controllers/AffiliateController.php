@@ -221,8 +221,13 @@ class AffiliateController extends Controller
     {
         $affilates = User::Where('roles_id',5)->Where('id',$id)->first();
         $managers = User::Where('id',$affilates->managerid)->first();
-        return $payouts = AssignOffers::Where('affiliate_id',$id)->get();
-        return view('admin.affiliate-detail-page',compact('affilates','managers'));
+        $payouts = User::with('assignoffers')->Where('id',$id)->first();
+        $postbacks = User::leftJoin('assignoffers', 'users.id', '=', 'assignoffers.user_id')
+                        ->leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')
+                        ->where('assignoffers.user_id', $id)
+                        ->select('users.fname','users.lname','assignoffers.*','offers.offer_name')
+                        ->get();
+        return view('admin.affiliate-detail-page',compact('affilates','managers','payouts','postbacks'));
     }
 
     public function pendingaffiliates()
