@@ -112,7 +112,7 @@ class OfferController extends Controller
 
     public function offerapplications(){
         //$assignoffers = AssignOffers::where('admin_id', Auth::user()->id)->where('status', 0)->get();
-        $offerapplications = AssignOffers::leftJoin('users', 'users.id', '=', 'assignoffers.affiliate_id')
+        $offerapplications = AssignOffers::leftJoin('users', 'users.id', '=', 'assignoffers.user_id')
         ->leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')
         ->select('assignoffers.*', 'users.fname', 'users.lname', 'users.managerid', 'offers.adv_id', 'offers.offer_name')
         ->where('assignoffers.admin_id', Auth::user()->id)->where('assignoffers.status', 0)->get();
@@ -141,7 +141,7 @@ class OfferController extends Controller
         $user = User::where('roles_id', 5)->where('id', $aid)->first();
 
         $assignoffer = new AssignOffers;
-        $assignoffer->affiliate_id = $user->id;
+        $assignoffer->user_id = $user->id;
         $assignoffer->offer_id = $offer->id;
         $assignoffer->postbacklink = url('/').'/post/'.$user->id.'/'.$offer->id;
         $assignoffer->usertracklink = url('/').'/link/'.$user->id.'/'.$offer->id;
@@ -169,7 +169,8 @@ class OfferController extends Controller
 
     public function offerdetail($id){
         $offer = Offer::with('restrictions')->where('id', $id)->first();
-        return view('admin.offers-detail-page', compact('offer'));
+        $users = User::;
+        return view('admin.offers-detail-page', compact('offer', 'users'));
     }
 
     /**
