@@ -189,6 +189,9 @@
                                                    </tr>
                                                 </thead>
                                                 <tbody>
+                                                   <style type="text/css">
+                                                       .editable-buttons {  display: none !important; }
+                                                   </style>
                                                    @foreach($postbacks as $postback)
                                                    <tr>
                                                       <td>{{ $postback->offer_id }}</td>
@@ -196,13 +199,13 @@
                                                       <td><a href="{{ asset('offers-detail-page') }}">{{ $postback->offer_name }}</a></td>
                                                       <td>{{ $postback->postback_type }}</td>
                                                       <td>{{ $postback->postback_protocol }}</td>
+                                                      
                                                       <td><a href="#" id="username" class="username" data-type="textarea" data-pk="1" data-url="/post" data-value="{{ $postback->postbacklink }}">View</a></td>
                                                       <td>{{ $postback->created_at }}</td>
                                                       <td><label class="label {{ ($postback->status == 1) ? 'label-success' : 'label-danger' }}">{{ ($postback->status == 1) ? 'Approved' : 'Disable' }}</label></td>
                                                       <td>
-                                                         <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                                         <a href="{{ url('/postback-create') }}/{{ $postback->id }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
                                                       </td>
                                                    </tr>
                                                    @endforeach

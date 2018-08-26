@@ -283,6 +283,17 @@ class AffiliateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function getaffiliatepostback($id)
+    {
+        $affiliates = User::Where('roles_id',5)->where('status', 1)->get();
+        $offers = Offer::where('status', 1)->get();
+        $postbacks = User::leftJoin('assignoffers', 'users.id', '=', 'assignoffers.user_id')
+                        ->leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')
+                        ->where('assignoffers.id', $id)
+                        ->select('users.fname','users.lname','assignoffers.*','offers.offer_name')
+                        ->get();
+        return view('admin.postback-create',compact('affiliates','offers','postbacks'));
+    }
     public function edit($id)
     {
         //

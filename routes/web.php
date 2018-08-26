@@ -59,6 +59,7 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::post('/affiliate-update-clicks/{id}', 'AffiliateController@affiliateupdateclicks')->name('affiliateupdateclicks'); 
 	Route::post('/affiliatedetail', 'AffiliateController@affiliatedetail')->name('affiliatedetail'); 
 	Route::get('/postback-create', 'AffiliateController@createaffiliatepostback')->name('createaffiliatepostback');
+	Route::get('/postback-create/{id}', 'AffiliateController@getaffiliatepostback')->name('getaffiliatepostback');
 
 	Route::get('/accounts', 'UserController@accountslist')->name('admin.accountslist');
 	Route::get('/accounts-create', 'UserController@createaccount')->name('createaccount');
