@@ -169,7 +169,11 @@ class OfferController extends Controller
 
     public function offerdetail($id){
         $offer = Offer::with('restrictions')->where('id', $id)->first();
-        $users = User::;
+        $users = User::leftJoin('assignoffers', 'users.id', '=', 'assignoffers.user_id')
+                        ->leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')
+                        ->where('assignoffers.user_id', $id)
+                        ->select('users.fname','users.lname','assignoffers.*','offers.offer_name')
+                        ->get();
         return view('admin.offers-detail-page', compact('offer', 'users'));
     }
 

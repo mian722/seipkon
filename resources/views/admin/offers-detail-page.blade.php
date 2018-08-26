@@ -498,9 +498,10 @@
                                                                      <div class="row">
                                                                         <div class="col-sm-12"><label>Tracking Link :</label></div>
                                                                         <div class="col-sm-12">
-                                                                           <select class="form-control select2" data-placeholder="Select Affiliate" name="tracking_link" required="required">
+                                                                           <select class="form-control select2" id="tracking_link" data-placeholder="Select Affiliate" name="tracking_link" required="required">
+                                                                              <option disabled="disabled" selected="selected">Please Select. . .</option>
                                                                               @foreach($users as $user)
-                                                                                 <option value="{{ $user->id }}">{{ $user->fname }}</option>
+                                                                                 <option value="{{ $user->usertracklink }}">{{ $user->fname }}</option>
                                                                               @endforeach
                                                                            </select>                    
                                                                         </div>
@@ -542,16 +543,18 @@
                                                                            <td><input class="hidden-style" name="{click_id}" value="{click_id}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{offer_id}" value="{offer_id}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{event_id}" value="{event_id}" readonly="" type="text"></td>
-                                                                           <td><input class="hidden-style" name="{country_id}" value="{country_id}" readonly="" type="text"></td>
                                                                         </tr>
                                                                         <tr>
+                                                                           <td><input class="hidden-style" name="{country_id}" value="{country_id}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{aff_id}" value="{aff_id}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{adv_id}" value="{adv_id}" readonly="" type="text"></td>
-                                                                           <td><input class="hidden-style" name="{adv_sub1}" value="{adv_sub1}" readonly="" type="text"></td>
-                                                                           <td><input class="hidden-style" name="{adv_sub2}" value="{adv_sub2}" readonly="" type="text"></td>
                                                                         </tr>
                                                                         <tr>
+                                                                           <td><input class="hidden-style" name="{adv_sub1}" value="{adv_sub1}" readonly="" type="text"></td>
+                                                                           <td><input class="hidden-style" name="{adv_sub2}" value="{adv_sub2}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{adv_sub3}" value="{adv_sub3}" readonly="" type="text"></td>
+                                                                        </tr>
+                                                                        <tr>
                                                                            <td><input class="hidden-style" name="{aff_sub1}" value="{aff_sub1}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{aff_sub2}" value="{aff_sub2}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{aff_sub3}" value="{aff_sub3}" readonly="" type="text"></td>
@@ -560,16 +563,18 @@
                                                                            <td><input class="hidden-style" name="{aff_sub4}" value="{aff_sub4}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{aff_sub5}" value="{aff_sub5}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{source_id}" value="{source_id}" readonly="" type="text"></td>
-                                                                           <td><input class="hidden-style" name="{agent}" value="{agent}" readonly="" type="text"></td>
                                                                         </tr>
                                                                         <tr>
+                                                                           <td><input class="hidden-style" name="{agent}" value="{agent}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{click_time}" value="{click_time}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{payout}" value="{payout}" readonly="" type="text"></td>
-                                                                           <td><input class="hidden-style" name="{amount}" value="{amount}" readonly="" type="text"></td>
-                                                                           <td><input class="hidden-style" name="{referer}" value="{referer}" readonly="" type="text"></td>
                                                                         </tr>
                                                                         <tr>
+                                                                           <td><input class="hidden-style" name="{amount}" value="{amount}" readonly="" type="text"></td>
+                                                                           <td><input class="hidden-style" name="{referer}" value="{referer}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{accept_lan}" value="{accept_lan}" readonly="" type="text"></td>
+                                                                        </tr>
+                                                                        <tr>
                                                                            <td><input class="hidden-style" name="{ip}" value="{ip}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{unique_click}" value="{unique_click}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{currency}" value="{currency}" readonly="" type="text"></td>
@@ -578,12 +583,10 @@
                                                                            <td><input class="hidden-style" name="{ios_idfa}" value="{ios_idfa}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{android_id}" value="{android_id}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{google_aid}" value="{google_aid}" readonly="" type="text"></td>
-                                                                           <td><input class="hidden-style" name="{conversion_ip}" value="{conversion_ip}" readonly="" type="text"></td>
                                                                         </tr>
                                                                         <tr>
+                                                                           <td><input class="hidden-style" name="{conversion_ip}" value="{conversion_ip}" readonly="" type="text"></td>
                                                                            <td><input class="hidden-style" name="{callback}" value="{callback}" readonly="" type="text"></td>
-                                                                           <td></td>
-                                                                           <td></td>
                                                                            <td></td>
                                                                         </tr>
                                                                      </tbody>
@@ -772,7 +775,3 @@
 
 
 
-
-         <script type="text/javascript">
-            
-         </script>
