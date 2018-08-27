@@ -39,10 +39,11 @@
                         <div class="page-box">
                            <div class="form-example">
                               <div class="form-wrap">
-                                 <form>
+                                 <form method="post" action="{{ route('createpostback') }}">
+                                    {{ csrf_field() }}
                                     <div class="form-group">
                                        <label class="control-label">Affiliate</label>
-                                       <select class="form-control select2">
+                                       <select class="form-control select2" name="user_id">
                                           <option disabled="disabled" selected="selected">Select Affiliate</option>
                                           @foreach($affiliates as $ffiliate)
                                           <option value="{{ $ffiliate->id }}">{{ $ffiliate->fname }} {{ $ffiliate->lname }}</option>
@@ -52,21 +53,21 @@
                                     <div class="form-group">
                                        <label class="control-label" style="width: 100%">Type</label>
                                        <div class="form-group form-radio col-md-4">
-                                          <input id="radio-1" name="radio" type="radio" checked="checked" />
+                                          <input id="radio-1" name="postback_type" type="radio" value="offer" checked="checked" />
                                           <label for="radio-1" class="inline control-label">Offer</label>
                                        </div>
                                        <div class="form-group form-radio col-md-4">
-                                          <input id="radio-2" name="radio" type="radio" />
+                                          <input id="radio-2" name="postback_type" value="smartlink" type="radio" />
                                           <label  for="radio-2" class="inline control-label">SmartLink</label>
                                        </div>
                                        <div class="form-group form-radio col-md-4">
-                                          <input id="radio-3" name="radio" type="radio" />
+                                          <input id="radio-3" name="postback_type" value="global" type="radio" />
                                          <label  for="radio-3" class="inline control-label">Global</label>
                                        </div>
                                     </div>
                                     <div class="form-group smartlinklist" >
                                        <label class="control-label">Smartlink</label>
-                                       <select class="form-control select2">
+                                       <select class="form-control select2" name="smartlink_id">
                                           <option disabled="disabled" selected="selected">Select Smartlink</option>
                                           @foreach($offers as $offer)
                                           <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
@@ -75,7 +76,7 @@
                                     </div>
                                     <div class="form-group offerlist" >
                                        <label class="control-label">Offer</label>
-                                       <select class="form-control select2">
+                                       <select class="form-control select2" name="offer_id">
                                           <option disabled="disabled" selected="selected">Select Offer</option>
                                           @foreach($offers as $offer)
                                           <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
@@ -95,15 +96,15 @@
                                     </div> -->
                                     <div class="form-group">
                                        <label class="control-label">Protocol</label>
-                                       <select class="form-control select2">
-                                          <option selected="selected">Postback Url</option>
-                                          <option>Smart Link</option>
-                                          <option>Image Pixel</option>
+                                       <select class="form-control select2" name="postback_protocol">
+                                          <option selected="selected" value="postbackurl">Postback Url</option>
+                                          <option value="smartlink">Smart Link</option>
+                                          <option value="imagepixel">Image Pixel</option>
                                        </select>
                                     </div>
                                     <div class="form-group">
                                        <label class="control-label">Code</label>
-                                       <textarea class="form-control" id="message" placeholder="Textarea"></textarea>
+                                       <textarea class="form-control" id="message" name="postbacklink" placeholder="Textarea"></textarea>
                                     </div>
                                     <div class="form-group">
                                        <button class="btn btn-success btn-lg">Create</button>

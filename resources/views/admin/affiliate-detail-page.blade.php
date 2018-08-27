@@ -188,10 +188,7 @@
                                                       <th>Action</th>
                                                    </tr>
                                                 </thead>
-                                                <tbody>
-                                                   <style type="text/css">
-                                                       .editable-buttons {  display: none !important; }
-                                                   </style>
+                                                <tbody class="dis-none">
                                                    @foreach($postbacks as $postback)
                                                    <tr>
                                                       <td>{{ $postback->offer_id }}</td>

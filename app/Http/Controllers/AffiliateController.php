@@ -171,14 +171,53 @@ class AffiliateController extends Controller
         return \Response::json($response);
 
     }
-        
+    public function affiliatepostback()
+    {
+        $postbacks = AssignOffers::leftJoin('users', 'users.id', '=', 'assignoffers.user_id')
+                        ->leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')
+                        ->select('users.fname','users.lname','assignoffers.*','offers.offer_name')
+                        ->get();
+        //$postbacks = AssignOffers::with('users')->where('status', 1)->get();
+        //$offers = Offer::where('status', 1)->get();
+        return view('admin.affiliate-postback',compact('postbacks'));
+    }    
     public function createaffiliatepostback()
     {
         $affiliates = User::Where('roles_id',5)->where('status', 1)->get();
         $offers = Offer::where('status', 1)->get();
         return view('admin.postback-create',compact('affiliates','offers'));
     }
+    public function createpostback(Request $request)
+    {
+        //return $request->all();
+        $assignoffers = new AssignOffers;
+        $assignoffers->user_id = $request->user_id;
+        $assignoffers->postback_type = $request->postback_type;
+        $assignoffers->smartlink_id = $request->smartlink_id;
+        $assignoffers->offer_id = $request->offer_id;
+        $assignoffers->postback_protocol = $request->postback_protocol;
+        $assignoffers->postbacklink = $request->postbacklink;
+        $assignoffers->postbacklink = $request->postbacklink;
+        $assignoffers->admin_id = Auth::user()->id;
+        $assignoffers->save();
+        
+        if (empty($assignoffers) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
 
+        $affiliates = User::Where('roles_id',5)->where('status', 1)->get();
+        $offers = Offer::where('status', 1)->get();
+        return view('admin.postback-create',compact('affiliates','offers'));
+    }
+    public function postbackcreate()
+        {
+            return 1;
+            $affiliates = User::Where('roles_id',5)->where('status', 1)->get();
+            $offers = Offer::where('status', 1)->get();
+            return view('admin.postback-create',compact('affiliates','offers'));
+        }
     /**
      * Store a newly created resource in storage.
      *

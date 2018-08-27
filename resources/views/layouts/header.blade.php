@@ -61,7 +61,9 @@
             display: inline-block;
          }
          .table { width: 100% !important; }
+         .dis-none .editable-buttons {  display: none !important; }
       </style>
+
    </head>
    <body>
        
