@@ -276,7 +276,11 @@
                                                                            <?php 
                                                                            if ($offer->restrictions->offer_pool != null) {
                                                                               $offerpool = App\OffersPool::find($offer->restrictions->offer_pool);
-                                                                              echo '<a href="#" target="_blank">'.$offerpool->name.'</a>';
+                                                                              //echo $offer->restrictions->offer_pool;
+                                                                              //print_r($offerpool);
+                                                                              if (!empty($offerpool)) {
+                                                                                 echo '<a href="#" target="_blank">'.$offerpool->name.'</a>';
+                                                                              }
                                                                            }
                                                                            ?>          
                                                                         </p>
@@ -650,61 +654,66 @@
                                                                               </tbody>
                                                                            </table>
                                                                         </div>
-                                                                        <div class="box-footer clearfix">
-                                                                           <div class="row">
-                                                                              <div class="col-sm-5"></div>
-                                                                              <div class="col-sm-7">
-                                                                                 <div class="dataTables_paginate"></div>
-                                                                              </div>
-                                                                           </div>
-                                                                        </div>
                                                                      </div>
                                                                   </div>
-                                                               </div>
-                                                               <div id="payout-modal" class="fade modal" role="dialog">
-                                                                  <div class="modal-dialog ">
-                                                                     <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                        </div>
-                                                                     </div>
-                                                                  </div>
-                                                               </div>
-                                                               <div class="box box-default collapsed-box padding">
-                                                                  <div class="box-header with-border">
-                                                                     <h3 class="box-title" style="cursor: pointer"><i class="fa fa-files-o"></i> Creative Files</h3>
-                                                                     <div class="box-tools pull-right">
-                                                                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                                                     </div>
-                                                                     <!-- /.box-tools -->
-                                                                  </div>
-                                                                  <!-- /.box-header -->
-                                                                  <div class="box-body table-responsive" style="display: none;">
-                                                                     <table class="table table-hover creative-files">
-                                                                        <tbody>
-                                                                           <tr>
-                                                                              <th>ID</th>
-                                                                              <th>Preview</th>
-                                                                              <th>Size</th>
-                                                                              <th>Link</th>
-                                                                           </tr>
-                                                                           <tr>
-                                                                              <td colspan="4" align="center">No files.</td>
-                                                                           </tr>
-                                                                        </tbody>
-                                                                     </table>
-                                                                  </div>
-                                                                  <!-- /.creative box -->
                                                                </div>
                                                             </div>
                                                          </div>
                                                       </div>
                                                    </div>
                                                 </div>
+
+
+
+
+                                                <div class="accordian-example">
+                                                   <div class="panel-group" id="affiliate_pay" role="tablist" aria-multiselectable="true">
+                                                      <div class="panel panel-default">
+                                                         <div class="panel-heading" role="tab" id="headingOne">
+                                                            <h4 class="panel-title">
+                                                               <a role="button" data-toggle="collapse" data-parent="#affiliate_pay" href="#affiliate_payout" aria-expanded="true" aria-controls="affiliate_payout">
+                                                               <i class="fa fa-files-o"></i> Creative Files
+                                                               </a>
+                                                            </h4>
+                                                         </div>
+                                                         <div id="affiliate_payout" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                                            <div class="panel-body">
+
+                                                               <div class="box box-default">
+                                                                  <div id="affiliate-payout-box" data-pjax-container="" data-pjax-push-state="" data-pjax-timeout="5000">
+                                                                     <div id="w0" class="grid-view">
+                                                                        <div class="box-body no-padding table-responsive">
+                                                                           <table class="table table-hover table-striped" role="grid">
+                                                                              <thead>
+                                                                                 <tr>
+                                                                                    <th>ID</th>
+                                                                                    <th>Preview</th>
+                                                                                    <th>Size</th>
+                                                                                    <th>Link</th>
+                                                                                 </tr>
+                                                                              </thead>
+                                                                              <tbody>
+                                                                                 <tr>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                 </tr>
+                                                                                 <tr>
+                                                                                    <td colspan="4" align="center">No files.</td>
+                                                                                 </tr>
+                                                                              </tbody>
+                                                                           </table>
+                                                                        </div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+
                                              </section>
                                           </div>
 

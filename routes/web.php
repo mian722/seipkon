@@ -18,49 +18,57 @@ Route::group(['middleware'=> 'boss'], function(){
 Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/admin/home', 'AdminController@index')->name('admin.home');
 	Route::get('/admin', 'AdminController@index')->name('admin.home');
+
+	/* Offer Links */
+	Route::get('/all-offers', 'OfferController@index')->name('all-offers.get');
 	Route::post('/add-offer/store', 'OfferController@store')->name('add-offer.store');
 	Route::get('/add-offer', 'OfferController@create')->name('add-offer');
+	Route::get('/offers-detail/{id}', 'OfferController@offerdetail')->name('offers-detail');
+	Route::get('/offer-application', 'OfferController@offerapplications')->name('offerapplications');
+	Route::get('/offer-application/approve/{id}', 'OfferController@approveapplication')->name('approveapplication');
+
+	/* Offer Pool */
 	Route::get('/offer-pool', 'OffersPoolController@index')->name('offer-pool');
 	Route::get('/create-pool', 'OffersPoolController@create_pool')->name('create-pool');
 	Route::post('/create-pool/store', 'OffersPoolController@store')->name('create-pool.store');
-	Route::post('/add-offer/store', 'OfferController@store')->name('add-offer.store');
 	Route::get('/details/show/{id}', 'OffersPoolController@show')->name('create-pool.show');
 	Route::get('/details/addoffer', 'OffersPoolController@addoffertopool')->name('detail.addoffer');
 	Route::get('/details/deleteoffer/{oid}/{pid}', 'OffersPoolController@deleteofferfrompool')->name('detail.deleteoffer');
 	Route::post('/create-pool/updatename/{id}', 'OffersPoolController@updatename')->name('create-pool.updatename');
 	Route::post('/create-pool/updatestatus/{id}', 'OffersPoolController@updatestatus')->name('create-pool.updatestatus');
 	Route::post('/create-pool/updatenote/{id}', 'OffersPoolController@updatenote')->name('create-pool.updatenote');
-	Route::post('/add-offer/store', 'OfferController@store')->name('add-offer.store');
-	Route::get('/advertisers-create', 'UserController@getadvertiser')->name('advertiser.get');
+
+	/* Affiliates */
 	Route::post('/add-affliate/create', 'UserController@createaffilate')->name('add-affliate.create');
-	Route::post('/add-advertiser/create', 'UserController@createadvertiser')->name('add-advertiser.create');
 	Route::get('/affiliates',  'AffiliateController@index')->name('affiliates');
 	Route::get('/affiliate-create', 'AffiliateController@create')->name('affiliate.create');
 	Route::get('/affiliate-detail/{id}', 'AffiliateController@show')->name('affiliate.show');
-	Route::get('/all-offers', 'OfferController@index')->name('all-offers.get');
-	Route::get('/offers-detail/{id}', 'OfferController@offerdetail')->name('offers-detail');
 	Route::get('/affiliates-pending', 'AffiliateController@pendingaffiliates')->name('pendingaffiliates');
-	Route::get('/advertisers-pending', 'AdvertiserController@pendingadvertisers')->name('pendingadvertisers');
 	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliates')->name('approve.affiliate');
-	Route::get('/approve-advertiser/{id}', 'AdvertiserController@aproveadvertiser')->name('approve.advertiser');	
-	Route::get('/advertisers', 'AdvertiserController@index')->name('advertisers');	
 	Route::get('/affiliate-payouts', 'AffiliateController@affiliatepayouts')->name('affiliate-payouts');
 	Route::get('/affiliate-payout-create', 'AffiliateController@affiliatepayoutcreate')->name('affiliatepayoutcreate');
 	Route::post('/affiliate-payout-save', 'AffiliateController@affiliatepayoutsave')->name('affiliatepayoutsave');
 	Route::post('/offerrate', 'AffiliateController@offerrate')->name('offerrate');
 	Route::post('/affiliateoffersdetails', 'AffiliateController@affiliateoffersdetails')->name('affiliateoffersdetails');
-
 	Route::get('/affiliate-invoices', 'AffiliateController@affiliateinvoices')->name('affiliateinvoices');
 	Route::get('/affiliate-invoice-create', 'AffiliateController@affiliateinvoicescreate')->name('affiliateinvoicescreate'); 
 	Route::post('/affiliate-invoice/add', 'AffiliateController@affiliateaddinvoices')->name('affiliateaddinvoices'); 
 	Route::post('/affiliate-invoice/update/{id}', 'AffiliateController@affiliateupdateinvoices')->name('affiliateupdateinvoices'); 
-
 	Route::get('/affiliate-invoice/edit/{id}', 'AffiliateController@affiliateinvoicesedit')->name('affiliateinvoicesedit'); 
 	Route::post('/affiliate-update-clicks/{id}', 'AffiliateController@affiliateupdateclicks')->name('affiliateupdateclicks'); 
 	Route::post('/affiliatedetail', 'AffiliateController@affiliatedetail')->name('affiliatedetail'); 
 	Route::get('/postback-create', 'AffiliateController@createaffiliatepostback')->name('createaffiliatepostback');
 	Route::get('/postback-create/{id}', 'AffiliateController@getaffiliatepostback')->name('getaffiliatepostback');
+	Route::get('/invoice/{id}', 'AffiliateController@getinvoice')->name('getinvoice');
 
+	/* Advertisers */
+	Route::get('/advertisers-create', 'UserController@getadvertiser')->name('advertiser.get');
+	Route::post('/add-advertiser/create', 'UserController@createadvertiser')->name('add-advertiser.create');
+	Route::get('/advertisers-pending', 'AdvertiserController@pendingadvertisers')->name('pendingadvertisers');
+	Route::get('/approve-advertiser/{id}', 'AdvertiserController@aproveadvertiser')->name('approve.advertiser');	
+	Route::get('/advertisers', 'AdvertiserController@index')->name('advertisers');	
+
+	/* User Accounts */
 	Route::get('/accounts', 'UserController@accountslist')->name('admin.accountslist');
 	Route::get('/accounts-create', 'UserController@createaccount')->name('createaccount');
 	Route::post('/accounts-create/store', 'UserController@storeaccount')->name('storeaccount');
@@ -68,10 +76,6 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/roles-create', 'ManagerController@createmanagerrole')->name('createmanagerrole');
 	Route::post('/roles-create/store', 'ManagerController@storemanagerrole')->name('storemanagerrole');
 	Route::post('/manager-role-detail', 'ManagerController@getmanagerrole')->name('getmanagerrole');
-	Route::get('/invoice/{id}', 'AffiliateController@getinvoice')->name('getinvoice');
-
-	Route::get('/offer-application', 'OfferController@offerapplications')->name('offerapplications');
-	Route::get('/offer-application/approve/{id}', 'OfferController@approveapplication')->name('approveapplication');
 });
 Route::get('/tracking/{aid}/{oid}', 'ClicksController@tracking')->name('tracking');
 Route::get('/post', 'SignupController@postback')->name('posttracking');

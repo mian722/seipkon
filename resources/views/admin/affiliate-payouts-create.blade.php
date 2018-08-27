@@ -32,6 +32,23 @@
                   </div>
                   <!-- End Breadcromb Row -->
                    
+                  <div class="row">
+                     <div class="col-md-12">
+                        @if(Session::has('failed'))
+                           <div class="alert alert-danger alert-dismissible">
+                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                             <strong>Warning!</strong> {{ Session::get('failed') }}
+                           </div>
+                        @endif
+                        @if(Session::has('success'))
+                           <div class="alert alert-danger alert-dismissible">
+                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                             <strong>Success!</strong> {{ Session::get('success') }}
+                           </div>
+                        @endif
+                     </div>
+                  </div>
+
                   <!-- Validation Form Row Start -->
                   <div class="row">
                      <div class="col-md-12">
