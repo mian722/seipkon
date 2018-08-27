@@ -281,24 +281,34 @@ class AffiliateController extends Controller
             ->update(['status' => 1]);
         return redirect()->back();
     }
+
     public function affiliatepayouts(){
-        return view('admin.affiliate-payouts');
+        $payouts = AffiliatePayout::leftJoin('users', 'users.id', 'affiliate_payout.affiliate_id')
+        ->leftJoin('offers', 'offers.id', 'affiliate_payout.offer_id')
+        ->select('affiliate_payout.*', 'users.fname', 'offers.revenue', 'offers.payout_type', 'offers.offer_name')->get();
+        return view('admin.affiliate-payouts', compact('payouts'));
     }
+
     public function affiliatepayoutcreate(){
         $affiliates = User::Where('roles_id',5)->Where('status',1)->get();
         $offers = Offer::with('restrictions')->get();
         return view('admin.affiliate-payouts-create',compact('affiliates','offers'));
     }
     public function affiliatepayoutsave(Request $request){
-        $payout = new AffiliatePayout;
-        $payout->offer_id = $request->offerid;
-        $payout->affiliate_id = $request->affiliateid;
-        $payout->rate = $request->payout;
-        $payout->save();
-        if (empty($payout) ) {
-            return redirect()->back()->with('fail', 'Something Wrong!');
-        } else {
-            return redirect()->back()->with('success','Succfully Added!');
+        $check = AffiliatePayout::isDuplicated($request->all());
+        if ($check == 'true') {
+            return redirect()->back()->with('failed','Already Exist');
+        }else{   
+            $payout = new AffiliatePayout;
+            $payout->offer_id = $request->offerid;
+            $payout->affiliate_id = $request->affiliateid;
+            $payout->rate = $request->payout;
+            $payout->save();
+            if (empty($payout) ) {
+                return redirect()->back()->with('fail', 'Something Wrong!');
+            } else {
+                return redirect()->back()->with('success','Succfully Added!');
+            }
         }
     }
     public function offerrate(Request $request)

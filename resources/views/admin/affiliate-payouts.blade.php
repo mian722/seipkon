@@ -36,7 +36,6 @@
                                     <tr>
                                        <th>Create Time</th>
                                        <th>Offer</th>
-                                       <th>Event</th>
                                        <th>Affiliate</th>
                                        <th>Currency</th>
                                        <th>Offer Payout</th>
@@ -45,21 +44,21 @@
                                     </tr>
                                  </thead>
                                  <tbody>
+                                    @foreach($payouts as $payout)
                                     <tr>
-                                       <td>#1</td>
-                                       <td>asd</td>
-                                       <td>#120342</td>
-                                       <td>Angelica Ramos</td>
-                                       <td>product title</td>
-                                       <td>22</td>
-                                      <td>22</td>
+                                       <td>{{ $loop->iteration }}</td>
+                                       <td><a href="{{ route('offers-detail', $payout->offer_id) }}"> ({{ $payout->payout_type }}){{ $payout->offer_name }} </a></td>
+                                       <td><a href="{{ route('affiliate.show', $payout->affiliate_id) }}"> {{ $payout->fname }} </a></td>
+                                       <td>USD</td>
+                                       <td>{{ $payout->revenue }}</td>
+                                       <td>{{ $payout->rate }}</td>
                                        <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                          <a href="{{ route('payout.edit') }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
                                        </td>
                                     </tr>
-                                    
+                                    @endforeach
 
                                  </tbody>
                               </table>

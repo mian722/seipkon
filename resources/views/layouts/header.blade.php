@@ -61,7 +61,15 @@
             display: inline-block;
          }
          .table { width: 100% !important; }
+<<<<<<< HEAD
          .dis-none .editable-buttons {  display: none !important; }
+=======
+         .hidden-style {
+            border: 0;
+            display: inline-block;
+            width: 100px !important;
+         }
+>>>>>>> 0afdb8582cbbb1f567683cbf2ab740a3801739cc
       </style>
 
    </head>
@@ -572,6 +580,9 @@
       <!-- Custom JS -->
       <script src="{{ asset('public/assets/js/seipkon.js') }}"></script>
       <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+      
+
+
       <script type="text/javascript">
          $(document).ready(function() {
             $.fn.editable.defaults.mode = 'popup';
@@ -633,6 +644,15 @@
 
         theDiv.slideDown().removeClass("hidden");
       });
+      </script>
+
+
+      <script type="text/javascript">
+         $(document).ready(function(){
+            $('#tracking_link').on('change', function(){
+               $('#aff_tracking').html($(this).val());
+            });
+         });
       </script>
    </body>
 
