@@ -199,6 +199,7 @@ class AffiliateController extends Controller
         $assignoffers->postbacklink = $request->postbacklink;
         $assignoffers->postbacklink = $request->postbacklink;
         $assignoffers->admin_id = Auth::user()->id;
+        $assignoffers->status = '1';
         $assignoffers->save();
         
         if (empty($assignoffers) ) {
@@ -211,13 +212,32 @@ class AffiliateController extends Controller
         $offers = Offer::where('status', 1)->get();
         return view('admin.postback-create',compact('affiliates','offers'));
     }
-    public function postbackcreate()
+    public function editpostback($id)
         {
-            return 1;
+            $assignoffers = assignoffers::Where('id',$id)->first();
             $affiliates = User::Where('roles_id',5)->where('status', 1)->get();
             $offers = Offer::where('status', 1)->get();
-            return view('admin.postback-create',compact('affiliates','offers'));
+            return view('admin.postback-create',compact('affiliates','offers','assignoffers'));
         }
+    public function postbackupdate($id,Request $request)
+    {
+        //return $request->all();
+        $offer_id = null;
+        $smartlink_id = null;
+        if ($request->postback_type == 'offer') {
+            $offer_id = $request->offer_id;
+        } elseif(($request->postback_type == 'smartlink') ) {
+            $smartlink_id = $request->smartlink_id;
+        } 
+        $update = AssignOffers::where('id', $id)
+            ->update(['user_id' => $request->user_id,'offer_id' => $offer_id,'smartlink_id' => $smartlink_id,'postback_type' => $request->postback_type,'postback_protocol' => $request->postback_protocol,'postbacklink' => $request->postbacklink,'status' => $request->status]);
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -386,5 +406,14 @@ class AffiliateController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function deletepostback($id)
+    {
+        $delete = AssignOffers::where('id',$id)->delete();
+        if (empty($delete) ) {
+                return redirect()->back()->with('fail', 'Something Wrong!');
+            } else {
+                return redirect()->back()->with('success','Succfully Added!');
+            }
     }
 }

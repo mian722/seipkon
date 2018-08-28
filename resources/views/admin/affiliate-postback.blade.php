@@ -50,15 +50,17 @@
                                     <tr>
                                        <td>#{{ $loop->iteration }}</td>
                                        <td><a href="{{ url('/affiliate-detail/'.$postback->user_id ) }}"> {{ $postback->fname }}</a></td>
-                                       <td>{{ $postback->offer_name }}</td>
+                                       <td>@if(!empty($postback->offer_id)) {{ $postback->offer_name }} offer @elseif(!empty($postback->smartlink_id)) {{ $postback->offer_name }} smart
+                                       @else All offer
+                                       @endif</td>
                                        <td>{{ $postback->postback_type }}</td>
                                        <td>{{ $postback->postback_protocol }}</td>
                                        <td><a href="#" id="username" class="username" data-type="textarea" data-pk="1" data-url="/post" data-value="{{ $postback->postbacklink }}">View</a></td>
                                        <td>{{ $postback->created_at }}</td>
                                        <td><label class="label {{ ($postback->status == 1) ? 'label-success' : 'label-danger' }}">{{ ($postback->status == 1) ? 'Approved' : 'Disable' }}</label></td>
                                        <td>
-                                          <a href="{{ url('/postbackcreate/'.$postback->user_id.'/edit' ) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                          <a href="{{ url('/postback/edit/'.$postback->id ) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                          <a href="{{ url('/postback/delete/'.$postback->id ) }}" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                        </td>
                                     </tr>
                                  @endforeach 
