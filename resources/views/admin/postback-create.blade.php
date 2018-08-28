@@ -39,47 +39,48 @@
                         <div class="page-box">
                            <div class="form-example">
                               <div class="form-wrap">
-                                 <form method="post" action="{{ route('createpostback') }}">
+                                 <form method="post" action="{{ (isset($assignoffers) ? route('postbackupdate', $assignoffers->id) : route('createpostback')) }}">
                                     {{ csrf_field() }}
                                     <div class="form-group">
                                        <label class="control-label">Affiliate</label>
                                        <select class="form-control select2" name="user_id">
-                                          <option disabled="disabled" selected="selected">Select Affiliate</option>
+                                          <option disabled="disabled">Select Affiliate</option>
                                           @foreach($affiliates as $ffiliate)
-                                          <option value="{{ $ffiliate->id }}">{{ $ffiliate->fname }} {{ $ffiliate->lname }}</option>
+                                          <option value="{{ $ffiliate->id }}" {{ ((isset($assignoffers->user_id) ? $assignoffers->user_id : null) == $ffiliate->id) ? 'selected' : '' }}>{{ $ffiliate->fname }} {{ $ffiliate->lname }}</option>
                                           @endforeach
                                        </select>
                                     </div>
                                     <div class="form-group">
                                        <label class="control-label" style="width: 100%">Type</label>
                                        <div class="form-group form-radio col-md-4">
-                                          <input id="radio-1" name="postback_type" type="radio" value="offer" checked="checked" />
+                                          <input id="radio-1" name="postback_type" type="radio" value="offer" {{ (old('postback_type', isset($assignoffers->postback_type) ? $assignoffers->postback_type : null) == 'offer') ? 'checked' : '' }}  />
                                           <label for="radio-1" class="inline control-label">Offer</label>
                                        </div>
                                        <div class="form-group form-radio col-md-4">
-                                          <input id="radio-2" name="postback_type" value="smartlink" type="radio" />
+                                          <input id="radio-2" name="postback_type" value="smartlink" type="radio" 
+                                          {{ (old('postback_type', isset($assignoffers->postback_type) ? $assignoffers->postback_type : null) == 'smartlink') ? 'checked' : '' }}  />
                                           <label  for="radio-2" class="inline control-label">SmartLink</label>
                                        </div>
                                        <div class="form-group form-radio col-md-4">
-                                          <input id="radio-3" name="postback_type" value="global" type="radio" />
+                                          <input id="radio-3" name="postback_type" value="global" type="radio" {{ (old('postback_type', isset($assignoffers->postback_type) ? $assignoffers->postback_type : null) == 'global') ? 'checked' : '' }}  />
                                          <label  for="radio-3" class="inline control-label">Global</label>
                                        </div>
                                     </div>
                                     <div class="form-group smartlinklist" >
                                        <label class="control-label">Smartlink</label>
-                                       <select class="form-control select2" name="smartlink_id">
-                                          <option disabled="disabled" selected="selected">Select Smartlink</option>
+                                       <select class="form-control" name="smartlink_id">
+                                          <option disabled="disabled">Select Smartlink</option>
                                           @foreach($offers as $offer)
-                                          <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
+                                          <option value="{{ $offer->id }}" {{ (old('offer_id', isset($assignoffers->smartlink_id) ? $assignoffers->smartlink_id : null) == $offer->id) ? 'selected' : '' }}>{{ $offer->offer_name }}</option>
                                           @endforeach
                                        </select>
                                     </div>
                                     <div class="form-group offerlist" >
                                        <label class="control-label">Offer</label>
-                                       <select class="form-control select2" name="offer_id">
-                                          <option disabled="disabled" selected="selected">Select Offer</option>
+                                       <select class="form-control" name="offer_id">
+                                          <option disabled="disabled">Select Offer</option>
                                           @foreach($offers as $offer)
-                                          <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
+                                          <option value="{{ $offer->id }}" {{ (old('offer_id', isset($assignoffers->offer_id) ? $assignoffers->offer_id : null) == $offer->id) ? 'selected' : '' }}>{{ $offer->offer_name }}</option>
                                           @endforeach
                                        </select>
                                     </div><!-- 
@@ -97,17 +98,26 @@
                                     <div class="form-group">
                                        <label class="control-label">Protocol</label>
                                        <select class="form-control select2" name="postback_protocol">
-                                          <option selected="selected" value="postbackurl">Postback Url</option>
-                                          <option value="smartlink">Smart Link</option>
-                                          <option value="imagepixel">Image Pixel</option>
+                                          <option  value="postbackurl" {{ ((isset($assignoffers->user_id) ? $assignoffers->postback_protocol : null) == 'postbackurl') ? 'selected' : '' }}>Postback Url</option>
+                                          <option value="smartlink" {{ ((isset($assignoffers->postback_protocol) ? $assignoffers->postback_protocol : null) == 'smartlink') ? 'selected' : '' }}>Smart Link</option>
+                                          <option value="imagepixel" {{ ((isset($assignoffers->postback_protocol) ? $assignoffers->postback_protocol : null) == 'imagepixel') ? 'selected' : '' }}>Image Pixel</option>
                                        </select>
                                     </div>
+                                    @if(isset($assignoffers->user_id))
+                                    <div class="form-group">
+                                       <label class="control-label">Status</label>
+                                       <select class="form-control select2" name="status">
+                                          <option  value="1" {{ ($assignoffers->status == 1) ? 'selected' : '' }}>Approved</option>
+                                          <option  value="0" {{ ($assignoffers->status == 0) ? 'selected' : '' }}>Rejected</option>
+                                       </select>
+                                    </div>
+                                    @endif
                                     <div class="form-group">
                                        <label class="control-label">Code</label>
-                                       <textarea class="form-control" id="message" name="postbacklink" placeholder="Textarea"></textarea>
+                                       <textarea class="form-control" id="message" name="postbacklink" placeholder="Textarea">{{ (isset($assignoffers->user_id) ? $assignoffers->postback_protocol : null)}}</textarea>
                                     </div>
                                     <div class="form-group">
-                                       <button class="btn btn-success btn-lg">Create</button>
+                                       <button class="btn btn-success btn-lg">{{ (isset($assignoffers) ? 'Update' : 'Creat') }}</button>
                                     </div>
                                  </form>
                               </div>
@@ -170,6 +180,18 @@
             </div>
             <script type="text/javascript">
                $(document).ready(function () { 
+                  if($("#radio-1").attr("checked") == 'checked'){
+                     $(".smartlinklist").hide();
+                     $(".offerlist").show();
+                  }
+                  if($("#radio-2").attr("checked") == 'checked'){
+                     $(".smartlinklist").show();
+                     $(".offerlist").hide();
+                  }
+                  if($("#radio-3").attr("checked") == 'checked'){
+                    $(".smartlinklist").hide();
+                     $(".offerlist").hide();
+                  }
                   $("#radio-2").click(function() {
                      $(".smartlinklist").show();
                      $(".offerlist").hide();

@@ -62,7 +62,9 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/postback-create/{id}', 'AffiliateController@getaffiliatepostback')->name('getaffiliatepostback');
 
 	Route::post('/postbackcreate', 'AffiliateController@createpostback')->name('createpostback');
-
+	Route::get('/postback/edit/{id}', 'AffiliateController@editpostback')->name('editpostback');
+	Route::get('/postback/delete/{id}', 'AffiliateController@deletepostback')->name('deletepostback');
+	Route::post('/postbackupdate/{id}', 'AffiliateController@postbackupdate')->name('postbackupdate');
 	Route::get('/invoice/{id}', 'AffiliateController@getinvoice')->name('getinvoice');
 
 	/* Advertisers */
