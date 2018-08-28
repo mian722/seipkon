@@ -294,6 +294,24 @@ class AffiliateController extends Controller
         $offers = Offer::with('restrictions')->get();
         return view('admin.affiliate-payouts-create',compact('affiliates','offers'));
     }
+
+    public function editpayout(Request $request)
+    {
+        $update = DB::table('affiliate_payout')->where('id', $request->pk)
+            ->update(['rate' => $request->value]);
+        return 'success';
+    }
+
+    public function deletepayout($id)
+    {
+        $isdeleted = AffiliatePayout::where('id', $id)->delete();
+        if (empty($isdeleted) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
     public function affiliatepayoutsave(Request $request){
         $check = AffiliatePayout::isDuplicated($request->all());
         if ($check == 'true') {
@@ -311,6 +329,7 @@ class AffiliateController extends Controller
             }
         }
     }
+
     public function offerrate(Request $request)
     {
         $offers = Offer::with('restrictions')->where('id', $request->offerid)->first();
@@ -320,12 +339,14 @@ class AffiliateController extends Controller
         );
         return \Response::json($response);
     }
+
     public function getinvoice($id){
        $invoice = Invoices::Where('id',$id)->first();
        $user = User::Where('id',$invoice->affiliate_id)->first();
        $admin = User::Where('id',$invoice->admin_id)->first();
         return view('admin.invoice',compact('invoice','user','admin'));
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -342,10 +363,6 @@ class AffiliateController extends Controller
                         ->select('users.fname','users.lname','assignoffers.*','offers.offer_name')
                         ->get();
         return view('admin.postback-create',compact('affiliates','offers','postbacks'));
-    }
-    public function edit($id)
-    {
-        //
     }
 
     /**

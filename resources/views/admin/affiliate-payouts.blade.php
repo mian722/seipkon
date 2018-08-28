@@ -50,12 +50,15 @@
                                        <td><a href="{{ route('offers-detail', $payout->offer_id) }}"> ({{ $payout->payout_type }}){{ $payout->offer_name }} </a></td>
                                        <td><a href="{{ route('affiliate.show', $payout->affiliate_id) }}"> {{ $payout->fname }} </a></td>
                                        <td>USD</td>
-                                       <td>{{ $payout->revenue }}</td>
-                                       <td>{{ $payout->rate }}</td>
+                                       <td>${{ $payout->revenue }}</td>
                                        <td>
-                                          <a href="{{ route('payout.edit') }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                          <form action="{{route('payout.edit')}}" method="post">
+                                             {{csrf_field()}}
+                                             $<a href="#" id="pool-name" class="pool-name" data-url="{{ route('payout.edit') }}" data-pk="{{ $payout->id }}" data-type="text"data-placement="bottom" data-title="Edit Comment">{{ $payout->rate }}</a>
+                                          </form>  
+                                       </td>
+                                       <td>
+                                          <a href="{{ route('payout.delete', $payout->id) }}" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                        </td>
                                     </tr>
                                     @endforeach
@@ -72,5 +75,42 @@
             </div>
          </section> 
          <!-- End Right Side Content -->
+
+
+
+<script>
+    $(document).ready(function() {
+
+      $('.pool-name').editable({
+       });
+        
+   $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+   });
+
+   });
+    //make username editable
+    id = $('.pool-name').data('pk');
+    url = $('.pool-name').data('url');
+    $('.pool-name').editable({
+      url: url,
+      pk: id,
+      type:"text",
+      validate:function(value){
+        if($.trim(value) === '')
+        {
+          return 'This field is required';
+        }
+      },
+       success: function(response) {
+           Console.log('success'); //update backbone model
+       }
+    });
+
+
+    </script>
+
          @endsection
 

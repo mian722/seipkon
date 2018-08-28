@@ -67,7 +67,7 @@
                                                    <select class="form-control" name="offerid" data-placeholder="Choose one" data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" id="offerrate" required>
                                                       <option label="Choose one"></option>
                                                       @foreach($offers as $offer)
-                                                      <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
+                                                         <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
                                                       @endforeach
                                                    </select>
                                                    <div id="slErrorContainer"></div>

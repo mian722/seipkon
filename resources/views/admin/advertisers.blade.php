@@ -51,7 +51,7 @@
                                        <tr>
                                           <td>#{{ $loop->iteration }}</td>
                                           <td>{{ $advertiser->company }}</td>
-                                          <td><a href="{{ url('/affiliate-detail/'.$advertiser->id) }}" >{{ $advertiser->fname }}  {{ $advertiser->lname }}</a></td>
+                                          <td><a href="{{ route('advertiser.show', $advertiser->id) }}" >{{ $advertiser->fname }}  {{ $advertiser->lname }}</a></td>
                                           <td>{{ $advertiser->imid }}: {{ $advertiser->imaccount }}</td>
                                           <?php $manager = null;
                                           if ($advertiser->admin_id != 0) {
@@ -65,7 +65,7 @@
                                              <span class="label {{ $advertiser->status == 1 ? 'label-success' : 'label-danger' }} ">{{ $advertiser->status == 1 ? "Active" : "Deactive" }}</span>
                                           </td>
                                           <td>
-                                             <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                             <a href="{{ route('advertiser.edit', $advertiser->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                              <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                              <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
                                           </td>

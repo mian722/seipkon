@@ -38,12 +38,7 @@ class UserController extends Controller
     {
         //
     }
-    public function getadvertiser()
-    {
-        $countries = $this->getcountry();
-        $managers = $this->getuser(4);
-        return view('admin.advertisers-create',compact('countries','managers'));
-    }
+
     public function createaffilate(Request $request)
     {
         //return $request->all();
@@ -72,32 +67,7 @@ class UserController extends Controller
             return redirect()->back()->with('success','Succfully Added!');
         }        
     }
-    public function createadvertiser(Request $request)
-    {
-        $advertiser = new User;
-        $advertiser->fname = $request->fname;
-        $advertiser->lname = $request->lname;
-        $advertiser->email = $request->email;
-        $advertiser->contactno = $request->mobile;
-        $advertiser->imid = $request->imtype;
-        $advertiser->imaccount = $request->imaccount;
-        $advertiser->country = $request->country;
-        $advertiser->website = $request->website;
-        $advertiser->company = $request->company;
-        $advertiser->managerid = $request->manager;
-        $advertiser->password = bcrypt($request->password);
-        $advertiser->securitycode = ($request->security == 'yes') ? $request->scode : "" ;
-        $advertiser->status = $request->status;
-        $advertiser->roles_id = '4';
-        $advertiser->admin_id = Auth::user()->id;
-        $advertiser->save();
-        
-        if (empty($advertiser) ) {
-            return redirect()->back()->with('fail', 'Something Wrong!');
-        } else {
-            return redirect()->back()->with('success','Succfully Added!');
-        }
-    }
+    
     public function accountslist()
     {
         $accounts = User::where('roles_id',4)->where('admin_id', Auth::user()->id)->get();

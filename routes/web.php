@@ -46,6 +46,8 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/affiliates-pending', 'AffiliateController@pendingaffiliates')->name('pendingaffiliates');
 	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliates')->name('approve.affiliate');
 	Route::get('/affiliate-payouts', 'AffiliateController@affiliatepayouts')->name('affiliate-payouts');
+	Route::post('/affiliate-payouts/edit', 'AffiliateController@editpayout')->name('payout.edit');
+	Route::get('/affiliate-payouts/delete/{id}', 'AffiliateController@deletepayout')->name('payout.delete');
 	Route::get('/affiliate-payout-create', 'AffiliateController@affiliatepayoutcreate')->name('affiliatepayoutcreate');
 	Route::post('/affiliate-payout-save', 'AffiliateController@affiliatepayoutsave')->name('affiliatepayoutsave');
 	Route::post('/offerrate', 'AffiliateController@offerrate')->name('offerrate');
@@ -65,12 +67,16 @@ Route::group(['middleware'=> 'admin'], function(){
 
 	Route::get('/invoice/{id}', 'AffiliateController@getinvoice')->name('getinvoice');
 
+
 	/* Advertisers */
-	Route::get('/advertisers-create', 'UserController@getadvertiser')->name('advertiser.get');
-	Route::post('/add-advertiser/create', 'UserController@createadvertiser')->name('add-advertiser.create');
+	Route::get('/advertisers-create', 'AdvertiserController@getadvertiser')->name('advertiser.get');
+	Route::post('/add-advertiser/create', 'AdvertiserController@createadvertiser')->name('add-advertiser.create');
 	Route::get('/advertisers-pending', 'AdvertiserController@pendingadvertisers')->name('pendingadvertisers');
 	Route::get('/approve-advertiser/{id}', 'AdvertiserController@aproveadvertiser')->name('approve.advertiser');	
-	Route::get('/advertisers', 'AdvertiserController@index')->name('advertisers');	
+	Route::get('/advertisers', 'AdvertiserController@index')->name('advertisers');
+	Route::get('/advertiser-detail/{id}', 'AdvertiserController@show')->name('advertiser.show');
+	Route::get('/advertiser/edit/{id}', 'AdvertiserController@edit')->name('advertiser.edit');	
+	Route::get('/advertiser/update/{id}', 'AdvertiserController@update')->name('advertiser.update');	
 
 
 	/* User Accounts */
@@ -141,7 +147,7 @@ Route::get('/smart-alert', function () { return view('smart-alert'); });
 Route::get('/smart-link', function () { return view('smart-link'); });
 Route::get('/integration', function () { return view('integration'); });
 Route::get('/compaigns', function () { return view('compaigns'); });
-Route::get('/affiliate-detail-page', function () { return view('affiliate-detail-page'); });
+//Route::get('/affiliate-detail-page', function () { return view('affiliate-detail-page'); });
 Route::get('/log-detail', function () { return view('log-detail'); });
 
 Auth::routes();
