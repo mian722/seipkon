@@ -324,10 +324,7 @@
                                                 <p>
                                                    <label>Tracking Domain <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" style="width: 40%;" name="   tracking_domain" required="required">
-                                                      <option selected="selected">test offer #1</option>
-                                                      <option>test offer #2</option>
-                                                      <option>test offer #3</option>
-                                                      <option>test offer #4</option>
+                                                      <option {{ ((isset($updatedata) ? $updatedata->restrictions->tracking_domain : null) == $offer->tracking_domain) ? 'selected' : '' }}>{{ $updatedata->restrictions->tracking_domain }}</option>
                                                    </select>
                                                 </p>
                                              </div>
@@ -336,7 +333,7 @@
                                                    <label>SSL <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="form-wrap toggle-switches-flex">
                                                       <div class="form-group">
-                                                         <input checked class="ssl_toggle" name="ssl" data-toggle="toggle" type="checkbox">
+                                                         <input {{ ((isset($updatedata) ? $updatedata->restrictions->ssl : null) == 1) ? 'checked' : '' }}  class="ssl_toggle" name="ssl" data-toggle="toggle" type="checkbox">
                                                       </div>
                                                    </div>
                                                 </p>
@@ -346,7 +343,7 @@
                                                    <label>Lead Traffic to Preview URL <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="form-wrap toggle-switches-flex">
                                                       <div class="form-group">
-                                                         <input checked class="ssl_toggle" name="lead_traffic_preview_url" data-toggle="toggle" type="checkbox">
+                                                         <input {{ ((isset($updatedata) ? $updatedata->restrictions->lead_traffic_preview_url : null) == 1) ? 'checked' : '' }} class="ssl_toggle" name="lead_traffic_preview_url" data-toggle="toggle" type="checkbox">
                                                       </div>
                                                    </div>
                                                 </p>
@@ -356,7 +353,7 @@
                                                    <label>Unique IP Tracking <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="form-wrap toggle-switches-flex">
                                                       <div class="form-group">
-                                                         <input checked class="ssl_toggle" name="unique_ip_tracking" data-toggle="toggle" type="checkbox">
+                                                         <input {{ ((isset($updatedata) ? $updatedata->restrictions->unique_ip_tracking : null) == 1) ? 'checked' : '' }} class="ssl_toggle" name="unique_ip_tracking" data-toggle="toggle" type="checkbox">
                                                       </div>
                                                    </div>
                                                 </p>
@@ -370,14 +367,14 @@
                                                 <p>
                                                    <label>Geo Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" name="geo_targeting[]" style="width: 60%;">
-                                                         <option value="" disabled="disabled" selected="selected">Please Select</option>
+                                                         <option value="" disabled="disabled" {{ (!isset($updatedata)) ? 'selected' : '' }}>Please Select</option>
                                                       @foreach($countries as $key => $value)
-                                                         <option value="{{ $key }}">{{ $value[1] }}</option>
+                                                         <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->geo_targeting, $key) : null) !== false) ? 'selected' : '' }} value="{{ $key }}">{{ $value[1] }}</option>
                                                       @endforeach
                                                    </select>
                                                    <select class="form-control select2" name="geo_type">
-                                                      <option selected="selected">Include</option>
-                                                      <option>Exclude</option>
+                                                      <option {{ ((isset($updatedata) ? $updatedata->restrictions->geo_type : 'Include') == 1) ? 'checked' : '' }}>Include</option>
+                                                      <option {{ ((isset($updatedata) ? $updatedata->restrictions->geo_type : 'Exclude') == 1) ? 'checked' : '' }}>Exclude</option>
                                                    </select>
                                                 </p>
                                              </div>
@@ -385,10 +382,10 @@
                                                 <p>
                                                    <label>Mobile Carrier Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;" name="mobile_carrier_targeting[]">
-                                                      <option value="" disabled="disabled" selected="selected">Please Select</option>
-                                                      <option value="computer">Computer</option>
-                                                      <option value="tablet">Tablet</option>
-                                                      <option value="mobile">Mobile</option>
+                                                      <option value="" disabled="disabled" {{ (!isset($updatedata)) ? 'selected' : '' }}>Please Select</option>
+                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->mobile_carrier_targeting, 'computer') : null) !== false) ? 'selected' : '' }} value="computer">Computer</option>
+                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->mobile_carrier_targeting, 'tablet') : null) !== false) ? 'selected' : '' }} value="tablet">Tablet</option>
+                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->mobile_carrier_targeting, 'mobile') : null) !== false) ? 'selected' : '' }} value="mobile">Mobile</option>
                                                    </select>
                                                 </p>
                                              </div>
@@ -396,15 +393,15 @@
                                                 <p>
                                                    <label>Platform Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 30%;" name="platform_targeting[]">
-                                                      <option value="" disabled="disabled" selected="selected">Please Select</option>
-                                                      <option value="windows">Windows</option>
-                                                      <option value="mac">Mac</option>
-                                                      <option value="linux">Linux</option>
-                                                      <option value="ubuntu">Ubuntu</option>
-                                                      <option value="iphone">iPhone</option>
-                                                      <option value="ipad">iPod</option>
-                                                      <option value="android">Android</option>
-                                                      <option value="blackberry">BlackBerry</option>
+                                                      <option value="" disabled="disabled" {{ (!isset($updatedata)) ? 'selected' : '' }}>Please Select</option>
+                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'windows') : null) !== false) ? 'selected' : '' }} value="windows">Windows</option>
+                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'mac') : null) !== false) ? 'selected' : '' }} value="mac">Mac</option>
+                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'linux') : null) !== false) ? 'selected' : '' }} value="linux">Linux</option>
+                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'ubuntu') : null) !== false) ? 'selected' : '' }} value="ubuntu">Ubuntu</option>
+                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'iphone') : null) !== false) ? 'selected' : '' }} value="iphone">iPhone</option>
+                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'ipad') : null) !== false) ? 'selected' : '' }} value="ipad">iPod</option>
+                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'android') : null) !== false) ? 'selected' : '' }} value="android">Android</option>
+                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'blackberry') : null) !== false) ? 'selected' : '' }} value="blackberry">BlackBerry</option>
                                                    </select>
                                                 </p>
                                                    <button type="button" class="changetabbutton pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
