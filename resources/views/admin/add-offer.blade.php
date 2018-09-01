@@ -59,7 +59,7 @@
                                                    <div class="col-md-12">
                                                       <p>
                                                          <label>Product Name</label>
-                                                         <input type="text" name="offer_name" required="required" placeholder="Enter Product Name">
+                                                         <input type="text" name="offer_name" required="required" placeholder="Enter Product Name" value="{{ (isset($updatedata) ? $updatedata->offer_name : null)}}">
                                                       </p>
                                                    </div>
                                                 </div>
@@ -69,7 +69,7 @@
                                                          <label>Advertiser</label>
                                                          <select class="form-control select2" data-placeholder="Select Tags" name="adv_id" required="required">
                                                             @foreach($users as $user)
-                                                               <option value="{{ $user->id }}">{{ $user->fname }} {{ $user->lname }}</option>
+                                                               <option value="{{ $user->id }}" {{ ((isset($updatedata->adv_id) ? $updatedata->adv_id : null) == $user->id) ? 'selected' : '' }}>{{ $user->fname }} {{ $user->lname }}</option>
                                                             @endforeach
                                                          </select>
                                                       </p>
@@ -78,13 +78,13 @@
                                                       <p>
                                                          <label>Tag <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                          <select class="form-control select2" multiple="multiple" data-placeholder="Select Tags" name="tags[]" required="required">
-                                                            <option>Alabama</option>
-                                                            <option>Alaska</option>
-                                                            <option>California</option>
-                                                            <option>Delaware</option>
-                                                            <option>Tennessee</option>
-                                                            <option>Texas</option>
-                                                            <option>Washington</option>
+                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Alabama') : null) !== false) ? 'selected' : '' }}>Alabama</option>
+                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Alaska') : null) !== false) ? 'selected' : '' }}>Alaska</option>
+                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'California') : null) !== false) ? 'selected' : '' }}>California</option>
+                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Delaware') : null) !== false) ? 'selected' : '' }}>Delaware</option>
+                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Tennessee') : null) !== false) ? 'selected' : '' }}>Tennessee</option>
+                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Texas') : null) !== false) ? 'selected' : '' }}>Texas</option>
+                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Washington') : null) !== false) ? 'selected' : '' }}>Washington</option>
                                                          </select>
                                                       </p>
                                                    </div>
@@ -93,17 +93,17 @@
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Duration <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <input type="text" name="duration" required="required" id="reservation" placeholder="Date" />
+                                                         <input type="text" name="duration" required="required" id="reservation" placeholder="Date" value="{{ (isset($updatedata->duration)) ? $updatedata->duration : '' }}" />
                                                       </p>
                                                    </div>
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Status <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                          <select class="form-control select2" name="status" required="required">
-                                                            <option selected="selected" value="1">Active</option>
-                                                            <option value="2">Paused</option>
-                                                            <option value="0">Pending</option>
-                                                            <option value="3">Deleted</option>
+                                                            <option selected="selected" value="1" {{ ((isset($updatedata->status) ? $updatedata->status : null) == 1) ? 'selected' : '' }}>Active</option>
+                                                            <option value="2" {{ ((isset($updatedata->status) ? $updatedata->status : null) == 2) ? 'selected' : '' }}>Paused</option>
+                                                            <option value="0" {{ ((isset($updatedata->status) ? $updatedata->status : null) == 0) ? 'selected' : '' }}>Pending</option>
+                                                            <option value="3" {{ ((isset($updatedata->status) ? $updatedata->status : null) == 3) ? 'selected' : '' }}>Deleted</option>
                                                          </select>
                                                       </p>
                                                    </div>
@@ -115,25 +115,25 @@
                                                    <p>
                                                       <label>Revenue Type</label>
                                                       <select class="form-control select2" name="revenue_type" required="required">
-                                                         <option selected="selected">RPA</option>
-                                                         <option>RPS</option>
-                                                         <option>RPA+RPS</option>
+                                                         <option {{ ((isset($updatedata->revenue_type) ? $updatedata->revenue_type : null) == 'RPA') ? 'selected' : '' }}>RPA</option>
+                                                         <option {{ ((isset($updatedata->revenue_type) ? $updatedata->revenue_type : null) == 'RPS') ? 'selected' : '' }}>RPS</option>
+                                                         <option {{ ((isset($updatedata->revenue_type) ? $updatedata->revenue_type : null) == 'RPA+RPS') ? 'selected' : '' }}>RPA+RPS</option>
                                                       </select>
                                                    </p>
                                                 </div>
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Revenue</label>
-                                                      <input type="text" placeholder="Revenue" name="revenue" required="required">
+                                                      <input type="text" placeholder="Revenue" name="revenue" required="required" value="{{ (isset($updatedata->revenue)) ? $updatedata->revenue : '' }}">
                                                    </p>
                                                 </div>
                                                 <div class="col-md-3">
                                                       <p>
                                                          <label>Offer Approval <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                          <select class="form-control select2" name="offer_approval" required="required">
-                                                            <option selected="selected">Require Approval</option>
-                                                            <option>Public</option>
-                                                            <option>Private</option>
+                                                            <option value="1" {{ ((isset($updatedata->offer_approval) ? $updatedata->offer_approval : null) == 1) ? 'selected' : '' }}>Require Approval</option>
+                                                            <option value="2" {{ ((isset($updatedata->offer_approval) ? $updatedata->offer_approval : null) == 2) ? 'selected' : '' }}>Public</option>
+                                                            <option value="3" {{ ((isset($updatedata->offer_approval) ? $updatedata->offer_approval : null) == 3) ? 'selected' : '' }}>Private</option>
                                                          </select>
                                                       </p>
                                                 </div>
@@ -144,22 +144,22 @@
                                                    <p>
                                                       <label>Payout Type</label>
                                                       <select class="form-control select2" name="payout_type" required="required">
-                                                         <option selected="selected">CPA</option>
-                                                         <option>CPS</option>
-                                                         <option>CPA+CPS</option>
+                                                         <option {{ ((isset($updatedata->payout_type) ? $updatedata->payout_type : null) == 'CPA') ? 'selected' : '' }}>CPA</option>
+                                                         <option {{ ((isset($updatedata->payout_type) ? $updatedata->payout_type : null) == 'CPS') ? 'selected' : '' }}>CPS</option>
+                                                         <option {{ ((isset($updatedata->payout_type) ? $updatedata->payout_type : null) == 'CPA+CPS') ? 'selected' : '' }}>CPA+CPS</option>
                                                       </select>
                                                    </p>
                                                 </div>
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Payout</label>
-                                                      <input type="text" placeholder="Payout" name="payout" required="required">
+                                                      <input type="text" placeholder="Payout" name="payout" required="required" value="{{ (isset($updatedata->payout)) ? $updatedata->payout : '' }}">
                                                    </p>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-3" style="display: none;">
                                                       <p>
                                                          <label>Affiliate Payout Tiers <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <select class="form-control select2" required="required">
+                                                         <select class="form-control select2" >
                                                             <option selected="selected">Disable</option>
                                                             <option>Enable</option>
                                                          </select>
@@ -171,7 +171,7 @@
                                                 <div class="col-md-12">
                                                    <p>
                                                       <label>Preview URL <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <input type="text" placeholder="Preview URL" name="preview_url" required="required">
+                                                      <input type="text" placeholder="Preview URL" name="preview_url" required="required" value="{{ (isset($updatedata->preview_url)) ? $updatedata->preview_url : '' }}">
                                                    </p>
                                                 </div>
                                              </div>
@@ -179,7 +179,7 @@
                                                 <div class="col-md-12">
                                                    <p>
                                                       <label>Destination URL <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <input type="text" placeholder="Destination URL" name="destination_url" required="required">
+                                                      <input type="text" placeholder="Destination URL" name="destination_url" required="required" value="{{ (isset($updatedata->destination_url)) ? $updatedata->destination_url : '' }}">
                                                    </p>
                                                 </div>
                                              </div>
@@ -224,9 +224,9 @@
                                                    <p>
                                                       <label>Conversion Protocol <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                       <select class="form-control select2" name="signup_protocol" required="required">
-                                                         <option selected="selected">Postback URL</option>
-                                                         <option>CPS</option>
-                                                         <option>CPA+CPS</option>
+                                                         <option value="postbackurl" {{ ((isset($updatedata->signup_protocol) ? $updatedata->signup_protocol : null) == 'postbackurl') ? 'selected' : '' }}>Postback URL</option>
+                                                         <option value="cps" {{ ((isset($updatedata->signup_protocol) ? $updatedata->signup_protocol : null) == 'cps') ? 'selected' : '' }}>CPS</option>
+                                                         <option value="cpa+cps" {{ ((isset($updatedata->signup_protocol) ? $updatedata->signup_protocol : null) == 'cpa+cps') ? 'selected' : '' }}>CPA+CPS</option>
                                                       </select>
                                                    </p>
                                                 </div>
@@ -234,8 +234,8 @@
                                                    <p>
                                                       <label>Conversions Need Approval <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                       <select class="form-control select2" name="signup_need_approval" required="required">
-                                                         <option selected="selected">Disable</option>
-                                                         <option>Enable</option>
+                                                         <option value="0" {{ ((isset($updatedata->signup_need_approval) ? $updatedata->signup_need_approval : null) == 0) ? 'selected' : '' }}>Disable</option>
+                                                         <option value="1" {{ ((isset($updatedata->signup_need_approval) ? $updatedata->signup_need_approval : null) == 1) ? 'selected' : '' }}>Enable</option>
                                                       </select>
                                                    </p>
                                                 </div>
@@ -245,7 +245,7 @@
                                                    <p>
                                                       <label>Description <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                       <textarea id="page-editor" name="description" rows="6">
-                                                      </textarea>
+                                                      {{ (isset($updatedata->description)) ? $updatedata->description : '' }}</textarea>
                                                    </p>
                                                    <button type="submit" onclick="return false;" class="changetabbutton pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
                                                 </div>
@@ -260,14 +260,14 @@
                                                    <label>Advertiser Caps Type <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="col-md-2">
                                                       <select class="form-control select2" name="advertiser_caps_type" required="required">
-                                                         <option selected="selected">None</option>
-                                                         <option>Total</option>
-                                                         <option>Daily</option>
-                                                         <option>Revenue</option>
+                                                         <option value="none" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'none') ? 'selected' : '' }}>None</option>
+                                                         <option value="total" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'total') ? 'selected' : '' }}>Total</option>
+                                                         <option value="Daily" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'Daily') ? 'selected' : '' }}>Daily</option>
+                                                         <option value="revenue" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'revenue') ? 'selected' : '' }}>Revenue</option>
                                                       </select>
                                                    </div>
                                                    <div class="col-md-3">
-                                                      <input type="text" name="advertiser_caps_value" class="form-control" required="required" placeholder="Enter Product Name">
+                                                      <input type="text" name="advertiser_caps_value" class="form-control" required="required" placeholder="Enter Product Name" value="{{ (isset($updatedata->restrictions->advertiser_caps_value)) ? $updatedata->restrictions->advertiser_caps_value : '' }}">
                                                    </div>
                                                 </p>
                                              </div>
@@ -276,14 +276,14 @@
                                                    <label>Affiliate Caps Type <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="col-md-2">
                                                       <select class="form-control select2" name="affiliate_caps_type" required="required">
-                                                         <option selected="selected">None</option>
-                                                         <option>Total</option>
-                                                         <option>Daily</option>
-                                                         <option>Revenue</option>
+                                                         <option value="none" {{ ((isset($updatedata->restrictions->affiliate_caps_type) ? $updatedata->restrictions->affiliate_caps_type : null) == 'none') ? 'selected' : '' }}>None</option>
+                                                         <option value="total" {{ ((isset($updatedata->restrictions->affiliate_caps_type) ? $updatedata->restrictions->affiliate_caps_type : null) == 'total') ? 'selected' : '' }}>Total</option>
+                                                         <option value="Daily" {{ ((isset($updatedata->restrictions->affiliate_caps_type) ? $updatedata->restrictions->affiliate_caps_type : null) == 'Daily') ? 'selected' : '' }}>Daily</option>
+                                                         <option value="revenue" {{ ((isset($updatedata->restrictions->affiliate_caps_type) ? $updatedata->restrictions->affiliate_caps_type : null) == 'revenue') ? 'selected' : '' }}>Revenue</option>
                                                       </select>
                                                    </div>
                                                    <div class="col-md-3">
-                                                      <input type="text" name="affiliate_caps_value" class="form-control" required="required" placeholder="Enter Product Name">
+                                                      <input type="text" name="affiliate_caps_value" class="form-control" required="required" placeholder="Enter Product Name" value="{{ (isset($updatedata->restrictions->affiliate_caps_value)) ? $updatedata->restrictions->affiliate_caps_value : '' }}">
                                                    </div>
                                                 </p>
                                              </div>
@@ -291,9 +291,9 @@
                                                 <p>
                                                    <label>Caps Timezone <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" style="width: 60%;" name="caps_timezone" required="required">
-                                                         <option value="" disabled="disabled" selected="selected">Please Select</option>
+                                                         <option value="" disabled="disabled" {{ (isset($updatedata)) ? '' : 'selected' }}>Please Select</option>
                                                       @foreach($timezones as $timezone)
-                                                         <option value="{{ $timezone }}">{{ $timezone }}</option>
+                                                         <option value="{{ $timezone }}" {{ ((isset($updatedata->restrictions->caps_timezone) ? $updatedata->restrictions->caps_timezone : null) == $timezone) ? 'selected' : '' }}>{{ $timezone }}</option>
                                                       @endforeach
                                                    </select>
                                                 </p>
@@ -302,9 +302,9 @@
                                                 <p>
                                                    <label>Redirect Offer <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" style="width: 60%;" name="redirect_offer">
-                                                         <option value="" disabled="disabled" selected="selected">Please Select</option>
+                                                         <option value="" disabled="disabled" {{ (isset($updatedata)) ? '' : 'selected' }}>Please Select</option>
                                                       @foreach($offers as $offer)
-                                                         <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
+                                                         <option value="{{ $offer->id }}" {{ ((isset($updatedata->restrictions->redirect_offer) ? $updatedata->restrictions->redirect_offer : null) == $offer->id) ? 'selected' : '' }}>{{ $offer->offer_name }}</option>
                                                       @endforeach
                                                    </select>
                                                 </p>
@@ -312,10 +312,10 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Offer Pool <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" data-placeholder="Select a Pool" style="width: 60%;" name="offer_pool[]" >
-                                                      <option value="" disabled="disabled" selected="selected">Please Select</option>
+                                                   <select class="form-control select2" data-placeholder="Select a Pool" style="width: 60%;" name="offer_pool" >
+                                                      <option value="0" {{ (isset($updatedata)) ? '' : 'selected' }}>None</option>
                                                       @foreach($offerspools as $offerspool)
-                                                         <option value="{{ $offerspool->id }}">{{ $offerspool->name }}</option>
+                                                         <option value="{{ $offerspool->id }}" {{ ((isset($updatedata->restrictions->offer_pool) ? $updatedata->restrictions->offer_pool : null) == $offerspool->id) ? 'selected' : '' }}>{{ $offerspool->name }}</option>
                                                       @endforeach
                                                    </select>
                                                 </p>

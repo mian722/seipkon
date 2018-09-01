@@ -164,7 +164,13 @@ class OfferController extends Controller
      */
     public function show($id)
     {
-        //
+        $updatedata = Offer::with('restrictions')->where('id',$id)->first();
+        $offers = $this->getalloffers();
+        $offerspools = $this->getallofferpools();
+        $users = $this->getuser(4);
+        $timezones = $this->gettimezones();
+        $countries = $this->getcountry();
+        return view('admin.add-offer', compact('offers', 'offerspools', 'users', 'timezones', 'countries','updatedata'));
     }
 
     public function offerdetail($id){
