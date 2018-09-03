@@ -13,7 +13,7 @@
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Create Advertiser</h3>
+                                    <h3>{{ isset($advertiser) ? 'Update' : 'Create' }} Advertiser</h3>
                                  </div>
                               </div>
                               <div class="col-md-6 col-sm-6">
@@ -38,31 +38,31 @@
                         <div class="page-box">
                            <div class="form-example">
                               <div class="form-wrap top-label-exapmple form-layout-page">
-                                 <form data-parsley-validate  method="POST" action="{{ route('add-advertiser.create') }}">
+                                 <form data-parsley-validate  method="POST" action="{{ isset($advertiser) ? route('advertiser.update', $advertiser->id) : route('advertiser.create') }}">
                                     <div class="row">
                                        <div class="col-md-3">
                                           <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                           <div class="form-group">
                                              <label class="control-label">First Name:</label>
-                                             <input type="text" name="fname" class="form-control" >
+                                             <input type="text" name="fname" value="{{ isset($advertiser) ? $advertiser->fname : '' }}" class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Last Name:</label>
-                                             <input type="text" name="lname"  class="form-control" >
+                                             <input type="text" name="lname" value="{{ isset($advertiser) ? $advertiser->lname : '' }}" class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Email Address:</label>
-                                             <input type="email" name="email"  class="form-control" >
+                                             <input type="email" name="email" value="{{ isset($advertiser) ? $advertiser->email : '' }}" class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">Mobile NO:</label>
-                                             <input type="text" name="mobile" class="form-control" >
+                                             <input type="text" name="mobile" value="{{ isset($advertiser) ? $advertiser->contactno : '' }}" class="form-control" >
                                           </div>
                                        </div>
                                     </div>
@@ -71,16 +71,16 @@
                                           <div class="form-group">
                                              <label class="control-label">IM:</label>
                                              <select name="imtype" class="form-control select2">
-                                                <option selected="selected">IM</option>
-                                                <option>Skype</option>
-                                                <option>facebook</option>
+                                                <option {{ (old('imid', isset($advertiser->imid) ? $advertiser->imid : null) == 'IM') ? 'selected=selected' : '' }}>IM</option>
+                                                <option {{ (old('imid', isset($advertiser->imid) ? $advertiser->imid : null) == 'Skype') ? 'selected=selected' : '' }}>Skype</option>
+                                                <option {{ (old('imid', isset($advertiser->imid) ? $advertiser->imid : null) == 'Facebook') ? 'selected=selected' : '' }}>Facebook</option>
                                              </select>
                                           </div>
                                        </div>
                                        <div class="col-md-3">
                                           <div class="form-group">
                                              <label class="control-label">IM Account:</label>
-                                             <input type="text" name="imaccount" class="form-control" >
+                                             <input type="text" name="imaccount" value="{{ isset($advertiser) ? $advertiser->imaccount : '' }}" class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-3">
@@ -88,7 +88,7 @@
                                              <label class="control-label">Country:</label>
                                              <select name="country" class="form-control select2">
                                                 @foreach($countries as $key => $value)
-                                                   <option value="{{ $key }}">{{ $value[1] }}</option>
+                                                   <option {{ (old('country', isset($advertiser) ? $advertiser->country : null) == $key) ? 'selected=selected' : '' }} value="{{ $key }}" >{{ $value[1] }}</option>
                                                 @endforeach
                                              </select>
                                           </div>
@@ -99,7 +99,7 @@
                                              <select name="manager" class="form-control select2" data-placeholder="Select a State">
                                                 <option value="&nbsp;" selected="">&nbsp;</option>
                                                 @foreach($managers as $manager)
-                                                <option value="{{ $manager->id }}">{{ $manager->fname }} {{ $manager->lname }}</option>
+                                                <option {{ (old('manager', isset($advertiser) ? $advertiser->managerid : null) == $manager->id) ? 'selected=selected' : '' }} value="{{ $manager->id }}">{{ $manager->fname }} {{ $manager->lname }}</option>
                                                 @endforeach
                                              </select>
                                           </div>
@@ -109,13 +109,13 @@
                                        <div class="col-md-6">
                                           <div class="form-group">
                                              <label class="control-label">Company:</label>
-                                             <input type="text" name="company"  class="form-control" >
+                                             <input type="text" name="company" value="{{ isset($advertiser) ? $advertiser->company : '' }}" class="form-control" >
                                           </div>
                                        </div>
                                        <div class="col-md-6">
                                           <div class="form-group">
                                              <label class="control-label">Website:</label>
-                                             <input type="text" name="website" class="form-control" >
+                                             <input type="text" name="website" value="{{ isset($advertiser) ? $advertiser->website : '' }}" class="form-control" >
                                           </div>
                                        </div>
                                     </div>
@@ -124,8 +124,8 @@
                                           <div class="form-group">
                                              <label class="control-label">Status:</label>
                                              <select name="status" class="form-control select2">
-                                                <option selected="selected" value="1">Active</option>
-                                                <option value="0">Disable</option>
+                                                <option {{ (old('status', isset($advertiser) ? $advertiser->status : null) == 1) ? 'selected=selected' : '' }} value="1">Active</option>
+                                                <option {{ (old('status', isset($advertiser) ? $advertiser->status : null) == 0) ? 'selected=selected' : '' }} value="0">Disable</option>
                                              </select>
                                           </div>
                                        </div>
@@ -139,8 +139,8 @@
                                           <div class="form-group">
                                              <label class="control-label">Security Code:</label>
                                              <select name="security" name="co" class="form-control select2" data-placeholder="Select a State">
-                                                <option value="yes">yes</option>
-                                                <option value="no">no</option>
+                                                <option {{ (old('status', isset($advertiser) ? $advertiser->securitycode : null) != null) ? 'selected=selected' : '' }} value="yes">yes</option>
+                                                <option {{ (old('status', isset($advertiser) ? $advertiser->securitycode : null) == null) ? 'selected=selected' : '' }} value="no">no</option>
                                                 
                                              </select>
                                           </div>
@@ -148,7 +148,7 @@
                                        <div class="col-md-4">
                                           <div class="form-group">
                                              <label class="control-label">&nbsp;</label>
-                                             <input name="scode" type="text" class="form-control" >
+                                             <input name="scode" value="{{ (old('status', isset($advertiser) ? $advertiser->securitycode : null) != null) ? $advertiser->securitycode : '' }}" type="text" class="form-control" >
                                           </div>
                                        </div>
                                     </div>
@@ -158,7 +158,7 @@
                                              <div class="row">
                                                 <div class="col-md-12">
                                                    <div class="form-layout-submit">
-                                                      <button type="submit" class="btn btn-info" >Submit</button>
+                                                      <button type="submit" class="btn btn-info" >{{ isset($advertiser) ? 'Update' : 'Submit' }}</button>
                                                       <button type="submit" class="btn btn-danger">cancel</button>
                                                    </div>
                                                 </div>

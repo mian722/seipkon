@@ -51,7 +51,14 @@
                                           <div class="row">
                                              <div class="col-md-3">
                                                 <div class="profile-widget-img">
-                                                   <img src="{{ asset('public/assets/img/msg-1.png') }}" alt="profile">
+                                                   <img src="{{ asset('public/assets/img/msg-1.png') }}" id="img_display" alt="profile">
+                                                      <div class="product-upload btn btn-info">
+                                                         <p>
+                                                            <i class="fa fa-upload"></i>
+                                                            Upload Image
+                                                         </p>
+                                                         <input type="file" name="offer_image" onchange="readURL(this);">
+                                                      </div>
                                                 </div>
                                              </div>
                                              <div class="col-md-9">
@@ -77,6 +84,14 @@
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Tag <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                         <select class="form-control select2" multiple="multiple" data-placeholder="Select Tags" name="tags[]">
+                                                            <option>Alabama</option>
+                                                            <option>Alaska</option>
+                                                            <option>California</option>
+                                                            <option>Delaware</option>
+                                                            <option>Tennessee</option>
+                                                            <option>Texas</option>
+                                                            <option>Washington</option>
                                                          <select class="form-control select2" multiple="multiple" data-placeholder="Select Tags" name="tags[]" required="required">
                                                             <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Alabama') : null) !== false) ? 'selected' : '' }}>Alabama</option>
                                                             <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Alaska') : null) !== false) ? 'selected' : '' }}>Alaska</option>
@@ -223,6 +238,10 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Conversion Protocol <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                      <select class="form-control select2" name="signup_protocol">
+                                                         <option selected="selected">Postback URL</option>
+                                                         <option>CPS</option>
+                                                         <option>CPA+CPS</option>
                                                       <select class="form-control select2" name="signup_protocol" required="required">
                                                          <option value="postbackurl" {{ ((isset($updatedata->signup_protocol) ? $updatedata->signup_protocol : null) == 'postbackurl') ? 'selected' : '' }}>Postback URL</option>
                                                          <option value="cps" {{ ((isset($updatedata->signup_protocol) ? $updatedata->signup_protocol : null) == 'cps') ? 'selected' : '' }}>CPS</option>
@@ -233,6 +252,9 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Conversions Need Approval <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                      <select class="form-control select2" name="signup_need_approval">
+                                                         <option selected="selected">Disable</option>
+                                                         <option>Enable</option>
                                                       <select class="form-control select2" name="signup_need_approval" required="required">
                                                          <option value="0" {{ ((isset($updatedata->signup_need_approval) ? $updatedata->signup_need_approval : null) == 0) ? 'selected' : '' }}>Disable</option>
                                                          <option value="1" {{ ((isset($updatedata->signup_need_approval) ? $updatedata->signup_need_approval : null) == 1) ? 'selected' : '' }}>Enable</option>
@@ -259,6 +281,15 @@
                                                 <p>
                                                    <label>Advertiser Caps Type <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="col-md-2">
+                                                      <select class="form-control select2" name="advertiser_caps_type">
+                                                         <option selected="selected">None</option>
+                                                         <option>Total</option>
+                                                         <option>Daily</option>
+                                                         <option>Revenue</option>
+                                                      </select>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <input type="text" name="advertiser_caps_value" class="form-control"  placeholder="Enter Product Name">
                                                       <select class="form-control select2" name="advertiser_caps_type" required="required">
                                                          <option value="none" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'none') ? 'selected' : '' }}>None</option>
                                                          <option value="total" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'total') ? 'selected' : '' }}>Total</option>
@@ -275,6 +306,15 @@
                                                 <p>
                                                    <label>Affiliate Caps Type <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="col-md-2">
+                                                      <select class="form-control select2" name="affiliate_caps_type">
+                                                         <option selected="selected">None</option>
+                                                         <option>Total</option>
+                                                         <option>Daily</option>
+                                                         <option>Revenue</option>
+                                                      </select>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <input type="text" name="affiliate_caps_value" class="form-control" placeholder="Enter Product Name">
                                                       <select class="form-control select2" name="affiliate_caps_type" required="required">
                                                          <option value="none" {{ ((isset($updatedata->restrictions->affiliate_caps_type) ? $updatedata->restrictions->affiliate_caps_type : null) == 'none') ? 'selected' : '' }}>None</option>
                                                          <option value="total" {{ ((isset($updatedata->restrictions->affiliate_caps_type) ? $updatedata->restrictions->affiliate_caps_type : null) == 'total') ? 'selected' : '' }}>Total</option>
@@ -290,6 +330,8 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Caps Timezone <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <select class="form-control select2" style="width: 60%;" name="caps_timezone">
+                                                         <option value="" disabled="disabled" selected="selected">Please Select</option>
                                                    <select class="form-control select2" style="width: 60%;" name="caps_timezone" required="required">
                                                          <option value="" disabled="disabled" {{ (isset($updatedata)) ? '' : 'selected' }}>Please Select</option>
                                                       @foreach($timezones as $timezone)
@@ -323,6 +365,11 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Tracking Domain <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
+                                                   <select class="form-control select2" style="width: 40%;" name="   tracking_domain">
+                                                      <option selected="selected">test offer #1</option>
+                                                      <option>test offer #2</option>
+                                                      <option>test offer #3</option>
+                                                      <option>test offer #4</option>
                                                    <select class="form-control select2" style="width: 40%;" name="   tracking_domain" required="required">
                                                       <option {{ ((isset($updatedata) ? $updatedata->restrictions->tracking_domain : null) == $offer->tracking_domain) ? 'selected' : '' }}>{{ $updatedata->restrictions->tracking_domain }}</option>
                                                    </select>
@@ -417,13 +464,7 @@
                                                 <p>
                                                    <label>Image Pixel between 50 to 3200 in both length and width. </label>
                                                    <div class="product-upload-action" style="text-align: left;">
-                                                      <div class="product-upload btn btn-info">
-                                                         <p>
-                                                            <i class="fa fa-upload"></i>
-                                                            Upload Image
-                                                         </p>
-                                                         <input type="file" name="offer_image">
-                                                      </div>
+                                                      <input type="file" name="gallery[]" id="" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
                                                       <!-- <button type="submit" class="btn btn-danger">
                                                       <i class="fa fa-trash"></i>
                                                       Delete Image
@@ -442,127 +483,6 @@
                                  </form>
                               </div>
                            </div>
-
-
-
-
-
-                           <!-- <div class="col-md-6 col-sm-6">
-                              <div class="add-product-form-group">
-                                 <h3>Product Info</h3>
-                                 <form>
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <p>
-                                             <label>Product Name</label>
-                                             <input type="text" placeholder="Enter Product Name">
-                                          </p>
-                                       </div>
-                                    </div>
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <p>
-                                             <label>Brand Name</label>
-                                             <input type="text" placeholder="Enter Brand Name">
-                                          </p>
-                                       </div>
-                                    </div>
-                                    <div class="row">
-                                       <div class="col-md-6">
-                                          <p>
-                                             <label>Category</label>
-                                             <select class="selectpicker-product select-pro">
-                                                <option>Category 1</option>
-                                                <option>Category 2</option>
-                                                <option>Category 3</option>
-                                                <option>Category 4</option>
-                                             </select>
-                                          </p>
-                                       </div>
-                                       <div class="col-md-6">
-                                          <p>
-                                             <label>Size</label>
-                                             <select class="selectpicker-product select-pro">
-                                                <option>XX</option>
-                                                <option>XL</option>
-                                                <option>M</option>
-                                                <option>XXL</option>
-                                                <option>L</option>
-                                                <option>SM</option>
-                                             </select>
-                                          </p>
-                                       </div>
-                                    </div>
-                                    <div class="row">
-                                       <div class="col-md-6">
-                                          <p>
-                                             <label>Price</label>
-                                             <input type="text" placeholder="Enter Price">
-                                          </p>
-                                       </div>
-                                       <div class="col-md-6">
-                                          <p>
-                                             <label>Discount</label>
-                                             <input type="text" placeholder="Enter Discount as Percentage">
-                                          </p>
-                                       </div>
-                                    </div>
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <p>
-                                             <label>Description</label>
-                                             <textarea placeholder="Write Product Description Here" ></textarea>
-                                          </p>
-                                       </div>
-                                    </div>
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <p>
-                                             <button type="submit" class="btn btn-success" >
-                                             <i class="fa fa-check"></i>
-                                             Save Info
-                                             </button>
-                                             <button type="submit" class="btn btn-danger" >
-                                             <i class="fa fa-times"></i>
-                                             Cancel
-                                             </button>
-                                          </p>
-                                       </div>
-                                    </div>
-                                 </form>
-                              </div>
-                           </div>
-                           <div class="col-md-6 col-sm-6">
-                              <div class="add-product-image-upload">
-                                 <h3>Product Thumb</h3>
-                                 <form>
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <div class="product-upload-image">
-                                             <img src="{{ asset('public/assets/img/product/pro-1.png') }}" alt="image" />
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <div class="product-upload-action">
-                                             <div class="product-upload btn btn-info">
-                                                <p>
-                                                   <i class="fa fa-upload"></i>
-                                                   Upload Another Image
-                                                </p>
-                                                <input type="file" >
-                                             </div>
-                                             <button type="submit" class="btn btn-danger" >
-                                             <i class="fa fa-trash"></i>
-                                             Delete Image
-                                             </button>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </form>
-                              </div>
-                           </div> -->
                         </div>
                         </div>
                      </div>

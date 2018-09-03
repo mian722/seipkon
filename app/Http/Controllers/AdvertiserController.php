@@ -16,13 +16,13 @@ class AdvertiserController extends Controller
      */
     public function index()
     {
-        $advertisers = User::Where('roles_id', 4)->get();
+        $advertisers = User::Where('roles_id', 4)->where('status', 1)->get();
         return view('admin.advertisers', compact('advertisers'));
     }
 
     public function pendingadvertisers()
     {
-        $advertisers = User::Where('roles_id',4)->Where('status',0)->get();
+        $advertisers = User::Where('roles_id',4)->Where('status','!=', 1)->get();
         return view('admin.advertisers-pending',compact('advertisers'));
     }
 
@@ -82,7 +82,42 @@ class AdvertiserController extends Controller
         return view('admin.advertisers-create',compact('countries','managers','advertiser'));
     }
 
-    public function update(Request $requst, $id){
+    public function delete($id){
+        $deleted = User::Where('id', $id)->delete();
+        if (empty($deleted) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
 
+    public function block($id){
+        $blocked = User::Where('id', $id)->update(['status' => 2]);
+        if (empty($blocked) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
+    public function unblock($id){
+        $blocked = User::Where('id', $id)->update(['status' => 1]);
+        if (empty($blocked) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
+    public function update(Request $request, $id){
+        $update = DB::table('users')
+            ->where('id', $id)
+            ->update(['fname' => $request->fname, 'lname' => $request->lname, 'email' => $request->email, 'contactno' => $request->mobile, 'imid' => $request->imtype, 'imaccount' => $request->imaccount, 'country' => $request->country, 'website' => $request->website, 'company' => $request->company, 'managerid' => $request->manager, 'password' => bcrypt($request->password), 'securitycode' => ($request->security == 'yes') ? $request->scode : "", 'status' => $request->status]);
+        
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
     }
 }

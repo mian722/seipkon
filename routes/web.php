@@ -73,23 +73,38 @@ Route::group(['middleware'=> 'admin'], function(){
 
 	/* Advertisers */
 	Route::get('/advertisers-create', 'AdvertiserController@getadvertiser')->name('advertiser.get');
-	Route::post('/add-advertiser/create', 'AdvertiserController@createadvertiser')->name('add-advertiser.create');
+	Route::post('/add-advertiser/create', 'AdvertiserController@createadvertiser')->name('advertiser.create');
 	Route::get('/advertisers-pending', 'AdvertiserController@pendingadvertisers')->name('pendingadvertisers');
-	Route::get('/approve-advertiser/{id}', 'AdvertiserController@aproveadvertiser')->name('approve.advertiser');	
+	Route::get('/approve-advertiser/{id}', 'AdvertiserController@aproveadvertiser')->name('advertiser.approve');	
 	Route::get('/advertisers', 'AdvertiserController@index')->name('advertisers');
 	Route::get('/advertiser-detail/{id}', 'AdvertiserController@show')->name('advertiser.show');
 	Route::get('/advertiser/edit/{id}', 'AdvertiserController@edit')->name('advertiser.edit');	
-	Route::get('/advertiser/update/{id}', 'AdvertiserController@update')->name('advertiser.update');	
+	Route::post('/advertiser/update/{id}', 'AdvertiserController@update')->name('advertiser.update');	
+	Route::get('/advertiser/delete/{id}', 'AdvertiserController@delete')->name('advertiser.delete');	
+	Route::get('/advertiser/block/{id}', 'AdvertiserController@block')->name('advertiser.block');	
+	Route::get('/advertiser/unblock/{id}', 'AdvertiserController@unblock')->name('advertiser.unblock');	
 
 
 	/* User Accounts */
 	Route::get('/accounts', 'UserController@accountslist')->name('admin.accountslist');
 	Route::get('/accounts-create', 'UserController@createaccount')->name('createaccount');
 	Route::post('/accounts-create/store', 'UserController@storeaccount')->name('storeaccount');
+	Route::get('/account/edit/{id}', 'UserController@accountedit')->name('account.edit');
+	Route::post('/account/update/{id}', 'UserController@accountupdate')->name('account.update');
+	Route::post('/account/delete/{id}', 'UserController@accountdelete')->name('account.delete');
 	Route::get('/roles', 'ManagerController@index')->name('admin.roleslist');
 	Route::get('/roles-create', 'ManagerController@createmanagerrole')->name('createmanagerrole');
 	Route::post('/roles-create/store', 'ManagerController@storemanagerrole')->name('storemanagerrole');
 	Route::post('/manager-role-detail', 'ManagerController@getmanagerrole')->name('getmanagerrole');
+
+
+	/* Reports */
+	Route::get('/advertisers-reports', function () { return view('advertisers-reports'); });
+	Route::get('/affiliate-reports', function () { return view('affiliate-reports'); });
+	Route::get('/operation-report', function () { return view('operation-report'); });
+	Route::get('/generat-report', function () { return view('generat-report'); });
+	Route::get('/conversion-report', function () { return view('conversion-report'); });
+	Route::get('/conversion-status-report', function () { return view('conversion-status-report'); });
 });
 Route::get('/tracking/{aid}/{oid}', 'ClicksController@tracking')->name('tracking');
 Route::get('/post', 'SignupController@postback')->name('posttracking');
@@ -130,12 +145,6 @@ Route::get('/advertisers-invoice-create', function () { return view('advertisers
 
 Route::get('/teams', function () { return view('teams'); });
 Route::get('/teams-create', function () { return view('teams-create'); });
-Route::get('/advertisers-reports', function () { return view('advertisers-reports'); });
-Route::get('/affiliate-reports', function () { return view('affiliate-reports'); });
-Route::get('/operation-report', function () { return view('operation-report'); });
-Route::get('/generat-report', function () { return view('generat-report'); });
-Route::get('/conversion-report', function () { return view('conversion-report'); });
-Route::get('/conversion-status-report', function () { return view('conversion-status-report'); });
 Route::get('/test-conversion-report', function () { return view('test-conversion-report'); });
 Route::get('/server-log', function () { return view('server-log'); });
 Route::get('/activity-log', function () { return view('activity-log'); });

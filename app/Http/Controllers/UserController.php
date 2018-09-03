@@ -70,9 +70,8 @@ class UserController extends Controller
     
     public function accountslist()
     {
-        $accounts = User::where('roles_id',4)->where('admin_id', Auth::user()->id)->get();
-        return view('admin.accounts', compact('accounts'));
-        
+        $accounts = User::where('roles_id',3)->where('admin_id', Auth::user()->id)->get();
+        return view('admin.accounts', compact('accounts'));        
     }
     public function createaccount()
     {
@@ -106,6 +105,29 @@ class UserController extends Controller
             return redirect()->back()->with('success','Succfully Added!');
         }        
     }
+
+    public function accountedit($id){
+        $countries = $this->getcountry();
+        $managers = $this->getuser(3);
+        $account = User::where('id', $id)->first();
+        return view('admin.accounts-create', compact('account','countries','managers'));
+    }
+
+    public function accountupdate(Request $request, $id){
+        $update = User::where('id', $id)
+            ->update(['fname' => $request->fname, 'lname' => $request->lname, 'email' => $request->email, 'contactno' => $request->contactno, 'imid' => $request->imid, 'country' => $request->country, 'website' => $request->website, 'company' => $request->company, 'managerid' => $request->managerid, 'password' => bcrypt($request->password)]);
+        
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        } 
+    }
+
+    public function accountdelete($id){
+
+    }
+
     /**
      * Display the specified resource.
      *

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Input;
 use App\Offer;
+use File;
 use App\User;
 use App\AssignOffers;
 use App\OfferRestriction;
@@ -50,15 +51,27 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request->all();
-        $file = Input::file('offer_image');
-                $file_name = $file->getClientOriginalName();
-                $file_size = round($file->getSize() / 50120);
-                $file_ex = $file->getClientOriginalExtension();
-                $file_mime = $file->getMimeType();
-                if (!in_array($file_ex, array('jpg', 'jpeg','png'))) return 'Invalid image extension we just allow JPG, GIF, PNG';
-                $newname = str_random(10).$file_name;
-                $file->move(base_path().'/public/offerimages/', $newname);
+        // //eturn dd($request);
+            $file = Input::file('offer_image');
+            $file_name = $file->getClientOriginalName();
+            $file_size = round($file->getSize() / 50120);
+            $file_ex = $file->getClientOriginalExtension();
+            $file_mime = $file->getMimeType();
+            if (!in_array($file_ex, array('jpg', 'jpeg','png'))) return 'Invalid image extension we just allow JPG, GIF, PNG';
+            $newname = str_random(10).$file_name;
+            $file->move(base_path().'/public/offerimages/', $newname);
+
+        $names = array();
+        $mulfiles = $request->file('gallery');
+        foreach($mulfiles as $sinfile){
+            $file_name = $sinfile->getClientOriginalName();
+            $file_size = round($sinfile->getSize() / 50120);
+            $file_ex = $sinfile->getClientOriginalExtension();
+            if (!in_array($file_ex, array('jpg', 'jpeg','png'))) return 'Invalid image extension we just allow JPG, GIF, PNG';
+            $nname = str_random(10).$file_name;
+            $names[] = $nname;
+            $sinfile->move(base_path().'/public/offerimages/', $nname);
+        }
         $offer = new Offer;
         $offer->offer_name = $request->offer_name;
         $offer->adv_id = $request->adv_id;
@@ -76,6 +89,7 @@ class OfferController extends Controller
         $offer->signup_need_approval = $request->signup_need_approval;
         $offer->description = $request->description;
         $offer->admin_id = Auth::user()->id;
+        $offer->creative_image = json_encode($names);
         $basePath = url('/');
         $offer->offer_image = $newname;
         $offer->offer_postback = url('/').'/advback?click_id={click_id}&adv_id='.$request->adv_id;
