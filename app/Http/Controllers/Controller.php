@@ -21,7 +21,14 @@ use Carbon\Carbon;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user= Auth::user();
 
+            return $next($request);
+        });
+    }
     public function getcountry() {
     	return $countries=Array(
       "AD" => array("AND","Andorra"),
