@@ -158,7 +158,7 @@ class AffiliateController extends Controller
     public function affiliatedetail(Request $request){
         $user = User::with('role')->where('id', $request->userid)->first();
         $offers = Offer::leftJoin('assignoffers', 'offers.id', '=', 'assignoffers.offer_id')
-                        ->where('assignoffers.affiliate_id', $request->userid)
+                        ->where('assignoffers.user_id', $request->userid)
                         ->get();
         $msg = '<option disabled="disabled" selected="selected">Select Offer</option>';
         foreach ($offers as $offer) {

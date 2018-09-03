@@ -15,6 +15,7 @@
       <!-- Favicon -->
       <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('public/assets/img/favicon/favicon-32x32.png') }}">
       <!-- Animate CSS -->
+      <link href="{{ asset('public/assets/css/imageuploadify.min.css') }}" rel="stylesheet">
       <link rel="stylesheet" href="{{ asset('public/assets/css/animate.min.css') }}">
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/bootstrap/bootstrap.min.css') }}">
@@ -51,25 +52,24 @@
       <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
       <!-- jQuery -->
       <script src="{{ asset('public/assets/js/jquery-3.1.0.min.js') }}"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+
       
       <style type="text/css">
          .profile-widget-img {
             text-align: center;
-            padding-top: 40px;
+            padding-top: 20px;
          }
          .create-page-right form {
             display: inline-block;
          }
          .table { width: 100% !important; }
-<<<<<<< HEAD
          .dis-none .editable-buttons {  display: none !important; }
-=======
          .hidden-style {
             border: 0;
             display: inline-block;
             width: 100px !important;
          }
->>>>>>> 0afdb8582cbbb1f567683cbf2ab740a3801739cc
       </style>
 
    </head>
@@ -509,6 +509,13 @@
       <!-- End Wrapper -->
        
        
+      <script type="text/javascript" src="{{ asset('public/assets/js/imageuploadify.min.js') }}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#multiple_image').imageuploadify();
+            })
+        </script>
       <!-- Bootstrap JS -->
       <script src="{{ asset('public/assets/plugins/bootstrap/bootstrap.min.js') }}"></script>
       
@@ -644,6 +651,20 @@
 
         theDiv.slideDown().removeClass("hidden");
       });
+      function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img_display')
+                        .attr('src', e.target.result)
+                        .width(114)
+                        .height(113);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
       </script>
 
 

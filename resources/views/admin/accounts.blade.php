@@ -46,7 +46,7 @@
                                  <tbody>
                                     @foreach($accounts as $account)
                                     <tr>
-                                       <td>#{{ $account->id }}</td>
+                                       <td>#{{ $loop->iteration }}</td>
                                        <td>{{ $account->fname }} {{ $account->lname }}</td>
                                        <td>{{ $account->email }}</td>
                                        <td>{{ $account->contactno }}</td>
@@ -54,8 +54,8 @@
                                        <td>{{ $manager->fname }} {{ $manager->lname }}</td>
                                        <td>{{ $account->created_at }}</td>
                                        <td>
-                                          <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                          <a href="{{ route('account.edit', $account->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                          <a href="{{ route('account.delete', $account->id) }}" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                           <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
                                        </td>
                                     </tr>
