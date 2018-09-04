@@ -95,7 +95,7 @@ class OffersPoolController extends Controller
     public function addoffertopool(Request $request)
     {
         foreach ($request->offers as $offerid) {
-            $values = array('offer_id' => $offerid,'offerspool_id' => $request->poolid);
+            $values = array('offer_id' => $offerid,'pool_id' => $request->poolid);
             DB::table('pool_relation')->insert($values);
         }
         return redirect()->back()->with('success', 'Succesfully Added');
@@ -109,7 +109,7 @@ class OffersPoolController extends Controller
      */
     public function deleteofferfrompool($oid, $pid)
     {
-        DB::table('pool_relation')->where('offerspool_id', $pid)->where('offer_id', $oid)->delete();
+        DB::table('pool_relation')->where('pool_id', $pid)->where('offer_id', $oid)->delete();
         return redirect()->back()->with('success', 'Succesfully Deleted');
     }
 

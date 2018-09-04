@@ -15,7 +15,7 @@ class CreatePoolRelationTable extends Migration
     {
         Schema::create('pool_relation', function (Blueprint $table) {
             $table->increments('id');
-            $table->tinyInteger('offerspool_id');
+            $table->tinyInteger('pool_id');
             $table->tinyInteger('offer_id');
             $table->timestamps();
         });
