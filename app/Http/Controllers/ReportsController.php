@@ -25,14 +25,8 @@ class ReportsController extends Controller
 
     public function advertiserreportgenerate(Request $request){
     	$data = json_decode($request->allform);
+      return $data;
 
-      return App\Clicks::where('uid',$offer->uid)->where('oid',$offer->oid)->select(DB::raw("IFNULL(sum(clicks.click),0) as click"))->whereBetween('clicks.updated_at', [
-                            Carbon\Carbon::parse('today')->startOfDay(),
-                            Carbon\Carbon::parse('today')->endOfDay(),
-                            ])->get()
-
-      return $postbacks = User::Join('clicks', 'clicks.affiliate_id', '=', 'users.id')
-                        ->get();
 
     	return $table = '<table id="button_datatables_example" class="table display table-striped table-bordered">
                             <thead>
