@@ -49,8 +49,8 @@
                                                    $poolid = $pool['0']->id;
                                                       $check = DB::table('offers')
                                                        ->select('offers.id')
-                                                       ->leftjoin('pool_relation', 'pool_relation.offerspool_id', '=', 'offers.id')
-                                                       ->where('pool_relation.offerspool_id', $poolid)
+                                                       ->leftjoin('pool_relation', 'pool_relation.pool_id', '=', 'offers.id')
+                                                       ->where('pool_relation.pool_id', $poolid)
                                                        ->where('pool_relation.offer_id', $offer->id)
                                                        ->first();
                                                    ?>

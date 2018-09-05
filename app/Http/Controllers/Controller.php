@@ -560,7 +560,7 @@ class Controller extends BaseController
     }
 
     public function checkpools($offerpoolid){
-        $offersid = DB::table('pool_relation')->select('offer_id')->where('offerspool_id', $offerpoolid)->get();
+        $offersid = DB::table('pool_relation')->select('offer_id')->where('pool_id', $offerpoolid)->get();
         foreach ($offersid as $offerid) {
           $offersdetail = Offer::with('restrictions')->where('id', $offerid->offer_id)->first();
           $result = $this->checkgeotargeting($offersdetail);
