@@ -179,8 +179,8 @@
                                                       @endforeach
                                                    </select>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Conversion Status" name="conversion_status">
-                                                      <option value="approved">Approved</option>
-                                                      <option value="pending">Pending</option>
+                                                      <option value="1">Approved</option>
+                                                      <option value="0">Pending</option>
                                                    </select>
                                                 </div>
                                              </div>
@@ -190,6 +190,7 @@
                                              <div class="col-md-11">
                                                 <div class="col-md-6">
                                                    <select class="form-control select2" name="timezone">
+                                                      <option selected="" value="">None</option>
                                                       @foreach($timezones as $timezone)
                                                       <option value="{{ $timezone }}">{{ $timezone }}</option>
                                                       @endforeach
@@ -200,7 +201,7 @@
                                           <div class="row">
                                              <div class="col-md-1"><label>Range</label></div>
                                              <div class="col-md-11">
-                                                <div class="col-md-2">
+                                                <!-- <div class="col-md-2">
                                                    <select class="form-control select2" name="daterangetype">
                                                       <option>Today</option>
                                                       <option>Yesterday</option>
@@ -208,13 +209,13 @@
                                                       <option>This Month</option>
                                                       <option>Last Month</option>
                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
+                                                </div> -->
+                                                <div class="col-md-6">
                                                          <input type="text" class="form-control" name="daterange" id="reservation" placeholder="Date" />
                                                 </div>
                                                 <div class="col-md-2">&nbsp;</div>
                                                 <div class="col-md-4">
-                                                   <button type="submit" class="btn btn-success">Generate Report</button>
+                                                   <button type="submit" class="btn btn-success pull-right">Generate Report</button>
                                                 </div>
                                              </div>
                                           </div>

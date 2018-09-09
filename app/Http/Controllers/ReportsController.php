@@ -25,31 +25,35 @@ class ReportsController extends Controller
 
     public function advertiserreportgenerate(Request $request){
     	$data = json_decode($request->allform);
-      return $data;
       //return $data->offers_id;
       //return $data->advertiser_id;
-      $alldata = User::Join('offers', 'offers.adv_id', '=', 'users.id');
-      ((is_array($data->advertiser_id)) ? $alldata->whereIn('users.id',$data->advertiser_id) : $alldata->where('users.id',$data->advertiser_id));
-      ((is_array($data->offers_id)) ? $alldata->whereIn('offers.id',$data->offers_id) : $alldata->where('offers.id',$data->offers_id));
-      $alldata->select('users.*', 'offers.*');
-      return $alldata->get();
-      $conv = json_encode($alldata, true);
+      $alldata = User::Join('offers', 'offers.adv_id', '=', 'users.id')
+      ->Join('offer_restrictions', 'offer_restrictions.offer_id', '=', 'offers.id');
+      (isset($data->advertiser_id) ? (is_array($data->advertiser_id)) ? $alldata->whereIn('users.id',$data->advertiser_id) : $alldata->where('users.id',$data->advertiser_id) : '');
+      (isset($data->adv_manager_value) ? (is_array($data->adv_manager_value)) ? $alldata->whereIn('users.managerid',$data->adv_manager_value) : $alldata->where('users.managerid',$data->adv_manager_value) : '');
+      (isset($data->offers_id) ? (is_array($data->offers_id)) ? $alldata->whereIn('offers.id',$data->offers_id) : $alldata->where('offers.id',$data->offers_id) : '');
+      (isset($data->conversion_status) ? (is_array($data->conversion_status)) ? $alldata->whereIn('users.status',$data->conversion_status) : $alldata->where('users.status',$data->conversion_status) : '');
+      ((isset($data->timezone) && !empty($data->timezone)) ? $alldata->where('offer_restrictions.caps_timezone',$data->timezone) : '');
+      $alldata->select('users.*', 'offers.*', 'offer_restrictions.caps_timezone');
+      //return $alldata->get();
+      // if (isset($data->daterange)) {
+      //   $data->->whereBetween('clicks.updated_at', [
+      //                       Carbon\Carbon::parse('today')->startOfDay(),
+      //                       Carbon\Carbon::parse('today')->endOfDay(),
+      //                       ]);
+      // }
 
-      (is_array($conv)) ? 'han' : 'nai';
-foreach ($alldata as $value) {
-  return 'chali';
-}
-return 'nai chali';
-                for($i = 0; $i <= count($alldata); $i++) {
-                  echo $alldata[$i];
-                }
-      return App\Clicks::where('uid',$offer->uid)->where('oid',$offer->oid)->select(DB::raw("IFNULL(sum(clicks.click),0) as click"))->whereBetween('clicks.updated_at', [
-                            Carbon\Carbon::parse('today')->startOfDay(),
-                            Carbon\Carbon::parse('today')->endOfDay(),
-                            ])->get();
 
-      return $postbacks = User::Join('clicks', 'clicks.affiliate_id', '=', 'users.id')
-                        ->get();
+      //           for($i = 0; $i <= count($alldata); $i++) {
+      //             echo $alldata[$i];
+      //           }
+      // return App\Clicks::where('uid',$offer->uid)->where('oid',$offer->oid)->select(DB::raw("IFNULL(sum(clicks.click),0) as click"))->whereBetween('clicks.updated_at', [
+      //                       Carbon\Carbon::parse('today')->startOfDay(),
+      //                       Carbon\Carbon::parse('today')->endOfDay(),
+      //                       ])->get();
+
+      // return $postbacks = User::Join('clicks', 'clicks.affiliate_id', '=', 'users.id')
+      //                   ->get();
 
     	$table = '<table id="button_datatables_example" class="table display table-striped table-bordered">
                             <thead>
@@ -72,7 +76,7 @@ return 'nai chali';
                                 </tr>
                             </thead>
                         <tbody>';
-                foreach ($alldata as $value) {
+                foreach ($alldata->get() as $value) {
               
                 $table .= '<tr>
                                <td>NO.</td>

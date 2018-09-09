@@ -74,7 +74,7 @@
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Advertiser</label>
-                                                         <select class="form-control select2" data-placeholder="Select Tags" name="adv_id" required="required">
+                                                         <select class="form-control select2" data-placeholder="Select Advertiser" name="adv_id" required="required">
                                                             @foreach($users as $user)
                                                                <option value="{{ $user->id }}" {{ ((isset($updatedata->adv_id) ? $updatedata->adv_id : null) == $user->id) ? 'selected' : '' }}>{{ $user->fname }} {{ $user->lname }}</option>
                                                             @endforeach
@@ -84,22 +84,14 @@
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Tag <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <select class="form-control select2" multiple="multiple" data-placeholder="Select Tags" name="tags[]">
-                                                            <option>Alabama</option>
-                                                            <option>Alaska</option>
-                                                            <option>California</option>
-                                                            <option>Delaware</option>
-                                                            <option>Tennessee</option>
-                                                            <option>Texas</option>
-                                                            <option>Washington</option>
                                                          <select class="form-control select2" multiple="multiple" data-placeholder="Select Tags" name="tags[]" required="required">
-                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Alabama') : null) !== false) ? 'selected' : '' }}>Alabama</option>
-                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Alaska') : null) !== false) ? 'selected' : '' }}>Alaska</option>
-                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'California') : null) !== false) ? 'selected' : '' }}>California</option>
-                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Delaware') : null) !== false) ? 'selected' : '' }}>Delaware</option>
-                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Tennessee') : null) !== false) ? 'selected' : '' }}>Tennessee</option>
-                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Texas') : null) !== false) ? 'selected' : '' }}>Texas</option>
-                                                            <option {{ ((isset($updatedata->tags) ? strpos($updatedata->tags, 'Washington') : null) !== false) ? 'selected' : '' }}>Washington</option>
+                                                            <option {{ isset($updatedata->tags) ? ((strpos($updatedata->tags, 'Alabama') !== false) ? 'selected' : '') : '' }}>Alabama</option>
+                                                            <option {{ isset($updatedata->tags) ? ((strpos($updatedata->tags, 'Alaska') !== false) ? 'selected' : '') : '' }}>Alaska</option>
+                                                            <option {{ isset($updatedata->tags) ? ((strpos($updatedata->tags, 'California') !== false) ? 'selected' : '') : '' }}>California</option>
+                                                            <option {{ isset($updatedata->tags) ? ((strpos($updatedata->tags, 'Delaware') !== false) ? 'selected' : '') : '' }}>Delaware</option>
+                                                            <option {{ isset($updatedata->tags) ? ((strpos($updatedata->tags, 'Tennessee') !== false) ? 'selected' : '') : '' }}>Tennessee</option>
+                                                            <option {{ isset($updatedata->tags) ? ((strpos($updatedata->tags, 'Texas') !== false) ? 'selected' : '') : '' }}>Texas</option>
+                                                            <option {{ isset($updatedata->tags) ? ((strpos($updatedata->tags, 'Washington') !== false) ? 'selected' : '') : '' }}>Washington</option>
                                                          </select>
                                                       </p>
                                                    </div>
@@ -238,10 +230,6 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Conversion Protocol <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <select class="form-control select2" name="signup_protocol">
-                                                         <option selected="selected">Postback URL</option>
-                                                         <option>CPS</option>
-                                                         <option>CPA+CPS</option>
                                                       <select class="form-control select2" name="signup_protocol" required="required">
                                                          <option value="postbackurl" {{ ((isset($updatedata->signup_protocol) ? $updatedata->signup_protocol : null) == 'postbackurl') ? 'selected' : '' }}>Postback URL</option>
                                                          <option value="cps" {{ ((isset($updatedata->signup_protocol) ? $updatedata->signup_protocol : null) == 'cps') ? 'selected' : '' }}>CPS</option>
@@ -252,9 +240,6 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Conversions Need Approval <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <select class="form-control select2" name="signup_need_approval">
-                                                         <option selected="selected">Disable</option>
-                                                         <option>Enable</option>
                                                       <select class="form-control select2" name="signup_need_approval" required="required">
                                                          <option value="0" {{ ((isset($updatedata->signup_need_approval) ? $updatedata->signup_need_approval : null) == 0) ? 'selected' : '' }}>Disable</option>
                                                          <option value="1" {{ ((isset($updatedata->signup_need_approval) ? $updatedata->signup_need_approval : null) == 1) ? 'selected' : '' }}>Enable</option>
@@ -281,21 +266,15 @@
                                                 <p>
                                                    <label>Advertiser Caps Type <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="col-md-2">
-                                                      <select class="form-control select2" name="advertiser_caps_type">
-                                                         <option selected="selected">None</option>
-                                                         <option>Total</option>
-                                                         <option>Daily</option>
-                                                         <option>Revenue</option>
-                                                      </select>
-                                                   </div>
-                                                   <div class="col-md-3">
-                                                      <input type="text" name="advertiser_caps_value" class="form-control"  placeholder="Enter Product Name">
                                                       <select class="form-control select2" name="advertiser_caps_type" required="required">
                                                          <option value="none" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'none') ? 'selected' : '' }}>None</option>
                                                          <option value="total" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'total') ? 'selected' : '' }}>Total</option>
                                                          <option value="Daily" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'Daily') ? 'selected' : '' }}>Daily</option>
                                                          <option value="revenue" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'revenue') ? 'selected' : '' }}>Revenue</option>
                                                       </select>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <input type="text" name="advertiser_caps_value" class="form-control"  placeholder="Enter Product Name">
                                                    </div>
                                                    <div class="col-md-3">
                                                       <input type="text" name="advertiser_caps_value" class="form-control" required="required" placeholder="Enter Product Name" value="{{ (isset($updatedata->restrictions->advertiser_caps_value)) ? $updatedata->restrictions->advertiser_caps_value : '' }}">
@@ -306,21 +285,15 @@
                                                 <p>
                                                    <label>Affiliate Caps Type <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="col-md-2">
-                                                      <select class="form-control select2" name="affiliate_caps_type">
-                                                         <option selected="selected">None</option>
-                                                         <option>Total</option>
-                                                         <option>Daily</option>
-                                                         <option>Revenue</option>
-                                                      </select>
-                                                   </div>
-                                                   <div class="col-md-3">
-                                                      <input type="text" name="affiliate_caps_value" class="form-control" placeholder="Enter Product Name">
                                                       <select class="form-control select2" name="affiliate_caps_type" required="required">
                                                          <option value="none" {{ ((isset($updatedata->restrictions->affiliate_caps_type) ? $updatedata->restrictions->affiliate_caps_type : null) == 'none') ? 'selected' : '' }}>None</option>
                                                          <option value="total" {{ ((isset($updatedata->restrictions->affiliate_caps_type) ? $updatedata->restrictions->affiliate_caps_type : null) == 'total') ? 'selected' : '' }}>Total</option>
                                                          <option value="Daily" {{ ((isset($updatedata->restrictions->affiliate_caps_type) ? $updatedata->restrictions->affiliate_caps_type : null) == 'Daily') ? 'selected' : '' }}>Daily</option>
                                                          <option value="revenue" {{ ((isset($updatedata->restrictions->affiliate_caps_type) ? $updatedata->restrictions->affiliate_caps_type : null) == 'revenue') ? 'selected' : '' }}>Revenue</option>
                                                       </select>
+                                                   </div>
+                                                   <div class="col-md-3">
+                                                      <input type="text" name="affiliate_caps_value" class="form-control" placeholder="Enter Product Name">
                                                    </div>
                                                    <div class="col-md-3">
                                                       <input type="text" name="affiliate_caps_value" class="form-control" required="required" placeholder="Enter Product Name" value="{{ (isset($updatedata->restrictions->affiliate_caps_value)) ? $updatedata->restrictions->affiliate_caps_value : '' }}">
@@ -330,8 +303,6 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Caps Timezone <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" style="width: 60%;" name="caps_timezone">
-                                                         <option value="" disabled="disabled" selected="selected">Please Select</option>
                                                    <select class="form-control select2" style="width: 60%;" name="caps_timezone" required="required">
                                                          <option value="" disabled="disabled" {{ (isset($updatedata)) ? '' : 'selected' }}>Please Select</option>
                                                       @foreach($timezones as $timezone)
@@ -370,8 +341,7 @@
                                                       <option>test offer #2</option>
                                                       <option>test offer #3</option>
                                                       <option>test offer #4</option>
-                                                   <select class="form-control select2" style="width: 40%;" name="   tracking_domain" required="required">
-                                                      <option {{ ((isset($updatedata) ? $updatedata->restrictions->tracking_domain : null) == $offer->tracking_domain) ? 'selected' : '' }}>{{ $updatedata->restrictions->tracking_domain }}</option>
+                                                      <option {{ ((isset($updatedata) ? $updatedata->restrictions->tracking_domain : null) == $offer->tracking_domain) ? 'selected' : '' }}>{{ (isset($updatedata) ? $updatedata->restrictions->tracking_domain : null)}}</option>
                                                    </select>
                                                 </p>
                                              </div>
@@ -414,9 +384,8 @@
                                                 <p>
                                                    <label>Geo Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" name="geo_targeting[]" style="width: 60%;">
-                                                         <option value="" disabled="disabled" {{ (!isset($updatedata)) ? 'selected' : '' }}>Please Select</option>
                                                       @foreach($countries as $key => $value)
-                                                         <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->geo_targeting, $key) : null) !== false) ? 'selected' : '' }} value="{{ $key }}">{{ $value[1] }}</option>
+                                                         <option {{ isset($updatedata->restrictions) ? ((strpos($updatedata->restrictions->geo_targeting, $key) !== false) ? 'selected' : '') : '' }} value="{{ $key }}">{{ $value[1] }}</option>
                                                       @endforeach
                                                    </select>
                                                    <select class="form-control select2" name="geo_type">
@@ -429,10 +398,9 @@
                                                 <p>
                                                    <label>Mobile Carrier Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 60%;" name="mobile_carrier_targeting[]">
-                                                      <option value="" disabled="disabled" {{ (!isset($updatedata)) ? 'selected' : '' }}>Please Select</option>
-                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->mobile_carrier_targeting, 'computer') : null) !== false) ? 'selected' : '' }} value="computer">Computer</option>
-                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->mobile_carrier_targeting, 'tablet') : null) !== false) ? 'selected' : '' }} value="tablet">Tablet</option>
-                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->mobile_carrier_targeting, 'mobile') : null) !== false) ? 'selected' : '' }} value="mobile">Mobile</option>
+                                                      <option {{ isset($updatedata) ? ((strpos($updatedata->restrictions->mobile_carrier_targeting, 'computer') !== false) ? 'selected' : '') : '' }} value="computer">Computer</option>
+                                                      <option {{ isset($updatedata) ? ((strpos($updatedata->restrictions->mobile_carrier_targeting, 'tablet') !== false) ? 'selected' : '') : ''  }} value="tablet">Tablet</option>
+                                                      <option {{ isset($updatedata) ? ((strpos($updatedata->restrictions->mobile_carrier_targeting, 'mobile') !== false) ? 'selected' : '') : ''  }} value="mobile">Mobile</option>
                                                    </select>
                                                 </p>
                                              </div>
@@ -440,15 +408,14 @@
                                                 <p>
                                                    <label>Platform Targeting <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 30%;" name="platform_targeting[]">
-                                                      <option value="" disabled="disabled" {{ (!isset($updatedata)) ? 'selected' : '' }}>Please Select</option>
-                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'windows') : null) !== false) ? 'selected' : '' }} value="windows">Windows</option>
-                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'mac') : null) !== false) ? 'selected' : '' }} value="mac">Mac</option>
-                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'linux') : null) !== false) ? 'selected' : '' }} value="linux">Linux</option>
-                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'ubuntu') : null) !== false) ? 'selected' : '' }} value="ubuntu">Ubuntu</option>
-                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'iphone') : null) !== false) ? 'selected' : '' }} value="iphone">iPhone</option>
-                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'ipad') : null) !== false) ? 'selected' : '' }} value="ipad">iPod</option>
-                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'android') : null) !== false) ? 'selected' : '' }} value="android">Android</option>
-                                                      <option {{ ((isset($updatedata) ? strpos($updatedata->restrictions->platform_targeting, 'blackberry') : null) !== false) ? 'selected' : '' }} value="blackberry">BlackBerry</option>
+                                                      <option {{ isset($updatedata) ? ((strpos($updatedata->restrictions->platform_targeting, 'windows') !== false) ? 'selected' : '') : '' }} value="windows">Windows</option>
+                                                      <option {{ isset($updatedata) ? ((strpos($updatedata->restrictions->platform_targeting, 'mac') !== false) ? 'selected' : '') : '' }} value="mac">Mac</option>
+                                                      <option {{ isset($updatedata) ? ((strpos($updatedata->restrictions->platform_targeting, 'linux') !== false) ? 'selected' : '') : '' }} value="linux">Linux</option>
+                                                      <option {{ isset($updatedata) ? ((strpos($updatedata->restrictions->platform_targeting, 'ubuntu') !== false) ? 'selected' : '') : '' }} value="ubuntu">Ubuntu</option>
+                                                      <option {{ isset($updatedata) ? ((strpos($updatedata->restrictions->platform_targeting, 'iphone') !== false) ? 'selected' : '') : '' }} value="iphone">iPhone</option>
+                                                      <option {{ isset($updatedata) ? ((strpos($updatedata->restrictions->platform_targeting, 'ipad') !== false) ? 'selected' : '') : '' }} value="ipad">iPod</option>
+                                                      <option {{ isset($updatedata) ? ((strpos($updatedata->restrictions->platform_targeting, 'android') !== false) ? 'selected' : '') : '' }} value="android">Android</option>
+                                                      <option {{ isset($updatedata) ? ((strpos($updatedata->restrictions->platform_targeting, 'blackberry') !== false) ? 'selected' : '') : '' }} value="blackberry">BlackBerry</option>
                                                    </select>
                                                 </p>
                                                    <button type="button" class="changetabbutton pull-right btn btn-success" ><i class="fa fa-check"></i>Next</button>
