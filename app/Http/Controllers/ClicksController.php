@@ -70,11 +70,12 @@ class ClicksController extends Controller
         $clicks->sub_id = $subid;
         //return $clicks;
         $offerdetail = Offer::with('restrictions')->where('id', $oid)->first();
+        $result = null;
         if ($offerdetail->restrictions != null) {
             $result =  $this->checkadvertisercap($offerdetail, $aid);
             if ($result === 'true') {
                 $clicks->admin_id =  $offerdetail->admin_id;
-                $link = $offerdetail->destination_url.$subid;
+                $link = str_replace("{click_id}",$subid,$offerdetail->destination_url);
             } else {
                 $clicks->redirect_click =  1;
                 $clicks->offer_id =  $result[0]['id'];
@@ -82,7 +83,6 @@ class ClicksController extends Controller
                 $link = str_replace("{click_id}",$subid,$result[0]['link']);
             }
         }
-        //return $link;
         if($clicks->save())
         { 
             $parameters = new Parameters;

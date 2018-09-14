@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Clicks;
+use App\Offer;
 
 class User extends Authenticatable
 {
@@ -33,4 +35,15 @@ class User extends Authenticatable
     public function assignoffers(){
         return $this->belongsToMany(Offer::class,'assignoffers');
     }
+
+    public function getoffers(){
+
+        return $this->hasMany(Offer::class, 'adv_id', 'id');
+    }
+
+    public function findoffers($id){
+        return $this->getoffers()->where('id', $id);
+    }
+
+
 }

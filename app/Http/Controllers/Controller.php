@@ -401,37 +401,40 @@ class Controller extends BaseController
       $offerrevenue = $offerdetail->revenue;
       $redirectofferid = $offerdetail->restrictions->redirect_offer;
       $offerpoolid = $offerdetail->restrictions->offer_pool;
-      
       $now = Carbon::today()->toDateString();
       $todaysignups = Signup::orWhere('created_at', 'like', '%' . $now . '%')->where('offer_id', $oid)->get(); 
       $signups = Signup::where('offer_id', $oid)->get(); 
-      switch ($advertiser_caps_type) {
-          case 'Total':
-              if(count($signups) >= $advertiser_caps_value){
-                $result = 'false';
-              }else{
-                $result = $this->checkaffiliatecap($offerdetail);
-              }
-              break;
-          case 'Daily':
-              if(count($todaysignups) >= $advertiser_caps_value){
-                $result = 'false';
-              }else{
-                $result = $this->checkaffiliatecap($offerdetail);
-              }
-              break;
-          case 'Revenue':
-              $total = count($signups) * $offerrevenue;
-              if ($total >= $advertiser_caps_value) {
-                $result = 'false';
-              }else{
-                $result = $this->checkaffiliatecap($offerdetail);
-              }
-              break;
-          default:
-              break;
+      $result = '';
+      if ($todaysignups) {
+        $result = $this->checkaffiliatecap($offerdetail);
+      }else{
+        switch ($advertiser_caps_type) {
+            case 'Total':
+                if(count($signups) >= $advertiser_caps_value){
+                  $result = 'false';
+                }else{
+                  $result = $this->checkaffiliatecap($offerdetail);
+                }
+                break;
+            case 'Daily':
+                if(count($todaysignups) >= $advertiser_caps_value){
+                  $result = 'false';
+                }else{
+                  $result = $this->checkaffiliatecap($offerdetail);
+                }
+                break;
+            case 'Revenue':
+                $total = count($signups) * $offerrevenue;
+                if ($total >= $advertiser_caps_value) {
+                  $result = 'false';
+                }else{
+                  $result = $this->checkaffiliatecap($offerdetail);
+                }
+                break;
+            default:
+                break;
+        }
       }
-
       if ($result == 'false') {
         return $this->redirecturl($redirectofferid, $offerpoolid);
       }else{
@@ -447,31 +450,35 @@ class Controller extends BaseController
       $now = Carbon::today()->toDateString();
       $todaysignups = Signup::orWhere('created_at', 'like', '%' . $now . '%')->where('offer_id', $oid)->get(); 
       $signups = Signup::where('offer_id', $oid)->get(); 
-      switch ($affiliate_caps_type) {
-          case 'Total':
-              if(count($signups) >= $affiliate_caps_value){
-                return 'false';
-              }else{
-                return $this->checkgeotargeting($offerdetail);
-              }
-              break;
-          case 'Daily':
-              if(count($todaysignups) >= $affiliate_caps_value){
-                return 'false';
-              }else{
-                return $this->checkgeotargeting($offerdetail);
-              }
-              break;
-          case 'Revenue':
-              $total = count($signups) * $offerpayout;
-              if ($total >= $affiliate_caps_value) {
-                return 'false';
-              }else{
-                return $this->checkgeotargeting($offerdetail);
-              }
-              break;
-          default:
-              break;
+      if ($todaysignups) {
+        return $this->checkgeotargeting($offerdetail);
+      }else{
+        switch ($affiliate_caps_type) {
+            case 'Total':
+                if(count($signups) >= $affiliate_caps_value){
+                  return 'false';
+                }else{
+                  return $this->checkgeotargeting($offerdetail);
+                }
+                break;
+            case 'Daily':
+                if(count($todaysignups) >= $affiliate_caps_value){
+                  return 'false';
+                }else{
+                  return $this->checkgeotargeting($offerdetail);
+                }
+                break;
+            case 'Revenue':
+                $total = count($signups) * $offerpayout;
+                if ($total >= $affiliate_caps_value) {
+                  return 'false';
+                }else{
+                  return $this->checkgeotargeting($offerdetail);
+                }
+                break;
+            default:
+                break;
+        }
       }
     }
 
@@ -510,6 +517,7 @@ class Controller extends BaseController
     }
 
     public function checkdevice($offerdetail){
+
         $device = strtolower($this->detectDevice()); 
         $mobiletargeting = $offerdetail->restrictions->mobile_carrier_targeting;
 
@@ -560,17 +568,22 @@ class Controller extends BaseController
     }
 
     public function checkpools($offerpoolid){
-        $offersid = DB::table('pool_relation')->select('offer_id')->where('pool_id', $offerpoolid)->get();
-        foreach ($offersid as $offerid) {
-          $offersdetail = Offer::with('restrictions')->where('id', $offerid->offer_id)->first();
-          $result = $this->checkgeotargeting($offersdetail);
 
-          if ($result == 'true') {
-            return $array = array(['id' => $offersdetail->id, 'link' => $offersdetail->destination_url, 'admin_id' => $offersdetail->admin_id]);
+        $offersid = DB::table('pool_relation')->select('offer_id')->where('pool_id', $offerpoolid)->get();
+        if ($offersid == null) {
+          foreach ($offersid as $offerid) {
+            $offersdetail = Offer::with('restrictions')->where('id', $offerid->offer_id)->first();
+            $result = $this->checkgeotargeting($offersdetail);
+
+            if ($result == 'true') {
+              return $array = array(['id' => $offersdetail->id, 'link' => $offersdetail->destination_url, 'admin_id' => $offersdetail->admin_id]);
+            }
           }
-        }
-        if ($result == 'false') {
-            return $array = array(['id' => 0, 'link' => 'http://www.google.com']);
+          if ($result == 'false') {
+              return $array = array(['id' => 0, 'admin_id' => 0, 'link' => 'http://www.google.com']);
+          }
+        }else{
+          return $array = array(['id' => 0, 'admin_id' => 0, 'link' => 'http://www.google.com']);
         }
     }
 

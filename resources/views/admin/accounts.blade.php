@@ -51,7 +51,7 @@
                                        <td>{{ $account->email }}</td>
                                        <td>{{ $account->contactno }}</td>
                                        <?php $manager = App\User::where('id', $account->managerid)->first(); ?>
-                                       <td>{{ $manager->fname }} {{ $manager->lname }}</td>
+                                       <td>{{ (!empty($manager->fname)) ? $manager->fname : '' }} {{ (!empty($manager->fname)) ? $manager->lname : '' }}</td>
                                        <td>{{ $account->created_at }}</td>
                                        <td>
                                           <a href="{{ route('account.edit', $account->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>

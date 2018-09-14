@@ -40,7 +40,7 @@
                                  <form id="genratereport" method="POST">
                                     <div id="advertisers_tab_content" class="tab-content ">
                                        <div id="custom_r1" class="tab-pane fade in active">
-                                          <div class="row">
+                                          <!--<div class="row">
                                              <div class="col-md-1"><label>Duration</label></div>
                                              <div class="col-md-11">
                                                 <div class="col-md-2 col-sm-2">
@@ -68,7 +68,7 @@
                                                    </div>
                                                 </div>
                                              </div>
-                                          </div>
+                                          </div>-->
                                           <div class="row">
                                              <div class="col-md-1"><label>Indicator</label></div>
                                              <div class="col-md-11">
@@ -178,7 +178,8 @@
                                                          <option value="{{ $manager->id }}">{{ $manager->fname }}</option>
                                                       @endforeach
                                                    </select>
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Conversion Status" name="conversion_status">
+                                                   <select class="form-control select2" data-placeholder="Conversion Status" name="conversion_status">
+                                                      <option value="null">All</option>
                                                       <option value="1">Approved</option>
                                                       <option value="0">Pending</option>
                                                    </select>
@@ -273,7 +274,24 @@
 <script type="text/javascript">
    $(document).ready(function(){
 
+         // $(function() {
+         //     $("#reservation").daterangepicker({
+         //         locale: {
+         //             format: 'YYYY-MMM-DD'
+         //         }
+         //     });
+         // });
 
+         $(function() {
+           $('#reservation').daterangepicker({
+             timePicker: true,
+             startDate: moment().startOf('week'),
+             endDate: moment().endOf('week'),
+             locale: {
+               format: 'YYYY-MM-DD'
+             }
+           });
+         });
 
          $('#genratereport').on('submit', function(e){
             e.preventDefault();
@@ -306,6 +324,15 @@
                data: { "_token": token, "allform": allform},
                success: function( response ) {
                   $('#report_response').html(response);
+                      $('#button_datatables_example').DataTable( {
+                          dom: 'Bfrtip',
+                          buttons: [
+                              'print',
+                              'pdf',
+                              'csv',
+                              'copy',
+                          ]
+                      } );
                }
            });
       });
