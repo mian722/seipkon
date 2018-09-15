@@ -101,11 +101,11 @@ Route::group(['middleware'=> 'admin'], function(){
 	/* Reports */
 	Route::get('/advertisers-reports', 'ReportsController@advertiserreport')->name('advertiserreport');
 	Route::post('/advertisers-reports-generate', 'ReportsController@advertiserreportgenerate')->name('advertiserreportgenerate');
-	Route::get('/affiliate-reports', function () { return view('affiliate-reports'); });
-	Route::get('/operation-report', function () { return view('operation-report'); });
-	Route::get('/generat-report', function () { return view('generat-report'); });
-	Route::get('/conversion-report', function () { return view('conversion-report'); });
-	Route::get('/conversion-status-report', function () { return view('conversion-status-report'); });
+	Route::get('/affiliate-reports', function () { return view('admin.affiliate-reports'); });
+	Route::get('/operation-report', function () { return view('admin.operation-report'); });
+	Route::get('/generat-report', function () { return view('admin.generat-report'); });
+	Route::get('/conversion-report', function () { return view('admin.conversion-report'); });
+	Route::get('/conversion-status-report', function () { return view('admin.conversion-status-report'); });
 });
 Route::get('/tracking/{aid}/{oid}', 'ClicksController@tracking')->name('tracking');
 Route::get('/post', 'SignupController@postback')->name('posttracking');
