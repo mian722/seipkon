@@ -139,5 +139,14 @@ class ReportsController extends Controller
          return $table;	
 
     }
+    public function operationreport(Request $request)
+    {
+      $advertisers = $this->getuser(4);
+      $managers = $this->getuser(3);
+        $offers = Offer::select('offer_name', 'id')->with('restrictions')->where('admin_id',Auth::user()->id)->get();
+        $timezones = $this->gettimezones();
+
+      return view('admin.advertisers-reports',compact('advertisers', 'managers', 'offers', 'timezones'));
+    }
 
 }
