@@ -43,6 +43,7 @@ class ClicksController extends Controller
         $browser = $this->ExactBrowserName();
         $OS = $this->getOS();
         $device = $this->detectDevice();
+        $advertiser = Offer::select('adv_id')->where('id', $oid)->first();
         $clicks = new Clicks;
         $IP = $_SERVER['REMOTE_ADDR'];
         if (isset($_SERVER['HTTP_REFERER'])) {
@@ -52,6 +53,7 @@ class ClicksController extends Controller
         }
         $clicks->affiliate_id = $aid;
         $clicks->offer_id = $oid;
+         $clicks->adv_id = $advertiser->adv_id;
         $clicks->click = 1;
         $clicks->ip = $IP;
         $clicks->device = $device;
