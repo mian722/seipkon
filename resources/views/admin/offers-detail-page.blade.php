@@ -45,7 +45,6 @@
                                     </ul>
                                     <div class="tab-content offer-detail-page">
                                        <div id="custom_r1" class="tab-pane fade in active">
-
                                           <div class="row">
                                              <section class="col-xs-12 col-sm-12 col-md-7">
                                                 <div class="accordian-example">
@@ -134,86 +133,6 @@
                                                       </div>
                                                    </div>
                                                 </div>
-
-                                                <!-- <div class="accordian-example">
-                                                   <div class="panel-group" id="event_accordian" role="tablist" aria-multiselectable="true">
-                                                      <div class="panel panel-default">
-                                                         <div class="panel-heading" role="tab" id="headingOne">
-                                                            <h4 class="panel-title">
-                                                               <a role="button" data-toggle="collapse" data-parent="#event_accordian" href="#event_accord" aria-expanded="true" aria-controls="event_accord">
-                                                               <i class="fa fa-tags"></i> Event
-                                                               </a>
-                                                            </h4>
-                                                         </div>
-                                                         <div id="event_accord" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                                            <div class="panel-body">
-                                                               <div id="offer-event-box" >
-                                                                  <div class="box-header with-border">
-                                                                     <div class="row">
-                                                                        <div class="col-md-5 col-xs-6">
-                                                                           <form id="searchForm" role="form">
-                                                                              <select class="form-control select2" multiple="multiple" data-placeholder="Select a State">
-                                                                                 <option>Alabama</option>
-                                                                                 <option>Alaska</option>
-                                                                                 <option>California</option>
-                                                                                 <option>Delaware</option>
-                                                                                 <option>Tennessee</option>
-                                                                                 <option>Texas</option>
-                                                                                 <option>Washington</option>
-                                                                              </select>
-                                                                           </form>
-                                                                        </div>
-                                                                        <div class="col-xs-6 sm-margin-bottom pull-right">
-                                                                           <a class="btn btn-success pull-right event-modal-remote" href="/adn/index.php?r=offer-event%2Fcreate&amp;id=4" data-pjax="0">Create</a>            
-                                                                        </div>
-                                                                     </div><br />
-                                                                     <div id="w0" class="grid-view">
-                                                                        <div class="box-body table-responsive">
-                                                                           <table class="table table-hover">
-                                                                              <thead>
-                                                                                 <tr>
-                                                                                    <th>ID</th>
-                                                                                    <th>Event</th>
-                                                                                    <th>Protocol</th>
-                                                                                    <th>EndPoint</th>
-                                                                                    <th>Private</th>
-                                                                                    <th>Multiple</th>
-                                                                                    <th>Need Approval</th>
-                                                                                    <th>Revenue</th>
-                                                                                    <th>Payout</th>
-                                                                                    <th>Status</th>
-                                                                                    <th class="action-column">Action</th>
-                                                                                 </tr>
-                                                                              </thead>
-                                                                              <tbody>
-                                                                                 <tr data-key="4">
-                                                                                    <td>1</td>
-                                                                                    <td>Initial Event</td>
-                                                                                    <td>Postback URL</td>
-                                                                                    <td>No</td>
-                                                                                    <td>No</td>
-                                                                                    <td>No</td>
-                                                                                    <td>No</td>
-                                                                                    <td>RPA: $2</td>
-                                                                                    <td>CPA: $1</td>
-                                                                                    <td>Active</td>
-                                                                                    <td></td>
-                                                                                 </tr>
-                                                                              </tbody>
-                                                                           </table>
-                                                                        </div>
-                                                                        <div class="box-footer clearfix">
-                                                                           <div class="pull-left summary">Showing <b>1-1</b> of <b>1</b> item.</div>
-                                                                        </div>
-                                                                     </div>
-                                                                  </div>
-                                                               </div>
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                </div> -->
-
 
                                                 <div class="accordian-example">
                                                    <div class="panel-group" id="restriction" role="tablist" aria-multiselectable="true">
