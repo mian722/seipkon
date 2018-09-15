@@ -40,35 +40,6 @@
                                  <form id="genratereport" method="POST">
                                     <div id="advertisers_tab_content" class="tab-content ">
                                        <div id="custom_r1" class="tab-pane fade in active">
-                                          <!--<div class="row">
-                                             <div class="col-md-1"><label>Duration</label></div>
-                                             <div class="col-md-11">
-                                                <div class="col-md-2 col-sm-2">
-                                                   <div class="form-group form-radio">
-                                                      <input id="radio-1" checked="" name="radio" type="radio" value="date">
-                                                      <label for="radio-1" class="inline control-label">Date</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-radio">
-                                                      <input id="radio-2" name="radio" type="radio" value="month">
-                                                      <label for="radio-2" class="inline control-label">Month</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-radio">
-                                                      <input id="radio-3" name="radio" type="radio" value="year">
-                                                      <label for="radio-3" class="inline control-label">Year</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-radio">
-                                                      <input id="radio-4" name="radio" type="radio" value="hour">
-                                                      <label for="radio-4" class="inline control-label">Hour</label>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>-->
                                           <div class="row">
                                              <div class="col-md-1"><label>Indicator</label></div>
                                              <div class="col-md-11">
@@ -202,15 +173,6 @@
                                           <div class="row">
                                              <div class="col-md-1"><label>Range</label></div>
                                              <div class="col-md-11">
-                                                <!-- <div class="col-md-2">
-                                                   <select class="form-control select2" name="daterangetype">
-                                                      <option>Today</option>
-                                                      <option>Yesterday</option>
-                                                      <option selected="selected">Last 7 Dayes</option>
-                                                      <option>This Month</option>
-                                                      <option>Last Month</option>
-                                                   </select>
-                                                </div> -->
                                                 <div class="col-md-6">
                                                          <input type="text" class="form-control" name="daterange" id="reservation" placeholder="Date" />
                                                 </div>
@@ -234,7 +196,6 @@
                                  <thead>
                                     <tr>
                                        <th>NO.</th>
-                                       <th>Date</th>
                                        <th>Advertiser</th>
                                        <th>Offer</th>
                                        <th>Clicks</th>
@@ -247,7 +208,7 @@
                                  </thead>
                                  <tbody>
                                     <tr>
-                                       <td colspan="10" style="text-align: center;">No Result</td>
+                                       <td colspan="9" style="text-align: center;">No Result</td>
                                     </tr>
                                  </tbody>
                               </table>

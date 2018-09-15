@@ -116,7 +116,7 @@ class ReportsController extends Controller
                 }
                 $table .= '<tr>
                                <td>'.$counter++.'</td>
-                                   '.((isset($data->advertiser)) ? '<td><a href="'.route('affiliate.show', $value->id).'">'.$value->fname.'</a></td>' : '').'
+                                   '.((isset($data->advertiser)) ? '<td><a href="'.route('affiliate.show', $value->adv_id).'">'.$value->fname.'</a></td>' : '').'
                                    '.((isset($data->adv_manager)) ? '<td><a href="'.route('affiliate.show', $value->managerid).'">'.(!empty($managername->fname) ? $managername->fname : "" ).'</a></td>' : '').'
                                    '.((isset($data->offer)) ? '<td><a href="'.route('offers-detail', $value->offer_id).'">'.$value->offer_name.'</a></td>' : '').'
                                    '.((isset($data->clicks)) ? '<td>'.$value->sumclicks.'</td>' : '').'
@@ -147,6 +147,135 @@ class ReportsController extends Controller
         $timezones = $this->gettimezones();
 
       return view('admin.advertisers-reports',compact('advertisers', 'managers', 'offers', 'timezones'));
+    }
+
+
+    public function affiliatereport()
+    {
+      $affiliates = $this->getuser(5);
+      $managers = $this->getuser(3);
+        $offers = Offer::select('offer_name', 'id')->with('restrictions')->where('admin_id',Auth::user()->id)->get();
+        $timezones = $this->gettimezones();
+
+      return view('admin.affiliate-reports',compact('affiliates', 'managers', 'offers', 'timezones'));
+    }
+
+    public function affiliatereportgenerate(Request $request){
+      $data = json_decode($request->allform);
+
+      $status1 = '';
+      $status2 = '';
+      $status3 = '';
+      if(isset($data->conversion_status) && $data->conversion_status != 'null'){
+          $status1 = " and clc.status = ".$data->conversion_status;
+          $status2 = " and uc.status = ".$data->conversion_status;
+          $status3 = " and s.status = ".$data->conversion_status;
+      }
+      $range1 = '';
+      $range2 = '';
+      $range3 = '';
+      if(isset($data->daterange)){
+          $explode = explode(" - ", $data->daterange);
+          $startdate = $explode[0].' 00:00:00';
+          $enddate = $explode[1].' 23:59:59';
+          $range1 = " and clc.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+          $range2 = " and uc.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+          $range3 = " and s.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+      }
+
+      $affil = "Select u.*, ao.user_id, ao.offer_id, o.*
+      , (SELECT COUNT(clc.click) FROM clicks clc WHERE clc.affiliate_id = u.id and clc.offer_id = o.id ".$status1.$range1.") as sumclicks
+      , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.affiliate_id = u.id and uc.offer_id = o.id ".$status2.$range2.") as uniquesumclicks
+      , (SELECT COUNT(s.signup) FROM signups s WHERE s.affiliate_id = u.id and s.offer_id = o.id ".$status3.$range3.") as sumsignup
+      from users u LEFT JOIN assignoffers ao on u.id = ao.user_id
+      Left Join offers o on o.id = ao.offer_id
+      where u.roles_id = 5 and u.admin_id = ".Auth::user()->id;
+
+
+      if(isset($data->affiliate_id)){
+        if(is_array($data->affiliate_id)){
+          $aids = join("','",$data->affiliate_id);   
+          $affil .= " and u.id IN ('$aids')";
+        }else{
+          $affil .= " and u.id = ".$data->affiliate_id;
+        }
+      }
+      if(isset($data->adv_manager_value)){
+        if(is_array($data->adv_manager_value)){
+          $mids = join("','",$data->adv_manager_value);   
+          $affil .= " and u.managerid IN ('$mids')";
+        }else{
+          $affil .= " and u.managerid = ".$data->adv_manager_value;
+        }
+      }
+      if(isset($data->offers_id)){
+        if(is_array($data->offers_id)){
+          $oids = join("','",$data->offers_id);   
+          $affil .= " and o.id IN ('$oids')";
+        }else{
+          $affil .= " and o.id = ".$data->offers_id;
+        }
+      }
+      $affil .= " ORDER BY u.id ASC";
+
+      $alldata = DB::select($affil);
+
+      $table = '<table id="button_datatables_example" class="table display table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                   <th>NO.</th>
+                                   '.((isset($data->affiliate)) ? '<th>Affiliate</th>' : '').'
+                                   '.((isset($data->adv_manager)) ? '<th>Advertiser Manager </th>' : '').'
+                                   '.((isset($data->offer)) ? '<th>Offer</th>' : '').'
+                                   '.((isset($data->clicks)) ? '<th>Clicks</th>' : '').'
+                                   '.((isset($data->unique_clicks)) ? '<th>Unique Clicks</th>' : '').'
+                                   '.((isset($data->currency)) ? '<th>Currency</th>' : '').'
+                                   '.((isset($data->revenue)) ? '<th>Revenue</th>' : '').'
+                                   '.((isset($data->conversions)) ? '<th>Conversions</th>' : '').'
+                                   '.((isset($data->payout)) ? '<th>Payout</th>' : '').'
+                                   '.((isset($data->amount)) ? '<th>Amount</th>' : '').'
+                                   '.((isset($data->profit)) ? '<th>Profit</th>' : '').' 
+                                   '.((isset($data->click_rate)) ? '<th>CR</th>' : '').' 
+                                   '.((isset($data->earn_per_click)) ? '<th>EPC</th>' : '').' 
+                                </tr>
+                            </thead>
+                        <tbody>';
+                $counter = 1;
+                foreach ($alldata as $value) {
+                $managername = User::select('fname')->where('id', $value->managerid)->first();
+                $amount = $value->revenue * $value->sumsignup;
+                $payout = $value->payout * $value->sumsignup;
+                $profit = $amount - $payout;
+                $cr = 00.0;
+                $earn_per_click = 0.00;
+                if ($value->sumclicks != 0) {
+                  $cr = round((($value->sumsignup / $value->sumclicks) * 100), 1);
+                  $earn_per_click = round(($profit / $value->sumclicks),2);
+                }
+                $table .= '<tr>
+                               <td>'.$counter++.'</td>
+                                   '.((isset($data->affiliate)) ? '<td><a href="'.route('affiliate.show', $value->id).'">'.$value->fname.'</a></td>' : '').'
+                                   '.((isset($data->adv_manager)) ? '<td><a href="'.route('affiliate.show', $value->managerid).'">'.(!empty($managername->fname) ? $managername->fname : "" ).'</a></td>' : '').'
+                                   '.((isset($data->offer)) ? '<td><a href="'.route('offers-detail', $value->offer_id).'">'.$value->offer_name.'</a></td>' : '').'
+                                   '.((isset($data->clicks)) ? '<td>'.$value->sumclicks.'</td>' : '').'
+                                   '.((isset($data->unique_clicks)) ? '<td>'.$value->uniquesumclicks.'</td>' : '').'
+                                   '.((isset($data->currency)) ? '<td>USD</td>' : '').'
+                                   '.((isset($data->revenue)) ? '<td>$'.$value->revenue.' ('.$value->revenue_type.')</td>' : '').'
+                                   '.((isset($data->conversions)) ? '<td>'.$value->sumsignup.'</td>' : '').'
+                                   '.((isset($data->payout)) ? '<td>$'.$value->payout.' ('.$value->payout_type.')</td>' : '').'
+                                   '.((isset($data->amount)) ? '<td>$'.$amount.'</td>' : '').'
+                                   '.((isset($data->profit)) ? '<td>$'.$profit.'</td>' : '').' 
+                                   '.((isset($data->click_rate)) ? '<td>'.$cr.'%</td>' : '').' 
+                                   '.((isset($data->earn_per_click)) ? '<td>$'.$earn_per_click.'</td>' : '').' 
+                            </tr>';
+                          }
+              
+
+                $table .= '</tbody>
+                          </table>';
+
+         return $table; 
+
     }
 
 }
