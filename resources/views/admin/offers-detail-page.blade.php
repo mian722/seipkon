@@ -97,7 +97,7 @@
                                                                            <p>
                                                                               <label>Manager: </label>
                                                                               <a href="#"><?php $manager = App\User::find($advertiser->managerid); 
-                                                                              echo $manager->fname; ?>  </a>                        
+                                                                                 echo $manager->fname; ?>  </a>                        
                                                                            </p>
                                                                         </div>
                                                                         <div class="col-xs-6">
@@ -504,9 +504,11 @@
                                                                         <div class="col-sm-12">
                                                                            <select class="form-control select2" id="tracking_link" data-placeholder="Select Affiliate" name="tracking_link" required="required">
                                                                               <option disabled="disabled" selected="selected">Please Select. . .</option>
-                                                                              @foreach($users as $user)
-                                                                                 <option value="{{ $user->usertracklink }}">{{ $user->fname }}</option>
-                                                                              @endforeach
+                                                                              @if(!empty($users))
+                                                                                 @foreach($users as $user)
+                                                                                    <option value="{{ $user->usertracklink }}">{{ $user->fname }}</option>
+                                                                                 @endforeach
+                                                                              @endif
                                                                            </select>                    
                                                                         </div>
                                                                         <div class="col-sm-12" style="margin-top: 5px">
