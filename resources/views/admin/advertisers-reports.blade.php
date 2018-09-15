@@ -274,13 +274,6 @@
 <script type="text/javascript">
    $(document).ready(function(){
 
-         // $(function() {
-         //     $("#reservation").daterangepicker({
-         //         locale: {
-         //             format: 'YYYY-MMM-DD'
-         //         }
-         //     });
-         // });
 
          $(function() {
            $('#reservation').daterangepicker({
@@ -333,6 +326,7 @@
                               'copy',
                           ]
                       } );
+                  $('.dt-buttons.btn-group > button').addClass('datatable-btn');
                }
            });
       });
