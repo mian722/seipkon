@@ -247,16 +247,7 @@
                                  </thead>
                                  <tbody>
                                     <tr>
-                                       <td>1</td>
-                                       <td>2018-07-01</td>
-                                       <td><a href="#">sss #2</a></td>
-                                       <td><a href="{{ asset('offers-detail-page') }}">offer test google #4</a></td>
-                                       <td>5</td>
-                                       <td>0</td>
-                                       <td>0.000%</td>
-                                       <td>0.000</td>
-                                       <td>0.000</td>
-                                       <td>0.000</td>
+                                       <td colspan="10" style="text-align: center;">No Result</td>
                                     </tr>
                                  </tbody>
                               </table>
