@@ -47,7 +47,7 @@ class ReportsController extends Controller
       }
 
 
-      $query = "SELECT  u.*, a.*
+      $query = "SELECT  u.*, a.*, a.id as offer_id
       , (SELECT COUNT(I1.click) FROM clicks I1 WHERE I1.offer_id = a.id ".$status1.$range1.") as sumclicks
       , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.offer_id = a.id ".$status2.$range2.") as uniquesumclicks
       , (SELECT COUNT(I2.signup) FROM signups I2 WHERE I2.offer_id = a.id ".$status3.$range3.") as sumsignup
@@ -104,7 +104,7 @@ class ReportsController extends Controller
                         <tbody>';
                 $counter = 1;
                 foreach ($alldata as $value) {
-                $managername = User::where('id', $value->managerid)->first();
+                $managername = User::select('fname')->where('id', $value->managerid)->first();
                 $amount = $value->revenue * $value->sumsignup;
                 $payout = $value->payout * $value->sumsignup;
                 $profit = $amount - $payout;
@@ -116,9 +116,9 @@ class ReportsController extends Controller
                 }
                 $table .= '<tr>
                                <td>'.$counter++.'</td>
-                                   '.((isset($data->advertiser)) ? '<td>'.$value->fname.'</td>' : '').'
+                                   '.((isset($data->advertiser)) ? '<td><a href="'.route('affiliate.show', $value->id).'">'.$value->fname.'</a></td>' : '').'
                                    '.((isset($data->adv_manager)) ? '<td><a href="'.route('affiliate.show', $value->managerid).'">'.(!empty($managername->fname) ? $managername->fname : "" ).'</a></td>' : '').'
-                                   '.((isset($data->offer)) ? '<td>'.$value->offer_name.'</td>' : '').'
+                                   '.((isset($data->offer)) ? '<td><a href="'.route('offers-detail', $value->offer_id).'">'.$value->offer_name.'</a></td>' : '').'
                                    '.((isset($data->clicks)) ? '<td>'.$value->sumclicks.'</td>' : '').'
                                    '.((isset($data->unique_clicks)) ? '<td>'.$value->uniquesumclicks.'</td>' : '').'
                                    '.((isset($data->currency)) ? '<td>USD</td>' : '').'
