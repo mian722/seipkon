@@ -141,17 +141,7 @@ class ReportsController extends Controller
     }
     public function operationreport()
     {
-      $query = "SELECT  u.*, a.*, a.id as offer_id
-       , (SELECT COUNT(I1.click) FROM clicks I1 WHERE I1.adv_id = u.id ) as sumclicks
-      , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.adv_id = u.id ) as uniquesumclicks
-      , (SELECT COUNT(I2.signup) FROM signups I2 WHERE I2.adv_id = u.id ) as sumsignup
-      FROM users u LEFT JOIN offers a
-         ON u.id= a.adv_id
-         WHERE u.roles_id = 4 and u.admin_id = ".Auth::user()->id;
-         $query .= " ORDER BY a.id DESC";
-
-       return $advreports = DB::select($query);
-      return view('admin.operation-report',compact('advreports'));
+     
     }
 
 }
