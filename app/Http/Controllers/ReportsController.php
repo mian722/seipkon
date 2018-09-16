@@ -92,11 +92,11 @@ class ReportsController extends Controller
                                    '.((isset($data->clicks)) ? '<th>Clicks</th>' : '').'
                                    '.((isset($data->unique_clicks)) ? '<th>Unique Clicks</th>' : '').'
                                    '.((isset($data->currency)) ? '<th>Currency</th>' : '').'
-                                   '.((isset($data->revenue)) ? '<th>Revenue</th>' : '').'
+                                   '.((isset($data->revenue)) ? '<th>Revenue(USD)</th>' : '').'
                                    '.((isset($data->conversions)) ? '<th>Conversions</th>' : '').'
-                                   '.((isset($data->payout)) ? '<th>Payout</th>' : '').'
-                                   '.((isset($data->amount)) ? '<th>Amount</th>' : '').'
-                                   '.((isset($data->profit)) ? '<th>Profit</th>' : '').' 
+                                   '.((isset($data->payout)) ? '<th>Payout(USD)</th>' : '').'
+                                   '.((isset($data->amount)) ? '<th>Amount(USD)</th>' : '').'
+                                   '.((isset($data->profit)) ? '<th>Profit(USD)</th>' : '').' 
                                    '.((isset($data->click_rate)) ? '<th>CR</th>' : '').' 
                                    '.((isset($data->earn_per_click)) ? '<th>EPC</th>' : '').' 
                                 </tr>
@@ -139,8 +139,51 @@ class ReportsController extends Controller
          return $table;	
 
     }
+
+
+
     public function operationreport()
     {
+
+      $check = "SELECT  u.*, o.*, u.id as aff_id
+       , (SELECT COUNT(I1.click)  FROM clicks I1 WHERE I1.offer_id = o.id ) as sumclicks
+      , (SELECT COUNT(I2.signup) FROM signups I2 WHERE I2.offer_id = o.id) as sumsignup
+      , (SELECT (COUNT(I2.signup) * o.revenue) FROM signups I2 WHERE I2.offer_id = o.id) as totalrevenue
+      , (SELECT (COUNT(I2.signup) * o.payout) FROM signups I2 WHERE I2.offer_id = o.id) as totalpayout
+      FROM users u INNER JOIN offers o
+         ON u.id= o.adv_id
+         WHERE u.roles_id = 4 and u.admin_id = ".Auth::user()->id;
+         $check .= " ORDER BY o.id DESC";
+         $advreports = DB::select($check);
+
+        $issame = false;
+        $sumArray = array();
+
+        foreach ($advreports as $subArray) {
+          foreach ($sumArray as $key=>$sumValue) {
+            if ($subArray->id == $sumValue->id) {
+              $sumArray[$key]->sumclicks += $subArray->sumclicks;
+              $sumArray[$key]->sumsignup += $subArray->sumsignup;
+              $sumArray[$key]->totalrevenue += $subArray->totalrevenue;
+              $sumArray[$key]->totalpayout += $subArray->totalpayout;
+              $issame = true;
+              break;
+            }
+          }
+            if($issame == true){
+                $issame = false;
+            }else{
+                $sumArray[] =  $subArray;
+            }
+        }
+
+        return ($sumArray);
+
+
+
+
+
+
       $query = "SELECT  u.*, a.*, a.id as offer_id
        , (SELECT COUNT(I1.click) FROM clicks I1 WHERE I1.adv_id = u.id ) as sumclicks
       , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.adv_id = u.id ) as uniquesumclicks
@@ -172,20 +215,20 @@ class ReportsController extends Controller
       $status2 = '';
       $status3 = '';
       if(isset($data->conversion_status) && $data->conversion_status != 'null'){
-          $status1 = " and clc.status = ".$data->conversion_status;
-          $status2 = " and uc.status = ".$data->conversion_status;
-          $status3 = " and s.status = ".$data->conversion_status;
+        $status1 = " and clc.status = ".$data->conversion_status;
+        $status2 = " and uc.status = ".$data->conversion_status;
+        $status3 = " and s.status = ".$data->conversion_status;
       }
       $range1 = '';
       $range2 = '';
       $range3 = '';
       if(isset($data->daterange)){
-          $explode = explode(" - ", $data->daterange);
-          $startdate = $explode[0].' 00:00:00';
-          $enddate = $explode[1].' 23:59:59';
-          $range1 = " and clc.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
-          $range2 = " and uc.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
-          $range3 = " and s.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+        $explode = explode(" - ", $data->daterange);
+        $startdate = $explode[0].' 00:00:00';
+        $enddate = $explode[1].' 23:59:59';
+        $range1 = " and clc.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+        $range2 = " and uc.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+        $range3 = " and s.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
       }
 
       $affil = "Select u.*, ao.user_id, ao.offer_id, o.*
@@ -221,7 +264,7 @@ class ReportsController extends Controller
           $affil .= " and o.id = ".$data->offers_id;
         }
       }
-      $affil .= " ORDER BY u.id ASC";
+      $affil .= " ORDER BY o.id ASC";
 
       $alldata = DB::select($affil);
 
@@ -235,11 +278,11 @@ class ReportsController extends Controller
                                    '.((isset($data->clicks)) ? '<th>Clicks</th>' : '').'
                                    '.((isset($data->unique_clicks)) ? '<th>Unique Clicks</th>' : '').'
                                    '.((isset($data->currency)) ? '<th>Currency</th>' : '').'
-                                   '.((isset($data->revenue)) ? '<th>Revenue</th>' : '').'
+                                   '.((isset($data->revenue)) ? '<th>Revenue(USD)</th>' : '').'
                                    '.((isset($data->conversions)) ? '<th>Conversions</th>' : '').'
-                                   '.((isset($data->payout)) ? '<th>Payout</th>' : '').'
-                                   '.((isset($data->amount)) ? '<th>Amount</th>' : '').'
-                                   '.((isset($data->profit)) ? '<th>Profit</th>' : '').' 
+                                   '.((isset($data->payout)) ? '<th>Payout(USD)</th>' : '').'
+                                   '.((isset($data->amount)) ? '<th>Amount(USD)</th>' : '').'
+                                   '.((isset($data->profit)) ? '<th>Profit(USD)</th>' : '').' 
                                    '.((isset($data->click_rate)) ? '<th>CR</th>' : '').' 
                                    '.((isset($data->earn_per_click)) ? '<th>EPC</th>' : '').' 
                                 </tr>
