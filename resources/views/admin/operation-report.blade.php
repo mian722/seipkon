@@ -62,20 +62,16 @@
                                                    </tr>
                                                 </thead>
                                                 <tbody>
-                                                   @foreach($advreports as $advreport)
+                                                   @foreach($advertisers_report as $advreport)
                                                       <tr>
                                                          <td>{{ $loop->iteration }}</td>
                                                          <td><a href="{{ route('advertiser.show', $advreport->id) }}">{{ $advreport->fname }}</a></td>
                                                          <td>{{ $advreport->sumclicks }}</td>
                                                          <td>{{ $advreport->uniquesumclicks }}</td>
                                                          <td>{{ $advreport->sumsignup }}</td>
-                                                         <?php $cr = 00.0;
-                if ($advreport->sumclicks != 0) {
-                  $cr = round((($advreport->sumsignup / $advreport->sumclicks) * 100), 1);
-                } ?>
-                                                         <td>{{ $cr }}%</td>
-                                                         <td>{{ $advreport->revenue }}</td>
-                                                         <td>{{ $advreport->payout }}</td>
+                                                         <td>{{ (($advreport->sumsignup == 0) ? 0 : ($advreport->sumsignup)/($advreport->sumsignup)*100) }}%</td>
+                                                         <td>${{ $advreport->totalrevenue }}</td>
+                                                         <td>${{ $advreport->totalpayout }}</td>
                                                       </tr>
                                                    @endforeach
                                                 </tbody>
@@ -88,7 +84,6 @@
                                                 <thead>
                                                    <tr>
                                                       <th>NO.</th>
-                                                      <th>Date</th>
                                                       <th>Offer</th>
                                                       <th>Clicks</th>
                                                       <th>Unique Clicks</th>
@@ -99,17 +94,18 @@
                                                    </tr>
                                                 </thead>
                                                 <tbody>
+                                                   @foreach($offers_report as $offerreport)
                                                    <tr>
-                                                      <td>1</td>
-                                                      <td>2018-07-01</td>
-                                                      <td><a href="#">sss #2</a></td>
-                                                      <td>3</td>
-                                                      <td>5</td>
-                                                      <td>0</td>
-                                                      <td>0.000%</td>
-                                                      <td>0.000</td>
-                                                      <td>0.000</td>
+                                                      <td>{{ $loop->iteration }}</td>
+                                                      <td><a href="{{ route('offers-detail', $offerreport->id) }}">{{ $offerreport->offer_name }}</a></td>
+                                                      <td>{{ $offerreport->sumclicks }}</td>
+                                                      <td>{{ $offerreport->uniquesumclicks }}</td>
+                                                      <td>{{ $offerreport->sumsignup }}</td>
+                                                      <td>{{ (($offerreport->sumsignup == 0) ? 0 : ($offerreport->sumsignup)/($offerreport->sumsignup)*100) }}%</td>
+                                                      <td>${{ $offerreport->totalrevenue }}</td>
+                                                      <td>${{ $offerreport->totalpayout }}</td>
                                                    </tr>
+                                                   @endforeach
                                                 </tbody>
                                              </table>
                                           </div>
@@ -120,7 +116,6 @@
                                                 <thead>
                                                    <tr>
                                                       <th>NO.</th>
-                                                      <th>Date</th>
                                                       <th>Affiliate</th>
                                                       <th>Clicks</th>
                                                       <th>Unique Clicks</th>
@@ -131,17 +126,18 @@
                                                    </tr>
                                                 </thead>
                                                 <tbody>
+                                                   @foreach($affiliates_report as $affiliatesreport)
                                                    <tr>
-                                                      <td>1</td>
-                                                      <td>2018-07-01</td>
-                                                      <td><a href="#">sss #2</a></td>
-                                                      <td>3</td>
-                                                      <td>5</td>
-                                                      <td>0</td>
-                                                      <td>0.000%</td>
-                                                      <td>0.000</td>
-                                                      <td>0.000</td>
+                                                      <td>{{ $loop->iteration }}</td>
+                                                      <td><a href="{{ route('advertiser.show', $affiliatesreport->id) }}">{{ $affiliatesreport->fname }}</a></td>
+                                                      <td>{{ $affiliatesreport->sumclicks }}</td>
+                                                      <td>{{ $affiliatesreport->uniquesumclicks }}</td>
+                                                      <td>{{ $affiliatesreport->sumsignup }}</td>
+                                                      <td>{{ (($affiliatesreport->sumsignup == 0) ? 0 : ($affiliatesreport->sumsignup)/($affiliatesreport->sumsignup)*100) }}%</td>
+                                                      <td>${{ $affiliatesreport->totalrevenue }}</td>
+                                                      <td>${{ $affiliatesreport->totalpayout }}</td>
                                                    </tr>
+                                                   @endforeach
                                                 </tbody>
                                              </table>
                                           </div>

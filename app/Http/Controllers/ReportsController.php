@@ -145,27 +145,39 @@ class ReportsController extends Controller
     public function operationreport()
     {
 
-      $check = "SELECT  u.*, o.*, u.id as aff_id
-       , (SELECT COUNT(I1.click)  FROM clicks I1 WHERE I1.offer_id = o.id ) as sumclicks
+      $affiliates_report = $this->affiliatesreport();
+      $advertisers_report = $this->advertisersreport();
+      $offers_report = $this->offersreport();
+      $smartlink_report = $this->smartlinkreport();
+
+      return view('admin.operation-report',compact('advertisers_report','offers_report','affiliates_report','smartlink_report'));
+
+
+
+    }
+    public function affiliatesreport()
+    {
+      $adv_query = "SELECT  u.*, o.*, u.id as aff_id
+      , (SELECT COUNT(I1.click)  FROM clicks I1 WHERE I1.offer_id = o.id ) as sumclicks
+      , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.offer_id = o.id) as uniquesumclicks
       , (SELECT COUNT(I2.signup) FROM signups I2 WHERE I2.offer_id = o.id) as sumsignup
       , (SELECT (COUNT(I2.signup) * o.revenue) FROM signups I2 WHERE I2.offer_id = o.id) as totalrevenue
       , (SELECT (COUNT(I2.signup) * o.payout) FROM signups I2 WHERE I2.offer_id = o.id) as totalpayout
-      FROM users u INNER JOIN offers o
-         ON u.id= o.adv_id
-         WHERE u.roles_id = 4 and u.admin_id = ".Auth::user()->id;
-         $check .= " ORDER BY o.id DESC";
-         $advreports = DB::select($check);
+      from users u INNER JOIN assignoffers ao on u.id = ao.user_id
+      INNER Join offers o on o.id = ao.offer_id
+      where u.roles_id = 5 and u.admin_id = ".Auth::user()->id." ORDER BY o.id DESC";
+        $adv_result = DB::select($adv_query);
 
         $issame = false;
-        $sumArray = array();
+        $advertisers_report = array();
 
-        foreach ($advreports as $subArray) {
-          foreach ($sumArray as $key=>$sumValue) {
+        foreach ($adv_result as $subArray) {
+          foreach ($advertisers_report as $key=>$sumValue) {
             if ($subArray->id == $sumValue->id) {
-              $sumArray[$key]->sumclicks += $subArray->sumclicks;
-              $sumArray[$key]->sumsignup += $subArray->sumsignup;
-              $sumArray[$key]->totalrevenue += $subArray->totalrevenue;
-              $sumArray[$key]->totalpayout += $subArray->totalpayout;
+              $advertisers_report[$key]->sumclicks += $subArray->sumclicks;
+              $advertisers_report[$key]->sumsignup += $subArray->sumsignup;
+              $advertisers_report[$key]->totalrevenue += $subArray->totalrevenue;
+              $advertisers_report[$key]->totalpayout += $subArray->totalpayout;
               $issame = true;
               break;
             }
@@ -173,16 +185,114 @@ class ReportsController extends Controller
             if($issame == true){
                 $issame = false;
             }else{
-                $sumArray[] =  $subArray;
+                $advertisers_report[] =  $subArray;
             }
         }
-
-        return ($sumArray);
-
-
-
+        return $advertisers_report;
     }
+    public function advertisersreport()
+    {
+      $adv_query = "SELECT  u.*, o.*, u.id as aff_id
+      , (SELECT COUNT(I1.click)  FROM clicks I1 WHERE I1.offer_id = o.id ) as sumclicks
+      , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.offer_id = o.id) as uniquesumclicks
+      , (SELECT COUNT(I2.signup) FROM signups I2 WHERE I2.offer_id = o.id) as sumsignup
+      , (SELECT (COUNT(I2.signup) * o.revenue) FROM signups I2 WHERE I2.offer_id = o.id) as totalrevenue
+      , (SELECT (COUNT(I2.signup) * o.payout) FROM signups I2 WHERE I2.offer_id = o.id) as totalpayout
+      FROM users u INNER JOIN offers o
+         ON u.id= o.adv_id
+         WHERE u.roles_id = 4 and u.admin_id = ".Auth::user()->id." ORDER BY o.id DESC";
+         $adv_result = DB::select($adv_query);
 
+        $issame = false;
+        $advertisers_report = array();
+
+        foreach ($adv_result as $subArray) {
+          foreach ($advertisers_report as $key=>$sumValue) {
+            if ($subArray->id == $sumValue->id) {
+              $advertisers_report[$key]->sumclicks += $subArray->sumclicks;
+              $advertisers_report[$key]->sumsignup += $subArray->sumsignup;
+              $advertisers_report[$key]->totalrevenue += $subArray->totalrevenue;
+              $advertisers_report[$key]->totalpayout += $subArray->totalpayout;
+              $issame = true;
+              break;
+            }
+          }
+            if($issame == true){
+                $issame = false;
+            }else{
+                $advertisers_report[] =  $subArray;
+            }
+        }
+        return $advertisers_report;
+    }
+    public function offersreport()
+    {
+      $adv_query = "SELECT  o.*, o.id as offer_id
+      , (SELECT COUNT(I1.click)  FROM clicks I1 WHERE I1.offer_id = o.id ) as sumclicks
+      , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.offer_id = o.id) as uniquesumclicks
+      , (SELECT COUNT(I2.signup) FROM signups I2 WHERE I2.offer_id = o.id) as sumsignup
+      , (SELECT (COUNT(I2.signup) * o.revenue) FROM signups I2 WHERE I2.offer_id = o.id) as totalrevenue
+      , (SELECT (COUNT(I2.signup) * o.payout) FROM signups I2 WHERE I2.offer_id = o.id) as totalpayout
+      FROM offers o 
+        WHERE  o.admin_id = ".Auth::user()->id." ORDER BY o.id DESC";
+        $adv_result = DB::select($adv_query);
+
+        $issame = false;
+        $advertisers_report = array();
+
+        foreach ($adv_result as $subArray) {
+          foreach ($advertisers_report as $key=>$sumValue) {
+            if ($subArray->id == $sumValue->id) {
+              $advertisers_report[$key]->sumclicks += $subArray->sumclicks;
+              $advertisers_report[$key]->sumsignup += $subArray->sumsignup;
+              $advertisers_report[$key]->totalrevenue += $subArray->totalrevenue;
+              $advertisers_report[$key]->totalpayout += $subArray->totalpayout;
+              $issame = true;
+              break;
+            }
+          }
+            if($issame == true){
+                $issame = false;
+            }else{
+                $advertisers_report[] =  $subArray;
+            }
+        }
+        return $advertisers_report;
+    }
+    public function smartlinkreport()
+    {
+      $adv_query = "SELECT  o.*, o.id as offer_id
+      , (SELECT COUNT(I1.click)  FROM clicks I1 WHERE I1.offer_id = o.id ) as sumclicks
+      , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.offer_id = o.id) as uniquesumclicks
+      , (SELECT COUNT(I2.signup) FROM signups I2 WHERE I2.offer_id = o.id) as sumsignup
+      , (SELECT (COUNT(I2.signup) * o.revenue) FROM signups I2 WHERE I2.offer_id = o.id) as totalrevenue
+      , (SELECT (COUNT(I2.signup) * o.payout) FROM signups I2 WHERE I2.offer_id = o.id) as totalpayout
+      FROM offers o 
+        WHERE  o.admin_id = ".Auth::user()->id." ORDER BY o.id DESC";
+        $adv_result = DB::select($adv_query);
+
+        $issame = false;
+        $advertisers_report = array();
+
+        foreach ($adv_result as $subArray) {
+          foreach ($advertisers_report as $key=>$sumValue) {
+            if ($subArray->id == $sumValue->id) {
+              $advertisers_report[$key]->sumclicks += $subArray->sumclicks;
+              $advertisers_report[$key]->sumsignup += $subArray->sumsignup;
+              $advertisers_report[$key]->totalrevenue += $subArray->totalrevenue;
+              $advertisers_report[$key]->totalpayout += $subArray->totalpayout;
+              $issame = true;
+              break;
+            }
+          }
+            if($issame == true){
+                $issame = false;
+            }else{
+                $advertisers_report[] =  $subArray;
+            }
+        }
+        return $advertisers_report;
+    }
 
     public function affiliatereport()
     {
