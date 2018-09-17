@@ -429,7 +429,7 @@
                            <li><a href="{{ asset('advertisers-reports') }}">Advertiser Report</a></li>
                            <li><a href="{{ asset('affiliate-reports') }}">Affiliate Report</a></li>
                            <li><a href="{{ asset('operation-report') }}">Operation Report</a></li>
-                           <li><a href="{{ asset('generat-report') }}">General Report</a></li>
+                           <li><a href="{{ asset('general-report') }}">General Report</a></li>
                            <li><a href="{{ asset('conversion-report') }}">Conversion Report</a></li>
                            <li><a href="{{ asset('conversion-status-report') }}">Conversion Status Report</a></li>
                            <li><a href="{{ asset('test-conversion-report') }}">Test Conversion Report</a></li>

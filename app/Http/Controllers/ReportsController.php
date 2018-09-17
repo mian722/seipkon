@@ -422,4 +422,17 @@ class ReportsController extends Controller
 
     }
 
+    public function generalreport(){
+      $advertisers = $this->getuser(4);
+      $adv_managers = $this->getrelatedmanagers($advertisers);
+
+      $affiliates = $this->getuser(5);
+      return $aff_managers = $this->getrelatedmanagers($affiliates);
+      $offers = $this->getalloffers();
+      $timezones = $this->gettimezones();
+      $countries = $this->getcountry();
+
+      return view('admin.general-report',compact('advertisers', 'adv_managers', 'managers', 'offers', 'timezones'));
+    }
+
 }

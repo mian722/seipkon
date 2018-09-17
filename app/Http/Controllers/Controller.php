@@ -276,6 +276,15 @@ class Controller extends BaseController
       return OffersPool::where('admin_id', Auth::user()->id)->where('status',1)->get();
     }
 
+    public function getrelatedmanagers($data){
+      $array = array();
+      foreach ($data as $key => $manager){
+        $array[] += $manager->managerid;
+      }
+      return $managers = User::whereIn('id', $array)->where('status', 1)->get();
+
+    }
+
     public function getcurrency() {
     	return $currencies = array("United States, Dollars(USD)", "Euro(EUR)", "Australia, Dollars(AUD)", "Brazil, Reais(BRL)", "Britain (United Kingdom), Pounds(GBP)", "Canada, Dollars(CAD)", "China, Yuan Renminbi(CNY)", "Denmark, Kroner(DKK)", "Hong Kong, Dollars(HKD)", "Hungary, Forint(HUF)", "India, Rupees(INR)", "Indonesia, Rupiahs(IDR)", "Israel, New Shekels(ILS)", "Japan, Yen(JPY)", "Mexico, Pesos(MXN)", "Russia, Rubles(RUB)", "Switzerland/Liechtenstein, Francs(CHF)", "Thailand, Baht(THB)", "Ukraine, Hryvnia(UAH)", "Vietnam(VND)", "Turkey(TRY)", "Korea(KRW)", "Egypt(EGP)", "Argentina(ARS)", "Singapore(SGD)", "Poland(PLN)");
     }
