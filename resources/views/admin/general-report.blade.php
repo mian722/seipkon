@@ -235,11 +235,11 @@
                                                    </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Approved & Pending Conversions" name="conversion_status">
-                                                      <option>All</option>
-                                                      <option>Pending</option>
-                                                      <option>Approved</option>
-                                                      <option>Rejected</option>
+                                                   <select class="form-control select2" data-placeholder="Approved & Pending Conversions" name="conversion_status">
+                                                      <option value="null">All</option>
+                                                      <option value="1">Approved</option>
+                                                      <option value="0">Pending</option>
+                                                      <option value="2">Rejected</option>
                                                    </select>
                                                 </div>
                                              </div>
@@ -354,6 +354,16 @@
                data: { "_token": token, "allform": allform},
                success: function( response ) {
                   $('#report_response').html(response);
+                      $('#button_datatables_example').DataTable( {
+                          dom: 'Bfrtip',
+                          buttons: [
+                              'print',
+                              'pdf',
+                              'csv',
+                              'copy',
+                          ]
+                      } );
+                  $('.dt-buttons.btn-group > button').addClass('datatable-btn');
                       
                }
            });

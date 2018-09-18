@@ -637,8 +637,9 @@ class ReportsController extends Controller
       $offers = $this->getalloffers();
       $timezones = $this->gettimezones();
       $countries = $this->getcountry();
+      $platforms = $this->getplatform();
 
-      return view('admin.general-report',compact('advertisers', 'adv_managers', 'affiliates', 'aff_managers', 'offers', 'timezones', 'countries'));
+      return view('admin.general-report',compact('advertisers', 'adv_managers', 'affiliates', 'aff_managers', 'offers', 'timezones', 'countries', 'platforms'));
     }
 
 
@@ -666,7 +667,7 @@ class ReportsController extends Controller
           $range3 = " and s.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
       }
 
-      $generalquery = "Select u.*, ao.user_id, ao.offer_id, o.*, adv_manager.fname as adv_manager_name, aff_manager.fname as aff_manager_name, adv.fname as adv_name, off_r.platform_targeting
+      $generalquery = "Select u.*, ao.user_id, ao.offer_id, o.*, adv_manager.fname as adv_manager_name, adv_manager.id as adv_manager_id, aff_manager.fname as aff_manager_name, aff_manager.id as aff_manager_id, adv.fname as adv_name, adv.id as adv_id, off_r.platform_targeting, off_r.mobile_carrier_targeting
       , (SELECT COUNT(clc.click) FROM clicks clc WHERE clc.affiliate_id = u.id and clc.offer_id = o.id ".$range1.$status1.") as sumclicks
       , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.affiliate_id = u.id and uc.offer_id = o.id ".$range2.$status2.") as uniquesumclicks
       , (SELECT COUNT(s.signup) FROM signups s WHERE s.affiliate_id = u.id and s.offer_id = o.id ".$range3.$status3.") as sumsignup
@@ -719,8 +720,42 @@ class ReportsController extends Controller
           $generalquery .= " and o.id = ".$data->offers_id;
         }
       }
+      if(isset($data->geo_targeting)){
+        if(is_array($data->geo_targeting)){
+          $generalquery .= " AND (";
+          $num = 0;
+          foreach ($data->geo_targeting as $target) {
+            if ($num == 0) {
+              $generalquery .= "off_r.geo_targeting LIKE '%".$target."%'";
+              $num++;
+            }
+            $generalquery .= "OR off_r.geo_targeting LIKE '%".$target."%'";
+          }
+          $generalquery .= ")";
+        }else{
+          $generalquery .= " and off_r.geo_targeting LIKE '%".$data->geo_targeting."%'";
+        }
+      }
+
       if(isset($data->timezone) && $data->timezone != "null"){
         $generalquery .= " and off_r.caps_timezone = '".$data->timezone."'";
+      }
+
+      if(isset($data->platform_name)){
+        if(is_array($data->platform_name)){
+          $generalquery .= " AND (";
+          $num = 0;
+          foreach ($data->platform_name as $target) {
+            if ($num == 0) {
+              $generalquery .= "off_r.platform_targeting LIKE '%".$target."%'";
+              $num++;
+            }
+            $generalquery .= "OR off_r.platform_targeting LIKE '%".$target."%'";
+          }
+          $generalquery .= ")";
+        }else{
+          $generalquery .= " and off_r.platform_targeting LIKE '%".$data->platform_name."%'";
+        }
       }
       $generalquery .= " ORDER BY o.id ASC";
 
@@ -754,6 +789,7 @@ class ReportsController extends Controller
                             </thead>
                         <tbody>';
                 $counter = 1;
+                if (!empty($alldata)) {
                 foreach ($alldata as $value) {
                 //$managername = User::select('fname')->where('id', $value->managerid)->first();
                 $amount = $value->revenue * $value->sumsignup;
@@ -761,6 +797,7 @@ class ReportsController extends Controller
                 $profit = $amount - $payout;
 
                 $platformss = json_decode($value->platform_targeting);
+                $mobile_carrier = json_decode($value->mobile_carrier_targeting);
                 $cr = 00.0;
                 $earn_per_click = 0.00;
                 if ($value->sumclicks != 0) {
@@ -769,9 +806,9 @@ class ReportsController extends Controller
                 }
                 $table .= '<tr>
                                <td>'.$counter++.'</td>
-                                   '.((isset($data->advertiser)) ? '<td><a href="'.route('affiliate.show', $value->adv_id).'">'.$value->adv_name.'</a></td>' : '').'
-                                   '.((isset($data->affiliate)) ? '<td>'.$value->fname.'</td>' : '').'
-                                   '.((isset($data->adv_manager)) ? '<td><a href="'.route('affiliate.show', $value->managerid).'">'.$value->adv_manager_name.'</a></td>' : '').'
+                                   '.((isset($data->advertiser)) ? '<td><a href="'.route('advertiser.show', $value->adv_id).'">'.$value->adv_name.'</a></td>' : '').'
+                                   '.((isset($data->affiliate)) ? '<td><a href="'.route('affiliate.show', $value->user_id).'">'.$value->fname.'</a></td>' : '').'
+                                   '.((isset($data->adv_manager)) ? '<td>'.$value->adv_manager_name.'</td>' : '').'
                                    '.((isset($data->aff_manager)) ? '<td>'.$value->aff_manager_name.'</td>' : '').'
                                    '.((isset($data->smartlink)) ? '<td>Smart Link</td>' : '').'
                                    '.((isset($data->offer)) ? '<td><a href="'.route('offers-detail', $value->offer_id).'">'.$value->offer_name.'</a></td>' : '').'
@@ -786,11 +823,16 @@ class ReportsController extends Controller
                                    '.((isset($data->amount)) ? '<td>$'.$amount.'</td>' : '').'
                                    '.((isset($data->profit)) ? '<td>$'.$profit.'</td>' : '').' 
                                    '.((isset($data->platform)) ? '<td>'.implode (", ",$platformss).'</td>' : '').' 
-                                   '.((isset($data->mobile_carrier)) ? '<td>Mobile Carrier</td>' : '').' 
+                                   '.((isset($data->mobile_carrier)) ? '<td>'.implode (", ",$mobile_carrier).'</td>' : '').' 
                                    '.((isset($data->click_rate)) ? '<td>'.$cr.'%</td>' : '').' 
                                    '.((isset($data->earn_per_click)) ? '<td>$'.$earn_per_click.'</td>' : '').' 
                             </tr>';
                           }
+                }else{
+                  $table .= '<tr>
+                                       <td colspan="100" style="text-align: center;">No Result</td>
+                                    </tr>';
+                }
               
 
                 $table .= '</tbody>
