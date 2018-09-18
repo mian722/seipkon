@@ -105,6 +105,7 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::post('/affiliate-reports-generate', 'ReportsController@affiliatereportgenerate')->name('affiliatereportgenerate');
 	Route::get('/operation-report', 'ReportsController@operationreport')->name('operationreport');
 	Route::get('/general-report', 'ReportsController@generalreport')->name('generalreport');
+	Route::post('/general-report-generate', 'ReportsController@generalreportgenerate')->name('generalreportgenerate');
 	Route::get('/conversion-report', 'ReportsController@conversionreport')->name('conversionreport');
 	Route::post('/conversion-reports-generate', 'ReportsController@conversionreportgenerate')->name('conversionreportgenerate');
 	Route::get('/conversion-status-report', 'ReportsController@conversionstatusreport')->name('conversionstatusreport');

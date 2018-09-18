@@ -53,7 +53,7 @@ class ClicksController extends Controller
         }
         $clicks->affiliate_id = $aid;
         $clicks->offer_id = $oid;
-         $clicks->adv_id = $advertiser->adv_id;
+        $clicks->adv_id = $advertiser->adv_id;
         $clicks->click = 1;
         $clicks->ip = $IP;
         $clicks->device = $device;

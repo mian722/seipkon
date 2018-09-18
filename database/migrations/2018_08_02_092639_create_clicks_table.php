@@ -28,6 +28,8 @@ class CreateClicksTable extends Migration
             $table->string('os')->nullable();
             $table->string('country')->nullable();
             $table->string('proxy')->nullable();
+            $table->string('adv_id')->nullable();
+            $table->string('status')->default(1);
             $table->timestamps();
         });
     }
