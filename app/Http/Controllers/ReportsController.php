@@ -452,6 +452,7 @@ class ReportsController extends Controller
       $affil = "Select u.fname, c.id as cid, s.id as sid, o.offer_name, adv.fname as advname, aff_man.fname as aff_man_name, adv_man.fname as adv_man_name
       from signups s LEFT JOIN clicks c on c.sub_id = s.sub_id
       Left Join offers o on o.id = s.offer_id
+      Left Join offer_restrictions off_r on off_r.offer_id = o.id
       LEFT JOIN users u on u.id = s.affiliate_id
       LEFT JOIN users adv on adv.id = s.adv_id
       LEFT JOIN users aff_man on aff_man.id = u.managerid
@@ -526,13 +527,13 @@ class ReportsController extends Controller
       if(isset($data->timezonelist)){
         if(is_array($data->timezonelist)){
           $oids = join("','",$data->timezonelist);   
-          $affil .= " and o.caps_timezone IN ('$oids')";
+          $affil .= " and off_r.caps_timezone IN ('$oids')";
         }else{
-          $affil .= " and o.caps_timezone = '".$data->timezonelist."'";
+          $affil .= " and off_r.caps_timezone = '".$data->timezonelist."'";
         }
       }
-      //return $request->allform;
-      return  $alldata = DB::select($affil);
+     // return $request->allform;
+      $alldata = DB::select($affil);
       $affil .= " ORDER BY o.id ASC";
 
      return  $alldata = DB::select($affil);
@@ -540,21 +541,40 @@ class ReportsController extends Controller
       $table = '<table id="button_datatables_example" class="table display table-striped table-bordered">
                             <thead>
                                 <tr>
-                                   <th>NO.</th>
-                                   '.((isset($data->affiliate)) ? '<th>Affiliate</th>' : '').'
-                                   '.((isset($data->adv_manager)) ? '<th>Affiliate Manager </th>' : '').'
-                                   '.((isset($data->offer)) ? '<th>Offer</th>' : '').'
-                                   '.((isset($data->clicks)) ? '<th>Clicks</th>' : '').'
-                                   '.((isset($data->unique_clicks)) ? '<th>Unique Clicks</th>' : '').'
-                                   '.((isset($data->currency)) ? '<th>Currency</th>' : '').'
-                                   '.((isset($data->revenue)) ? '<th>Revenue(USD)</th>' : '').'
-                                   '.((isset($data->conversions)) ? '<th>Conversions</th>' : '').'
-                                   '.((isset($data->payout)) ? '<th>Payout(USD)</th>' : '').'
-                                   '.((isset($data->amount)) ? '<th>Amount(USD)</th>' : '').'
-                                   '.((isset($data->profit)) ? '<th>Profit(USD)</th>' : '').' 
-                                   '.((isset($data->click_rate)) ? '<th>CR</th>' : '').' 
-                                   '.((isset($data->earn_per_click)) ? '<th>EPC</th>' : '').' 
-                                </tr>
+                                  <th>NO.</th>
+                                  '.((isset($data->coversiontime)) ? '<th>Coversion Time</th>' : '').'
+                                  '.((isset($data->clicktime)) ? '<th>Click Time</th>' : '').'
+                                  '.((isset($data->advertiser)) ? '<th>Advertiser</th>' : '').'
+                                  '.((isset($data->affiliate)) ? '<th>Affiliate</th>' : '').'
+                                  '.((isset($data->advmanger)) ? '<th>Advertiser Manager</th>' : '').'
+                                  '.((isset($data->affmanager)) ? '<th>Affiliate Manager</th>' : '').'
+                                  '.((isset($data->smartlinkcheck)) ? '<th>SmartLink</th>' : '').'
+                                  '.((isset($data->offer)) ? '<th>Offer</th>' : '').'
+                                  '.((isset($data->country)) ? '<th>Country</th>' : '').'
+                                  '.((isset($data->sourceid)) ? '<th>Source ID</th>' : '').'
+                                  '.((isset($data->clicksid)) ? '<th>Clicks ID</th>' : '').'
+                                  '.((isset($data->clicksip)) ? '<th>Clicks IP</th>' : '').'
+                                  '.((isset($data->conversionip)) ? '<th>Conversions IP</th>' : '').'
+                                  '.((isset($data->status)) ? '<th>Status</th>' : '').'
+                                  '.((isset($data->postback)) ? '<th>Postback</th>' : '').'
+                                  '.((isset($data->referurl)) ? '<th>Referer URL</th>' : '').'
+                                  '.((isset($data->revenue)) ? '<th>Revenue</th>' : '').'
+                                  '.((isset($data->payout)) ? '<th>Payout</th>' : '').'
+                                  '.((isset($data->amount)) ? '<th>Amount</th>' : '').'
+                                  '.((isset($data->profit)) ? '<th>Profit</th>' : '').'
+                                  '.((isset($data->adcsub1)) ? '<th>Adv Sub 1</th>' : '').'
+                                  '.((isset($data->adcsub2)) ? '<th>Adv Sub 2</th>' : '').'
+                                  '.((isset($data->adcsub3)) ? '<th>Adv Sub 3</th>' : '').'
+                                  '.((isset($data->affsub1)) ? '<th>Aff Sub 1</th>' : '').'
+                                  '.((isset($data->affsub2)) ? '<th>Aff Sub 2</th>' : '').'
+                                  '.((isset($data->affsub3)) ? '<th>Aff Sub 3</th>' : '').'
+                                  '.((isset($data->affsub4)) ? '<th>Aff Sub 4</th>' : '').'
+                                  '.((isset($data->affsub5)) ? '<th>Aff Sub 5</th>' : '').'
+                                  '.((isset($data->plateform)) ? '<th>Platform</th>' : '').'
+                                  '.((isset($data->mobilcarrier)) ? '<th>Mobile Carrier</th>' : '').'
+                                  '.((isset($data->cr)) ? '<th>CR</th>' : '').'
+                                  '.((isset($data->epc)) ? '<th>EPC</th>' : '').'
+                                <tr>
                             </thead>
                         <tbody>';
                 $counter = 1;
