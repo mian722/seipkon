@@ -20,6 +20,8 @@ class CreateSignupsTable extends Migration
             $table->tinyInteger('offer_id');
             $table->string('sub_id', 30)->nullable();
             $table->tinyInteger('signup')->default(1);
+            $table->tinyInteger('adv_id')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
