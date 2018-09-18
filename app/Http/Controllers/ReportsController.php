@@ -422,72 +422,104 @@ class ReportsController extends Controller
     }
   public function conversionreport()
       {
-        $affiliates = $this->getuser(5);
-        $managers = $this->getuser(3);
-          $offers = $this->getalloffers();
-          $timezones = $this->gettimezones();
+      $advertisers = $this->getuser(4);
+      $adv_managers = $this->getrelatedmanagers($advertisers);
+      $affiliates = $this->getuser(5);
+      $aff_managers = $this->getrelatedmanagers($affiliates);
+      $offers = $this->getalloffers();
+      $timezones = $this->gettimezones();
+      $countries = $this->getcountry();
+      $getplatforms = $this->getplatform();
 
-        return view('admin.affiliate-reports',compact('affiliates', 'managers', 'offers', 'timezones'));
+      return view('admin.conversion-report',compact('advertisers', 'adv_managers', 'managers','affiliates','aff_managers', 'offers','countries', 'timezones','getplatforms'));
       }
 
-    public function conversionreportgenrate(Request $request){
-      return $data = json_decode($request->allform);
+    public function conversionreportgenerate(Request $request){
+      
+      $data = json_decode($request->allform);
       $status1 = '';
-      $status2 = '';
-      $status3 = '';
       if(isset($data->conversion_status) && $data->conversion_status != 'null'){
-        $status1 = " and clc.status = ".$data->conversion_status;
-        $status2 = " and uc.status = ".$data->conversion_status;
-        $status3 = " and s.status = ".$data->conversion_status;
+        $status1 = " and s.status = ".$data->conversion_status;
       }
       $range1 = '';
-      $range2 = '';
-      $range3 = '';
       if(isset($data->daterange)){
         $explode = explode(" - ", $data->daterange);
         $startdate = $explode[0].' 00:00:00';
         $enddate = $explode[1].' 23:59:59';
-        $range1 = " and clc.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
-        $range2 = " and uc.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
-        $range3 = " and s.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+        $range1 = " and s.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
       }
 
-      $affil = "Select u.*, ao.user_id, ao.offer_id, o.*
-      , (SELECT COUNT(clc.click) FROM clicks clc WHERE clc.affiliate_id = u.id and clc.offer_id = o.id ".$status1.$range1.") as sumclicks
-      , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.affiliate_id = u.id and uc.offer_id = o.id ".$status2.$range2.") as uniquesumclicks
-      , (SELECT COUNT(s.signup) FROM signups s WHERE s.affiliate_id = u.id and s.offer_id = o.id ".$status3.$range3.") as sumsignup
-      from users u LEFT JOIN assignoffers ao on u.id = ao.user_id
-      Left Join offers o on o.id = ao.offer_id
-      where u.roles_id = 5 and u.admin_id = ".Auth::user()->id;
+      $affil = "Select u.fname, c.id as cid, s.id as sid, o.offer_name, adv.fname as advname, aff_man.fname as aff_man_name, adv_man.fname as adv_man_name
+      from signups s LEFT JOIN clicks c on c.sub_id = s.sub_id
+      Left Join offers o on o.id = s.offer_id
+      LEFT JOIN users u on u.id = s.affiliate_id
+      LEFT JOIN users adv on adv.id = s.adv_id
+      LEFT JOIN users aff_man on aff_man.id = u.managerid
+      LEFT JOIN users adv_man on adv_man.id = adv.managerid
+      where u.admin_id = ".Auth::user()->id;
+      // return  $alldata = DB::select($affil);
 
-
-      if(isset($data->affiliate_id)){
-        if(is_array($data->affiliate_id)){
+      if(isset($data->affiliatelist)){
+        if(is_array($data->affiliatelist)){
           $aids = join("','",$data->affiliate_id);   
-          $affil .= " and u.id IN ('$aids')";
+         $affil .= " and s.affiliate_id IN ('$aids')";
         }else{
-          $affil .= " and u.id = ".$data->affiliate_id;
+          $affil .= " and s.affiliate_id = ".$data->affiliatelist;
         }
       }
-      if(isset($data->adv_manager_value)){
-        if(is_array($data->adv_manager_value)){
-          $mids = join("','",$data->adv_manager_value);   
-          $affil .= " and u.managerid IN ('$mids')";
+      if(isset($data->countrylist)){
+        if(is_array($data->countrylist)){
+          $mids = join("','",$data->countrylist);   
+          $affil .= " and c.country IN ('$mids')";
         }else{
-          $affil .= " and u.managerid = ".$data->adv_manager_value;
+          $affil .= " and c.country = '".$data->countrylist."'";
         }
       }
-      if(isset($data->offers_id)){
-        if(is_array($data->offers_id)){
-          $oids = join("','",$data->offers_id);   
-          $affil .= " and o.id IN ('$oids')";
+      if(isset($data->affiliatemanager)){
+        if(is_array($data->affiliatemanager)){
+          $mids = join("','",$data->affiliatemanager);   
+          $affil .= " and aff_man.id IN ('$mids')";
         }else{
-          $affil .= " and o.id = ".$data->offers_id;
+          $affil .= " and aff_man.id = ".$data->affiliatemanager;
         }
       }
+      if(isset($data->advertiserlist)){
+        if(is_array($data->advertiserlist)){
+          $mids = join("','",$data->advertiserlist);   
+          $affil .= " and s.adv_id IN ('$mids')";
+        }else{
+          $affil .= " and s.adv_id = ".$data->advertiserlist;
+        }
+      }
+      if(isset($data->advertisermanager)){
+        if(is_array($data->advertisermanager)){
+          $mids = join("','",$data->advertisermanager);   
+          $affil .= " and adv_man.id IN ('$mids')";
+        }else{
+          $affil .= " and adv_man.id = ".$data->advertisermanager;
+        }
+      }
+      if(isset($data->offerlist)){
+        if(is_array($data->offerlist)){
+          $oids = join("','",$data->offerlist);   
+          $affil .= " and s.offer_id IN ('$oids')";
+        }else{
+          $affil .= " and s.offer_id = ".$data->offerlist;
+        }
+      }
+      if(isset($data->plateformlist)){
+        if(is_array($data->plateformlist)){
+          $oids = join("','",$data->plateformlist);   
+          $affil .= " and c.os IN ('$oids')";
+        }else{
+          $affil .= " and c.os = '".$data->plateformlist."'";
+        }
+      }
+      // /return $request->allform;
+      return  $alldata = DB::select($affil);
       $affil .= " ORDER BY o.id ASC";
 
-      $alldata = DB::select($affil);
+     return  $alldata = DB::select($affil);
 
       $table = '<table id="button_datatables_example" class="table display table-striped table-bordered">
                             <thead>
@@ -552,7 +584,7 @@ class ReportsController extends Controller
       $adv_managers = $this->getrelatedmanagers($advertisers);
 
       $affiliates = $this->getuser(5);
-      return $aff_managers = $this->getrelatedmanagers($affiliates);
+      $aff_managers = $this->getrelatedmanagers($affiliates);
       $offers = $this->getalloffers();
       $timezones = $this->gettimezones();
       $countries = $this->getcountry();
