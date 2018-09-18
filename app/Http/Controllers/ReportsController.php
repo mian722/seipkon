@@ -515,7 +515,15 @@ class ReportsController extends Controller
           $affil .= " and c.os = '".$data->plateformlist."'";
         }
       }
-      // /return $request->allform;
+      if(isset($data->conversionstatus)){
+        if(is_array($data->conversionstatus)){
+          $oids = join("','",$data->conversionstatus);   
+          $affil .= " and s.status IN ('$oids')";
+        }else{
+          $affil .= " and s.status = '".$data->conversionstatus."'";
+        }
+      }
+      //return $request->allform;
       return  $alldata = DB::select($affil);
       $affil .= " ORDER BY o.id ASC";
 
