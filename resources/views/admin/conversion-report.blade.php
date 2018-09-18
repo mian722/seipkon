@@ -46,13 +46,13 @@
                                              <div class="col-md-11">
                                                 <div class="col-md-2 col-sm-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="checkbox1" checked="" name="coversiontime" type="checkbox">
+                                                      <input id="checkbox1" checked="checked" name="coversiontime" type="checkbox">
                                                       <label for="checkbox1" class="inline control-label">Coversion Time</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-radio">
-                                                      <input id="checkbox2" name="clicktime" type="checkbox">
+                                                      <input id="checkbox2" name="clicktime" checked="checked" type="checkbox">
                                                       <label for="checkbox2" class="inline control-label">Click Time</label>
                                                    </div>
                                                 </div>
@@ -63,7 +63,7 @@
                                              <div class="col-md-11">
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_1" name="advertiser" type="checkbox">
+                                                      <input  id="chk_1" name="advertiser" type="checkbox">
                                                       <label class="inline control-label" for="chk_1">Advertiser</label>
                                                    </div>
                                                 </div>
@@ -81,7 +81,7 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input id="chk_4" name="affmanager" type="checkbox">
+                                                      <input id="chk_4" name="affmanager" checked="checked" type="checkbox">
                                                       <label class="inline control-label" for="chk_4"> Affiliate Manager</label>
                                                    </div>
                                                 </div>
@@ -93,13 +93,13 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input id="chk_6" name="offer" type="checkbox">
+                                                      <input id="chk_6" name="offer" checked="checked" type="checkbox">
                                                       <label class="inline control-label" for="chk_6">Offer</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" name="country" id="chk_7" type="checkbox">
+                                                      <input  name="country" id="chk_7" type="checkbox">
                                                       <label class="inline control-label" for="chk_7">Country</label>
                                                    </div>
                                                 </div>
@@ -123,7 +123,7 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_12" name="conversionip" type="checkbox">
+                                                      <input id="chk_12" name="conversionip" type="checkbox">
                                                       <label class="inline control-label" for="chk_12">Conversions IP</label>
                                                    </div>
                                                 </div>
@@ -135,25 +135,25 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_14" name="postback" type="checkbox">
+                                                      <input  id="chk_14" name="postback" type="checkbox">
                                                       <label class="inline control-label" for="chk_14">Postback</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_15" name="referurl" type="checkbox">
+                                                      <input id="chk_15" name="referurl" type="checkbox">
                                                       <label class="inline control-label" for="chk_15">Referer URL</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_16" name="revenue" type="checkbox">
+                                                      <input id="chk_16" name="revenue" type="checkbox">
                                                       <label class="inline control-label" for="chk_16">Revenue</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input id="chk_17" name="payout" type="checkbox">
+                                                      <input id="chk_17" checked="checked" name="payout" type="checkbox">
                                                       <label class="inline control-label" for="chk_17">Payout</label>
                                                    </div>
                                                 </div>
@@ -165,19 +165,19 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_19" name="profit" type="checkbox">
+                                                      <input id="chk_19" name="profit" type="checkbox">
                                                       <label class="inline control-label" for="chk_19">Profit</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_20" name="adcsub1" type="checkbox">
+                                                      <input id="chk_20" name="advsub1" type="checkbox">
                                                       <label class="inline control-label" for="chk_20">Adv Sub 1</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_21" name="advsub2" type="checkbox">
+                                                      <input id="chk_21" name="advsub2" type="checkbox">
                                                       <label class="inline control-label" for="chk_21">Adv Sub 2</label>
                                                    </div>
                                                 </div>
@@ -213,7 +213,7 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_27" name="affsub5" type="checkbox">
+                                                      <input id="chk_27" name="affsub5" type="checkbox">
                                                       <label class="inline control-label" for="chk_27">Aff Sub 5</label>
                                                    </div>
                                                 </div>
@@ -225,25 +225,8 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" name="mobilcarrier" id="chk_29" type="checkbox">
+                                                      <input name="mobilcarrier" id="chk_29" type="checkbox">
                                                       <label class="inline control-label" for="chk_29">Mobile Carrier</label>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="row">
-                                             <div class="col-md-1"><label>Calculation</label></div>
-                                             <div class="col-md-11">
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
-                                                      <input checked="checked" name="cr" id="CR" type="checkbox">
-                                                      <label class="inline control-label" for="CR">CR</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
-                                                      <input id="EPC" name="epc" name="epc" type="checkbox">
-                                                      <label class="inline control-label" for="EPC">EPC</label>
                                                    </div>
                                                 </div>
                                              </div>
@@ -308,7 +291,7 @@
                                                    </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                   <select class="form-control select2" name="conversionstatus" multiple="multiple" data-placeholder="Approved & Pending Conversions">
+                                                   <select class="form-control select2" name="conversionstatus" data-placeholder="Approved & Pending Conversions">
                                                       <option value="all">All</option>
                                                       <option value="1">Approved</option>
                                                       <option value="0">Pending</option>
@@ -322,6 +305,7 @@
                                              <div class="col-md-11">
                                                 <div class="col-md-6">
                                                    <select class="form-control select2" name="timezonelist">
+                                                      <option selected="" value="null">None</option>
                                                       @foreach($timezones as $timezone)
                                                       <option value="{{ $timezone }}">{{ $timezone }}</option>
                                                       @endforeach
@@ -354,25 +338,21 @@
                                  <thead>
                                     <tr>
                                        <th>NO.</th>
-                                       <th>Date</th>
-                                       <th>Clicks</th>
-                                       <th>Conversions</th>
-                                       <th>CR</th>
-                                       <th>Revenue(USD)</th>
-                                       <th>Payout(USD)</th>
-                                       <th>Profit(USD)</th>
+                                       <th>Coversion Time</th>
+                                       <th>Click Time</th>
+                                       <th>Affiliate</th>
+                                       <th>Affiliate Manager</th>
+                                       <th>Offer</th>
+                                       <th>Source ID</th>
+                                       <th>Clicks ID</th>
+                                       <th>Clicks IP</th>
+                                       <th>Status</th>
+                                       <th>Payout</th>
                                     </tr>
                                  </thead>
                                  <tbody>
                                     <tr>
-                                       <td>1</td>
-                                       <td>2018-07-01</td>
-                                       <td>5</td>
-                                       <td>0</td>
-                                       <td>0.000%</td>
-                                       <td>0.000</td>
-                                       <td>0.000</td>
-                                       <td>0.000</td>
+                                       <td colspan="9" style="text-align: center;">No Result</td>
                                     </tr>
                                  </tbody>
                               </table>
@@ -431,6 +411,16 @@
                data: { "_token": token, "allform": allform},
                success: function( response ) {
                   $('#report_response').html(response);
+                   $('#button_datatables_example12').DataTable( {
+                          dom: 'Bfrtip',
+                          buttons: [
+                              'print',
+                              'pdf',
+                              'csv',
+                              'copy',
+                          ]
+                      } );
+                  $('.dt-buttons.btn-group > button').addClass('datatable-btn');
                }
            });
       });

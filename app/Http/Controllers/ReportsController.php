@@ -449,16 +449,17 @@ class ReportsController extends Controller
         $range1 = " and s.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
       }
 
-      $affil = "Select u.fname, c.id as cid, s.id as sid, o.offer_name, adv.fname as advname, aff_man.fname as aff_man_name, adv_man.fname as adv_man_name
+      $affil = "Select u.*,c.*,p.*, c.id as cid, s.id as sid, s.updated_at as convertiontime, c.updated_at as clicktime, c.ip as clicksip, c.id as clicksid, o.*, s.*, adv.fname as advname, aff_man.fname as aff_man_name, adv_man.fname as adv_man_name
       from signups s LEFT JOIN clicks c on c.sub_id = s.sub_id
+      Left Join parameters p on p.sub_id = s.sub_id
       Left Join offers o on o.id = s.offer_id
       Left Join offer_restrictions off_r on off_r.offer_id = o.id
       LEFT JOIN users u on u.id = s.affiliate_id
       LEFT JOIN users adv on adv.id = s.adv_id
       LEFT JOIN users aff_man on aff_man.id = u.managerid
       LEFT JOIN users adv_man on adv_man.id = adv.managerid
-      where u.admin_id = ".Auth::user()->id;
-      // return  $alldata = DB::select($affil);
+      where u.admin_id = ".Auth::user()->id.$range1;
+       //return  $alldata = DB::select($affil);
 
       if(isset($data->affiliatelist)){
         if(is_array($data->affiliatelist)){
@@ -516,7 +517,7 @@ class ReportsController extends Controller
           $affil .= " and c.os = '".$data->plateformlist."'";
         }
       }
-      if(isset($data->conversionstatus)){
+      if(isset($data->conversionstatus) && $data->conversionstatus != "all"){
         if(is_array($data->conversionstatus)){
           $oids = join("','",$data->conversionstatus);   
           $affil .= " and s.status IN ('$oids')";
@@ -524,7 +525,7 @@ class ReportsController extends Controller
           $affil .= " and s.status = '".$data->conversionstatus."'";
         }
       }
-      if(isset($data->timezonelist)){
+      if(isset($data->timezonelist) && $data->timezonelist != "null"){
         if(is_array($data->timezonelist)){
           $oids = join("','",$data->timezonelist);   
           $affil .= " and off_r.caps_timezone IN ('$oids')";
@@ -532,13 +533,12 @@ class ReportsController extends Controller
           $affil .= " and off_r.caps_timezone = '".$data->timezonelist."'";
         }
       }
-     // return $request->allform;
-      $alldata = DB::select($affil);
+     //return $request->allform;
       $affil .= " ORDER BY o.id ASC";
 
-     return  $alldata = DB::select($affil);
+      $alldata = DB::select($affil);
 
-      $table = '<table id="button_datatables_example" class="table display table-striped table-bordered">
+      $table = '<table id="button_datatables_example12" class="table display table-striped table-bordered">
                             <thead>
                                 <tr>
                                   <th>NO.</th>
@@ -562,9 +562,9 @@ class ReportsController extends Controller
                                   '.((isset($data->payout)) ? '<th>Payout</th>' : '').'
                                   '.((isset($data->amount)) ? '<th>Amount</th>' : '').'
                                   '.((isset($data->profit)) ? '<th>Profit</th>' : '').'
-                                  '.((isset($data->adcsub1)) ? '<th>Adv Sub 1</th>' : '').'
-                                  '.((isset($data->adcsub2)) ? '<th>Adv Sub 2</th>' : '').'
-                                  '.((isset($data->adcsub3)) ? '<th>Adv Sub 3</th>' : '').'
+                                  '.((isset($data->advsub1)) ? '<th>Adv Sub 1</th>' : '').'
+                                  '.((isset($data->advsub2)) ? '<th>Adv Sub 2</th>' : '').'
+                                  '.((isset($data->advsub3)) ? '<th>Adv Sub 3</th>' : '').'
                                   '.((isset($data->affsub1)) ? '<th>Aff Sub 1</th>' : '').'
                                   '.((isset($data->affsub2)) ? '<th>Aff Sub 2</th>' : '').'
                                   '.((isset($data->affsub3)) ? '<th>Aff Sub 3</th>' : '').'
@@ -572,46 +572,59 @@ class ReportsController extends Controller
                                   '.((isset($data->affsub5)) ? '<th>Aff Sub 5</th>' : '').'
                                   '.((isset($data->plateform)) ? '<th>Platform</th>' : '').'
                                   '.((isset($data->mobilcarrier)) ? '<th>Mobile Carrier</th>' : '').'
-                                  '.((isset($data->cr)) ? '<th>CR</th>' : '').'
-                                  '.((isset($data->epc)) ? '<th>EPC</th>' : '').'
                                 <tr>
                             </thead>
                         <tbody>';
                 $counter = 1;
+                if (!empty($alldata))
+                {
                 foreach ($alldata as $value) {
-                $managername = User::select('fname')->where('id', $value->managerid)->first();
-                $amount = $value->revenue * $value->sumsignup;
-                $payout = $value->payout * $value->sumsignup;
-                $profit = $amount - $payout;
-                $cr = 00.0;
-                $earn_per_click = 0.00;
-                if ($value->sumclicks != 0) {
-                  $cr = round((($value->sumsignup / $value->sumclicks) * 100), 1);
-                  $earn_per_click = round(($profit / $value->sumclicks),2);
-                }
                 $table .= '<tr>
                                <td>'.$counter++.'</td>
-                                   '.((isset($data->affiliate)) ? '<td><a href="'.route('affiliate.show', $value->id).'">'.$value->fname.'</a></td>' : '').'
-                                   '.((isset($data->adv_manager)) ? '<td><a href="'.route('affiliate.show', $value->managerid).'">'.(!empty($managername->fname) ? $managername->fname : "" ).'</a></td>' : '').'
+                                   '.((isset($data->coversiontime)) ? '<td>'.$value->convertiontime.'</td>' : '').'
+                                   '.((isset($data->clicktime)) ? '<td>'.$value->clicktime.'</td>' : '').'
+                                   '.((isset($data->advertiser)) ? '<td><a href="'.route('affiliate.show', $value->adv_id).'">'.$value->advname.'</a></td>' : '').'
+                                   '.((isset($data->affiliate)) ? '<td><a href="'.route('affiliate.show', $value->affiliate_id).'">'.$value->fname.'</a></td>' : '').'
+                                   '.((isset($data->advmanger)) ? '<td>'.$value->adv_man_name.'</td>' : '').'
+                                   '.((isset($data->affmanager)) ? '<td>'.$value->aff_man_name.'</td>' : '').'
+                                   '.((isset($data->smartlinkcheck)) ? '<td>Smart Link</td>' : '').'
                                    '.((isset($data->offer)) ? '<td><a href="'.route('offers-detail', $value->offer_id).'">'.$value->offer_name.'</a></td>' : '').'
-                                   '.((isset($data->clicks)) ? '<td>'.$value->sumclicks.'</td>' : '').'
-                                   '.((isset($data->unique_clicks)) ? '<td>'.$value->uniquesumclicks.'</td>' : '').'
-                                   '.((isset($data->currency)) ? '<td>USD</td>' : '').'
-                                   '.((isset($data->revenue)) ? '<td>$'.$value->revenue.' ('.$value->revenue_type.')</td>' : '').'
-                                   '.((isset($data->conversions)) ? '<td>'.$value->sumsignup.'</td>' : '').'
-                                   '.((isset($data->payout)) ? '<td>$'.$value->payout.' ('.$value->payout_type.')</td>' : '').'
-                                   '.((isset($data->amount)) ? '<td>$'.$amount.'</td>' : '').'
-                                   '.((isset($data->profit)) ? '<td>$'.$profit.'</td>' : '').' 
-                                   '.((isset($data->click_rate)) ? '<td>'.$cr.'%</td>' : '').' 
-                                   '.((isset($data->earn_per_click)) ? '<td>$'.$earn_per_click.'</td>' : '').' 
+                                   '.((isset($data->country)) ? '<td>'.$value->country.'</td>' : '').'
+                                   '.((isset($data->sourceid)) ? '<td>'.$value->sub_id.'</td>' : '').'
+                                   '.((isset($data->clicksid)) ? '<td>'.$value->clicksid.'</td>' : '').'
+                                   '.((isset($data->clicksip)) ? '<td>'.$value->clicksip.'</td>' : '').'
+                                   '.((isset($data->conversionip)) ? '<td>'.$value->conversion_ip.'</td>' : '').'
+                                   '.((isset($data->status)) ? '<td>'.$value->status.'</td>' : '').'
+                                   '.((isset($data->postback)) ? '<td>'.$value->offer_postback.'</td>' : '').'
+                                   '.((isset($data->referurl)) ? '<td>'.$value->reffer_link.'</td>' : '').'
+                                  '.((isset($data->revenue)) ? '<td>$'.$value->revenue.'</td>' : '').'
+                                  '.((isset($data->payout)) ? '<td>$'.$value->payout.'</td>' : '').'
+                                  '.((isset($data->amount)) ? '<td>$'.$value->payout.'</td>' : '').'
+                                  '.((isset($data->profit)) ? '<td>$'.($value->revenue - $value->payout).'</td>' : '').'
+                                  '.((isset($data->advsub1)) ? '<td>'.$value->adv_sub1.'</td>' : '').'
+                                  '.((isset($data->advsub2)) ? '<td>'.$value->adv_sub2.'</td>' : '').'
+                                  '.((isset($data->advsub3)) ? '<td>'.$value->adv_sub3.'</td>' : '').'
+                                  '.((isset($data->affsub1)) ? '<td>'.$value->aff_sub1.'</td>' : '').'
+                                  '.((isset($data->affsub2)) ? '<td>'.$value->aff_sub2.'</td>' : '').'
+                                  '.((isset($data->affsub3)) ? '<td>'.$value->aff_sub3.'</td>' : '').'
+                                  '.((isset($data->affsub4)) ? '<td>'.$value->aff_sub4.'</td>' : '').'
+                                  '.((isset($data->affsub5)) ? '<td>'.$value->aff_sub5.'</td>' : '').'
+                                  '.((isset($data->plateform)) ? '<td>'.$value->os.'</td>' : '').'
+                                  '.((isset($data->mobilcarrier)) ? '<td>'.$value->device.'</td>' : '').'
+ 
                             </tr>';
                           }
-              
+                         } else {
+                               $table .= '<tr>
+                                       <td colspan="110" style="text-align: center;">No Result</td>
+                                    </tr>';
+                          }
 
                 $table .= '</tbody>
                           </table>';
 
          return $table; 
+
 
     }
 
