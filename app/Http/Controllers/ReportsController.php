@@ -523,6 +523,14 @@ class ReportsController extends Controller
           $affil .= " and s.status = '".$data->conversionstatus."'";
         }
       }
+      if(isset($data->timezonelist)){
+        if(is_array($data->timezonelist)){
+          $oids = join("','",$data->timezonelist);   
+          $affil .= " and o.caps_timezone IN ('$oids')";
+        }else{
+          $affil .= " and o.caps_timezone = '".$data->timezonelist."'";
+        }
+      }
       //return $request->allform;
       return  $alldata = DB::select($affil);
       $affil .= " ORDER BY o.id ASC";
