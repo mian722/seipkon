@@ -105,12 +105,6 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_8" name="city" type="checkbox">
-                                                      <label class="inline control-label" for="chk_8">City</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
                                                       <input checked="checked" id="chk_9" name="sourceid" type="checkbox">
                                                       <label class="inline control-label" for="chk_9">Source ID</label>
                                                    </div>
@@ -248,7 +242,7 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input id="EPC" name="epc" type="checkbox">
+                                                      <input id="EPC" name="epc" name="epc" type="checkbox">
                                                       <label class="inline control-label" for="EPC">EPC</label>
                                                    </div>
                                                 </div>
@@ -355,7 +349,7 @@
 
 
                         <div class="page-box">
-                           <div class="table-responsive advance-table">
+                           <div class="table-responsive advance-table" id="report_response">
                               <table id="button_datatables_example" class="table display table-striped table-bordered">
                                  <thead>
                                     <tr>
