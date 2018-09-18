@@ -278,7 +278,7 @@ class AffiliateController extends Controller
      */
     public function show($id)
     {
-        $affilates = User::Where('roles_id',5)->Where('id',$id)->first();
+        $affilates = User::Where('roles_id', 5)->Where('id',$id)->first();
         $managers = User::Where('id',$affilates->managerid)->first();
         $payouts = User::with('assignoffers')->Where('id',$id)->first();
         $postbacks = User::leftJoin('assignoffers', 'users.id', '=', 'assignoffers.user_id')
