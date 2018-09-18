@@ -597,14 +597,14 @@ class ReportsController extends Controller
     {
       $data = json_decode($request->allform);
 
-      // $status1 = '';
-      // $status2 = '';
-      // $status3 = '';
-      // if(isset($data->conversion_status) && $data->conversion_status != 'null'){
-      //     $status1 = " and I1.status = ".$data->conversion_status;
-      //     $status2 = " and uc.status = ".$data->conversion_status;
-      //     $status3 = " and I2.status = ".$data->conversion_status;
-      // }
+      $status1 = '';
+      $status2 = '';
+      $status3 = '';
+      if(isset($data->conversion_status) && $data->conversion_status != 'null'){
+          $status1 = " and clc.status = ".$data->conversion_status;
+          $status2 = " and uc.status = ".$data->conversion_status;
+          $status3 = " and s.status = ".$data->conversion_status;
+      }
       $range1 = '';
       $range2 = '';
       $range3 = '';
@@ -618,9 +618,9 @@ class ReportsController extends Controller
       }
 
       $generalquery = "Select u.*, ao.user_id, ao.offer_id, o.*, adv_manager.fname as adv_manager_name, aff_manager.fname as aff_manager_name, adv.fname as adv_name, off_r.platform_targeting
-      , (SELECT COUNT(clc.click) FROM clicks clc WHERE clc.affiliate_id = u.id and clc.offer_id = o.id ".$range1.") as sumclicks
-      , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.affiliate_id = u.id and uc.offer_id = o.id ".$range2.") as uniquesumclicks
-      , (SELECT COUNT(s.signup) FROM signups s WHERE s.affiliate_id = u.id and s.offer_id = o.id ".$range3.") as sumsignup
+      , (SELECT COUNT(clc.click) FROM clicks clc WHERE clc.affiliate_id = u.id and clc.offer_id = o.id ".$range1.$status1.") as sumclicks
+      , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.affiliate_id = u.id and uc.offer_id = o.id ".$range2.$status2.") as uniquesumclicks
+      , (SELECT COUNT(s.signup) FROM signups s WHERE s.affiliate_id = u.id and s.offer_id = o.id ".$range3.$status3.") as sumsignup
       from users u LEFT JOIN assignoffers ao on u.id = ao.user_id
       Left Join offers o on o.id = ao.offer_id
       Left Join offer_restrictions off_r on off_r.offer_id = o.id
@@ -630,6 +630,22 @@ class ReportsController extends Controller
       where u.roles_id = 5 and u.admin_id = ".Auth::user()->id;
 
       //$alldata = DB::select($generalquery);
+      if(isset($data->affiliate_id)){
+        if(is_array($data->affiliate_id)){
+          $aids = join("','",$data->affiliate_id);   
+          $generalquery .= " and u.id IN ('$aids')";
+        }else{
+          $generalquery .= " and u.id = ".$data->affiliate_id;
+        }
+      }
+      if(isset($data->aff_manager_id)){
+        if(is_array($data->aff_manager_id)){
+          $aids = join("','",$data->aff_manager_id);   
+          $generalquery .= " and aff_manager.id IN ('$aids')";
+        }else{
+          $generalquery .= " and aff_manager.id = ".$data->aff_manager_id;
+        }
+      }
       if(isset($data->advertiser_id)){
         if(is_array($data->advertiser_id)){
           $aids = join("','",$data->advertiser_id);   
@@ -653,6 +669,9 @@ class ReportsController extends Controller
         }else{
           $generalquery .= " and o.id = ".$data->offers_id;
         }
+      }
+      if(isset($data->timezone) && $data->timezone != "null"){
+        $generalquery .= " and off_r.caps_timezone = '".$data->timezone."'";
       }
       $generalquery .= " ORDER BY o.id ASC";
 

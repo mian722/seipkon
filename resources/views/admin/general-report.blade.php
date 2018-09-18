@@ -249,7 +249,7 @@
                                              <div class="col-md-11">
                                                 <div class="col-md-6">
                                                    <select class="form-control select2" name="timezone">
-                                                      <option selected="" value="">None</option>
+                                                      <option selected="" value="null">None</option>
                                                       @foreach($timezones as $timezone)
                                                       <option value="{{ $timezone }}">{{ $timezone }}</option>
                                                       @endforeach
