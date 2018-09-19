@@ -411,7 +411,7 @@
                data: { "_token": token, "allform": allform},
                success: function( response ) {
                   $('#report_response').html(response);
-                   $('#button_datatables_example12').DataTable( {
+                      $('#button_datatables_example').DataTable( {
                           dom: 'Bfrtip',
                           buttons: [
                               'print',

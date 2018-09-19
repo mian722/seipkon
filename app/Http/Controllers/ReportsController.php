@@ -538,7 +538,7 @@ class ReportsController extends Controller
 
       $alldata = DB::select($affil);
 
-      $table = '<table id="button_datatables_example12" class="table display table-striped table-bordered">
+      $table = '<table id="button_datatables_example" class="table display table-striped table-bordered">
                             <thead>
                                 <tr>
                                   <th>NO.</th>
