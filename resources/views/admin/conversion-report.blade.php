@@ -20,8 +20,8 @@
                                  <div class="seipkon-breadcromb-right">
                                     <ul>
                                        <li><a href="{{ asset('') }}">home</a></li>
-                                       <li>All-Offers</li>
-                                       <li>Add Offer</li>
+                                       <li>reports</li>
+                                       <li>conversion report</li>
                                     </ul>
                                  </div>
                               </div>
@@ -411,7 +411,7 @@
                data: { "_token": token, "allform": allform},
                success: function( response ) {
                   $('#report_response').html(response);
-                   $('#button_datatables_example12').DataTable( {
+                      $('#button_datatables_example').DataTable( {
                           dom: 'Bfrtip',
                           buttons: [
                               'print',

@@ -538,7 +538,7 @@ class ReportsController extends Controller
 
       $alldata = DB::select($affil);
 
-      $table = '<table id="button_datatables_example12" class="table display table-striped table-bordered">
+      $table = '<table id="button_datatables_example" class="table display table-striped table-bordered">
                             <thead>
                                 <tr>
                                   <th>NO.</th>
@@ -622,10 +622,7 @@ class ReportsController extends Controller
 
                 $table .= '</tbody>
                           </table>';
-
          return $table; 
-
-
     }
 
     public function generalreport(){
@@ -839,5 +836,19 @@ class ReportsController extends Controller
                           </table>';
 
          return $table; 
+    }
+
+    public function conversionstatusreport(){
+      $advertisers = $this->getuser(4);
+      $adv_managers = $this->getrelatedmanagers($advertisers);
+
+      $affiliates = $this->getuser(5);
+      $aff_managers = $this->getrelatedmanagers($affiliates);
+      $offers = $this->getalloffers();
+      $timezones = $this->gettimezones();
+      $countries = $this->getcountry();
+      $platforms = $this->getplatform();
+
+      return view('admin.conversion-status-report',compact('advertisers', 'adv_managers', 'affiliates', 'aff_managers', 'offers', 'timezones', 'countries', 'platforms'));
     }
 }
