@@ -91,9 +91,15 @@ class TemplatesController extends Controller
      * @param  \App\templates  $templates
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, templates $templates)
+    public function affiliateupdate(Request $request, templates $templates)
     {
-        return $request->all();
+        $update = Templates::where('id', $request->tem_id)
+            ->update(['email_subject' => $request->email_subject, 'emailstring' => $request->emailstring]);
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
     }
 
     /**

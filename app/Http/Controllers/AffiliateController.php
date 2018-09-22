@@ -152,7 +152,11 @@ class AffiliateController extends Controller
 
         $update = DB::table('invoices')->where('id', $id)
             ->update(['status' => $request->status, 'memo' => $request->memo, 'invoiceno' => $request->invoice_no, 'offer_names' => $request->name, 'offer_clicks' => $request->clicks, 'offer_signups' => $request->signup, 'offer_amountsa' => $request->amount, 'note' => $request->note]);
-        return redirect()->back();
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
     }
 
     public function affiliatedetail(Request $request){

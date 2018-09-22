@@ -60,7 +60,10 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <input type="hidden" value="affsignup" name="email_type">
-                                                         <input class="form-control" name="email_subject" value="Notification of Account Registration" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
+                                                         @if(isset($affsignup))
+                                                         <input type="hidden" value="{{ $affsignup->id }}" name="tem_id">
+                                                         @endif
+                                                         <input class="form-control" name="email_subject" value="{{ isset($affsignup) ? $affsignup->email_subject : '' }}" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
                                                       </div>
                                                    </div><br />
                                                    <div class="row">
@@ -124,7 +127,10 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <input type="hidden" value="affapproval" name="email_type">
-                                                         <input class="form-control" name="email_subject" value="Notification of Account Registration" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
+                                                         @if(isset($affapproval))
+                                                         <input type="hidden" value="{{ $affapproval->id }}" name="tem_id">
+                                                         @endif
+                                                         <input class="form-control" name="email_subject" value="{{ isset($affapproval) ? $affapproval->email_subject : '' }}" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
                                                       </div>
                                                    </div><br />
                                                    <div class="row">
@@ -188,7 +194,10 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <input type="hidden" value="affrejection" name="email_type">
-                                                         <input class="form-control" name="email_subject" value="Notification of Account Registration" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
+                                                         @if(isset($affrejection))
+                                                         <input type="hidden" value="{{ $affrejection->id }}" name="tem_id">
+                                                         @endif
+                                                         <input class="form-control" name="email_subject" value="{{ isset($affrejection) ? $affrejection->email_subject : '' }}" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
                                                       </div>
                                                    </div><br />
                                                    <div class="row">
@@ -252,7 +261,10 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <input type="hidden" value="affpassreset" name="email_type">
-                                                         <input class="form-control" name="email_subject" value="Notification of Account Registration" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
+                                                         @if(isset($affpassreset))
+                                                         <input type="hidden" value="{{ $affpassreset->id }}" name="tem_id">
+                                                         @endif
+                                                         <input class="form-control" name="email_subject" value="{{ isset($affpassreset) ? $affpassreset->email_subject : '' }}" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
                                                       </div>
                                                    </div><br />
                                                    <div class="row">
@@ -328,7 +340,10 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <input type="hidden" value="advsignup" name="email_type">
-                                                         <input class="form-control" name="email_subject" value="Notification of Account Registration" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
+                                                         @if(isset($advsignup))
+                                                         <input type="hidden" value="{{ $advsignup->id }}" name="tem_id">
+                                                         @endif
+                                                         <input class="form-control" name="email_subject" value="{{ isset($advsignup) ? $advsignup->email_subject : '' }}" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
                                                       </div>
                                                    </div><br />
                                                    <div class="row">
@@ -392,7 +407,10 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <input type="hidden" value="advapproval" name="email_type">
-                                                         <input class="form-control" name="email_subject" value="Notification of Account Registration" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
+                                                         @if(isset($advapproval))
+                                                         <input type="hidden" value="{{ $advapproval->id }}" name="tem_id">
+                                                         @endif
+                                                         <input class="form-control" name="email_subject" value="{{ isset($advapproval) ? $advapproval->email_subject : '' }}" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
                                                       </div>
                                                    </div><br />
                                                    <div class="row">
@@ -456,7 +474,10 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <input type="hidden" value="advrejection" name="email_type">
-                                                         <input class="form-control" name="email_subject" value="Notification of Account Registration" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
+                                                         @if(isset($advrejection))
+                                                         <input type="hidden" value="{{ $advrejection->id }}" name="tem_id">
+                                                         @endif
+                                                         <input class="form-control" name="email_subject" value="{{ isset($advrejection) ? $advrejection->email_subject : '' }}" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
                                                       </div>
                                                    </div><br />
                                                    <div class="row">
@@ -520,7 +541,10 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <input type="hidden" value="advpassreset" name="email_type">
-                                                         <input class="form-control" name="email_subject" value="Notification of Account Registration" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
+                                                         @if(isset($advpassreset))
+                                                         <input type="hidden" value="{{ $advpassreset->id }}" name="tem_id">
+                                                         @endif
+                                                         <input class="form-control" name="email_subject" value="{{ isset($advpassreset) ? $advpassreset->email_subject : '' }}" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
                                                       </div>
                                                    </div><br />
                                                    <div class="row">
@@ -595,7 +619,10 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <input type="hidden" value="offerapproval" name="email_type">
-                                                         <input class="form-control" name="email_subject" value="Notification of Account Registration" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
+                                                         @if(isset($offerapproval))
+                                                         <input type="hidden" value="{{ $offerapproval->id }}" name="tem_id">
+                                                         @endif
+                                                         <input class="form-control" name="email_subject" value="{{ isset($offerapproval) ? $offerapproval->email_subject : '' }}" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
                                                       </div>
                                                    </div><br />
                                                    <div class="row">
@@ -659,7 +686,10 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <input type="hidden" value="offerpayout" name="email_type">
-                                                         <input class="form-control" name="email_subject" value="Notification of Account Registration" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
+                                                         @if(isset($offerpayout))
+                                                         <input type="hidden" value="{{ $offerpayout->id }}" name="tem_id">
+                                                         @endif
+                                                         <input class="form-control" name="email_subject" value="{{ isset($offerpayout) ? $offerpayout->email_subject : '' }}" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
                                                       </div>
                                                    </div><br />
                                                    <div class="row">
@@ -723,7 +753,10 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <input type="hidden" value="offerstatus" name="email_type">
-                                                         <input class="form-control" name="email_subject" value="Notification of Account Registration" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
+                                                         @if(isset($offerstatus))
+                                                         <input type="hidden" value="{{ $offerstatus->id }}" name="tem_id">
+                                                         @endif
+                                                         <input class="form-control" name="email_subject" value="{{ isset($offerstatus) ? $offerstatus->email_subject : '' }}" placeholder="Enter Your Email Subject" id="firstnam1" type="text">
                                                       </div>
                                                    </div><br />
                                                    <div class="row">
@@ -794,53 +827,4 @@
          </div>
       </div>
    </div>
-<script type="text/javascript">
-   $(document).ready(function(){
-
-         $('#genratereport').on('submit', function(e){
-            e.preventDefault();
-            $.fn.serializeObject = function()
-               {
-                  var o = {};
-                  var a = this.serializeArray();
-                  $.each(a, function() {
-                      if (o[this.name]) {
-                          if (!o[this.name].push) {
-                              o[this.name] = [o[this.name]];
-                          }
-                          o[this.name].push(this.value || '');
-                      } else {
-                          o[this.name] = this.value || '';
-                      }
-                  });
-                  return o;
-               };
-            $.ajaxSetup({
-                 headers: {
-                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                 }
-            });
-            var allform = JSON.stringify($(this).serializeObject());
-            var token = "{{ csrf_token() }}";
-            $.ajax({
-               type: "POST",
-               url: '{{ route("conversionreportgenerate") }}',
-               data: { "_token": token, "allform": allform},
-               success: function( response ) {
-                  $('#report_response').html(response);
-                      $('#button_datatables').DataTable( {
-                          dom: 'Bfrtip',
-                          buttons: [
-                              'print',
-                              'pdf',
-                              'csv',
-                              'copy',
-                          ]
-                      } );
-                  $('.dt-buttons.btn-group > button').addClass('datatable-btn');
-               }
-           });
-      });
-   });      
-</script>
 @endsection
