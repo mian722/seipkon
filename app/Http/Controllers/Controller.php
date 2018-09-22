@@ -623,5 +623,4 @@ class Controller extends BaseController
           return $array = array(['id' => 0, 'admin_id' => 0, 'link' => 'http://www.google.com']);
         }
     }
-
 }
