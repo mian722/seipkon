@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('imid');
             $table->string('imaccount');
+            $table->string('subdomain');
             $table->string('country')->nullable();
             $table->string('website')->nullable();
             $table->string('company')->nullable();

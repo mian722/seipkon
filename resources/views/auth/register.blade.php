@@ -1,22 +1,3 @@
-
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,6 +118,17 @@
                         <div class="form-group">
                                 <input id="password-confirm" placeholder="Re-Password" type="password" class="form-control" name="password_confirmation" required>
                         </div>
+                        <div class="form-group{{ $errors->has('subdomain') ? ' has-error' : '' }}">
+                          <div class="input-group">
+                                <input id="subdomain" type="text" class="form-control" placeholder="Sub Domain" name="subdomain" value="{{ old('subdomain') }}" required ><span class="input-group-addon">.ytrk.us</span>
+
+                                @if ($errors->has('imaccount'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('imaccount') }}</strong>
+                                    </span>
+                                @endif
+                                </div>
+                        </div>
                         <div class="form-group{{ $errors->has('imid') ? ' has-error' : '' }}">
                                 <select class="form-control select2" name="imid" required>
                                                 <option selected="selected" disabled="disabled">Select IM Type</option>
@@ -158,6 +150,7 @@
                                     </span>
                                 @endif
                         </div>
+
 
                         <div class="form-group form-checkbox">
                            <input type="checkbox" id="chk_2" required >
