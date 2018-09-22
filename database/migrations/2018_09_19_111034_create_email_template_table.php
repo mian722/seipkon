@@ -15,6 +15,7 @@ class CreateEmailTemplateTable extends Migration
     {
         Schema::create('email_templates', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('email_subject')->nullable();
             $table->string('emailstring')->nullable();
             $table->tinyInteger('admin_id');
             $table->tinyInteger('email_type');

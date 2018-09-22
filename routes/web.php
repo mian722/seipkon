@@ -110,6 +110,8 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::post('/conversion-reports-generate', 'ReportsController@conversionreportgenerate')->name('conversionreportgenerate');
 	Route::get('/conversion-status-report', 'ReportsController@conversionstatusreport')->name('conversionstatusreport');
 	Route::post('/conversion-status-report-generate', 'ReportsController@conversionstatusreportgenerate')->name('conversionstatusreportgenerate');
+	Route::get('/email-templates', 'TemplatesController@index')->name('emailtemplates');
+	Route::post('/email-templates/store', 'TemplatesController@affiliatestore')->name('affiliatestore');
 });
 Route::get('/tracking/{aid}/{oid}', 'ClicksController@tracking')->name('tracking');
 Route::get('/post', 'SignupController@postback')->name('posttracking');
@@ -154,7 +156,6 @@ Route::get('/test-conversion-report', function () { return view('test-conversion
 Route::get('/server-log', function () { return view('server-log'); });
 Route::get('/activity-log', function () { return view('activity-log'); });
 Route::get('/customization', function () { return view('customization'); });
-Route::get('/email-templates', function () { return view('email-templates'); });
 Route::get('/mail-box', function () { return view('mail-box'); });
 Route::get('/unsubscribe-list', function () { return view('unsubscribe-list'); });
 Route::get('/puller-sources', function () { return view('puller-sources'); });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\templates;
 use Illuminate\Http\Request;
+use Auth;
 
 class TemplatesController extends Controller
 {
@@ -14,7 +15,8 @@ class TemplatesController extends Controller
      */
     public function index()
     {
-        //
+        $affiliatesignup = Templates::find(3);
+        return view('admin.email-templates',compact('affiliatetempalte', 'affiliatetempalte2', 'affiliatetempalte3'));
     }
 
     /**
@@ -33,9 +35,21 @@ class TemplatesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function affiliatestore(Request $request)
     {
-        //
+        $templates = new Templates;
+        $templates->email_subject = $request->email_subject;
+        $templates->emailstring = $request->emailstring;
+        $templates->email_type = $request->email_type;
+        $templates->status = 1;
+        $templates->admin_id = Auth::user()->id;
+        $templates->save();
+        
+        if (empty($templates) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }        
     }
 
     /**

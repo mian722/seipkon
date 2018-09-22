@@ -427,6 +427,5 @@
       });
    });      
 </script>
-</script>
 
          @endsection
