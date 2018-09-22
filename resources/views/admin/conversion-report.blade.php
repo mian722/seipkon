@@ -365,7 +365,8 @@
                    
                </div>
             </div>
-            <script type="text/javascript">
+
+<script type="text/javascript">
    $(document).ready(function(){
 
 
@@ -411,7 +412,7 @@
                data: { "_token": token, "allform": allform},
                success: function( response ) {
                   $('#report_response').html(response);
-                      $('#button_datatables_example').DataTable( {
+                      $('#button_datatables').DataTable( {
                           dom: 'Bfrtip',
                           buttons: [
                               'print',
@@ -426,4 +427,6 @@
       });
    });      
 </script>
+</script>
+
          @endsection
