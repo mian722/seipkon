@@ -20,8 +20,8 @@
                                  <div class="seipkon-breadcromb-right">
                                     <ul>
                                        <li><a href="{{ asset('') }}">home</a></li>
-                                       <li>All-Offers</li>
-                                       <li>Add Offer</li>
+                                       <li>reports</li>
+                                       <li>conversion report</li>
                                     </ul>
                                  </div>
                               </div>

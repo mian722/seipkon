@@ -13,15 +13,15 @@
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Conversion Report</h3>
+                                    <h3>Conversion Status Report</h3>
                                  </div>
                               </div>
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-right">
                                     <ul>
                                        <li><a href="{{ asset('') }}">home</a></li>
-                                       <li>All-Offers</li>
-                                       <li>Add Offer</li>
+                                       <li>reports</li>
+                                       <li>conversion status report</li>
                                     </ul>
                                  </div>
                               </div>
@@ -38,13 +38,6 @@
                            <div class="tabs-example add-product-form-group">
                               <div class="tabs-box-example horizontal-tab-example">
                                  <form action="">
-                                    <ul class="nav nav-tabs" id="service_pro" role="tablist">
-                                       <li class="active" role="Custom Report1"><a href="#custom_r1" role="tab" data-toggle="tab">Custom Report1</a>
-                                       </li>
-                                       <li role="Custom Report2"><a href="#custom_r2" role="tab" data-toggle="tab">Custom Report2</a></li>
-                                       <li role="Custom Report3"><a href="#custom_r3" role="tab" data-toggle="tab">Custom Report3</a></li>
-                                       <li role="Custom Report4"><a href="#custom_r4" role="tab" data-toggle="tab">Custom Report4</a></li>
-                                    </ul>
                                     <div id="advertisers_tab_content" class="tab-content">
                                        <div id="custom_r1" class="tab-pane fade in input-style active">
                                           <div class="row">
@@ -211,15 +204,6 @@
                                                 </div>
                                              </div>
                                           </div>
-                                       </div>
-                                       <div id="custom_r2" class="tab-pane fade in">
-
-                                       </div>
-                                       <div id="custom_r3" class="tab-pane fade in">
-
-                                       </div>
-                                       <div id="custom_r4" class="tab-pane fade in">
-
                                        </div>
                                     </div>
                                  </form>                                 
