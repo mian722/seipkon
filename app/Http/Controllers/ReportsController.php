@@ -572,7 +572,7 @@ class ReportsController extends Controller
                                   '.((isset($data->affsub5)) ? '<th>Aff Sub 5</th>' : '').'
                                   '.((isset($data->plateform)) ? '<th>Platform</th>' : '').'
                                   '.((isset($data->mobilcarrier)) ? '<th>Mobile Carrier</th>' : '').'
-                                <tr>
+                                </tr>
                             </thead>
                         <tbody>';
                 $counter = 1;
