@@ -538,7 +538,8 @@ class ReportsController extends Controller
 
       $alldata = DB::select($affil);
 
-      $table = '<table id="button_datatables_example" class="table display table-striped table-bordered">
+
+      $table = '<table id="button_datatables" class="table display table-striped table-bordered">
                             <thead>
                                 <tr>
                                   <th>NO.</th>
@@ -576,8 +577,6 @@ class ReportsController extends Controller
                             </thead>
                         <tbody>';
                 $counter = 1;
-                if (!empty($alldata))
-                {
                 foreach ($alldata as $value) {
                 $table .= '<tr>
                                <td>'.$counter++.'</td>
@@ -614,15 +613,9 @@ class ReportsController extends Controller
  
                             </tr>';
                           }
-                         } else {
-                               $table .= '<tr>
-                                       <td colspan="110" style="text-align: center;">No Result</td>
-                                    </tr>';
-                          }
 
-                $table .= '</tbody>
+                return $table .= '</tbody>
                           </table>';
-         return $table; 
     }
 
     public function generalreport(){
@@ -850,5 +843,158 @@ class ReportsController extends Controller
       $platforms = $this->getplatform();
 
       return view('admin.conversion-status-report',compact('advertisers', 'adv_managers', 'affiliates', 'aff_managers', 'offers', 'timezones', 'countries', 'platforms'));
+    }
+
+    public function conversionstatusreportgenerate(Request $request)
+    {
+      //return $request->allform;
+      $data = json_decode($request->allform);
+
+      $range1 = '';
+      $range2 = '';
+      $range3 = '';
+      if(isset($data->daterange)){
+        $explode = explode(" - ", $data->daterange);
+        $startdate = $explode[0].' 00:00:00';
+        $enddate = $explode[1].' 23:59:59';
+        $range1 = " and s.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+        $range2 = " and s2.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+        $range3 = " and s3.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+      }
+
+      $affil = "Select u.*, ao.user_id, ao.offer_id, o.*, adv_manager.fname as adv_manager_name, aff_manager.fname as aff_manager_name, adv.fname as adv_name, adv.id as adv_id
+      , (SELECT COUNT(s.signup) FROM signups s WHERE s.affiliate_id = u.id and s.offer_id = o.id and s.status = 0 ".$range1.") as pendingsignup
+      , (SELECT COUNT(s2.signup) FROM signups s2 WHERE s2.affiliate_id = u.id and s2.offer_id = o.id and s2.status = 1 ".$range2.") as approvesignup
+      , (SELECT COUNT(s3.signup) FROM signups s3 WHERE s3.affiliate_id = u.id and s3.offer_id = o.id and s3.status = 2 ".$range3.") as rejectedsignup
+      from users u LEFT JOIN assignoffers ao on u.id = ao.user_id
+      Left Join offers o on o.id = ao.offer_id
+      Left Join offer_restrictions off_r on off_r.offer_id = o.id
+      Left Join users aff_manager on aff_manager.id = u.managerid
+      Left Join users adv on adv.id = o.adv_id
+      Left Join users adv_manager on adv_manager.id = adv.managerid
+      where u.roles_id = 5 and u.admin_id = ".Auth::user()->id;
+
+
+      if(isset($data->affiliatelist)){
+        if(is_array($data->affiliatelist)){
+          $aids = join("','",$data->affiliatelist);   
+          $affil .= " and u.id IN ('$aids')";
+        }else{
+          $affil .= " and u.id = ".$data->affiliatelist;
+        }
+      }
+      if(isset($data->advertiserlist)){
+        if(is_array($data->advertiserlist)){
+          $aids = join("','",$data->advertiserlist);   
+          $affil .= " and adv.id IN ('$aids')";
+        }else{
+          $affil .= " and adv.id = ".$data->advertiserlist;
+        }
+      }
+      if(isset($data->advertisermanager)){
+        if(is_array($data->advertisermanager)){
+          $mids = join("','",$data->advertisermanager);   
+          $affil .= " and adv_manager.id IN ('$mids')";
+        }else{
+          $affil .= " and adv_manager.id = ".$data->advertisermanager;
+        }
+      }
+      if(isset($data->affiliatemanager)){
+        if(is_array($data->affiliatemanager)){
+          $mids = join("','",$data->affiliatemanager);   
+          $affil .= " and aff_manager.id IN ('$mids')";
+        }else{
+          $affil .= " and aff_manager.id = ".$data->affiliatemanager;
+        }
+      }
+      if(isset($data->offerlist)){
+        if(is_array($data->offerlist)){
+          $oids = join("','",$data->offerlist);   
+          $affil .= " and o.id IN ('$oids')";
+        }else{
+          $affil .= " and o.id = ".$data->offerlist;
+        }
+      }
+
+      if(isset($data->timezonelist) && $data->timezonelist != "null"){
+        $affil .= " and off_r.caps_timezone = '".$data->timezonelist."'";
+      }
+      $affil .= " ORDER BY o.id ASC";
+
+      $alldata = DB::select($affil);
+
+
+      $table = '<table id="button_datatables_example" class="table display table-striped table-bordered">
+                             <thead>
+                                <tr>
+                                   <th rowspan="2">NO.</th>
+                                   '.((isset($data->advertiser)) ? '<th rowspan="2">Advertiser</th>' : '').'
+                                   '.((isset($data->affiliate)) ? '<th rowspan="2">Affiliate</th>' : '').'
+                                   '.((isset($data->advmanger)) ? '<th rowspan="2">Advertiser Manager</th>' : '').'
+                                   '.((isset($data->affmanager)) ? '<th rowspan="2">Affiliate Manager</th>' : '').'
+                                   '.((isset($data->offer)) ? '<th rowspan="2">Offer</th>' : '').'
+                                   '.((isset($data->smartlinkcheck)) ? '<th rowspan="2">SmartLink</th>' : '').'
+                                   '.((isset($data->currency)) ? '<th rowspan="2">Currency</th>' : '').'
+                                   <th colspan="3" style="text-align: center;">Approved Conversions</th>
+                                   <th colspan="3" style="text-align: center;">Pending Conversions</th>
+                                   <th colspan="3" style="text-align: center;">Reject Conversions</th>
+                                   <th rowspan="2">Effect Revenue</th>
+                                   <th rowspan="2">Effect Payout</th>
+                                   <th rowspan="2">Profit</th>
+                                </tr>
+                                <tr>
+                                   <th>Quantity</th>
+                                   <th>Revenue</th>
+                                   <th>Payout</th>
+                                   <th>Quantity</th>
+                                   <th>Revenue</th>
+                                   <th>Payout</th>
+                                   <th>Quantity</th>
+                                   <th>Revenue</th>
+                                   <th>Payout</th>
+                                </tr>
+                             </thead>
+                        <tbody>';
+                $counter = 1;
+                if (!empty($alldata)) {
+                foreach ($alldata as $value) {
+                $approverevenue = $value->revenue * $value->approvesignup;
+                $pendingrevenue = $value->revenue * $value->pendingsignup;
+                $rejectedrevenue = $value->revenue * $value->rejectedsignup;
+                $approvepayout = $value->payout * $value->approvesignup;
+                $pendingpayout = $value->payout * $value->pendingsignup;
+                $rejectedpayout = $value->payout * $value->rejectedsignup;
+                $table .= '<tr>
+                               <td>'.$counter++.'</td>
+                               '.((isset($data->advertiser)) ? '<td><a href="'.route('advertiser.show', $value->adv_id).'">'.$value->adv_name.'</a></td>' : '').'
+                               '.((isset($data->affiliate)) ? '<td><a href="'.route('affiliate.show', $value->user_id).'">'.$value->fname.'</a></td>' : '').'
+                               '.((isset($data->advmanger)) ? '<td>'.$value->adv_manager_name.'</td>' : '').'
+                               '.((isset($data->affmanager)) ? '<td>'.$value->aff_manager_name.'</td>' : '').'
+                               '.((isset($data->offer)) ? '<td>'.$value->offer_name.'</td>' : '').'
+                               '.((isset($data->smartlinkcheck)) ? '<td>SmartLink</td>' : '').'
+                               '.((isset($data->currency)) ? '<td>USD</td>' : '').'
+                               <td>'.$value->approvesignup.'</td>
+                               <td>'.$approverevenue.'</td>
+                               <td>'.$approvepayout.'</td>
+                               <td>'.$value->pendingsignup.'</td>
+                               <td>'.$pendingrevenue.'</td>
+                               <td>'.$pendingpayout.'</td>
+                               <td>'.$value->rejectedsignup.'</td>
+                               <td>'.$rejectedrevenue.'</td>
+                               <td>'.$rejectedpayout.'</td>
+                               <td></td>
+                               <td></td>
+                               <td></td>
+                            </tr>';
+                          }
+                }else{
+                  $table .= '<tr>
+                                       <td colspan="100" style="text-align: center;">No Result</td>
+                                    </tr>';
+                }
+              
+
+                return $table .= '</tbody>
+                          </table>';
     }
 }

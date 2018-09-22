@@ -37,74 +37,51 @@
                         <div class="page-box">
                            <div class="tabs-example add-product-form-group">
                               <div class="tabs-box-example horizontal-tab-example">
-                                 <form action="">
+                                 <form id="genratereport" method="POST">
                                     <div id="advertisers_tab_content" class="tab-content">
                                        <div id="custom_r1" class="tab-pane fade in input-style active">
-                                          <div class="row">
-                                             <div class="col-md-1"><label>Duration</label></div>
-                                             <div class="col-md-11">
-                                                <div class="col-md-2 col-sm-2">
-                                                   <div class="form-group form-radio">
-                                                      <input id="checkbox1" checked="" name="check1" type="checkbox">
-                                                      <label for="checkbox1" class="inline control-label">Coversion Time</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-radio">
-                                                      <input id="checkbox2" name="check2" type="checkbox">
-                                                      <label for="checkbox2" class="inline control-label">Click Time</label>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
                                           <div class="row">
                                              <div class="col-md-1"><label>Indicator</label></div>
                                              <div class="col-md-11">
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_1" type="checkbox">
+                                                      <input  id="chk_1" name="advertiser" type="checkbox">
                                                       <label class="inline control-label" for="chk_1">Advertiser</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_11" type="checkbox">
-                                                      <label class="inline control-label" for="chk_11">Affiliate</label>
+                                                      <input checked="checked" id="chk_2" name="affiliate" type="checkbox">
+                                                      <label class="inline control-label" for="chk_2">Affiliate</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input id="chk_2" type="checkbox">
-                                                      <label class="inline control-label" for="chk_2"> Advertiser Manager</label>
+                                                      <input id="chk_3" name="advmanger" type="checkbox">
+                                                      <label class="inline control-label" for="chk_3"> Advertiser Manager</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input id="chk_21" type="checkbox">
-                                                      <label class="inline control-label" for="chk_21"> Affiliate Manager</label>
+                                                      <input id="chk_4" name="affmanager" checked="checked" type="checkbox">
+                                                      <label class="inline control-label" for="chk_4"> Affiliate Manager</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input id="chk_3" type="checkbox">
-                                                      <label class="inline control-label" for="chk_3">Offer</label>
+                                                      <input id="chk_6" name="offer" checked="checked" type="checkbox">
+                                                      <label class="inline control-label" for="chk_6">Offer</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input id="chk_5" type="checkbox">
-                                                      <label class="inline control-label" for="chk_5"> Non-Private Event</label>
+                                                      <input id="chk_5" name="smartlinkcheck" type="checkbox">
+                                                      <label class="inline control-label" for="chk_5">SmartLink</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_6" type="checkbox">
-                                                      <label class="inline control-label" for="chk_6">Smartlink</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_8" type="checkbox">
+                                                      <input checked="checked" id="chk_8" type="checkbox" name="currency">
                                                       <label class="inline control-label" for="chk_8">Currency</label>
                                                    </div>
                                                 </div>
@@ -114,57 +91,45 @@
                                              <div class="col-md-1"><label>Filter</label></div>
                                              <div class="col-md-11">
                                                 <div class="col-md-4">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select SmartLink">
+                                                   <select class="form-control select2" name="smartlinklist" multiple="multiple" data-placeholder="Select SmartLink">
                                                       <option>Alabama</option>
                                                       <option>Alaska</option>
                                                       <option>California</option>
                                                    </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Offer">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
+                                                   <select class="form-control select2" name="offerlist" multiple="multiple" data-placeholder="Select Offer">
+                                                      @foreach($offers as $offer)
+                                                      <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
+                                                      @endforeach
                                                    </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Affiliate">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
+                                                   <select class="form-control select2" name="affiliatelist" multiple="multiple" data-placeholder="Select Affiliate">
+                                                      @foreach($affiliates as $affiliate)
+                                                      <option value="{{ $affiliate->id }}">{{ $affiliate->fname }}</option>
+                                                      @endforeach
                                                    </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Affiliate Manager">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
+                                                   <select class="form-control select2" name="affiliatemanager" multiple="multiple" data-placeholder="Select Affiliate Manager">
+                                                      @foreach($aff_managers as $affman)
+                                                      <option value="{{ $affman->id }}">{{ $affman->fname }}</option>
+                                                      @endforeach
                                                    </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Advertiser">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
+                                                   <select class="form-control select2" name="advertiserlist" multiple="multiple" data-placeholder="Select Advertiser">
+                                                      @foreach($advertisers as $advertiser)
+                                                      <option value="{{ $advertiser->id }}">{{ $advertiser->fname }}</option>
+                                                      @endforeach
                                                    </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Advertiser Manager">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
-                                                   </select>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="row">
-                                             <div class="col-md-1"><label>Currency</label></div>
-                                             <div class="col-md-11">
-                                                <div class="col-md-8">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Currency">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
+                                                   <select class="form-control select2" name="advertisermanager" multiple="multiple" data-placeholder="Select Advertiser Manager">
+                                                      @foreach($adv_managers as $adv_manager)
+                                                      <option value="{{ $adv_manager->id }}">{{ $adv_manager->fname }}</option>
+                                                      @endforeach
                                                    </select>
                                                 </div>
                                              </div>
@@ -173,11 +138,11 @@
                                              <div class="col-md-1"><label>Timezone</label></div>
                                              <div class="col-md-11">
                                                 <div class="col-md-6">
-                                                   <select class="form-control select2">
-                                                      <option selected="selected">(GMT -11:00)Pacific/Midway,Niue,Pago_Pago</option>
-                                                      <option>Paused</option>
-                                                      <option>Pending</option>
-                                                      <option>Deleted</option>
+                                                   <select class="form-control select2" name="timezonelist">
+                                                      <option selected="" value="null">None</option>
+                                                      @foreach($timezones as $timezone)
+                                                      <option value="{{ $timezone }}">{{ $timezone }}</option>
+                                                      @endforeach
                                                    </select>
                                                 </div>
                                              </div>
@@ -185,22 +150,11 @@
                                           <div class="row">
                                              <div class="col-md-1"><label>Range</label></div>
                                              <div class="col-md-11">
-                                                <div class="col-md-2">
-                                                   <select class="form-control select2">
-                                                      <option>Today</option>
-                                                      <option>Yesterday</option>
-                                                      <option selected="selected">Last 7 Dayes</option>
-                                                      <option>This Month</option>
-                                                      <option>Last Month</option>
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                         <input type="text" class="form-control" id="reservation" placeholder="Date" />
+                                                <div class="col-md-6">
+                                                         <input type="text" name="daterange" class="form-control" id="reservation" placeholder="Date" />
                                                 </div>
                                                 <div class="col-md-6">
                                                    <button class="btn btn-success">Generate Report</button>
-                                                   <button class="btn btn-default">Export to CSV</button>
-                                                   <button class="btn btn-default">Save Custom Report</button>
                                                 </div>
                                              </div>
                                           </div>
@@ -213,36 +167,36 @@
 
 
                         <div class="page-box">
-                           <div class="table-responsive advance-table">
+                           <div class="table-responsive advance-table" id="report_response">
                               <table id="button_datatables_example" class="table display table-striped table-bordered">
                                  <thead>
-                                    <tr>
-                                       <th rowspan="2">NO.</th>
-                                       <th rowspan="2">Date</th>
-                                       <th rowspan="2">Advertiser</th>
-                                       <th rowspan="2">Affiliate</th>
-                                       <th rowspan="2">Offer</th>
-                                       <th colspan="3" style="text-align: center;">Approved Conversions</th>
-                                       <th colspan="3" style="text-align: center;">Pending Conversions</th>
-                                       <th colspan="3" style="text-align: center;">Reject Conversions</th>
-                                       <th rowspan="2">Effect Revenue</th>
-                                       <th rowspan="2">Effect Payout</th>
-                                       <th rowspan="2">Profit</th>
-                                    </tr>
-                                    <tr>
-                                       <th>Quantity</th>
-                                       <th>Revenue</th>
-                                       <th>Payout</th>
-                                       <th>Quantity</th>
-                                       <th>Revenue</th>
-                                       <th>Payout</th>
-                                       <th>Quantity</th>
-                                       <th>Revenue</th>
-                                       <th>Payout</th>
-                                    </tr>
+                                   <tr>
+                                      <th rowspan="2">NO.</th>
+                                      <th rowspan="2">Affiliate</th>
+                                      <th rowspan="2">Affiliate Manager</th>
+                                      <th rowspan="2">Offer</th>
+                                      <th rowspan="2">Currency</th>
+                                      <th colspan="3" style="text-align: center;">Approved Conversions</th>
+                                      <th colspan="3" style="text-align: center;">Pending Conversions</th>
+                                      <th colspan="3" style="text-align: center;">Reject Conversions</th>
+                                      <th rowspan="2">Effect Revenue</th>
+                                      <th rowspan="2">Effect Payout</th>
+                                      <th rowspan="2">Profit</th>
+                                   </tr>
+                                   <tr>
+                                      <th>Quantity</th>
+                                      <th>Revenue</th>
+                                      <th>Payout</th>
+                                      <th>Quantity</th>
+                                      <th>Revenue</th>
+                                      <th>Payout</th>
+                                      <th>Quantity</th>
+                                      <th>Revenue</th>
+                                      <th>Payout</th>
+                                   </tr>
                                  </thead>
                                  <tbody>
-                                    <tr>No Result Found</tr>
+                                    <tr colspan="100">No Result Found</tr>
                                  </tbody>
                               </table>
                            </div>
@@ -254,4 +208,66 @@
                    
                </div>
             </div>
+
+<script type="text/javascript">
+   $(document).ready(function(){
+
+
+         $(function() {
+           $('#reservation').daterangepicker({
+             timePicker: true,
+             startDate: moment().startOf('week'),
+             endDate: moment().endOf('week'),
+             locale: {
+               format: 'YYYY-MM-DD'
+             }
+           });
+         });
+
+         $('#genratereport').on('submit', function(e){
+            e.preventDefault();
+            $.fn.serializeObject = function()
+               {
+                  var o = {};
+                  var a = this.serializeArray();
+                  $.each(a, function() {
+                      if (o[this.name]) {
+                          if (!o[this.name].push) {
+                              o[this.name] = [o[this.name]];
+                          }
+                          o[this.name].push(this.value || '');
+                      } else {
+                          o[this.name] = this.value || '';
+                      }
+                  });
+                  return o;
+               };
+            $.ajaxSetup({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+            });
+            var allform = JSON.stringify($(this).serializeObject());
+            var token = "{{ csrf_token() }}";
+            $.ajax({
+               type: "POST",
+               url: '{{ route("conversionstatusreportgenerate") }}',
+               data: { "_token": token, "allform": allform},
+               success: function( response ) {
+                  $('#report_response').html(response);
+                  //     $('#button_datatables_example').DataTable( {
+                  //         dom: 'Bfrtip',
+                  //         buttons: [
+                  //             'print',
+                  //             'pdf',
+                  //             'csv',
+                  //             'copy',
+                  //         ]
+                  //     } );
+                  // $('.dt-buttons.btn-group > button').addClass('datatable-btn');
+               }
+           });
+      });
+   });      
+</script>
          @endsection
