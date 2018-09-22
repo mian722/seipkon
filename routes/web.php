@@ -112,6 +112,7 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::post('/conversion-status-report-generate', 'ReportsController@conversionstatusreportgenerate')->name('conversionstatusreportgenerate');
 	Route::get('/email-templates', 'TemplatesController@index')->name('emailtemplates');
 	Route::post('/email-templates/store', 'TemplatesController@affiliatestore')->name('affiliatestore');
+	Route::post('/email-templates/update', 'TemplatesController@affiliateupdate')->name('affiliateupdate');
 });
 Route::get('/tracking/{aid}/{oid}', 'ClicksController@tracking')->name('tracking');
 Route::get('/post', 'SignupController@postback')->name('posttracking');

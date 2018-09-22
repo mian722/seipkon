@@ -54,7 +54,7 @@
                                        </ul>
                                        <div class="tab-content">
                                           <div class="tab-pane fade active in" id="sub11">
-                                             <form method="post" action="{{ route('affiliatestore') }}">
+                                             <form method="post" action="{{ isset($affsignup) ? route('affiliateupdate') : route('affiliatestore') }}">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
                                                    <div class="row">
@@ -66,8 +66,8 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <textarea cols="10" rows="10" name="emailstring" id="page-editor">
-                                                            @if(isset($affiliatetempalte))
-                                                              {{ $affiliatetempalte->emailstring }}
+                                                            @if(isset($affsignup))
+                                                              {{ $affsignup->emailstring }}
                                                            @else 
                                                            <div style="width:60%; margin:0 auto;"><h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p><p>Best Regards,</p><p>{network_name}&nbsp;</p>
                                                             </div>
@@ -111,14 +111,14 @@
                                                    </div>
                                                    <div class="row">
                                                       <div class="col-md-12">
-                                                         <button type="submit" class="btn btn-success">Save</button>
+                                                         <button type="submit" class="btn btn-success">{{ isset($affsignup) ? 'Update' : 'Save' }}</button>
                                                       </div>
                                                    </div>
                                                 </div>
                                              </form>
                                           </div>
                                           <div class="tab-pane fade" id="sub12">
-                                             <form method="post" action="{{ route('affiliatestore') }}">
+                                             <form method="post" action="{{ isset($affapproval) ? route('affiliateupdate') : route('affiliatestore') }}">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
                                                    <div class="row">
@@ -130,8 +130,8 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <textarea cols="10" rows="10" name="emailstring" id="page-editor1">
-                                                            @if(isset($affiliatetempalte))
-                                                              {{ $affiliatetempalte->emailstring }}
+                                                            @if(isset($affapproval))
+                                                              {{ $affapproval->emailstring }}
                                                            @else 
                                                            <div style="width:60%; margin:0 auto;"><h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p><p>Best Regards,</p><p>{network_name}&nbsp;</p>
                                                             </div>
@@ -175,14 +175,14 @@
                                                    </div>
                                                    <div class="row">
                                                       <div class="col-md-12">
-                                                         <button type="submit" class="btn btn-success">Save</button>
+                                                         <button type="submit" class="btn btn-success">{{ isset($affapproval) ? 'Update' : 'Save' }}</button>
                                                       </div>
                                                    </div>
                                                 </div>
                                              </form>
                                           </div>
                                           <div class="tab-pane fade" id="sub13">
-                                             <form method="post" action="{{ route('affiliatestore') }}">
+                                             <form method="post" action="{{ isset($affrejection) ? route('affiliateupdate') : route('affiliatestore') }}">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
                                                    <div class="row">
@@ -194,8 +194,8 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <textarea cols="10" rows="10" name="emailstring" id="page-editor2">
-                                                            @if(isset($affiliatetempalte))
-                                                              {{ $affiliatetempalte->emailstring }}
+                                                            @if(isset($affrejection))
+                                                              {{ $affrejection->emailstring }}
                                                            @else 
                                                            <div style="width:60%; margin:0 auto;"><h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p><p>Best Regards,</p><p>{network_name}&nbsp;</p>
                                                             </div>
@@ -239,14 +239,14 @@
                                                    </div>
                                                    <div class="row">
                                                       <div class="col-md-12">
-                                                         <button type="submit" class="btn btn-success">Save</button>
+                                                         <button type="submit" class="btn btn-success">{{ isset($affrejection) ? 'Update' : 'Save' }}</button>
                                                       </div>
                                                    </div>
                                                 </div>
                                              </form>
                                           </div>
                                           <div class="tab-pane fade" id="sub14">
-                                             <form method="post" action="{{ route('affiliatestore') }}">
+                                             <form method="post" action="{{ isset($affpassreset) ? route('affiliateupdate') : route('affiliatestore') }}">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
                                                    <div class="row">
@@ -258,8 +258,8 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <textarea cols="10" rows="10" name="emailstring" id="page-editor3">
-                                                            @if(isset($affiliatetempalte))
-                                                              {{ $affiliatetempalte->emailstring }}
+                                                            @if(isset($affpassreset))
+                                                              {{ $affpassreset->emailstring }}
                                                            @else 
                                                            <div style="width:60%; margin:0 auto;"><h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p><p>Best Regards,</p><p>{network_name}&nbsp;</p>
                                                             </div>
@@ -303,7 +303,7 @@
                                                    </div>
                                                    <div class="row">
                                                       <div class="col-md-12">
-                                                         <button type="submit" class="btn btn-success">Save</button>
+                                                         <button type="submit" class="btn btn-success">{{ isset($affpassreset) ? 'Update' : 'Save' }}</button>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -322,7 +322,7 @@
                                        </ul>
                                        <div class="tab-content">
                                           <div class="tab-pane fade active in" id="sub11">
-                                             <form method="post" action="{{ route('affiliatestore') }}">
+                                             <form method="post" action="{{ isset($advsignup) ? route('affiliateupdate') : route('affiliatestore') }}">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
                                                    <div class="row">
@@ -334,8 +334,8 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <textarea cols="10" rows="10" name="emailstring" id="page-editor4">
-                                                            @if(isset($affiliatetempalte))
-                                                              {{ $affiliatetempalte->emailstring }}
+                                                            @if(isset($advsignup))
+                                                              {{ $advsignup->emailstring }}
                                                            @else 
                                                            <div style="width:60%; margin:0 auto;"><h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p><p>Best Regards,</p><p>{network_name}&nbsp;</p>
                                                             </div>
@@ -379,14 +379,14 @@
                                                    </div>
                                                    <div class="row">
                                                       <div class="col-md-12">
-                                                         <button type="submit" class="btn btn-success">Save</button>
+                                                         <button type="submit" class="btn btn-success">{{ isset($advsignup) ? 'Update' : 'Save' }}</button>
                                                       </div>
                                                    </div>
                                                 </div>
                                              </form>
                                           </div>
                                           <div class="tab-pane fade" id="sub12">
-                                             <form method="post" action="{{ route('affiliatestore') }}">
+                                             <form method="post" action="{{ isset($advapproval) ? route('affiliateupdate') : route('affiliatestore') }}">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
                                                    <div class="row">
@@ -398,8 +398,8 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <textarea cols="10" rows="10" name="emailstring" id="page-editor5">
-                                                            @if(isset($affiliatetempalte))
-                                                              {{ $affiliatetempalte->emailstring }}
+                                                            @if(isset($advapproval))
+                                                              {{ $advapproval->emailstring }}
                                                            @else 
                                                            <div style="width:60%; margin:0 auto;"><h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p><p>Best Regards,</p><p>{network_name}&nbsp;</p>
                                                             </div>
@@ -443,14 +443,14 @@
                                                    </div>
                                                    <div class="row">
                                                       <div class="col-md-12">
-                                                         <button type="submit" class="btn btn-success">Save</button>
+                                                         <button type="submit" class="btn btn-success">{{ isset($advapproval) ? 'Update' : 'Save' }}</button>
                                                       </div>
                                                    </div>
                                                 </div>
                                              </form>
                                           </div>
                                           <div class="tab-pane fade" id="sub13">
-                                             <form method="post" action="{{ route('affiliatestore') }}">
+                                             <form method="post" action="{{ isset($advrejection) ? route('affiliateupdate') : route('affiliatestore') }}">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
                                                    <div class="row">
@@ -462,8 +462,8 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <textarea cols="10" rows="10" name="emailstring" id="page-editor6">
-                                                            @if(isset($affiliatetempalte))
-                                                              {{ $affiliatetempalte->emailstring }}
+                                                            @if(isset($advrejection))
+                                                              {{ $advrejection->emailstring }}
                                                            @else 
                                                            <div style="width:60%; margin:0 auto;"><h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p><p>Best Regards,</p><p>{network_name}&nbsp;</p>
                                                             </div>
@@ -507,14 +507,14 @@
                                                    </div>
                                                    <div class="row">
                                                       <div class="col-md-12">
-                                                         <button type="submit" class="btn btn-success">Save</button>
+                                                         <button type="submit" class="btn btn-success">{{ isset($advrejection) ? 'Update' : 'Save' }}</button>
                                                       </div>
                                                    </div>
                                                 </div>
                                              </form>
                                           </div>
                                           <div class="tab-pane fade" id="sub14">
-                                             <form method="post" action="{{ route('affiliatestore') }}">
+                                             <form method="post" action="{{ isset($advpassreset) ? route('affiliateupdate') : route('affiliatestore') }}">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
                                                    <div class="row">
@@ -526,8 +526,8 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <textarea cols="10" rows="10" name="emailstring" id="page-editor7">
-                                                            @if(isset($affiliatetempalte))
-                                                              {{ $affiliatetempalte->emailstring }}
+                                                            @if(isset($advpassreset))
+                                                              {{ $advpassreset->emailstring }}
                                                            @else 
                                                            <div style="width:60%; margin:0 auto;"><h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p><p>Best Regards,</p><p>{network_name}&nbsp;</p>
                                                             </div>
@@ -571,7 +571,7 @@
                                                    </div>
                                                    <div class="row">
                                                       <div class="col-md-12">
-                                                         <button type="submit" class="btn btn-success">Save</button>
+                                                         <button type="submit" class="btn btn-success">{{ isset($advpassreset) ? 'Update' : 'Save' }}</button>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -589,7 +589,7 @@
                                        </ul>
                                        <div class="tab-content">
                                           <div class="tab-pane fade active in" id="sub11">
-                                             <form method="post" action="{{ route('affiliatestore') }}">
+                                             <form method="post" action="{{ isset($offerapproval) ? route('affiliateupdate') : route('affiliatestore') }}">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
                                                    <div class="row">
@@ -601,8 +601,8 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <textarea cols="10" rows="10" name="emailstring" id="page-editor8">
-                                                            @if(isset($affiliatetempalte))
-                                                              {{ $affiliatetempalte->emailstring }}
+                                                            @if(isset($offerapproval))
+                                                              {{ $offerapproval->emailstring }}
                                                            @else 
                                                            <div style="width:60%; margin:0 auto;"><h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p><p>Best Regards,</p><p>{network_name}&nbsp;</p>
                                                             </div>
@@ -646,14 +646,14 @@
                                                    </div>
                                                    <div class="row">
                                                       <div class="col-md-12">
-                                                         <button type="submit" class="btn btn-success">Save</button>
+                                                         <button type="submit" class="btn btn-success">{{ isset($offerapproval) ? 'Update' : 'Save' }}</button>
                                                       </div>
                                                    </div>
                                                 </div>
                                              </form>
                                           </div>
                                           <div class="tab-pane fade" id="sub12">
-                                             <form method="post" action="{{ route('affiliatestore') }}">
+                                             <form method="post" action="{{ isset($offerpayout) ? route('affiliateupdate') : route('affiliatestore') }}">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
                                                    <div class="row">
@@ -665,8 +665,8 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <textarea cols="10" rows="10" name="emailstring" id="page-editor9">
-                                                            @if(isset($affiliatetempalte))
-                                                              {{ $affiliatetempalte->emailstring }}
+                                                            @if(isset($offerpayout))
+                                                              {{ $offerpayout->emailstring }}
                                                            @else 
                                                            <div style="width:60%; margin:0 auto;"><h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p><p>Best Regards,</p><p>{network_name}&nbsp;</p>
                                                             </div>
@@ -710,14 +710,14 @@
                                                    </div>
                                                    <div class="row">
                                                       <div class="col-md-12">
-                                                         <button type="submit" class="btn btn-success">Save</button>
+                                                         <button type="submit" class="btn btn-success">{{ isset($offerpayout) ? 'Update' : 'Save' }}</button>
                                                       </div>
                                                    </div>
                                                 </div>
                                              </form>
                                           </div>
                                           <div class="tab-pane fade" id="sub13">
-                                             <form method="post" action="{{ route('affiliatestore') }}">
+                                             <form method="post" action="{{ isset($offerstatus) ? route('affiliateupdate') : route('affiliatestore') }}">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
                                                    <div class="row">
@@ -729,8 +729,8 @@
                                                    <div class="row">
                                                       <div class="col-md-12 col-sm-12">
                                                          <textarea cols="10" rows="10" name="emailstring" id="page-editor10">
-                                                            @if(isset($affiliatetempalte))
-                                                              {{ $affiliatetempalte->emailstring }}
+                                                            @if(isset($offerstatus))
+                                                              {{ $offerstatus->emailstring }}
                                                            @else 
                                                            <div style="width:60%; margin:0 auto;"><h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p><p>Best Regards,</p><p>{network_name}&nbsp;</p>
                                                             </div>
@@ -774,7 +774,7 @@
                                                    </div>
                                                    <div class="row">
                                                       <div class="col-md-12">
-                                                         <button type="submit" class="btn btn-success">Save</button>
+                                                         <button type="submit" class="btn btn-success">{{ isset($offerstatus) ? 'Update' : 'Save' }}</button>
                                                       </div>
                                                    </div>
                                                 </div>

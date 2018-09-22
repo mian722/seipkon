@@ -15,8 +15,18 @@ class TemplatesController extends Controller
      */
     public function index()
     {
-        $affiliatesignup = Templates::find(3);
-        return view('admin.email-templates',compact('affiliatetempalte', 'affiliatetempalte2', 'affiliatetempalte3'));
+        $affsignup = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'affsignup')->first();
+        $affapproval = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'affapproval')->first();
+        $affrejection = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'affrejection')->first();
+        $affpassreset = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'affpassreset')->first();
+        $advsignup = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'advsignup')->first();
+        $advapproval = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'advapproval')->first();
+        $advrejection = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'advrejection')->first();
+        $advpassreset = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'advpassreset')->first();
+        $offerapproval = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'offerapproval')->first();
+        $offerpayout = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'offerpayout')->first();
+        $offerstatus = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'offerstatus')->first();
+        return view('admin.email-templates',compact('affsignup', 'affapproval', 'affrejection', 'affpassreset', 'advsignup', 'advapproval', 'advrejection', 'advpassreset', 'offerapproval', 'offerpayout', 'offerstatus'));
     }
 
     /**
@@ -83,7 +93,7 @@ class TemplatesController extends Controller
      */
     public function update(Request $request, templates $templates)
     {
-        //
+        return $request->all();
     }
 
     /**
