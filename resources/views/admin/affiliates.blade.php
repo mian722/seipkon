@@ -61,7 +61,7 @@
                                           <td>{{ $affilate->website }}</td>
 
                                           <td>
-                                             <span class="label {{ $affilate->status == 1 ? 'label-success' : 'label-warning' }} ">{{ $affilate->status == 1 ? "Active" : "Deactive" }}</span>
+                                             <span class="label {{ $affilate->status == 1 ? 'label-success' : 'label-danger' }} ">{{ $affilate->status == 1 ? "Active" : "Deactive" }}</span>
                                           </td>
                                           <td>
                                              @if($affilate->status == 1)
