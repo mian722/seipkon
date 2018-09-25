@@ -63,6 +63,12 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/affiliate-postback', 'AffiliateController@affiliatepostback')->name('affiliatepostback');
 	Route::get('/postback-create', 'AffiliateController@createaffiliatepostback')->name('createaffiliatepostback');
 	Route::get('/postback-create/{id}', 'AffiliateController@getaffiliatepostback')->name('getaffiliatepostback');
+	Route::get('/affiliate/edit/{id}', 'AffiliateController@edit')->name('affiliate.edit');	
+	Route::post('/affiliate/update/{id}', 'AffiliateController@update')->name('affiliate.update');
+	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliate')->name('affiliate.approve');
+	Route::get('/affiliate/delete/{id}', 'AffiliateController@delete')->name('affiliate.delete');	
+	Route::get('/affiliate/block/{id}', 'AffiliateController@block')->name('affiliate.block');	
+	Route::get('/affiliate/unblock/{id}', 'AffiliateController@unblock')->name('affiliate.unblock');	
 
 	Route::post('/postbackcreate', 'AffiliateController@createpostback')->name('createpostback');
 	Route::get('/postback/edit/{id}', 'AffiliateController@editpostback')->name('editpostback');
