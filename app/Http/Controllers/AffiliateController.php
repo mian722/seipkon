@@ -72,6 +72,14 @@ class AffiliateController extends Controller
         return view('admin.affiliate-invoice-edit',compact('offeredit'));
     }
 
+    public function edit($id){
+        $affiliate = User::Where('roles_id', 5)->Where('id',$id)->first();
+        $countries = $this->getcountry();
+        $managers = $this->getuser(3);
+        return view('admin.affiliate-create',compact('countries','managers','affiliate'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -299,7 +307,13 @@ class AffiliateController extends Controller
                         ->get();
         return view('admin.affiliate-detail-page',compact('affilates','managers','payouts','postbacks'));
     }
-
+    public function aproveaffiliate($id)
+    {
+        $update = DB::table('users')
+            ->where('id', $id)
+            ->update(['status' => 1]);
+        return redirect()->back();
+    }
     public function pendingaffiliates()
     {
         $affiliates = User::Where('roles_id',5)->Where('status',0)->get();
@@ -416,7 +430,15 @@ class AffiliateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update = DB::table('users')
+            ->where('id', $id)
+            ->update(['fname' => $request->fname, 'lname' => $request->lname, 'email' => $request->email, 'contactno' => $request->mobile, 'imid' => $request->imtype, 'imaccount' => $request->imaccount, 'country' => $request->country, 'website' => $request->website, 'company' => $request->company, 'managerid' => $request->manager, 'password' => bcrypt($request->password), 'securitycode' => ($request->security == 'yes') ? $request->scode : "", 'status' => $request->status]);
+        
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
     }
 
     /**
@@ -437,5 +459,31 @@ class AffiliateController extends Controller
             } else {
                 return redirect()->back()->with('success','Succfully Added!');
             }
+    }
+    public function delete($id){
+        $deleted = User::Where('id', $id)->delete();
+        if (empty($deleted) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
+    public function block($id){
+        $blocked = User::Where('id', $id)->update(['status' => 2]);
+        if (empty($blocked) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
+    public function unblock($id){
+        $blocked = User::Where('id', $id)->update(['status' => 1]);
+        if (empty($blocked) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
     }
 }
