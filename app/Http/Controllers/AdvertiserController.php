@@ -65,7 +65,19 @@ class AdvertiserController extends Controller
         $update = DB::table('users')
             ->where('id', $id)
             ->update(['status' => 1]);
-        return redirect()->back();
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            $affiliate = User::find($id);
+            $mailText = $this->getDefTemplate('advapproval');
+            $email = $affiliate->email;
+            $user = new User();
+            $mailText = str_replace("{email}", $email, $mailText);
+            $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
+            $user->email = $email;   // This is the email you want to send to.
+            $user->notify(new SignUpNotification('advertiser', $mailText, 'Click to Login', 'http://seipkon.ytrk.us/login', ''));
+            return redirect()->back()->with('success','Succfully Added!');
+        }
     }
 
     public function show($id){

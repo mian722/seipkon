@@ -765,7 +765,7 @@
                                                             @if(isset($offerstatus))
                                                               {{ $offerstatus->emailstring }}
                                                            @else 
-                                                           <div style="width:60%; margin:0 auto;"><h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p><p>Best Regards,</p><p>{network_name}&nbsp;</p>
+                                                           <div style="width:60%; margin:0 auto;">
                                                             </div>
                                                             @endif
                                                          </textarea>

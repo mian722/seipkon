@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Notifications\SignUpNotification;
 use App\Offer;
 use App\AssignOffers;
 use App\Invoices;
@@ -19,6 +20,12 @@ class AffiliateController extends Controller
      */
     public function index()
     {
+        // $mailText = '<p style="color: red;">Thank you for registering as our affiliate.</p><br /><br />Your account {email} has been submitted for approval. You will receive an email notification on your application status soon.';
+        // $email = 'mohsys768@gmail.com';
+        // $user = new User();
+        // $convertedText = str_replace("{email}", $email, $mailText);
+        // $user->email = $email;   // This is the email you want to send to.
+        // $user->notify(new SignUpNotification('affiliate', $convertedText, 'Click to Login', 'http://seipkon.ytrk.us', ''));
         $affilates = User::Where('roles_id',5)->where('status', 1)->get();
         return view('admin.affiliates',compact('affilates'));
     }
@@ -300,10 +307,21 @@ class AffiliateController extends Controller
     }
     public function aproveaffiliates($id)
     {
-        $update = DB::table('users')
-            ->where('id', $id)
+        $update = User::where('id', $id)
             ->update(['status' => 1]);
-        return redirect()->back();
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            $affiliate = User::find($id);
+            $mailText = $this->getDefTemplate('affapproval');
+            $email = $affiliate->email;
+            $user = new User();
+            $mailText = str_replace("{email}", $email, $mailText);
+            $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
+            $user->email = $email;   // This is the email you want to send to.
+            $user->notify(new SignUpNotification('affiliate', $mailText, 'Click to Login', 'http://seipkon.ytrk.us/login', ''));
+            return redirect()->back()->with('success','Succfully Added!');
+        }
     }
 
     public function affiliatepayouts(){

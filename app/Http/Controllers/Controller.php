@@ -623,4 +623,45 @@ class Controller extends BaseController
           return $array = array(['id' => 0, 'admin_id' => 0, 'link' => 'http://www.google.com']);
         }
     }
+
+    public function getDefTemplate($string){
+      switch ($string) {
+        case 'affsignup':
+            return '<h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p>';
+          break;
+        case 'affapproval':
+            return '<p>Your {email} are approved by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>Your can login and work on our platform now. Login to start working on our platform.</p><p><br></p>';
+          break;
+        case 'affrejection':
+
+          break;
+        case 'affpassreset':
+
+          break;
+        case 'advsignup':
+
+          break;
+        case 'advapproval':
+            return '<p>Your {email} are approved by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>Your can login and work on our platform now. Login to start working on our platform.</p><p><br></p>';
+          break;
+        case 'advrejection':
+
+          break;
+        case 'advpassreset':
+
+          break;
+        case 'offerapproval':
+
+          break;
+        case 'offerpayout':
+
+          break;
+        case 'offerstatus':
+
+          break;
+        
+        default:
+          break;
+      }
+    }
 }
