@@ -65,13 +65,15 @@
                                              <span class="label {{ $advertiser->status == 0 ? "label-warning" : ($advertiser->status == 1 ? 'label-success' : 'label-danger') }} ">{{ $advertiser->status == 0 ? "Pending" : ($advertiser->status == 1 ? 'Active' : 'Deactive') }}</span>
                                           </td>
                                           <td>
-                                             @if($advertiser->status == 0)
-                                                <a href="{{ route('advertiser.approve', $advertiser->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-check"></i></a>
-                                             @else
-                                                <a href="{{ route('advertiser.edit', $advertiser->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                                
+                                             @if($advertiser->status == 1)
+                                             <a href="{{ route('advertiser.approve', $advertiser->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                             <a href="{{ route('advertiser.edit', $advertiser->id) }}" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                             <a href="{{ route('advertiser.block', $advertiser->id) }}" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                             @elseif($advertiser->status == 2)
+                                             <a href="{{ route('advertiser.edit', $advertiser->id) }}" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                             <a href="{{ route('advertiser.unblock', $advertiser->id) }}" class="product-table-danger" data-toggle="tooltip" title="UnBlock"><i class="fa fa-unlock"></i></a>
                                              @endif
-                                                <a href="{{ route('advertiser.delete', $advertiser->id) }}" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                             
                                           </td>
                                        </tr>
                                     @endforeach

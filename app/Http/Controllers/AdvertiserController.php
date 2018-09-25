@@ -16,7 +16,7 @@ class AdvertiserController extends Controller
      */
     public function index()
     {
-        $advertisers = User::Where('roles_id', 4)->where('status', 1)->get();
+        $advertisers = User::Where('roles_id', 4)->where('status','!=', 0)->get();
         return view('admin.advertisers', compact('advertisers'));
     }
 
