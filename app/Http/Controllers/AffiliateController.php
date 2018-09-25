@@ -26,7 +26,7 @@ class AffiliateController extends Controller
         // $convertedText = str_replace("{email}", $email, $mailText);
         // $user->email = $email;   // This is the email you want to send to.
         // $user->notify(new SignUpNotification('affiliate', $convertedText, 'Click to Login', 'http://seipkon.ytrk.us', ''));
-        $affilates = User::Where('roles_id',5)->where('status', 1)->get();
+        $affilates = User::Where('roles_id',5)->where('status','!=', 0)->get();
         return view('admin.affiliates',compact('affilates'));
     }
 

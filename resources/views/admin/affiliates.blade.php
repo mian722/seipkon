@@ -64,12 +64,15 @@
                                              <span class="label {{ $affilate->status == 1 ? 'label-success' : 'label-warning' }} ">{{ $affilate->status == 1 ? "Active" : "Deactive" }}</span>
                                           </td>
                                           <td>
-                                             @if($affilate->status == 0)
-                                                <a href="{{ route('affiliate.approve', $affilate->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-check"></i></a>
-                                             @else
-                                                <a href="{{ route('affiliate.edit', $affilate->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                             @if($affilate->status == 1)
+                                             <a href="{{ route('affiliate.approve', $affilate->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                             <a href="{{ route('affiliate.edit', $affilate->id) }}" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                             <a href="{{ route('affiliate.block', $affilate->id) }}" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                             @elseif($affilate->status == 2)
+                                             <a href="{{ route('affiliate.edit', $affilate->id) }}" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                             <a href="{{ route('affiliate.unblock', $affilate->id) }}" class="product-table-danger" data-toggle="tooltip" title="UnBlock"><i class="fa fa-unlock"></i></a>
                                              @endif
-                                                <a href="{{ route('affiliate.delete', $affilate->id) }}" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                             
                                           </td>
                                        </tr>
                                     @endforeach
