@@ -15,12 +15,15 @@ class Assignoffers extends Migration
     {
         Schema::create('assignoffers', function (Blueprint $table) {
             $table->increments('id');
-            $table->tinyInteger('affiliate_id');
+            $table->tinyInteger('user_id');
             $table->tinyInteger('offer_id');
+            $table->tinyInteger('smartlink_id');
+            $table->string('postback_type');
+            $table->string('postback_protocol');
+            $table->tinyInteger('admin_id');
             $table->string('postbacklink');
             $table->string('usertracklink');
             $table->tinyInteger('status')->default('0');
-            $table->tinyInteger('admin_id');
             $table->timestamps();
         });
     }

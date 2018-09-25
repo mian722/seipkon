@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Offer;
 use DB;
+use Auth;
+use App\Notifications\SignUpNotification;  
 
 class AdvertiserController extends Controller
 {
