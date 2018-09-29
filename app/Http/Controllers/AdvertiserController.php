@@ -76,8 +76,8 @@ class AdvertiserController extends Controller
             $user = new User();
             $subject = 'You are Approved';
             $mailText = $this->getDefTemplate('advapproval');
+            $dbmail = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'advapproval')->first();
             $emailtype = 'advertiser';
-            $dbmail = Templates::where('admin_id', Auth::user()->id)->where('email_type', $emailtype)->first();
             if (!empty($dbmail)) {
                 $subject = $dbmail->email_subject;
                 $mailText = $dbmail->emailstring;

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\SignUpNotification;
+use App\Notifications\SignUpNotification;
 use Auth;
 use App\User;
 
@@ -49,7 +49,7 @@ class AdminController extends Controller
             $user = new User();
             $convertedText = str_replace("{email}", $email, $mailText);
             $user->email = $email;   // This is the email you want to send to.
-            $user->notify(new SignUpNotification('affiliate', $convertedText, 'Click to Login', 'http://seipkon.ytrk.us', ''));
+            $user->notify(new SignUpNotification('Subject', 'affiliate', $convertedText, 'Click to Login', 'http://seipkon.ytrk.us', ''));
             return view('landing.thankyou');
         } else {
             return redirect()->back()->with('fail', 'Something Wrong!');
