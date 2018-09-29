@@ -123,11 +123,14 @@ Route::group(['middleware'=> 'admin'], function(){
 Route::get('/tracking/{aid}/{oid}', 'ClicksController@tracking')->name('tracking');
 Route::get('/post', 'SignupController@postback')->name('posttracking');
 
-Route::get('/', function () { return view('index'); });
-Route::get('/offer', function () { return view('offer'); });
-Route::get('/edit-offer', function () { return view('edit-offer'); });
-Route::get('/pages', function () { return view('pages'); });
-Route::get('/basic-table', function () { return view('basic-table'); });
+Route::get('/', function () { return view('landing.index'); });
+Route::get('/pricing', function () { return view('landing.pricing'); });
+Route::get('/features', function () { return view('landing.features'); });
+Route::get('/customer', function () { return view('landing.customer'); });
+Route::get('/about', function () { return view('landing.about'); });
+Route::get('/signup', function () { return view('landing.signup'); });
+Route::get('/thankyou', function () { return view('landing.thankyou'); });
+Route::post('/adminregister', 'AdminController@adminregister')->name('adminregister');
 Route::get('/advance-table', function () { return view('advance-table'); });
 Route::get('/advance-components', function () { return view('advance-components'); });
 Route::get('/create-page', function () { return view('create-page'); });
