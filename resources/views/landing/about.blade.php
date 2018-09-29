@@ -74,7 +74,7 @@
              </div>
          </div>
        <div class="about-maps">
-         <img class="img-responsive center-block" src="static/images/about/about_pic2.jpg"  />
+         <img class="img-responsive center-block" src="{{ asset('public/assets/css/static/images/about/about_pic2.jpg') }}"  />
        </div>
 
 
