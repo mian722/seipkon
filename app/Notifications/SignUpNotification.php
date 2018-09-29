@@ -16,8 +16,9 @@ class SignUpNotification extends Notification
      *
      * @return void
      */
-    public function __construct($level, $message, $btnText, $link, $message2)
+    public function __construct($subject, $level, $message, $btnText, $link, $message2)
     {
+        $this->subject = $subject;
         $this->level = $level;
         $this->message = $message;
         $this->message2 = $message2;
@@ -45,6 +46,7 @@ class SignUpNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->subject($this->subject)
                     ->level($this->level)
                     ->line($this->message)
                     ->action($this->btnText, url($this->link))

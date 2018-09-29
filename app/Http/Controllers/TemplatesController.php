@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\templates;
+use App\Templates;
 use Illuminate\Http\Request;
 use Auth;
 

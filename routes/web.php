@@ -46,6 +46,7 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/affiliate-detail/{id}', 'AffiliateController@show')->name('affiliate.show');
 	Route::get('/affiliates-pending', 'AffiliateController@pendingaffiliates')->name('pendingaffiliates');
 	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliates')->name('approve.affiliate');
+	Route::get('/reject-affiliate/{id}', 'AffiliateController@rejected')->name('affiliate.reject');
 	Route::get('/affiliate-payouts', 'AffiliateController@affiliatepayouts')->name('affiliate-payouts');
 	Route::post('/affiliate-payouts/edit', 'AffiliateController@editpayout')->name('payout.edit');
 	Route::get('/affiliate-payouts/delete/{id}', 'AffiliateController@deletepayout')->name('payout.delete');
@@ -65,7 +66,6 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/postback-create/{id}', 'AffiliateController@getaffiliatepostback')->name('getaffiliatepostback');
 	Route::get('/affiliate/edit/{id}', 'AffiliateController@edit')->name('affiliate.edit');	
 	Route::post('/affiliate/update/{id}', 'AffiliateController@update')->name('affiliate.update');
-	Route::get('/approve-affiliate/{id}', 'AffiliateController@aproveaffiliate')->name('affiliate.approve');
 	Route::get('/affiliate/delete/{id}', 'AffiliateController@delete')->name('affiliate.delete');	
 	Route::get('/affiliate/block/{id}', 'AffiliateController@block')->name('affiliate.block');	
 	Route::get('/affiliate/unblock/{id}', 'AffiliateController@unblock')->name('affiliate.unblock');	
@@ -81,7 +81,8 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/advertisers-create', 'AdvertiserController@getadvertiser')->name('advertiser.get');
 	Route::post('/add-advertiser/create', 'AdvertiserController@createadvertiser')->name('advertiser.create');
 	Route::get('/advertisers-pending', 'AdvertiserController@pendingadvertisers')->name('pendingadvertisers');
-	Route::get('/approve-advertiser/{id}', 'AdvertiserController@aproveadvertiser')->name('advertiser.approve');	
+	Route::get('/approve-advertiser/{id}', 'AdvertiserController@aproveadvertiser')->name('advertiser.approve');
+	Route::get('/reject-advertiser/{id}', 'AdvertiserController@rejected')->name('advertiser.reject');	
 	Route::get('/advertisers', 'AdvertiserController@index')->name('advertisers');
 	Route::get('/advertiser-detail/{id}', 'AdvertiserController@show')->name('advertiser.show');
 	Route::get('/advertiser/edit/{id}', 'AdvertiserController@edit')->name('advertiser.edit');	

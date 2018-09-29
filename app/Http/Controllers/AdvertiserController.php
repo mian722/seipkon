@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Offer;
+use App\Templates;
 use DB;
 use Auth;
 use App\Notifications\SignUpNotification;  
@@ -71,13 +72,21 @@ class AdvertiserController extends Controller
             return redirect()->back()->with('fail', 'Something Wrong!');
         } else {
             $affiliate = User::find($id);
-            $mailText = $this->getDefTemplate('advapproval');
             $email = $affiliate->email;
             $user = new User();
+            $subject = 'You are Approved';
+            $mailText = $this->getDefTemplate('advapproval');
+            $emailtype = 'advertiser';
+            $dbmail = Templates::where('admin_id', Auth::user()->id)->where('email_type', $emailtype)->first();
+            if (!empty($dbmail)) {
+                $subject = $dbmail->email_subject;
+                $mailText = $dbmail->emailstring;
+                $emailtype = '';
+            }
             $mailText = str_replace("{email}", $email, $mailText);
             $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
             $user->email = $email;   // This is the email you want to send to.
-            $user->notify(new SignUpNotification('advertiser', $mailText, 'Click to Login', 'http://seipkon.ytrk.us/login', ''));
+            $user->notify(new SignUpNotification($subject,$emailtype, $mailText, 'Click to Login', 'http://seipkon.ytrk.us/login', ''));
             return redirect()->back()->with('success','Succfully Added!');
         }
     }
@@ -110,15 +119,31 @@ class AdvertiserController extends Controller
         if (empty($blocked) ) {
             return redirect()->back()->with('fail', 'Something Wrong!');
         } else {
+            $advertiser = User::find($id);
+            $mailText = $this->getDefTemplate('advrejection');
+            $email = $advertiser->email;
+            $user = new User();
+            $mailText = str_replace("{email}", $email, $mailText);
+            $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
+            $user->email = $email;   // This is the email you want to send to.
+            $user->notify(new SignUpNotification('You have been blocked','advertiser', $mailText, 'Help and Support Center', 'http://seipkon.ytrk.us/support', ''));
             return redirect()->back()->with('success','Succfully Added!');
         }
     }
 
     public function unblock($id){
-        $blocked = User::Where('id', $id)->update(['status' => 1]);
-        if (empty($blocked) ) {
+        $unblock = User::Where('id', $id)->update(['status' => 1]);
+        if (empty($unblock) ) {
             return redirect()->back()->with('fail', 'Something Wrong!');
         } else {
+            $advertiser = User::find($id);
+            $mailText = $this->getDefTemplate('advapproval');
+            $email = $advertiser->email;
+            $user = new User();
+            $mailText = str_replace("{email}", $email, $mailText);
+            $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
+            $user->email = $email;   // This is the email you want to send to.
+            $user->notify(new SignUpNotification('Congo, You have been Unblocked', 'advertiser', $mailText, 'Login Here', 'http://seipkon.ytrk.us/login', ''));
             return redirect()->back()->with('success','Succfully Added!');
         }
     }
@@ -132,6 +157,31 @@ class AdvertiserController extends Controller
             return redirect()->back()->with('fail', 'Something Wrong!');
         } else {
             return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
+    public function rejected($id){
+        $rejected = User::Where('id', $id)->update(['status' => 3]);
+        if (empty($rejected) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            $advertiser = User::find($id);
+            $email = $advertiser->email;
+            $subject = 'Sorry to inform you that, Your application have been Rejected';
+            $mailText = $this->getDefTemplate('advrejection');
+            $dbmail = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'advrejection')->first();
+            $emailtype = 'advertiser';
+            if (!empty($dbmail)) {
+                $subject = $dbmail->email_subject;
+                $mailText = $dbmail->emailstring;
+                $emailtype = '';
+            }
+            $user = new User();
+            $mailText = str_replace("{email}", $email, $mailText);
+            $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
+            $user->email = $email;   // This is the email you want to send to.
+            $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Help and Supports', 'http://seipkon.ytrk.us/support', ''));
+            return redirect()->back()->with('success','Succfully Rejected!');
         }
     }
 }

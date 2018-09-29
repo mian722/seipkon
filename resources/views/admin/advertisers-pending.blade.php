@@ -56,13 +56,12 @@
                                        <td>{{ $advertiser->contactno }}</td>
                                        <td>{{ $advertiser->created_at }}</td>
                                        <td>
-                                             <span class="label {{ $advertiser->status == 0 ? "label-warning" : ($advertiser->status == 1 ? 'label-success' : 'label-danger') }} ">{{ $advertiser->status == 0 ? "Pending" : ($advertiser->status == 1 ? 'Active' : 'Deactive') }}</span>
+                                             <span class="label {{ $advertiser->status == 0 ? "label-warning" : ($advertiser->status == 1 ? 'label-success' : 'label-danger') }} ">{{ $advertiser->status == 0 ? "Pending" : ($advertiser->status == 1 ? 'Active' : 'Rejected') }}</span>
                                        </td>
                                        <td>
-                                          @if($advertiser->status == 2)
-                                             <a href="{{ route('advertiser.unblock', $advertiser->id) }}" class="product-table-danger" data-toggle="tooltip" title="Unblock"><i class="fa fa-unlock"></i></a>
-                                          @else
-                                             <a href="{{ route('advertiser.approve', $advertiser->id) }}" class="product-table-info" data-toggle="tooltip" title="Approve"><i class="fa fa-check"></i></a>
+                                          <a href="{{ route('advertiser.approve', $advertiser->id) }}" class="product-table-info" data-toggle="tooltip" title="Approve"><i class="fa fa-check"></i></a>
+                                          @if($advertiser->status != 3)
+                                          <a href="{{ route('affiliate.reject', $advertiser->id) }}" class="product-table-danger" data-toggle="tooltip" title="Decline"><i class="fa fa-times"></i></a>
                                           @endif
                                        </td>
                                     </tr>

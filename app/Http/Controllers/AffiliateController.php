@@ -11,6 +11,7 @@ use App\Invoices;
 use DB;
 use Auth;
 use App\AffiliatePayout;
+use App\Templates;
 class AffiliateController extends Controller
 {
     /**
@@ -25,8 +26,8 @@ class AffiliateController extends Controller
         // $user = new User();
         // $convertedText = str_replace("{email}", $email, $mailText);
         // $user->email = $email;   // This is the email you want to send to.
-        // $user->notify(new SignUpNotification('affiliate', $convertedText, 'Click to Login', 'http://seipkon.ytrk.us', ''));
-        $affilates = User::Where('roles_id',5)->where('status','!=', 0)->get();
+        // $user->notify(new SignUpNotification('Subject', 'affiliate', $convertedText, 'Click to Login', 'http://seipkon.ytrk.us', ''));
+        $affilates = User::Where('roles_id',5)->WhereIn('status',[1,2])->get();
         return view('admin.affiliates',compact('affilates'));
     }
 
@@ -316,7 +317,7 @@ class AffiliateController extends Controller
     }
     public function pendingaffiliates()
     {
-        $affiliates = User::Where('roles_id',5)->Where('status',0)->get();
+        $affiliates = User::Where('roles_id',5)->WhereIn('status',[0,3])->get();
         return view('admin.affiliates-pending',compact('affiliates'));
     }
     public function aproveaffiliates($id)
@@ -327,13 +328,21 @@ class AffiliateController extends Controller
             return redirect()->back()->with('fail', 'Something Wrong!');
         } else {
             $affiliate = User::find($id);
-            $mailText = $this->getDefTemplate('affapproval');
             $email = $affiliate->email;
+            $subject = 'You are Approved';
+            $mailText = $this->getDefTemplate('affapproval');
+            $dbmail = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'affapproval')->first();
+            $emailtype = 'affiliate';
+            if (!empty($dbmail)) {
+                $subject = $dbmail->email_subject;
+                $mailText = $dbmail->emailstring;
+                $emailtype = '';
+            }
             $user = new User();
             $mailText = str_replace("{email}", $email, $mailText);
             $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
             $user->email = $email;   // This is the email you want to send to.
-            $user->notify(new SignUpNotification('affiliate', $mailText, 'Click to Login', 'http://seipkon.ytrk.us/login', ''));
+            $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Click to Login', 'http://seipkon.ytrk.us/login', ''));
             return redirect()->back()->with('success','Succfully Added!');
         }
     }
@@ -474,16 +483,59 @@ class AffiliateController extends Controller
         if (empty($blocked) ) {
             return redirect()->back()->with('fail', 'Something Wrong!');
         } else {
+            $affilate = User::find($id);
+            $email = $affilate->email;
+            $subject = 'You have been blocked';
+            $mailText = $this->getDefTemplate('affblock');
+            $emailtype = 'affiliate';
+            $user = new User();
+            $mailText = str_replace("{email}", $email, $mailText);
+            $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
+            $user->email = $email;   // This is the email you want to send to.
+            $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Help and Support Center', 'http://seipkon.ytrk.us/support', ''));
             return redirect()->back()->with('success','Succfully Added!');
         }
     }
 
     public function unblock($id){
-        $blocked = User::Where('id', $id)->update(['status' => 1]);
-        if (empty($blocked) ) {
+        $unblock = User::Where('id', $id)->update(['status' => 1]);
+        if (empty($unblock) ) {
             return redirect()->back()->with('fail', 'Something Wrong!');
         } else {
+            $affilate = User::find($id);
+            $mailText = $this->getDefTemplate('affunblock');
+            $email = $affilate->email;
+            $user = new User();
+            $mailText = str_replace("{email}", $email, $mailText);
+            $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
+            $user->email = $email;   // This is the email you want to send to.
+            $user->notify(new SignUpNotification('Congo, You have been Unblocked', 'affiliate', $mailText, 'Login Here', 'http://seipkon.ytrk.us/login', ''));
             return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
+    public function rejected($id){
+        $rejected = User::Where('id', $id)->update(['status' => 3]);
+        if (empty($rejected) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            $affilate = User::find($id);
+            $email = $affilate->email;
+            $subject = 'Sorry to inform you that, Your application have been Rejected';
+            $mailText = $this->getDefTemplate('affrejection');
+            $dbmail = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'affrejection')->first();
+            $emailtype = 'affiliate';
+            if (!empty($dbmail)) {
+                $subject = $dbmail->email_subject;
+                $mailText = $dbmail->emailstring;
+                $emailtype = '';
+            }
+            $user = new User();
+            $mailText = str_replace("{email}", $email, $mailText);
+            $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
+            $user->email = $email;   // This is the email you want to send to.
+            $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Help and Supports', 'http://seipkon.ytrk.us/support', ''));
+            return redirect()->back()->with('success','Succfully Rejected!');
         }
     }
 }

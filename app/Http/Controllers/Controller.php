@@ -633,7 +633,13 @@ class Controller extends BaseController
             return '<p>Your {email} are approved by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>Your can login and work on our platform now. Login to start working on our platform.</p><p><br></p>';
           break;
         case 'affrejection':
-
+            return '<p>Your {email} has been Blocked by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>You are unable to work on it now.</p><p><br></p>';
+          break;
+        case 'affblock':
+            return '<p>Your {email} has been Blocked by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>You are unable to work on it now.</p><p><br></p>';
+          break;
+        case 'affunblock':
+            return '<p>Your {email} has been Blocked by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>You are unable to work on it now.</p><p><br></p>';
           break;
         case 'affpassreset':
 
@@ -645,7 +651,7 @@ class Controller extends BaseController
             return '<p>Your {email} are approved by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>Your can login and work on our platform now. Login to start working on our platform.</p><p><br></p>';
           break;
         case 'advrejection':
-
+            return '<p>Your {email} has been Blocked by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>You are unable to work on it now.</p><p><br></p>';
           break;
         case 'advpassreset':
 

@@ -65,11 +65,13 @@
                                        <td>{{ $affiliate->contactno }}</td>
                                        <td>{{ $affiliate->created_at }}</td>
                                        <td>
-                                          <span class="label label-warning">Pending</span>
+                                          <span class="label {{ $affiliate->status == 0 ? 'label-warning' : 'label-danger' }} ">{{ $affiliate->status == 0 ? "Pending" : "Rejected" }}</span>
                                        </td>
                                        <td>
                                           <a href="{{ route('approve.affiliate', $affiliate->id) }}" class="product-table-info" data-toggle="tooltip" title="Approve"><i class="fa fa-check"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Decline"><i class="fa fa-times"></i></a>
+                                          @if($affiliate->status != 3)
+                                          <a href="{{ route('affiliate.reject', $affiliate->id) }}" class="product-table-danger" data-toggle="tooltip" title="Decline"><i class="fa fa-times"></i></a>
+                                          @endif
                                        </td>
                                     </tr>
                                     @endforeach
