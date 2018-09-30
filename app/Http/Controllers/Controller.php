@@ -699,7 +699,7 @@ class Controller extends BaseController
           break;
         case 'offerpayout':
             return '<p>Dear Partners,</p><div><br><div>&nbsp;</div>
-                    The payout of offer ${offer_name} #${offer_id} has changed from ${offer_previous_currency}&nbsp;${offer_previous_payout}&nbsp; ${offer_previous_pricing_type} to ${offer_currency}&nbsp;${offer_payout} ${offer_pricing_type} and the active time is ${effective_time}(Timezone: ${gmt_timezone}). Please login to your account to view the details.
+                    The payout of offer ${offer_name} #${offer_id} has changed from {offer_previous_currency}&nbsp;{offer_previous_payout}&nbsp; ${offer_previous_pricing_type} to {offer_currency}&nbsp;${offer_payout} ${offer_pricing_type} and the active time is {effective_time}(Timezone: {gmt_timezone}). Please login to your account to view the details.
                     <div>&nbsp;</div><div>&nbsp;</div><div>Best Regards,&nbsp;</div><div>${network_name}</div></div>';
           break;
         case 'offerstatus':
@@ -716,15 +716,16 @@ class Controller extends BaseController
     public function setParameters($template, $affid, $offerid){
       $user = User::find($affid);
       $offer = Offer::find($offerid);
-      if (empty($user)) {
+      if (!empty($user)) {
         $template = str_replace("{first_name}", $user->fname, $template);
         $template = str_replace("{last_name}", $user->lname, $template);
         $template = str_replace("{email}", $user->email, $template);
         $template = str_replace("{affiliate_id}", $user->id, $template);
+        $template = str_replace("{advertiser_id}", $user->id, $template);
         $template = str_replace("{company}", $user->company, $template);
         $template = str_replace("{company_website}", $user->website, $template);
       }
-      if (empty($offer)) {
+      if (!empty($offer)) {
         $template = str_replace("{offer_id}", $offer->id, $template);
         $template = str_replace("{offer_payout}", $offer->payout, $template);
         $template = str_replace("{offer_previous_payout}", $offer->prev_payout, $template);
@@ -735,5 +736,6 @@ class Controller extends BaseController
         $template = str_replace("{network_name}", config('app.name'), $template);
         $template = str_replace("{datetime}", Carbon::now(), $template);
         $template = str_replace("{login_url}", url('/'), $template);
+        return $template;
     }
 }

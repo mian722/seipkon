@@ -339,9 +339,8 @@ class AffiliateController extends Controller
                 $mailText = $dbmail->emailstring;
                 $emailtype = '';
             }
+            $mailText = $this->setParameters($mailText, $id, 0);
             $user = new User();
-            $mailText = str_replace("{email}", $email, $mailText);
-            $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
             $user->email = $email;   // This is the email you want to send to.
             $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Click to Login', 'http://seipkon.ytrk.us/login', ''));
             return redirect()->back()->with('success','Succfully Added!');
@@ -490,8 +489,7 @@ class AffiliateController extends Controller
             $mailText = $this->getDefTemplate('affblock');
             $emailtype = 'affiliate';
             $user = new User();
-            $mailText = str_replace("{email}", $email, $mailText);
-            $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
+            $mailText = $this->setParameters($mailText, $id, 0);
             $user->email = $email;   // This is the email you want to send to.
             $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Help and Support Center', 'http://seipkon.ytrk.us/support', ''));
             return redirect()->back()->with('success','Succfully Added!');
@@ -505,11 +503,9 @@ class AffiliateController extends Controller
         } else {
             $affilate = User::find($id);
             $mailText = $this->getDefTemplate('affunblock');
-            $email = $affilate->email;
-            $user = new User();
             $mailText = $this->setParameters($mailText, $id, 0);
-            $mailText = str_replace("{email}", $email, $mailText);
-            $user->email = $email;   // This is the email you want to send to.
+            $user = new User();
+            $user->email = $affilate->email;   // This is the email you want to send to.
             $user->notify(new SignUpNotification('Congo, You have been Unblocked', 'affiliate', $mailText, 'Login Here', 'http://seipkon.ytrk.us/login', ''));
             return redirect()->back()->with('success','Succfully Added!');
         }
@@ -531,9 +527,8 @@ class AffiliateController extends Controller
                 $mailText = $dbmail->emailstring;
                 $emailtype = '';
             }
+            $mailText = $this->setParameters($mailText, $id, 0);
             $user = new User();
-            $mailText = str_replace("{email}", $email, $mailText);
-            $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
             $user->email = $email;   // This is the email you want to send to.
             $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Help and Supports', 'http://seipkon.ytrk.us/support', ''));
             return redirect()->back()->with('success','Succfully Rejected!');

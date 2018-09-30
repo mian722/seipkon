@@ -1987,7 +1987,6 @@ table.dataTable thead .sorting_desc_disabled:after {
 	text-align: left;
 	padding: 10px;
 	vertical-align: middle;
-	text-transform: capitalize
 }
 
 .table thead>tr>th,

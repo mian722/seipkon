@@ -20,11 +20,13 @@ class CreateOffersTable extends Migration
             $table->string('tags')->nullable();
             $table->string('duration');
             $table->tinyInteger('status')->unsigned()->defalut(0);
+            $table->tinyInteger('prev_status')->nullable();
             $table->string('revenue_type');
-            $table->string('revenue');
+            $table->tinyInteger('revenue')->unsigned();
             $table->string('offer_approval');
             $table->string('payout_type');
-            $table->string('payout');
+            $table->tinyInteger('payout')->unsigned();
+            $table->tinyInteger('prev_payout')->nullable();
             $table->string('preview_url');
             $table->string('destination_url');
             $table->string('signup_protocol');
