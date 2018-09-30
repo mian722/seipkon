@@ -15,6 +15,14 @@ Route::group(['middleware'=> 'boss'], function(){
 	Route::get('/boss/home', 'BossController@index')->name('boss/home');
 });
 
+Route::group(['middleware'=> 'affiliate'], function(){
+	Route::get('/home', 'AffiliateController@index')->name('home');
+});
+
+Route::group(['middleware'=> 'advertiser'], function(){
+	Route::get('/home', 'AdvertiserController@index')->name('home');
+});
+
 Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/admin/home', 'AdminController@index')->name('admin.home');
 	Route::get('/admin', 'AdminController@index')->name('admin.home');

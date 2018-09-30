@@ -11,7 +11,7 @@
       <meta name="author" content="Themescare">
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <!-- Title -->
-      <title>{{ config('app.name', 'Seipkon') }}</title>
+      <title>{{ config('app.name', 'Laravel') }}</title>
       <!-- Favicon -->
       <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('public/assets/img/favicon/favicon-32x32.png') }}">
       <!-- Animate CSS -->

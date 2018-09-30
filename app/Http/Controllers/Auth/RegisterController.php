@@ -83,7 +83,7 @@ class RegisterController extends Controller
         ]);
 
         if (!empty($userCreated) ) {
-            $mailText = '<p style="color: red;">Thank you for registering as our '.$data['usertype'].'.</p><br /><br />Your account {email} has been submitted for approval. You will receive an email notification on your application status soon.';
+            $mailText = $this->getDefTemplate('affsignup');
             $email = $data['email'];
             $user = new User();
             $convertedText = str_replace("{email}", $email, $mailText);
