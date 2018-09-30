@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/home';
+    protected $redirectTo = '/thankyou';
 
     /**
      * Create a new controller instance.
@@ -54,7 +54,6 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'contactno' => 'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
-            'subdomain' => 'required|string|max:100|unique:users',
             'imid' => 'required|string|max:255',
             'imaccount' => 'required|string|max:255',
         ]);
@@ -67,27 +66,29 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {   
+    {  
+        $subdomain = $this->getsubdomain();
+        $admin_id = User::select('id')->where('subdomain',$subdomain)->first();
+        $roles_id = ($data['usertype'] == 'affiliate') ? 5 : 4 ;
         $userCreated = User::create([
             'fname' => $data['fname'],
             'lname' => $data['lname'],
             'email' => $data['email'],
             'contactno' => $data['contactno'],
             'password' => bcrypt($data['password']),
-            'subdomain' => $data['subdomain'],
             'imid' => $data['imid'],
             'imaccount' => $data['imaccount'],
-            'admin_id' => 0,
-            'roles_id' => 2,
+            'admin_id' => $admin_id->id,
+            'roles_id' => $roles_id,
         ]);
 
         if (!empty($userCreated) ) {
-            $mailText = '<p style="color: red;">Thank you for registering as our affiliate.</p><br /><br />Your account {email} has been submitted for approval. You will receive an email notification on your application status soon.';
+            $mailText = '<p style="color: red;">Thank you for registering as our '.$data['usertype'].'.</p><br /><br />Your account {email} has been submitted for approval. You will receive an email notification on your application status soon.';
             $email = $data['email'];
             $user = new User();
             $convertedText = str_replace("{email}", $email, $mailText);
             $user->email = $email;   // This is the email you want to send to.
-            $user->notify(new SignUpNotification('affiliate', $convertedText, 'Click to Login', 'http://seipkon.ytrk.us', ''));
+            $user->notify(new SignUpNotification('subject','', $convertedText, 'Click to Login', 'http://seipkon.ytrk.us', ''));
             return $userCreated;
         } else {
             return $userCreated;

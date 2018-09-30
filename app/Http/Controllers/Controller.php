@@ -29,6 +29,18 @@ class Controller extends BaseController
             return $next($request);
         });
     }
+
+    public function getsubdomain()
+    {
+     
+      $url_array = explode('.', Request::getHost());
+      if ($url_array[0] == 'www') {
+        return $url_array[1];
+      } else {
+        return $url_array[0];
+      }
+    } 
+
     public function getplatform()
     {
      return $os_array     = array(
