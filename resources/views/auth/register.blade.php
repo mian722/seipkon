@@ -70,6 +70,17 @@
                      <h3>Sign up to Seipkon</h3>
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <div class="col-md-6">
+                                  <input type="radio" name="usertype" value="affiliate" id="chk_1" checked="checked" >
+                                 <label class="inline control-label" for="chk_1">I'm Affliate </label>
+                            </div>
+                            <div class="col-md-6">
+                                  <input type="radio" name="usertype" value="advertiser" id="chk_2"  >
+                                  <input type="hidden" name="subdomain" value="{{ Request::getHost() }}"  />    
+                                 <label class="inline control-label" for="chk_2">I'm Advertiser </label>
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('fname') ? ' has-error' : '' }}">
                                 <input id="fname" type="text" placeholder="First Name" class="form-control" name="fname" value="{{ old('fname') }}" required autofocus>
 
@@ -118,17 +129,7 @@
                         <div class="form-group">
                                 <input id="password-confirm" placeholder="Re-Password" type="password" class="form-control" name="password_confirmation" required>
                         </div>
-                        <div class="form-group{{ $errors->has('subdomain') ? ' has-error' : '' }}">
-                          <div class="input-group">
-                                <input id="subdomain" type="text" class="form-control" placeholder="Sub Domain" name="subdomain" value="{{ old('subdomain') }}" required ><span class="input-group-addon">.ytrk.us</span>
-
-                                @if ($errors->has('imaccount'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('imaccount') }}</strong>
-                                    </span>
-                                @endif
-                                </div>
-                        </div>
+                        
                         <div class="form-group{{ $errors->has('imid') ? ' has-error' : '' }}">
                                 <select class="form-control select2" name="imid" required>
                                                 <option selected="selected" disabled="disabled">Select IM Type</option>
@@ -153,8 +154,8 @@
 
 
                         <div class="form-group form-checkbox">
-                           <input type="checkbox" id="chk_2" required >
-                           <label class="inline control-label" for="chk_2">I Accept <a href="#">Terms and Conditions</a></label>
+                           <input type="checkbox" id="chk_3" required >
+                           <label class="inline control-label" for="chk_3">I Accept <a href="#">Terms and Conditions</a></label>
                         </div>
                         <div class="form-group">
                            <div class="row">
