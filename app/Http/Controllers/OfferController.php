@@ -24,7 +24,10 @@ class OfferController extends Controller
      */
     public function index()
     {
-        $offers = Offer::with('restrictions')->get();
+        $offers = Offer::with('restrictions')
+        ->select('offers.*', 'users.id as uid', 'users.fname')
+        ->LeftJoin('users', 'users.id','=','offers.adv_id')
+        ->get();
         return view('admin.all-offers',compact('offers'));
     }
 
@@ -52,6 +55,8 @@ class OfferController extends Controller
     public function store(Request $request)
     {
         // //eturn dd($request);
+        $newname = '';
+        if (Input::file('offer_image')) {
             $file = Input::file('offer_image');
             $file_name = $file->getClientOriginalName();
             $file_size = round($file->getSize() / 50120);
@@ -60,18 +65,21 @@ class OfferController extends Controller
             if (!in_array($file_ex, array('jpg', 'jpeg','png'))) return 'Invalid image extension we just allow JPG, GIF, PNG';
             $newname = str_random(10).$file_name;
             $file->move(base_path().'/public/offerimages/', $newname);
-
-        $names = array();
-        $mulfiles = $request->file('gallery');
-        foreach($mulfiles as $sinfile){
-            $file_name = $sinfile->getClientOriginalName();
-            $file_size = round($sinfile->getSize() / 50120);
-            $file_ex = $sinfile->getClientOriginalExtension();
-            if (!in_array($file_ex, array('jpg', 'jpeg','png'))) return 'Invalid image extension we just allow JPG, GIF, PNG';
-            $nname = str_random(10).$file_name;
-            $names[] = $nname;
-            $sinfile->move(base_path().'/public/offerimages/', $nname);
         }
+        $names = array();
+        if ($request->file('gallery')) {
+            $mulfiles = $request->file('gallery');
+            foreach($mulfiles as $sinfile){
+                $file_name = $sinfile->getClientOriginalName();
+                $file_size = round($sinfile->getSize() / 50120);
+                $file_ex = $sinfile->getClientOriginalExtension();
+                if (!in_array($file_ex, array('jpg', 'jpeg','png'))) return 'Invalid image extension we just allow JPG, GIF, PNG';
+                $nname = str_random(10).$file_name;
+                $names[] = $nname;
+                $sinfile->move(base_path().'/public/offerimages/', $nname);
+            }
+        }
+
         $offer = new Offer;
         $offer->offer_name = $request->offer_name;
         $offer->adv_id = $request->adv_id;

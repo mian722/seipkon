@@ -627,13 +627,19 @@ class Controller extends BaseController
     public function getDefTemplate($string){
       switch ($string) {
         case 'affsignup':
-            return '<h3><b>Dear Partner,</b></h3><p><b><br></b></p><p>Thank you for registering&nbsp;as our affiliate.</p><p><br></p><p>Your account {emial} has been submitted for approval. You will receive an email notification on your application status soon.</p><p><br></p>';
+            return '<h4><b>Dear Partners,
+                    </b></h4><p><br></p><p>Thank you for registering as our affiliate.
+                    </p><p><br></p><p>Your account {email} has been submitted for approval. You will receive an email notification on your application status soon.
+                    </p><p><br></p><h5>Best Regards,
+                    </h5><p>{network_name}</p>';
           break;
         case 'affapproval':
-            return '<p>Your {email} are approved by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>Your can login and work on our platform now. Login to start working on our platform.</p><p><br></p>';
+            return '<h4>Dear {first_name},</h4><p><br></p><p>Thank you for your interest in joining {network_name}. Your account {email} has been APPROVED and is ready to use. Please log in from {login_url} with your password.</p><p><br></p><p>Please review our Affiliate Terms &amp; Agreement for compliance:
+              Web Link: {company_website}</p><p><br></p><p>Best Regards,</p><p>{network_name}</p>';
           break;
         case 'affrejection':
-            return '<p>Your {email} has been Blocked by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>You are unable to work on it now.</p><p><br></p>';
+            return '<h4>Dear ${first_name},</h4><p><br><br>We are sorry to inform you that your application for ${network_name} has been REJECTED. Your account&nbsp;${email} has NOT been activated.<br><br>Please contact our Administrator or Affiliate Manager for more details.<br><br>We hope to see you soon.</p><p>
+              </p><p><br>Best Regards,<br>${network_name}</p>';
           break;
         case 'affblock':
             return '<p>Your {email} has been Blocked by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>You are unable to work on it now.</p><p><br></p>';
@@ -642,28 +648,52 @@ class Controller extends BaseController
             return '<p>Your {email} has been Blocked by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>You are unable to work on it now.</p><p><br></p>';
           break;
         case 'affpassreset':
-
+            return '<h4>Dear ${first_name},</h4><p><br><br>Please click the following link to reset your account password: </p><p>${password_reset_url}</p><p>If you have any questions, please contact us at&nbsp;${company_website}</p><p>
+              <br><br></p><p><br>Best Regards,<br>${network_name}</p>';
           break;
         case 'advsignup':
+            return '<div style="text-align: center; width: 100%;">
+              <div style="width: 600px; text-align: left; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 1px solid rgb(248, 248, 248); padding: 15px; margin: 0px auto;">
+              <p>Dear Partners,<br><br>Thank you for registering as our advertiser.<br><br>Your account ${email} has been submitted for approval. You will receive an email notification on your application status soon.<br><br>Best Regards,<br>${network_name}</p></div></div>';
 
           break;
         case 'advapproval':
-            return '<p>Your {email} are approved by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>Your can login and work on our platform now. Login to start working on our platform.</p><p><br></p>';
+            return '<div style="text-align: center; width: 100%;">
+                    <div style="width: 600px; text-align: left; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 1px solid rgb(248, 248, 248); padding: 15px; margin: 0px auto;">
+                    <p>Dear ${first_name},<br><br>Thank you for your interest in joining ${network_name}. Your account ${email} has been APPROVED and is ready to use. Please log in from ${login_url} with your password.<br><br>Please review our Advertiser Terms &amp; Agreement for compliance:<br>Web Link: ${company_website}</p><p>
+                    </p><p><br>Best Regards,<br>${network_name}</p></div></div>';
           break;
         case 'advrejection':
-            return '<p>Your {email} has been Blocked by <b style="color: blur;">{admin_name}</b>.</p><p><br></p><p>You are unable to work on it now.</p><p><br></p>';
+            return '<div style="text-align: center; width: 100%;">
+                  <div style="width: 600px; text-align: left; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 1px solid rgb(248, 248, 248); padding: 15px; margin: 0px auto;">
+                  <p>Dear Partners,<br><br>We are sorry to inform you that your application for ${network_name} has been REJECTED. Your account&nbsp;${email} has NOT been activated.<br><br>Please contact our Administrator or Advertiser Manager for more details.<br><br>We hope to see you soon.</p><p>
+                  </p><p><br>Best Regards,<br>${network_name}</p></div></div>';
           break;
         case 'advpassreset':
+            return '<div style="text-align: center; width: 100%;">
+                  <div style="width: 600px; text-align: left; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 1px solid rgb(248, 248, 248); padding: 15px; margin: 0px auto;">
+                  <p>Dear ${first_name},<br><br>Please click the following link to reset your account password: </p><p>${password_reset_url}</p><p>If you have any questions, please contact us at&nbsp;${company_website}</p><p>
+                  <br><br></p><p><br>Best Regards,<br>${network_name}</p></div></div>';
 
           break;
         case 'offerapproval':
-
+            return '<div style="text-align: center; width: 100%;">
+                    <div style="width: 600px; text-align: left; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border: 1px solid rgb(248, 248, 248); padding: 15px; margin: 0px auto;">
+                    <p>Dear ${first_name},&nbsp;</p><p>
+                    </p><div><br>
+                    <div>&nbsp;</div>The application for offer ${offer_name} has been approved. Please login to your account to view the details.
+                    <div>&nbsp;</div><div>&nbsp;</div><div>Best Regards,&nbsp;</div>
+                    <div>${network_name}</div></div></div></div>';
           break;
         case 'offerpayout':
-
+            return '<p>Dear Partners,</p><div><br><div>&nbsp;</div>
+                    The payout of offer ${offer_name} #${offer_id} has changed from ${offer_previous_currency}&nbsp;${offer_previous_payout}&nbsp; ${offer_previous_pricing_type} to ${offer_currency}&nbsp;${offer_payout} ${offer_pricing_type} and the active time is ${effective_time}(Timezone: ${gmt_timezone}). Please login to your account to view the details.
+                    <div>&nbsp;</div><div>&nbsp;</div><div>Best Regards,&nbsp;</div><div>${network_name}</div></div>';
           break;
         case 'offerstatus':
-
+            return '<p>Dear Partners,</p><p></p><div><br><div>&nbsp;</div>
+                    The status of offer ${offer_name} #${offer_id} has changed from ${offer_previous_status}&nbsp;to ${offer_status}. Please login to your account to view the details.
+                    <div>&nbsp;</div><div>&nbsp;</div><div>Best Regards,&nbsp;</div><div>${network_name}</div></div>';
           break;
         
         default:

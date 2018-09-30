@@ -58,7 +58,7 @@
                                        <td><img src="<?php echo url('/'); ?>/public/offerimages/{{ $offer->offer_image }}" alt="order image"  /></td>
                                        <td><a href="{{ route('offers-detail', $offer->id) }}"> {{ $offer->offer_name }}</a></td>
                                        <td>{{ $offer->tags }}</td>
-                                       <td>{{ $offer->adv_id }}</td>
+                                       <td>{{ $offer->fname }}</td>
                                        @if( $offer['restrictions'] != null)
                                           <td>{{ $offer['restrictions']->geo_targeting }}</td>
                                           <td>{{ $offer['restrictions']->advertiser_caps_value }}</td>

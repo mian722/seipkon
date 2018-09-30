@@ -84,7 +84,7 @@
                                                    <div class="col-md-4">
                                                       <p>
                                                          <label>Tag <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                         <select class="form-control select2" multiple="multiple" data-placeholder="Select Tags" name="tags[]" required="required">
+                                                         <select class="form-control select2" multiple="multiple" data-placeholder="Select Tags" name="tags[]">
                                                             <option {{ isset($updatedata->tags) ? ((strpos($updatedata->tags, 'Alabama') !== false) ? 'selected' : '') : '' }}>Alabama</option>
                                                             <option {{ isset($updatedata->tags) ? ((strpos($updatedata->tags, 'Alaska') !== false) ? 'selected' : '') : '' }}>Alaska</option>
                                                             <option {{ isset($updatedata->tags) ? ((strpos($updatedata->tags, 'California') !== false) ? 'selected' : '') : '' }}>California</option>
@@ -230,7 +230,7 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Conversion Protocol <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <select class="form-control select2" name="signup_protocol" required="required">
+                                                      <select class="form-control select2" name="signup_protocol">
                                                          <option value="postbackurl" {{ ((isset($updatedata->signup_protocol) ? $updatedata->signup_protocol : null) == 'postbackurl') ? 'selected' : '' }}>Postback URL</option>
                                                          <option value="cps" {{ ((isset($updatedata->signup_protocol) ? $updatedata->signup_protocol : null) == 'cps') ? 'selected' : '' }}>CPS</option>
                                                          <option value="cpa+cps" {{ ((isset($updatedata->signup_protocol) ? $updatedata->signup_protocol : null) == 'cpa+cps') ? 'selected' : '' }}>CPA+CPS</option>
@@ -240,7 +240,7 @@
                                                 <div class="col-md-3">
                                                    <p>
                                                       <label>Conversions Need Approval <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                      <select class="form-control select2" name="signup_need_approval" required="required">
+                                                      <select class="form-control select2" name="signup_need_approval" >
                                                          <option value="0" {{ ((isset($updatedata->signup_need_approval) ? $updatedata->signup_need_approval : null) == 0) ? 'selected' : '' }}>Disable</option>
                                                          <option value="1" {{ ((isset($updatedata->signup_need_approval) ? $updatedata->signup_need_approval : null) == 1) ? 'selected' : '' }}>Enable</option>
                                                       </select>
@@ -266,7 +266,7 @@
                                                 <p>
                                                    <label>Advertiser Caps Type <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
                                                    <div class="col-md-2">
-                                                      <select class="form-control select2" name="advertiser_caps_type" required="required">
+                                                      <select class="form-control select2" name="advertiser_caps_type">
                                                          <option value="none" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'none') ? 'selected' : '' }}>None</option>
                                                          <option value="total" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'total') ? 'selected' : '' }}>Total</option>
                                                          <option value="Daily" {{ ((isset($updatedata->restrictions->advertiser_caps_type) ? $updatedata->restrictions->advertiser_caps_type : null) == 'Daily') ? 'selected' : '' }}>Daily</option>
@@ -274,10 +274,7 @@
                                                       </select>
                                                    </div>
                                                    <div class="col-md-3">
-                                                      <input type="text" name="advertiser_caps_value" class="form-control"  placeholder="Enter Product Name">
-                                                   </div>
-                                                   <div class="col-md-3">
-                                                      <input type="text" name="advertiser_caps_value" class="form-control" required="required" placeholder="Enter Product Name" value="{{ (isset($updatedata->restrictions->advertiser_caps_value)) ? $updatedata->restrictions->advertiser_caps_value : '' }}">
+                                                      <input type="text" name="advertiser_caps_value" class="form-control" required="required" placeholder="Enter Advertiser Caps Value" value="{{ (isset($updatedata->restrictions->advertiser_caps_value)) ? $updatedata->restrictions->advertiser_caps_value : '' }}">
                                                    </div>
                                                 </p>
                                              </div>
@@ -293,17 +290,14 @@
                                                       </select>
                                                    </div>
                                                    <div class="col-md-3">
-                                                      <input type="text" name="affiliate_caps_value" class="form-control" placeholder="Enter Product Name">
-                                                   </div>
-                                                   <div class="col-md-3">
-                                                      <input type="text" name="affiliate_caps_value" class="form-control" required="required" placeholder="Enter Product Name" value="{{ (isset($updatedata->restrictions->affiliate_caps_value)) ? $updatedata->restrictions->affiliate_caps_value : '' }}">
+                                                      <input type="text" name="affiliate_caps_value" class="form-control" required="required" placeholder="Enter Affiliate Caps Value" value="{{ (isset($updatedata->restrictions->affiliate_caps_value)) ? $updatedata->restrictions->affiliate_caps_value : '' }}">
                                                    </div>
                                                 </p>
                                              </div>
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Caps Timezone <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" style="width: 60%;" name="caps_timezone" required="required">
+                                                   <select class="form-control select2" style="width: 60%;" name="caps_timezone">
                                                          <option value="" disabled="disabled" {{ (isset($updatedata)) ? '' : 'selected' }}>Please Select</option>
                                                       @foreach($timezones as $timezone)
                                                          <option value="{{ $timezone }}" {{ ((isset($updatedata->restrictions->caps_timezone) ? $updatedata->restrictions->caps_timezone : null) == $timezone) ? 'selected' : '' }}>{{ $timezone }}</option>
@@ -314,7 +308,7 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Redirect Offer <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" style="width: 60%;" name="redirect_offer">
+                                                   <select class="form-control select2" style="width: 60%;">
                                                          <option value="" disabled="disabled" {{ (isset($updatedata)) ? '' : 'selected' }}>Please Select</option>
                                                       @foreach($offers as $offer)
                                                          <option value="{{ $offer->id }}" {{ ((isset($updatedata->restrictions->redirect_offer) ? $updatedata->restrictions->redirect_offer : null) == $offer->id) ? 'selected' : '' }}>{{ $offer->offer_name }}</option>
@@ -325,7 +319,7 @@
                                              <div class="col-md-12">
                                                 <p>
                                                    <label>Offer Pool <span data-toggle="tooltip" title="Hooray!"><i class="fa fa-question-circle" aria-hidden="true"></i></span></label>
-                                                   <select class="form-control select2" data-placeholder="Select a Pool" style="width: 60%;" name="offer_pool" >
+                                                   <select class="form-control select2" data-placeholder="Select a Pool" style="width: 60%;">
                                                       <option value="0" {{ (isset($updatedata)) ? '' : 'selected' }}>None</option>
                                                       @foreach($offerspools as $offerspool)
                                                          <option value="{{ $offerspool->id }}" {{ ((isset($updatedata->restrictions->offer_pool) ? $updatedata->restrictions->offer_pool : null) == $offerspool->id) ? 'selected' : '' }}>{{ $offerspool->name }}</option>
