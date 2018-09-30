@@ -21,6 +21,11 @@ class AffiliateController extends Controller
      */
     public function index()
     {
+        return view('index');
+    }
+
+    public function affiliatelist()
+    {
 
         // $mailText = '<p style="color: red;">Thank you for registering as our affiliate.</p><br /><br />Your account {email} has been submitted for approval. You will receive an email notification on your application status soon.';
         // $email = 'mohsys768@gmail.com';

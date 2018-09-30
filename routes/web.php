@@ -16,11 +16,11 @@ Route::group(['middleware'=> 'boss'], function(){
 });
 
 Route::group(['middleware'=> 'affiliate'], function(){
-	Route::get('/home', 'AffiliateController@index')->name('home');
+	Route::get('/affiliate', 'AffiliateController@index')->name('affiliate');
 });
 
 Route::group(['middleware'=> 'advertiser'], function(){
-	Route::get('/home', 'AdvertiserController@index')->name('home');
+	Route::get('/advertiser', 'AdvertiserController@index')->name('advertiser');
 });
 
 Route::group(['middleware'=> 'admin'], function(){
@@ -49,7 +49,7 @@ Route::group(['middleware'=> 'admin'], function(){
 
 	/* Affiliates */
 	Route::post('/add-affliate/create', 'UserController@createaffilate')->name('add-affliate.create');
-	Route::get('/affiliates',  'AffiliateController@index')->name('affiliates');
+	Route::get('/affiliates',  'AffiliateController@affiliatelist')->name('affiliates');
 	Route::get('/affiliate-create', 'AffiliateController@create')->name('affiliate.create');
 	Route::get('/affiliate-detail/{id}', 'AffiliateController@show')->name('affiliate.show');
 	Route::get('/affiliates-pending', 'AffiliateController@pendingaffiliates')->name('pendingaffiliates');
@@ -91,7 +91,7 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/advertisers-pending', 'AdvertiserController@pendingadvertisers')->name('pendingadvertisers');
 	Route::get('/approve-advertiser/{id}', 'AdvertiserController@aproveadvertiser')->name('advertiser.approve');
 	Route::get('/reject-advertiser/{id}', 'AdvertiserController@rejected')->name('advertiser.reject');	
-	Route::get('/advertisers', 'AdvertiserController@index')->name('advertisers');
+	Route::get('/advertisers', 'AdvertiserController@advertiserslist')->name('advertisers');
 	Route::get('/advertiser-detail/{id}', 'AdvertiserController@show')->name('advertiser.show');
 	Route::get('/advertiser/edit/{id}', 'AdvertiserController@edit')->name('advertiser.edit');	
 	Route::post('/advertiser/update/{id}', 'AdvertiserController@update')->name('advertiser.update');	
@@ -189,10 +189,10 @@ Route::get('/log-detail', function () { return view('log-detail'); });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');

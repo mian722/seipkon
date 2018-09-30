@@ -20,12 +20,16 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             //return redirect('/admin/home');
 
-            
             foreach (Auth::guard($guard)->user()->role as $role) {
+                //return $role->name;
                 if ($role->name == 'boss') {
                     return redirect('boss/home');
                 }elseif ($role->name == 'admin') {
                     return redirect('admin/home');
+                }elseif ($role->name == 'affiliate') {
+                    return redirect('/affiliate');
+                }elseif ($role->name == 'advertiser') {
+                    return redirect('/advertiser');
                 }
             }
         }
