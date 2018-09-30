@@ -712,4 +712,28 @@ class Controller extends BaseController
           break;
       }
     }
+
+    public function setParameters($template, $affid, $offerid){
+      $user = User::find($affid);
+      $offer = Offer::find($offerid);
+      if (empty($user)) {
+        $template = str_replace("{first_name}", $user->fname, $template);
+        $template = str_replace("{last_name}", $user->lname, $template);
+        $template = str_replace("{email}", $user->email, $template);
+        $template = str_replace("{affiliate_id}", $user->id, $template);
+        $template = str_replace("{company}", $user->company, $template);
+        $template = str_replace("{company_website}", $user->website, $template);
+      }
+      if (empty($offer)) {
+        $template = str_replace("{offer_id}", $offer->id, $template);
+        $template = str_replace("{offer_payout}", $offer->payout, $template);
+        $template = str_replace("{offer_previous_payout}", $offer->prev_payout, $template);
+        $template = str_replace("{offer_status}", $offer->status, $template);
+        $template = str_replace("{offer_previous_status}", $offer->prev_status, $template);
+      }
+
+        $template = str_replace("{network_name}", config('app.name'), $template);
+        $template = str_replace("{datetime}", Carbon::now(), $template);
+        $template = str_replace("{login_url}", url('/'), $template);
+    }
 }

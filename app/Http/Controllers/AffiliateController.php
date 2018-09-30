@@ -507,8 +507,8 @@ class AffiliateController extends Controller
             $mailText = $this->getDefTemplate('affunblock');
             $email = $affilate->email;
             $user = new User();
+            $mailText = $this->setParameters($mailText, $id, 0);
             $mailText = str_replace("{email}", $email, $mailText);
-            $mailText = str_replace("{admin_name}", Auth::user()->fname, $mailText);
             $user->email = $email;   // This is the email you want to send to.
             $user->notify(new SignUpNotification('Congo, You have been Unblocked', 'affiliate', $mailText, 'Login Here', 'http://seipkon.ytrk.us/login', ''));
             return redirect()->back()->with('success','Succfully Added!');

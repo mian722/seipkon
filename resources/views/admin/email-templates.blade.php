@@ -780,25 +780,25 @@
                                                             <table class="table">
                                                                <tbody>
                                                                   <tr>
-                                                                     <td>{click_id}</td>
+                                                                     <td>{first_name}</td>
+                                                                     <td>{last_name}</td>
+                                                                     <td>{email}</td>
+                                                                     <td>{affiliate_id}</td>
+                                                                     <td>{company}</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                     <td>{company_website}</td>
                                                                      <td>{offer_id}</td>
-                                                                     <td>{event_id}</td>
-                                                                     <td>{country_id}</td>
-                                                                     <td>{aff_id}</td>
+                                                                     <td>{offer_payout}</td>
+                                                                     <td>{offer_previous_payout}</td>
+                                                                     <td>{offer_pricing_type}</td>
                                                                   </tr>
                                                                   <tr>
-                                                                     <td>{adv_id}</td>
-                                                                     <td>{adv_sub1}</td>
-                                                                     <td>{adv_sub2}</td>
-                                                                     <td>{adv_sub3}</td>
-                                                                     <td>{aff_sub1}</td>
-                                                                  </tr>
-                                                                  <tr>
-                                                                     <td>{aff_sub2}</td>
-                                                                     <td>{aff_sub3}</td>
-                                                                     <td>{aff_sub4}</td>
-                                                                     <td>{aff_sub5}</td>
-                                                                     <td>{source_id}</td>
+                                                                     <td>{offer_status}</td>
+                                                                     <td>{offer_previous_status}</td>
+                                                                     <td>{network_name}</td>
+                                                                     <td>{datetime}</td>
+                                                                     <td>{login_url}</td>
                                                                   </tr>
                                                                </tbody>
                                                             </table>
