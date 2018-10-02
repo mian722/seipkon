@@ -49,7 +49,7 @@ class LoginController extends Controller
             if ($role->name == 'boss') {
                 return redirect('boss/home');
             }elseif ($role->name == 'admin') {
-                return redirect('admin/home');
+                return redirect('/admin');
             }elseif ($role->name == 'affiliate') {
                 return redirect('/affiliate');
             }elseif ($role->name == 'advertiser') {
