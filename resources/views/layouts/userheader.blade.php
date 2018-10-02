@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-   
-<!-- Mirrored from themescare.com/demos/seipkon-admin-template/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Jun 2018 07:48:18 GMT -->
 <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -379,12 +377,13 @@
                         </a>
                         <ul class="collapse list-unstyled" id="ecommerce">
                            <li><a href="{{ asset('all-offers') }}">all offers</a></li>
-                           <li><a href="{{ asset('offer-application') }}">Offer Application</a></li>
+                           <li><a href="{{ asset('offer-pool') }}">My Offers</a></li>
+                           <!-- <li><a href="{{ asset('offer-application') }}">Offer Application</a></li> -->
                            <!-- <li><a href="{{ asset('edit-product') }}">Edit product</a></li> -->
-                           <li><a href="{{ asset('offer-pool') }}">Offer Pool</a></li>
+                           
                         </ul>
                      </li>
-                     <li>
+                     <!-- <li>
                         <a href="#createpage" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-sitemap"></i>
                         Affiliates
@@ -397,8 +396,8 @@
                            <li><a href="{{ asset('affiliate-payout-tiers') }}">Affiliate Payout Tiers</a></li>
                            <li><a href="{{ asset('affiliate-invoices') }}">Affiliate Invoices</a></li>
                         </ul>
-                     </li>
-                     <li>
+                     </li> -->
+                     <!-- <li>
                         <a href="#advertiser" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-user-o"></i>
                         Advertiser
@@ -408,8 +407,8 @@
                            <li><a href="{{ asset('advertisers-pending') }}">Pending Advertiser</a></li>
                            <li><a href="{{ asset('advertisers-invoices') }}">Advertiser Invoices</a></li>
                         </ul>
-                     </li>
-                     <li>
+                     </li> -->
+                     <!-- <li>
                         <a href="#accounts" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-vcard"></i>
                         Accounts
@@ -419,25 +418,44 @@
                            <li><a href="{{ asset('roles') }}">Roles</a></li>
                            <li><a href="{{ asset('teams') }}">Teams</a></li>
                         </ul>
-                     </li>
+                     </li> -->
                      <li>
                         <a href="#reports" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-bar-chart-o"></i>
                         Reports
                         </a>
                         <ul class="collapse list-unstyled" id="reports">
-                           <li><a href="{{ asset('advertisers-reports') }}">Advertiser Report</a></li>
+                           <!-- <li><a href="{{ asset('advertisers-reports') }}">Advertiser Report</a></li>
                            <li><a href="{{ asset('affiliate-reports') }}">Affiliate Report</a></li>
-                           <li><a href="{{ asset('operation-report') }}">Operation Report</a></li>
+                           <li><a href="{{ asset('operation-report') }}">Operation Report</a></li> -->
                            <li><a href="{{ asset('general-report') }}">General Report</a></li>
                            <li><a href="{{ asset('conversion-report') }}">Conversion Report</a></li>
                            <li><a href="{{ asset('conversion-status-report') }}">Conversion Status Report</a></li>
-                           <li><a href="{{ asset('test-conversion-report') }}">Test Conversion Report</a></li>
+                           <!-- <li><a href="{{ asset('test-conversion-report') }}">Test Conversion Report</a></li>
                            <li><a href="{{ asset('server-log') }}">Server Log</a></li>
-                           <li><a href="{{ asset('activity-log') }}">Activity Log</a></li>
+                           <li><a href="{{ asset('activity-log') }}">Activity Log</a></li> -->
                         </ul>
                      </li>
-                     <li>
+                     <li><a href="{{ asset('general-report') }}"><i class="fa fa-file-invoice"></i> Invoice</a></li>
+                     <li><a href="{{ asset('general-report') }}"><i class="fa fa-dashboard"></i> Postback</a></li>
+                     <!-- <li>
+                        <a href="#reports" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-bar-chart-o"></i>
+                        Inovice
+                        </a>
+                        <ul class="collapse list-unstyled" id="reports"> -->
+                           <!-- <li><a href="{{ asset('advertisers-reports') }}">Advertiser Report</a></li>
+                           <li><a href="{{ asset('affiliate-reports') }}">Affiliate Report</a></li>
+                           <li><a href="{{ asset('operation-report') }}">Operation Report</a></li> -->
+                           <!-- <li><a href="{{ asset('general-report') }}">General Report</a></li>
+                           <li><a href="{{ asset('conversion-report') }}">Conversion Report</a></li>
+                           <li><a href="{{ asset('conversion-status-report') }}">Conversion Status Report</a></li> -->
+                           <!-- <li><a href="{{ asset('test-conversion-report') }}">Test Conversion Report</a></li>
+                           <li><a href="{{ asset('server-log') }}">Server Log</a></li>
+                           <li><a href="{{ asset('activity-log') }}">Activity Log</a></li> -->
+                        <!-- </ul>
+                     </li> -->
+                     <!-- <li>
                         <a href="#setting" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-gear"></i>
                         Setting
@@ -446,8 +464,8 @@
                            <li><a href="{{ asset('customization') }}">Customization</a></li>
                            <li><a href="{{ asset('email-templates') }}">Email Templates</a></li>
                         </ul>
-                     </li>
-                     <li>
+                     </li> -->
+                     <!-- <li>
                         <a href="#ui_elements" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-laptop"></i>
                         Tools
@@ -484,7 +502,7 @@
                               </ul>
                            </li>
                         </ul>
-                     </li>
+                     </li> -->
                   </ul>
                </div>
                <!-- Menu Section End -->
@@ -676,6 +694,4 @@
          });
       </script>
    </body>
-
-<!-- Mirrored from themescare.com/demos/seipkon-admin-template/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Jun 2018 07:49:15 GMT -->
 </html>
