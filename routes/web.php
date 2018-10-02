@@ -31,6 +31,7 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/all-offers', 'OfferController@index')->name('all-offers.get');
 	Route::post('/add-offer/store', 'OfferController@store')->name('add-offer.store');
 	Route::get('/add-offer', 'OfferController@create')->name('add-offer');
+	Route::post('/update-offer/{id}', 'OfferController@update')->name('update-offer');
 	Route::get('/edit-offer/{id}', 'OfferController@show')->name('edit-offer');
 	Route::get('/offers-detail/{id}', 'OfferController@offerdetail')->name('offers-detail');
 	Route::get('/offer-application', 'OfferController@offerapplications')->name('offerapplications');

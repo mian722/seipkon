@@ -37,7 +37,7 @@
                         <div class="page-box">
                            <div class="tabs-example add-product-form-group">
                               <div class="tabs-box-example horizontal-tab-example">
-                                <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('add-offer.store') }}">
+                                <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ (isset($updatedata) ? route('update-offer', $updatedata->id) : route('add-offer.store')) }}">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                     <ul class="nav nav-tabs" id="service_pro" role="tablist">
                                        <li class="active" role="presentation"><a href="#Details" role="tab" data-toggle="tab">Details</a>
@@ -51,7 +51,7 @@
                                           <div class="row">
                                              <div class="col-md-3">
                                                 <div class="profile-widget-img">
-                                                   <img src="{{ asset('public/assets/img/msg-1.png') }}" id="img_display" alt="profile">
+                                                   <img src="{{ isset($updatedata) ? asset('public/offerimages/'.$updatedata->offer_image) : asset('public/offerimages/default.png') }}" name="offer_image_link" id="img_display" alt="profile">
                                                       <div class="product-upload btn btn-info">
                                                          <p>
                                                             <i class="fa fa-upload"></i>

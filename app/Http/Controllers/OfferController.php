@@ -225,7 +225,67 @@ class OfferController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //return $request->all();
+        $offer = Offer::find($id);
+        $newname = $offer->offer_image;
+        $names = $offer->creative_image;
+        if (Input::file('offer_image')) {
+            $file = Input::file('offer_image');
+            $file_name = $file->getClientOriginalName();
+            $file_size = round($file->getSize() / 50120);
+            $file_ex = $file->getClientOriginalExtension();
+            $file_mime = $file->getMimeType();
+            if (!in_array($file_ex, array('jpg', 'jpeg','png'))) return 'Invalid image extension we just allow JPG, GIF, PNG';
+            $newname = str_random(10).$file_name;
+            $file->move(base_path().'/public/offerimages/', $newname);
+        }
+        if ($request->file('gallery')) {
+            $mulfiles = $request->file('gallery');
+            foreach($mulfiles as $sinfile){
+                $file_name = $sinfile->getClientOriginalName();
+                $file_size = round($sinfile->getSize() / 50120);
+                $file_ex = $sinfile->getClientOriginalExtension();
+                if (!in_array($file_ex, array('jpg', 'jpeg','png'))) return 'Invalid image extension we just allow JPG, GIF, PNG';
+                $nname = str_random(10).$file_name;
+                $names[] = $nname;
+                $sinfile->move(base_path().'/public/offerimages/', $nname);
+            }
+        }
+        $prevpayout = 0;
+        if ($offer->payout == $request->payout) {
+            $prevpayout = $offer->prev_payout;
+        }else{
+            $prevpayout = $offer->payout;
+        }
+        $prevstatus = 0;
+        if ($offer->status == $request->status) {
+            $prevstatus = $offer->prev_status;
+        }else{
+            $prevstatus = $offer->status;
+        }
+        $updateoffer = Offer::where('id', $id)->update(['offer_name' => $request->offer_name, 'adv_id' => $request->adv_id, 'tags' => json_encode($request->tags), 'duration' => $request->duration, 'status' => $request->status, 'prev_status' => $prevstatus, 'revenue_type' => $request->revenue_type, 'revenue' => $request->revenue, 'offer_approval' => $request->offer_approval, 'payout_type' => $request->payout_type, 'payout' => $request->payout, 'prev_payout' => $prevpayout, 'preview_url' => $request->preview_url, 'destination_url' => $request->destination_url, 'signup_protocol' => $request->signup_protocol, 'signup_need_approval' => $request->signup_need_approval, 'offer_image' => $newname, 'creative_image' => $names, 'description' => $request->description, 'offer_name' => $request->offer_name]);
+        $updateofferrestriction = OfferRestriction::where('id', $id)->update(['advertiser_caps_type' => $request->advertiser_caps_type, 'advertiser_caps_value' => $request->advertiser_caps_value, 'affiliate_caps_type' => $request->affiliate_caps_type, 'affiliate_caps_value' => $request->affiliate_caps_value, 'caps_timezone' => $request->caps_timezone, 'tracking_domain' => $request->tracking_domain, 'geo_targeting' => json_encode($request->geo_targeting), 'geo_type' => $request->geo_type, 'mobile_carrier_targeting' => json_encode($request->mobile_carrier_targeting), 'platform_targeting' => json_encode($request->platform_targeting)]);
+        if (empty($updateoffer) ) {
+            return redirect('/all-offers')->with('fail', 'Something Wrong!');
+        } else {
+            if ($offer->status == $request->status) {
+                $email = 'mohsys768@gmail.com';
+                $subject = 'Offer Status Changed';
+                $mailText = $this->getDefTemplate('offerstatus');
+                $dbmail = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'offerstatus')->first();
+                $emailtype = 'offer';
+                if (!empty($dbmail)) {
+                    $subject = $dbmail->email_subject;
+                    $mailText = $dbmail->emailstring;
+                    $emailtype = '';
+                }
+                $mailText = $this->setParameters($mailText, $id, 0);
+                $user = new User();
+                $user->email = $email;   // This is the email you want to send to.
+                $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Help and Supports', 'http://seipkon.ytrk.us/support', ''));
+            }
+            return redirect('/all-offers')->with('success','Succfully Added!');
+        }
     }
 
     /**
