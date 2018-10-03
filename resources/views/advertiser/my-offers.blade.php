@@ -69,15 +69,7 @@
                                        <td>{{ $offer->revenue }}</td>
                                        <td>{{ $offer->payout }}</td>
                                        <td>
-                                          @if($offer->status == 0)
-                                             <span class="label label-warning">Pending</span>
-                                          @elseif($offer->status == 1)
-                                             <span class="label label-success">Active</span>
-                                          @elseif($offer->status == 2)
-                                             <span class="label label-info">Paused</span>
-                                          @else
-                                             <span class="label label-danger">Deleted</span>
-                                          @endif
+                                          <span class="label label-{{ $offer->status == 1 ? 'success' : 'danger' }}">{{ $offer->status == 1 ? 'Active' : 'Deactive' }}</span>
                                        </td>
                                        <td>
                                           <a href="{{ route('edit-offer',$offer->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>

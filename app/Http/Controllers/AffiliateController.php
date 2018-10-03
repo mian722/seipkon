@@ -558,7 +558,7 @@ class AffiliateController extends Controller
 ///////////////Affilaiates user Dashboard/////////////////////////
     public function affiliateoffers()
     {
-        $offers = Offer::Where('status',1)->WhereIn('offer_approval',[1,2])->get();
+        $offers = Offer::WhereIn('offer_approval',[1,2])->get();
         return view('affiliate.all-offers',compact('offers'));
     }
     public function approveoffers()

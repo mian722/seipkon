@@ -53,7 +53,7 @@ class LoginController extends Controller
             }elseif ($role->name == 'affiliate') {
                 return redirect(route('affiliate.home', $this->guard()->user()->fname));
             }elseif ($role->name == 'advertiser') {
-                return redirect('/advertiser');
+                return redirect(route('advertiser.home', $this->guard()->user()->fname));
             }
         }
 

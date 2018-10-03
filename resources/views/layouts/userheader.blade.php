@@ -363,36 +363,57 @@
                <div class="menu-section">
                   <h3>General</h3>
                   <ul class="list-unstyled components">
-                     <li class="active">
-                        <a href="{{ asset('') }}">
-                        <i class="fa fa-dashboard"></i>
-                        Dashboard
-                        </a>
-                     </li>
+                     @if(Auth::user()->roles_id == 5)
+                        <li class="active">
+                           <a href="{{ asset('') }}">
+                           <i class="fa fa-dashboard"></i>
+                           Dashboard
+                           </a>
+                        </li>
 
-                     <li>
-                        <a href="#ecommerce" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-files-o"></i>
-                        Offers
-                        </a>
-                        <ul class="collapse list-unstyled" id="ecommerce">
-                           <li><a href="{{ route('affiliate.offers', Auth::user()->fname) }}">all offers</a></li>
-                           <li><a href="{{ route('affiliate.approveoffers', Auth::user()->fname) }}">My Offers</a></li>
-                        </ul>
-                     </li>
-                     <li>
-                        <a href="#reports" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-bar-chart-o"></i>
-                        Reports
-                        </a>
-                        <ul class="collapse list-unstyled" id="reports">
-                           <li><a href="{{ asset('general-report') }}">General Report</a></li>
-                           <li><a href="{{ asset('conversion-report') }}">Conversion Report</a></li>
-                           <li><a href="{{ asset('conversion-status-report') }}">Conversion Status Report</a></li>
-                        </ul>
-                     </li>
-                     <li><a href="{{ route('affiliate.postback', Auth::user()->fname) }}"><i class="fa fa-file-o"></i> Invoice</a></li>
-                     <li><a href="{{ route('affiliate.postback', Auth::user()->fname) }}"><i class="fa fa-link"></i> Postback</a></li>
+                        <li>
+                           <a href="#ecommerce" data-toggle="collapse" aria-expanded="false"><i class="fa fa-files-o"></i>Offers</a>
+                           <ul class="collapse list-unstyled" id="ecommerce">
+                              <li><a href="{{ route('affiliate.offers', Auth::user()->fname) }}">all offers</a></li>
+                              <li><a href="{{ route('affiliate.approveoffers', Auth::user()->fname) }}">My Offers</a></li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="#reports" data-toggle="collapse" aria-expanded="false">
+                           <i class="fa fa-bar-chart-o"></i>
+                           Reports
+                           </a>
+                           <ul class="collapse list-unstyled" id="reports">
+                              <li><a href="{{ asset('general-report') }}">General Report</a></li>
+                              <li><a href="{{ asset('conversion-report') }}">Conversion Report</a></li>
+                              <li><a href="{{ asset('conversion-status-report') }}">Conversion Status Report</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="{{ route('affiliate.postback', Auth::user()->fname) }}"><i class="fa fa-file-o"></i> Invoice</a></li>
+                        <li><a href="{{ route('affiliate.postback', Auth::user()->fname) }}"><i class="fa fa-link"></i> Postback</a></li>
+                     @else
+                        <li class="active">
+                           <a href="{{ route('advertiser.home', Auth::user()->fname) }}">
+                           <i class="fa fa-dashboard"></i>
+                           Dashboard
+                           </a>
+                        </li>
+
+                        <li>
+                           <a href="{{ route('advertiser.offers', Auth::user()->fname) }}"><i class="fa fa-files-o"></i>Offers</a>
+                        </li>
+                        <li>
+                           <a href="#reports" data-toggle="collapse" aria-expanded="false">
+                           <i class="fa fa-bar-chart-o"></i>
+                           Reports
+                           </a>
+                           <ul class="collapse list-unstyled" id="reports">
+                              <li><a href="{{ asset('general-report') }}">General Report</a></li>
+                              <li><a href="{{ asset('conversion-report') }}">Conversion Report</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="{{ route('affiliate.postback', Auth::user()->fname) }}"><i class="fa fa-file-o"></i> Invoice</a></li>
+                     @endif
                      
                   </ul>
                </div>
