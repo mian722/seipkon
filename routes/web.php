@@ -20,7 +20,6 @@ Route::group(['prefix' => '{affiliates}', 'middleware'=> 'affiliate'], function(
 	Route::get('/aff-offers', 'AffiliateController@affiliateoffers')->name('affiliate.offers');
 	Route::get('/aff-offers-details', 'AffiliateController@affiliateofferdetail')->name('affiliate.offerdetail');
 	Route::get('/aff-approved-offers', 'AffiliateController@approveoffers')->name('affiliate.approveoffers');
-	Route::get('/aff-invoices', 'AffiliateController@index')->name('affiliate.inovices');
 	Route::get('/aff-postback', 'AffiliateController@userpostback')->name('affiliate.postback');
 	Route::get('/aff-create-postback', 'AffiliateController@createuserpostback')->name('affiliate.createpostbackk');
 	Route::post('/aff-save-postback', 'AffiliateController@saveuserpostback')->name('affiliate.savepostbac');
@@ -32,8 +31,11 @@ Route::group(['prefix' => '{affiliates}', 'middleware'=> 'affiliate'], function(
 Route::group(['prefix' => '{affiliates}', 'middleware'=> 'advertiser'], function(){
 	Route::get('/adv-user', 'AdvertiserController@index')->name('advertiser.home');
 	Route::get('/adv-offers', 'AdvertiserController@advertiseroffers')->name('advertiser.offers');
-	Route::get('/adv-general-report', 'ReportsController@generalreport')->name('advertiser.generalreport');
-	Route::get('/adv-conversion-report', 'ReportsController@conversionreport')->name('advertiser.conversionreport');
+	Route::get('/adv-general-report', 'UserReportController@generalreport')->name('advertiser.generalreport');
+	Route::post('/adv-general-report-generate', 'UserReportController@advgeneralreportgenerate')->name('advgeneralreportgenerate');
+	Route::get('/adv-conversion-report', 'UserReportController@advconversionreport')->name('advertiser.conversionreport');
+	Route::post('/adv-conversion-reports-generate', 'UserReportController@advconversionreportgenerate')->name('advconversionreportgenerate');
+	Route::get('/adv-invoices', 'AffiliateController@index')->name('affiliate.invoice');
 });
 
 Route::group(['middleware'=> 'admin'], function(){
@@ -112,6 +114,11 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/advertiser/delete/{id}', 'AdvertiserController@delete')->name('advertiser.delete');	
 	Route::get('/advertiser/block/{id}', 'AdvertiserController@block')->name('advertiser.block');	
 	Route::get('/advertiser/unblock/{id}', 'AdvertiserController@unblock')->name('advertiser.unblock');	
+	Route::get('/advertisers-invoices', 'AdvertiserController@advertisersinvoices')->name('advertisersinvoices');
+	Route::get('/advertisers-invoice-create', 'AdvertiserController@advertisersinvoicescreate')->name('advertisersinvoicescreate'); 
+	Route::post('/advertisers-invoice/add', 'AdvertiserController@advertisersaddinvoices')->name('advertisersaddinvoices'); 
+	Route::post('/advertisers-invoice/update/{id}', 'AdvertiserController@advertisersupdateinvoices')->name('advertisersupdateinvoices'); 
+	Route::get('/advertisers-invoice/edit/{id}', 'AdvertiserController@advertisersinvoicesedit')->name('advertisersinvoicesedit'); 
 
 
 	/* User Accounts */
@@ -179,7 +186,6 @@ Route::get('/ui_pagination', function () { return view('ui_pagination'); });
 
 
 Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payout-tiers'); });
-Route::get('/advertisers-invoices', function () { return view('advertisers-invoices'); });
 
 Route::get('/advertisers-invoice-create', function () { return view('advertisers-invoice-create'); });
 

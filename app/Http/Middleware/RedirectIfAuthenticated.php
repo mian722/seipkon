@@ -27,9 +27,9 @@ class RedirectIfAuthenticated
                 }elseif ($role->name == 'admin') {
                     return redirect('admin');
                 }elseif ($role->name == 'affiliate') {
-                    return redirect('/affiliate');
+                    return redirect(route('affiliate.home', Auth::user()->fname));
                 }elseif ($role->name == 'advertiser') {
-                    return redirect('/advertiser');
+                    return redirect(route('advertiser.home', Auth::user()->fname));
                 }
             }
         }

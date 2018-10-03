@@ -190,6 +190,132 @@ class AdvertiserController extends Controller
         }
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function advertiserinvoices()
+    {
+        $invoices = Invoices::where('admin_id', Auth::user()->id)->get();
+        return view('admin.affiliate-invoices', compact('invoices'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function advertiserinvoicescreate()
+    {
+        $currencies = $this->getcurrency();
+        $timezones = $this->gettimezones();
+        $affiliates = $this->getuser(5);
+        return view('admin.affiliate-invoice-create',compact('currencies', 'timezones', 'offers', 'affiliates'));
+    }
+
+    public function advertiserinvoicesedit($id)
+    {
+        $offeredit = Invoices::find($id);
+        return view('admin.affiliate-invoice-edit',compact('offeredit'));
+    }
+
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function advertiseroffersdetails(Request $request)
+    {
+        $offers = Offer::with('restrictions')->where('id', $request->offerid)->first();
+        $response = array(
+            'msg' => '<tr>
+                         <td><input type="hidden" class="name" name="name[]" value="'.$offers->id.'" />'.$offers->offer_name.'</td>
+                         <td>
+                                 <input type="hidden" class="clicks" name="clicks[]" value="0" />
+                              <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
+                                 <input type="hidden" name="_token" value="'.csrf_token().'" />
+                                 <a href="#" id="clicks" class="tclicks" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">0</a>
+                              </form>
+                         </td>
+                         <td>
+                                 <input type="hidden" class="signups" name="signup[]" value="0" />
+                              <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
+                                 <input type="hidden" name="_token" value="'.csrf_token().'" />
+                                 <a href="#" id="signup" class="tsignup" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">0</a>
+                              </form>
+                         </td>
+                         <td>
+                                 <input type="hidden" class="amounts" name="amount[]" value="0" />
+                              <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
+                                 <input type="hidden" name="_token" value="'.csrf_token().'" />
+                                 <a href="#" id="amount" class="tamount" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">0</a>
+                              </form>
+                         </td>
+                         <td><span id="deloffer" class="btn btn-danger deloffer"><input type="hidden" value="'.$request->offerid.'" /><i style="font-size: 18px;" class="fa fa-trash"></i></span></td>
+                      </tr>',
+        );
+        return \Response::json($response);
+    }
+
+    public function advertiserupdateclicks(Request $request, $id){
+        return $request->all();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function advertiseraddinvoices(Request $request)
+    {
+        //return Auth::user()->id;
+        $request->merge(['name' => json_encode($request->name)]);
+        $request->merge(['clicks' => json_encode($request->clicks)]);
+        $request->merge(['signup' => json_encode($request->signup)]);
+        $request->merge(['amount' => json_encode($request->amount)]);
+
+        $invoices = new Invoices;
+        $invoices->invoiceno = $request->invoice_no;
+        $invoices->affiliate_id = $request->affiliate_id;
+        $invoices->status = $request->status;
+        $invoices->currency = $request->currency;
+        $invoices->timezone = $request->timezone;
+        $invoices->daterange = $request->daterange;
+        $invoices->memo = $request->memo;
+        $invoices->offer_names = $request->name;
+        $invoices->offer_clicks = $request->clicks;
+        $invoices->offer_signups = $request->signup;
+        $invoices->offer_amounts = $request->amount;
+        $invoices->note = $request->note;
+        $invoices->admin_id = Auth::user()->id;
+        $invoices->save();
+        
+        if (empty($invoices) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
+    public function advertiserupdateinvoices(Request $request, $id){
+
+        $request->merge(['name' => json_encode($request->name)]);
+        $request->merge(['clicks' => json_encode($request->clicks)]);
+        $request->merge(['signup' => json_encode($request->signup)]);
+        $request->merge(['amount' => json_encode($request->amount)]);
+
+        $update = DB::table('invoices')->where('id', $id)
+            ->update(['status' => $request->status, 'memo' => $request->memo, 'invoiceno' => $request->invoice_no, 'offer_names' => $request->name, 'offer_clicks' => $request->clicks, 'offer_signups' => $request->signup, 'offer_amounts' => $request->amount, 'note' => $request->note]);
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
 ///////////////Advertiser user Dashboard/////////////////////////
     public function advertiseroffers(){
         $offers = Offer::with('restrictions')->Where('adv_id', Auth::user()->id)->get();

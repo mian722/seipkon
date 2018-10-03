@@ -24,7 +24,7 @@ class AdvertiserMiddleware
                 return $next($request);
             }
 
-            return redirect('/home');
+            return redirect(route('advertiser.home', Auth::user()->fname));
         }
     }
 }

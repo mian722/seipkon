@@ -48,7 +48,14 @@
                                        <td>{{ $offer->id }}</td>
                                        <td><a href="{{ route('affiliate.offerdetail', $offer->fname) }}"> {{ $offer->offer_name }}</a></td>
                                        @if( $offer['restrictions'] != null)
-                                          <td><b>{{ $offer['restrictions']->geo_type }}:</b><br>{{ $offer['restrictions']->geo_targeting }}</td>
+                                          <td><b>{{ $offer['restrictions']->geo_type }}:</b><br>{{ $offer['restrictions']->geo_targeting }}
+                                          <?php $geos = json_decode($offer['restrictions']->geo_targeting); ?>
+                                             @if($geos!=null)
+                                             @foreach($geos as $geo)
+                                                {{ $geo }},
+                                             @endforeach
+                                             @endif
+                                          </td>
                                        @else
                                           <td>&nbsp;</td>
                                        @endif

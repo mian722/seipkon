@@ -56,7 +56,7 @@ class AffiliateController extends Controller
      */
     public function affiliateinvoices()
     {
-        $invoices = Invoices::where('admin_id', Auth::user()->id)->get();
+        return $invoices = Invoices::where('admin_id', Auth::user()->id)->get();
         return view('admin.affiliate-invoices', compact('invoices'));
     }
 
@@ -173,7 +173,7 @@ class AffiliateController extends Controller
         $request->merge(['amount' => json_encode($request->amount)]);
 
         $update = DB::table('invoices')->where('id', $id)
-            ->update(['status' => $request->status, 'memo' => $request->memo, 'invoiceno' => $request->invoice_no, 'offer_names' => $request->name, 'offer_clicks' => $request->clicks, 'offer_signups' => $request->signup, 'offer_amountsa' => $request->amount, 'note' => $request->note]);
+            ->update(['status' => $request->status, 'memo' => $request->memo, 'invoiceno' => $request->invoice_no, 'offer_names' => $request->name, 'offer_clicks' => $request->clicks, 'offer_signups' => $request->signup, 'offer_amounts' => $request->amount, 'note' => $request->note]);
         if (empty($update) ) {
             return redirect()->back()->with('fail', 'Something Wrong!');
         } else {
