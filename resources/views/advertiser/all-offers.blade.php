@@ -47,7 +47,7 @@
                                        
                                        <td>#{{ $offer->id }} {{ $offer->offer_name }}<br />{{ $offer->restrictions->advertiser_caps_type }} Caps: {{ $offer->restrictions->advertiser_caps_value }}</td>
                                        <td>{{ $offer->restrictions->geo_targeting }}</td>
-                                       <td>{{ $offer->preview_url }}</td>
+                                       <td><a href="{{ $offer->preview_url }}" target="_blank">Preview</a></td>
                                        <td>{{ ($offer->offer_approval == 1)  ? 'Require Approval' : ( ($offer->offer_approval == 2) ? 'Public' : 'Private' ) }} </td>
                                        <td>{{ $offer->payout_type }}:${{ $offer->payout }}</td>
                                        <td>
