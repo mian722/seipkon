@@ -15,8 +15,17 @@ Route::group(['middleware'=> 'boss'], function(){
 	Route::get('/boss/home', 'BossController@index')->name('boss/home');
 });
 
-Route::group(['middleware'=> 'affiliate'], function(){
-	Route::get('/affiliate', 'AffiliateController@index')->name('affiliate');
+Route::group(['prefix' => '{affiliates}', 'middleware'=> 'affiliate'], function(){
+	Route::get('/affiliates', 'AffiliateController@index')->name('affiliate.home');
+	Route::get('/all-offers', 'AffiliateController@affiliateoffers')->name('affiliate.offers');
+	Route::get('/approved-offers', 'AffiliateController@approveoffers')->name('affiliate.approveoffers');
+	Route::get('/invoices', 'AffiliateController@index')->name('affiliate.inovices');
+	Route::get('/postback', 'AffiliateController@userpostback')->name('affiliate.postback');
+	Route::get('/create-postback', 'AffiliateController@createuserpostback')->name('affiliate.createpostbackk');
+	Route::post('/save-postback', 'AffiliateController@saveuserpostback')->name('affiliate.savepostbac');
+	Route::get('/general-report', 'ReportsController@generalreport')->name('affiliate.generalreport');
+	Route::get('/conversion-report', 'ReportsController@conversionreport')->name('affiliate.conversionreport');
+	Route::get('/conversion-status-report', 'ReportsController@conversionstatusreport')->name('affiliate.conversionstatusreport');
 });
 
 Route::group(['middleware'=> 'advertiser'], function(){

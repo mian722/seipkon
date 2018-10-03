@@ -372,137 +372,28 @@
 
                      <li>
                         <a href="#ecommerce" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-shopping-cart"></i>
+                        <i class="fa fa-files-o"></i>
                         Offers
                         </a>
                         <ul class="collapse list-unstyled" id="ecommerce">
-                           <li><a href="{{ asset('all-offers') }}">all offers</a></li>
-                           <li><a href="{{ asset('offer-pool') }}">My Offers</a></li>
-                           <!-- <li><a href="{{ asset('offer-application') }}">Offer Application</a></li> -->
-                           <!-- <li><a href="{{ asset('edit-product') }}">Edit product</a></li> -->
-                           
+                           <li><a href="{{ route('affiliate.offers', Auth::user()->fname) }}">all offers</a></li>
+                           <li><a href="{{ route('affiliate.approveoffers', Auth::user()->fname) }}">My Offers</a></li>
                         </ul>
                      </li>
-                     <!-- <li>
-                        <a href="#createpage" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-sitemap"></i>
-                        Affiliates
-                        </a>
-                        <ul class="collapse list-unstyled" id="createpage">
-                           <li><a href="{{ asset('affiliates') }}">Affiliates</a></li>
-                           <li><a href="{{ asset('affiliates-pending') }}">Pending Affiliates</a></li>
-                           <li><a href="{{ asset('affiliate-payouts') }}">Affiliate Payouts</a></li>
-                           <li><a href="{{ asset('affiliate-postback') }}">Affiliate Postback</a></li>
-                           <li><a href="{{ asset('affiliate-payout-tiers') }}">Affiliate Payout Tiers</a></li>
-                           <li><a href="{{ asset('affiliate-invoices') }}">Affiliate Invoices</a></li>
-                        </ul>
-                     </li> -->
-                     <!-- <li>
-                        <a href="#advertiser" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-user-o"></i>
-                        Advertiser
-                        </a>
-                        <ul class="collapse list-unstyled" id="advertiser">
-                           <li><a href="{{ asset('advertisers') }}">Advertiser</a></li>
-                           <li><a href="{{ asset('advertisers-pending') }}">Pending Advertiser</a></li>
-                           <li><a href="{{ asset('advertisers-invoices') }}">Advertiser Invoices</a></li>
-                        </ul>
-                     </li> -->
-                     <!-- <li>
-                        <a href="#accounts" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-vcard"></i>
-                        Accounts
-                        </a>
-                        <ul class="collapse list-unstyled" id="accounts">
-                           <li><a href="{{ asset('accounts') }}">Accounts</a></li>
-                           <li><a href="{{ asset('roles') }}">Roles</a></li>
-                           <li><a href="{{ asset('teams') }}">Teams</a></li>
-                        </ul>
-                     </li> -->
                      <li>
                         <a href="#reports" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-bar-chart-o"></i>
                         Reports
                         </a>
                         <ul class="collapse list-unstyled" id="reports">
-                           <!-- <li><a href="{{ asset('advertisers-reports') }}">Advertiser Report</a></li>
-                           <li><a href="{{ asset('affiliate-reports') }}">Affiliate Report</a></li>
-                           <li><a href="{{ asset('operation-report') }}">Operation Report</a></li> -->
                            <li><a href="{{ asset('general-report') }}">General Report</a></li>
                            <li><a href="{{ asset('conversion-report') }}">Conversion Report</a></li>
                            <li><a href="{{ asset('conversion-status-report') }}">Conversion Status Report</a></li>
-                           <!-- <li><a href="{{ asset('test-conversion-report') }}">Test Conversion Report</a></li>
-                           <li><a href="{{ asset('server-log') }}">Server Log</a></li>
-                           <li><a href="{{ asset('activity-log') }}">Activity Log</a></li> -->
                         </ul>
                      </li>
-                     <li><a href="{{ asset('general-report') }}"><i class="fa fa-file-invoice"></i> Invoice</a></li>
-                     <li><a href="{{ asset('general-report') }}"><i class="fa fa-dashboard"></i> Postback</a></li>
-                     <!-- <li>
-                        <a href="#reports" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-bar-chart-o"></i>
-                        Inovice
-                        </a>
-                        <ul class="collapse list-unstyled" id="reports"> -->
-                           <!-- <li><a href="{{ asset('advertisers-reports') }}">Advertiser Report</a></li>
-                           <li><a href="{{ asset('affiliate-reports') }}">Affiliate Report</a></li>
-                           <li><a href="{{ asset('operation-report') }}">Operation Report</a></li> -->
-                           <!-- <li><a href="{{ asset('general-report') }}">General Report</a></li>
-                           <li><a href="{{ asset('conversion-report') }}">Conversion Report</a></li>
-                           <li><a href="{{ asset('conversion-status-report') }}">Conversion Status Report</a></li> -->
-                           <!-- <li><a href="{{ asset('test-conversion-report') }}">Test Conversion Report</a></li>
-                           <li><a href="{{ asset('server-log') }}">Server Log</a></li>
-                           <li><a href="{{ asset('activity-log') }}">Activity Log</a></li> -->
-                        <!-- </ul>
-                     </li> -->
-                     <!-- <li>
-                        <a href="#setting" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-gear"></i>
-                        Setting
-                        </a>
-                        <ul class="collapse list-unstyled" id="setting">
-                           <li><a href="{{ asset('customization') }}">Customization</a></li>
-                           <li><a href="{{ asset('email-templates') }}">Email Templates</a></li>
-                        </ul>
-                     </li> -->
-                     <!-- <li>
-                        <a href="#ui_elements" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-laptop"></i>
-                        Tools
-                        </a>
-                        <ul class="collapse list-unstyled" id="ui_elements">
-                           <li>
-                              <a href="#email" data-toggle="collapse" aria-expanded="false">
-                              Email Marketing
-                              </a>
-                              <ul class="collapse list-unstyled" id="email">
-                                 <li><a href="{{ asset('mail-box') }}">Mail Box</a></li>
-                                 <li><a href="{{ asset('unsubscribe-list') }}">Unsubscribe List</a></li>
-                              </ul>
-                           </li>
-                           <li>
-                              <a href="#smart" data-toggle="collapse" aria-expanded="false">
-                              Smart Puller
-                              </a>
-                              <ul class="collapse list-unstyled" id="smart">
-                                 <li><a href="{{ asset('puller-sources') }}">Sources</a></li>
-                                 <li><a href="{{ asset('puller-compaigns') }}">Compaigns</a></li>
-                                 <li><a href="{{ asset('source-offers') }}">Source Offers</a></li>
-                              </ul>
-                           </li>
-                           <li><a href="{{ asset('smart-alert') }}">Smart Alert</a></li>
-                           <li><a href="{{ asset('smart-link') }}">Smart Link</a></li>
-                           <li>
-                              <a href="#fraud" data-toggle="collapse" aria-expanded="false">
-                              Fraud Detection
-                              </a>
-                              <ul class="collapse list-unstyled" id="fraud">
-                                 <li><a href="{{ asset('integration') }}">Integration</a></li>
-                                 <li><a href="{{ asset('compaigns') }}">Compaigns</a></li>
-                              </ul>
-                           </li>
-                        </ul>
-                     </li> -->
+                     <li><a href="{{ route('affiliate.postback', Auth::user()->fname) }}"><i class="fa fa-file-o"></i> Invoice</a></li>
+                     <li><a href="{{ route('affiliate.postback', Auth::user()->fname) }}"><i class="fa fa-link"></i> Postback</a></li>
+                     
                   </ul>
                </div>
                <!-- Menu Section End -->
