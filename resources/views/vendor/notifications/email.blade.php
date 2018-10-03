@@ -45,12 +45,6 @@
 
 @endforeach
 
-{{-- Salutation --}}
-@if (! empty($salutation))
-{{ $salutation }}
-@else
-Regards,<br>{{ config('app.name') }}
-@endif
 
 {{-- Subcopy --}}
 @isset($actionText)

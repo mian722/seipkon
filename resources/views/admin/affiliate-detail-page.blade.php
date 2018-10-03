@@ -101,7 +101,6 @@
                                                    <tr>
                                                       <th>Offer</th>
                                                       <th>Caps Type</th>
-                                                      <th>Category</th>
                                                       <th>Clicks</th>
                                                       <th>Conversions</th>
                                                       <th>Budget</th>
@@ -109,32 +108,20 @@
                                                    </tr>
                                                 </thead>
                                                 <tbody>
-                                                   <tr>
-                                                      <td><a href="{{ asset('offers-detail-page') }}">offer test google #4</a></td>
-                                                      <td>None1</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>
-                                                         <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
-                                                      </td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td><a href="{{ asset('offers-detail-page') }}">offer test google #4</a></td>
-                                                      <td>None2</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>
-                                                         <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
-                                                      </td>
-                                                   </tr>
+                                                   @foreach($approvedoffers as $approvedoffer)
+                                                      <tr>
+                                                         <td><a href="{{ asset('offers-detail-page') }}">{{ $approvedoffer->offer_name }}</a></td>
+                                                         <td>{{ $approvedoffer->restrictions->affiliate_caps_type }}</td>
+                                                         <td>not set</td>
+                                                         <td>not set</td>
+                                                         <td>not set</td>
+                                                         <td>
+                                                            <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                                            <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                                            <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
+                                                         </td>
+                                                      </tr>
+                                                   @endforeach
                                                    
 
                                                 </tbody>

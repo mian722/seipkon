@@ -12,6 +12,8 @@ use App\AssignOffers;
 use App\OfferRestriction;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Routing\UrlGenerator;
+use App\Notifications\SignUpNotification;
+use App\Templates;
 
 
 class OfferController extends Controller
@@ -143,10 +145,30 @@ class OfferController extends Controller
     }
 
     public function approveapplication($id){
+        $offer = Offer::find($id);
+        $users = AssignOffers::LeftJoin('users', 'users.id', 'assignoffers.user_id')
+        ->where('assignoffers.id', $id)->select('users.id', 'users.email')->get();
         $update = AssignOffers::where('id', $id)->update(['status' => 1]);
         if (empty($update) ) {
             return redirect()->back()->with('fail', 'Something Wrong!');
         } else {
+
+            foreach($users as $user){
+                $email = $user->email;
+                $subject = 'Offer Has Been Approved';
+                $mailText = $this->getDefTemplate('offerapproval');
+                $dbmail = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'offerapproval')->first();
+                $emailtype = '';
+                if (!empty($dbmail)) {
+                    $subject = $dbmail->email_subject;
+                    $mailText = $dbmail->emailstring;
+                    $emailtype = '';
+                }
+                $mailText = $this->setParameters($mailText, $user->id, $offer->id);
+                $user = new User();
+                $user->email = $email;   // This is the email you want to send to.
+                $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Login Here', 'http://seipkon.ytrk.us/login', ''));
+            }
             return redirect()->back()->with('success','Succfully Added!');
         }
     }
@@ -227,6 +249,8 @@ class OfferController extends Controller
     {
         //return $request->all();
         $offer = Offer::find($id);
+        $users = AssignOffers::LeftJoin('users', 'users.id', 'assignoffers.user_id')
+        ->where('assignoffers.offer_id', $offer->id)->where('assignoffers.status', 1)->select('users.id', 'users.email')->get();
         $newname = $offer->offer_image;
         $names = $offer->creative_image;
         if (Input::file('offer_image')) {
@@ -268,21 +292,41 @@ class OfferController extends Controller
         if (empty($updateoffer) ) {
             return redirect('/all-offers')->with('fail', 'Something Wrong!');
         } else {
-            if ($offer->status == $request->status) {
-                $email = 'mohsys768@gmail.com';
-                $subject = 'Offer Status Changed';
-                $mailText = $this->getDefTemplate('offerstatus');
-                $dbmail = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'offerstatus')->first();
-                $emailtype = 'offer';
-                if (!empty($dbmail)) {
-                    $subject = $dbmail->email_subject;
-                    $mailText = $dbmail->emailstring;
+            if ($offer->status != $request->status) {
+                foreach($users as $user){
+                    $email = $user->email;
+                    $subject = 'Offer Status Changed';
+                    $mailText = $this->getDefTemplate('offerstatus');
+                    $dbmail = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'offerstatus')->first();
                     $emailtype = '';
+                    if (!empty($dbmail)) {
+                        $subject = $dbmail->email_subject;
+                        $mailText = $dbmail->emailstring;
+                        $emailtype = '';
+                    }
+                    $mailText = $this->setParameters($mailText, $user->id, $offer->id);
+                    $user = new User();
+                    $user->email = $email;   // This is the email you want to send to.
+                    $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Login Here', 'http://seipkon.ytrk.us/login', ''));
                 }
-                $mailText = $this->setParameters($mailText, $id, 0);
-                $user = new User();
-                $user->email = $email;   // This is the email you want to send to.
-                $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Help and Supports', 'http://seipkon.ytrk.us/support', ''));
+            }
+            if ($offer->payout != $request->payout) {
+                foreach($users as $user){
+                    $email = $user->email;
+                    $subject = 'Offer Payout Changed';
+                    $mailText = $this->getDefTemplate('offerpayout');
+                    $dbmail = Templates::where('admin_id', Auth::user()->id)->where('email_type', 'offerpayout')->first();
+                    $emailtype = '';
+                    if (!empty($dbmail)) {
+                        $subject = $dbmail->email_subject;
+                        $mailText = $dbmail->emailstring;
+                        $emailtype = '';
+                    }
+                    $mailText = $this->setParameters($mailText, $user->id, $offer->id);
+                    $user = new User();
+                    $user->email = $email;   // This is the email you want to send to.
+                    $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Login Here', 'http://seipkon.ytrk.us/login', ''));
+                }
             }
             return redirect('/all-offers')->with('success','Succfully Added!');
         }

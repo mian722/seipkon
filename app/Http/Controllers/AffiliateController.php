@@ -312,7 +312,23 @@ class AffiliateController extends Controller
                         ->where('assignoffers.user_id', $id)
                         ->select('users.fname','users.lname','assignoffers.*','offers.offer_name')
                         ->get();
-        return view('admin.affiliate-detail-page',compact('affilates','managers','payouts','postbacks'));
+        return $approvedoffers = Offer::with('restrictions')
+                            ->select('offers.*', 'assignoffers.user_id',  DB::raw("IFNULL(sum(clicks.click),0) as sumclicks"),
+                                DB::raw("IFNULL(sum(signups.signup),0) as sumsignups"))
+                        ->leftJoin('assignoffers', 'assignoffers.offer_id', 'offers.id')
+                        ->leftJoin('signups', function($joinsign)
+                            {
+                                $joinsign->on('signups.affiliate_id', '=', 'assignoffers.user_id');
+                                $joinsign->on('signups.offer_id', '=', 'assignoffers.offer_id');
+                            })
+                        ->leftJoin('clicks', function($join)
+                            {
+                                $join->on('clicks.affiliate_id', '=', 'assignoffers.user_id');
+                                $join->on('clicks.offer_id', '=', 'assignoffers.offer_id');
+                            })
+                        ->where('assignoffers.user_id', $id)
+                        ->groupBy('assignoffers.offer_id')->get();
+        return view('admin.affiliate-detail-page',compact('affilates','managers','payouts','postbacks', 'approvedoffers'));
     }
     public function aproveaffiliate($id)
     {
