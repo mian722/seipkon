@@ -46,8 +46,7 @@
                                     @foreach($offers as $offer)
                                     <tr>
                                        <td>{{ $offer->id }}</td>
-                                       
-                                       <td>{{ $offer->offer_name }}</td>
+                                       <td><a href="{{ route('affiliate.offerdetail', $offer->fname) }}"> {{ $offer->offer_name }}</a></td>
                                        @if( $offer['restrictions'] != null)
                                           <td><b>{{ $offer['restrictions']->geo_type }}:</b><br>{{ $offer['restrictions']->geo_targeting }}</td>
                                        @else

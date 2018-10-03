@@ -581,6 +581,15 @@ class AffiliateController extends Controller
         //$offers = Offer::where('status', 1)->get();
         return view('affiliate.postback',compact('postbacks'));
     }  
+    public function offerdetail($id){
+        $offer = Offer::with('restrictions')->where('id', $id)->first();
+        $users = User::leftJoin('assignoffers', 'users.id', '=', 'assignoffers.user_id')
+                        ->leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')
+                        ->where('assignoffers.user_id', $id)
+                        ->select('users.fname','users.lname','assignoffers.*','offers.offer_name')
+                        ->get();
+        return view('affiliate.offers-detail-page', compact('offer', 'users'));
+    }
     public function saveuserpostback(Request $request)
     {
         //return $request->all();
