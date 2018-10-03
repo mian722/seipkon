@@ -563,7 +563,11 @@ class AffiliateController extends Controller
     }
     public function approveoffers()
     {
-        $offers = AssignOffers::Where('status',1)->Where('user_id',Auth::user()->id)->get();
+        $offers = AssignOffers::leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')
+                        ->leftJoin('offer_restrictions', 'offer_restrictions.id', '=', 'offers.id')
+                        ->where('user_id', Auth::user()->id)
+                        ->where('assignoffers.status','!=', 0)
+                        ->get();
         return view('affiliate.all-offers',compact('offers'));
     }
     public function userpostback()
