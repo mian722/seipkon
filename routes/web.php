@@ -18,6 +18,7 @@ Route::group(['middleware'=> 'boss'], function(){
 Route::group(['prefix' => '{affiliates}', 'middleware'=> 'affiliate'], function(){
 	Route::get('/affiliates', 'AffiliateController@index')->name('affiliate.home');
 	Route::get('/all-offers', 'AffiliateController@affiliateoffers')->name('affiliate.offers');
+	Route::get('/offers-details', 'AffiliateController@affiliateofferdetail')->name('affiliate.offerdetail');
 	Route::get('/approved-offers', 'AffiliateController@approveoffers')->name('affiliate.approveoffers');
 	Route::get('/invoices', 'AffiliateController@index')->name('affiliate.inovices');
 	Route::get('/postback', 'AffiliateController@userpostback')->name('affiliate.postback');
