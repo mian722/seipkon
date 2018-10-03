@@ -1401,8 +1401,11 @@ a[aria-expanded="true"]:before {
 }
 
 .profile-widget-img img {
-	border-radius: 50%;
+    border-radius: 50%;
     margin-bottom: 20px;
+    width: 120px;
+    line-height: 120px;
+    height: 120px;
 }
 
 .profile-box.header_bg_blue .profile-widget-img img {
