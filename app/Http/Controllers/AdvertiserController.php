@@ -19,7 +19,7 @@ class AdvertiserController extends Controller
      */
     public function index()
     {
-        return view('index');
+        return view('advertiser.index');
     }
 
     public function advertiserslist()
@@ -188,5 +188,11 @@ class AdvertiserController extends Controller
             $user->notify(new SignUpNotification($subject, $emailtype, $mailText, 'Help and Supports', 'http://seipkon.ytrk.us/support', ''));
             return redirect()->back()->with('success','Succfully Rejected!');
         }
+    }
+
+///////////////Advertiser user Dashboard/////////////////////////
+    public function advertiseroffers(){
+        $offers = Offer::with('restrictions')->Where('adv_id', Auth::user()->id)->get();
+        return view('advertiser.all-offers', compact('offers'));
     }
 }

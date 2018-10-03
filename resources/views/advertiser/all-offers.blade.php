@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.userheader')
          
          @section('content') 
          <!-- Right Side Content Start -->
@@ -13,14 +13,7 @@
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Order List</h3>
-                                 </div>
-                              </div>
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="seipkon-breadcromb-right">
-                                    <ul>
-                                       <li><a href="{{ asset('add-offer') }}" class="btn btn-success">Create</a></li>
-                                    </ul>
+                                    <h3>{{ str_replace('-', ' ', collect(request()->segments())->last()) }}</h3>
                                  </div>
                               </div>
                            </div>
@@ -38,36 +31,25 @@
                                  <thead>
                                     <tr>
                                        <th>ID</th>
-                                       <th>Photo</th>
-                                       <th>Title</th>
-                                       <th>Tag</th>
-                                       <th>Advertiser</th>
+                                       <th>Name</th>
                                        <th>GEO</th>
-                                       <th>Cap</th>
-                                       <th>Revenue</th>
+                                       <th>Preview</th>
+                                       <th>Tag</th>
                                        <th>Payout</th>
                                        <th>Status</th>
-                                       <th>Action</th>
                                     </tr>
                                  </thead>
                                  <tbody>
                                     @if(!empty($offers))
                                     @foreach($offers as $offer)
                                     <tr>
-                                       <td>{{ $offer->id }}</td>
-                                       <td><img src="<?php echo url('/'); ?>/public/offerimages/{{ ($offer->offer_image != null) ? $offer->offer_image : 'default.png' }}" alt="order image"  /></td>
-                                       <td><a href="{{ route('offers-detail', $offer->id) }}"> {{ $offer->offer_name }}</a></td>
-                                       <td>{{ $offer->tags }}</td>
-                                       <td>{{ $offer->fname }}</td>
-                                       @if( $offer['restrictions'] != null)
-                                          <td>{{ $offer['restrictions']->geo_targeting }}</td>
-                                          <td>{{ $offer['restrictions']->advertiser_caps_value }}</td>
-                                       @else
-                                          <td>&nbsp;</td>
-                                          <td>&nbsp;</td>
-                                       @endif
-                                       <td>{{ $offer->revenue }}</td>
-                                       <td>{{ $offer->payout }}</td>
+                                       <td>{{ $loop->iteration }}</td>
+                                       
+                                       <td>#{{ $offer->id }} {{ $offer->offer_name }}<br />{{ $offer->restrictions->advertiser_caps_type }} Caps: {{ $offer->restrictions->advertiser_caps_value }}</td>
+                                       <td>{{ $offer->restrictions->geo_targeting }}</td>
+                                       <td>{{ $offer->preview_url }}</td>
+                                       <td>{{ ($offer->offer_approval == 1)  ? 'Require Approval' : ( ($offer->offer_approval == 2) ? 'Public' : 'Private' ) }} </td>
+                                       <td>{{ $offer->payout_type }}:${{ $offer->payout }}</td>
                                        <td>
                                           @if($offer->status == 0)
                                              <span class="label label-warning">Pending</span>
@@ -78,10 +60,6 @@
                                           @else
                                              <span class="label label-danger">Deleted</span>
                                           @endif
-                                       </td>
-                                       <td>
-                                          <a href="{{ route('edit-offer',$offer->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                        </td>
                                     </tr>
                                     @endforeach

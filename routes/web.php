@@ -29,8 +29,11 @@ Route::group(['prefix' => '{affiliates}', 'middleware'=> 'affiliate'], function(
 	Route::get('/conversion-status-report', 'ReportsController@conversionstatusreport')->name('affiliate.conversionstatusreport');
 });
 
-Route::group(['middleware'=> 'advertiser'], function(){
-	Route::get('/advertiser', 'AdvertiserController@index')->name('advertiser');
+Route::group(['prefix' => '{affiliates}', 'middleware'=> 'advertiser'], function(){
+	Route::get('/user', 'AdvertiserController@index')->name('advertiser.home');
+	Route::get('/all-offers', 'AdvertiserController@advertiseroffers')->name('advertiser.offers');
+	Route::get('/general-report', 'ReportsController@generalreport')->name('advertiser.generalreport');
+	Route::get('/conversion-report', 'ReportsController@conversionreport')->name('advertiser.conversionreport');
 });
 
 Route::group(['middleware'=> 'admin'], function(){
