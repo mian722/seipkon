@@ -49,15 +49,17 @@
                                        
                                        <td>{{ $offer->offer_name }}</td>
                                        @if( $offer['restrictions'] != null)
-                                          <td>{{ $offer['restrictions']->geo_targeting }}</td>
+                                          <td><b>{{ $offer['restrictions']->geo_type }}:</b><br>{{ $offer['restrictions']->geo_targeting }}</td>
                                        @else
                                           <td>&nbsp;</td>
                                        @endif
-                                       <td>{{ $offer->preview_url }}</td>
+                                       <td><a href="{{ $offer->preview_url }}" target="_blank">Preview</a></td>
                                        <td>{{ ($offer->offer_approval == 1)  ? 'Require Approval' : ( ($offer->offer_approval == 2) ? 'Public' : 'Private' ) }} </td>
                                        <td>{{ $offer->payout_type }}:${{ $offer->payout }}</td>
                                        @if( collect(request()->segments())->last() == 'approved-offers')
-                                       <td>{{ $offer->status }}</td>
+                                       <td>
+                                          <span class="label label-{{ $offer->status == 1 ? 'success' : 'danger' }}">{{ $offer->status == 1 ? 'Active' : 'Deactive' }}</span>
+                                       </td>
                                        @endif
                                     </tr>
                                     @endforeach

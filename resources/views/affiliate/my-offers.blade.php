@@ -13,7 +13,7 @@
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Order List</h3>
+                                    <h3>My Offers</h3>
                                  </div>
                               </div>
                               <div class="col-md-6 col-sm-6">
