@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.userheader')
          
          @section('content') 
         <!-- Right Side Content Start -->
@@ -39,17 +39,8 @@
                         <div class="page-box">
                            <div class="form-example">
                               <div class="form-wrap">
-                                 <form method="post" action="{{ (isset($assignoffers) ? route('postbackupdate', $assignoffers->id) : route('createpostback')) }}">
+                                 <form method="post" action="{{ (isset($assignoffers) ? route('affiliate.userpostbackupdate', [Auth::user()->fname, $assignoffers->id]) : route('affiliate.savepostback', Auth::user()->fname)) }}">
                                     {{ csrf_field() }}
-                                    <div class="form-group">
-                                       <label class="control-label">Affiliate</label>
-                                       <select class="form-control select2" name="user_id">
-                                          <option disabled="disabled">Select Affiliate</option>
-                                          @foreach($affiliates as $ffiliate)
-                                          <option value="{{ $ffiliate->id }}" {{ ((isset($assignoffers->user_id) ? $assignoffers->user_id : null) == $ffiliate->id) ? 'selected' : '' }}>{{ $ffiliate->fname }} {{ $ffiliate->lname }}</option>
-                                          @endforeach
-                                       </select>
-                                    </div>
                                     <div class="form-group">
                                        <label class="control-label" style="width: 100%">Type</label>
                                        <div class="form-group form-radio col-md-4">
@@ -83,18 +74,7 @@
                                           <option value="{{ $offer->id }}" {{ (old('offer_id', isset($assignoffers->offer_id) ? $assignoffers->offer_id : null) == $offer->id) ? 'selected' : '' }}>{{ $offer->offer_name }}</option>
                                           @endforeach
                                        </select>
-                                    </div><!-- 
-                                    <div class="form-group">
-                                       <label class="control-label">Event</label>
-                                       <select class="form-control select2">
-                                          <option selected="selected">Event1</option>
-                                          <option>Alaska</option>
-                                          <option>Delaware</option>
-                                          <option>Tennessee</option>
-                                          <option>Texas</option>
-                                          <option>Washington</option>
-                                       </select>
-                                    </div> -->
+                                    </div>
                                     <div class="form-group">
                                        <label class="control-label">Protocol</label>
                                        <select class="form-control select2" name="postback_protocol">
@@ -114,10 +94,10 @@
                                     @endif
                                     <div class="form-group">
                                        <label class="control-label">Code</label>
-                                       <textarea class="form-control" id="message" name="postbacklink" placeholder="Textarea">{{ (isset($assignoffers->user_id) ? $assignoffers->postback_protocol : null)}}</textarea>
+                                       <textarea class="form-control" id="message" name="postbacklink" placeholder="Textarea">{{ (isset($assignoffers->user_id) ? $assignoffers->postbacklink : null)}}</textarea>
                                     </div>
                                     <div class="form-group">
-                                       <button class="btn btn-success btn-lg">{{ (isset($assignoffers) ? 'Update' : 'Creat') }}</button>
+                                       <button class="btn btn-success btn-lg">{{ (isset($assignoffers) ? 'Update' : 'Create') }}</button>
                                     </div>
                                  </form>
                               </div>

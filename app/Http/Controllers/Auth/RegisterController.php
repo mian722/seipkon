@@ -67,8 +67,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {  
-        $subdomain = $this->getsubdomain();
-        $admin_id = User::select('id')->where('subdomain',$subdomain)->first();
+        $admin_id = $this->getsubdomain();
         $roles_id = ($data['usertype'] == 'affiliate') ? 5 : 4 ;
         $userCreated = User::create([
             'fname' => $data['fname'],

@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.userheader')
          
          @section('content') 
          <!-- Right Side Content Start -->
@@ -34,15 +34,10 @@
                   <!-- Add Product Area Start -->
                   <div class="row">
                      <div class="col-md-12">
-                        <div class="page-box">
+                        <div class="page-box" style="padding: 0;">
                            <div class="tabs-example">
                               <div class="tabs-box-example horizontal-tab-example">
                                  <form action="">
-                                    <ul class="nav nav-tabs" id="service_pro" role="tablist">
-                                       <li class="active" role="Custom Report1"><a href="#custom_r1" role="tab" data-toggle="tab">Details</a>
-                                       </li>
-                                       <li role="Custom Report2"><a href="#custom_r2" role="tab" data-toggle="tab">Approved & Caps</a></li>
-                                    </ul>
                                     <div class="tab-content offer-detail-page">
                                        <div id="custom_r1" class="tab-pane fade in active">
                                           <div class="row">
@@ -66,10 +61,7 @@
                                                                   </div>
                                                                   <div class="col-sm-9 col-md-9">
                                                                      <div class="row">
-                                                                        <div class="col-xs-6">
-                                                                           <p><label>Revenue: </label> {{ $offer->revenue_type }} ${{ $offer->revenue }}</p>
-                                                                        </div>
-                                                                        <div class="col-xs-6">
+                                                                        <div class="col-xs-12">
                                                                            <p><label>Payout: </label> {{ $offer->payout_type }} ${{ $offer->payout }}</p>
                                                                         </div>
                                                                         <div class="col-xs-6">
@@ -79,28 +71,8 @@
                                                                            <p><label>Status: </label> <span class="label label-{{ ($offer->status == 1) ? 'success': 'warning'  }}">{{ ($offer->status == 1) ? 'Active': 'Paused'  }}</span></p>
                                                                         </div>
                                                                         <?php $offerlink = explode(" - ",$offer->duration); ?>
-                                                                        <div class="col-xs-6">
-                                                                           <p><label>Start Date:</label> {{ $offerlink[0] }}</p>
-                                                                        </div>
-                                                                        <div class="col-xs-6">
+                                                                        <div class="col-xs-12">
                                                                            <p><label>End Date:</label> {{ $offerlink[1] }}</p>
-                                                                        </div>
-                                                                        <div class="col-xs-6">
-                                                                           <p>
-                                                                              <label>Advertiser: </label>
-                                                                              <?php $advertiser = App\User::find($offer->adv_id); 
-                                                                              echo $advertiser->fname; ?>                      
-                                                                           </p>
-                                                                        </div>
-                                                                        <div class="col-xs-6">
-                                                                           <p>
-                                                                              <label>Manager: </label>
-                                                                              <a href="#"><?php $manager = App\User::find($advertiser->managerid); 
-                                                                                 echo $manager->fname; ?>  </a>                        
-                                                                           </p>
-                                                                        </div>
-                                                                        <div class="col-xs-6">
-                                                                           <p><label>Type: </label> {{ $offer->offer_approval }}</p>
                                                                         </div>
                                                                         <div class="col-xs-12">
                                                                            <p>
@@ -109,23 +81,6 @@
                                                                            </p>
                                                                         </div>
                                                                      </div>
-                                                                  </div>
-                                                               </div>
-                                                               <div class="row base-info">
-                                                                  <div class="col-xs-12 col-sm-6">
-                                                                     <p>
-                                                                        <label>Lead Traffic to Preview URL : </label>
-                                                                        {{ ($offer->restrictions->lead_traffic_preview_url == 1) ? 'On' : 'Off' }}                
-                                                                     </p>
-                                                                  </div>
-                                                                  <div class="col-xs-12 col-sm-6">
-                                                                     <p><label>Conversion Protocol: </label> {{ $offer->signup_protocol }}</p>
-                                                                  </div>
-                                                                  <div class="col-xs-12 col-sm-6">
-                                                                     <p>
-                                                                        <label>Conversions Need Approval : </label>
-                                                                        {{ $offer->signup_need_approval }}               
-                                                                     </p>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -151,15 +106,6 @@
                                                                   <div class="row">
                                                                      <div class="col-sm-12">
                                                                         <p>
-                                                                           <b>Advertiser Total Cap</b>: @if($offer->restrictions->advertiser_caps_value != null)
-                                                                           {{ $offer->restrictions->advertiser_caps_type }} {{ $offer->restrictions->advertiser_caps_value }}
-                                                                           @else
-                                                                              No
-                                                                           @endif         
-                                                                        </p>
-                                                                     </div>
-                                                                     <div class="col-sm-12">
-                                                                        <p>
                                                                            <b>Affiliate Total Cap</b>: @if($offer->restrictions->advertiser_caps_value != null)
                                                                            {{ $offer->restrictions->advertiser_caps_type }} {{ $offer->restrictions->advertiser_caps_value }}
                                                                            @else
@@ -170,102 +116,6 @@
                                                                      <div class="col-sm-12 desc-content">
                                                                         <p><strong>Description</strong> :</p>
                                                                         <p>{{ $offer->description }}</p>
-                                                                     </div>
-                                                                  </div>
-                                                                  <div class="row">
-                                                                     <div class="col-sm-12">
-                                                                        <p>
-                                                                           <strong>Redirect Offer
-                                                                           <i class="fa fa-question-circle" title="Current offer will be redirected to this offer if paused, passed expiration date, or cap (offer cap &amp; affiliate cap) is exceeded." data-toggle="tooltip" data-html="true"></i></strong>
-                                                                           <?php 
-                                                                           if ($offer->restrictions->redirect_offer != null) {
-                                                                              $redirectoffer = App\Offer::find($offer->restrictions->redirect_offer);
-                                                                              echo '<a href="#" target="_blank">'.$redirectoffer->offer_name.'</a>';
-                                                                           }
-                                                                           ?>
-                                                                                         
-                                                                        </p>
-                                                                     </div>
-                                                                  </div>
-                                                                  <div class="row">
-                                                                     <div class="col-sm-12" style="word-break: break-all;word-wrap:break-word;">
-                                                                        <p>
-                                                                           <strong>Offer Pools
-                                                                           <i class="fa fa-question-circle" title="A pool of offers in which traffic can be redirected to in the event that they don’t match Geo &amp; Platform targeting.You could multi-select more pools at the same time." data-toggle="tooltip" data-html="true"></i>                    </strong>
-                                                                           <?php 
-                                                                           if ($offer->restrictions->offer_pool != null) {
-                                                                              $offerpool = App\OffersPool::find($offer->restrictions->offer_pool);
-                                                                              //echo $offer->restrictions->offer_pool;
-                                                                              //print_r($offerpool);
-                                                                              if (!empty($offerpool)) {
-                                                                                 echo '<a href="#" target="_blank">'.$offerpool->name.'</a>';
-                                                                              }
-                                                                           }
-                                                                           ?>          
-                                                                        </p>
-                                                                     </div>
-                                                                  </div>
-                                                                  <div class="row">
-                                                                     <div class="col-sm-12" style="word-break: break-all;word-wrap:break-word;">
-                                                                        <p>
-                                                                           <strong>Tracking Domain
-                                                                           <i class="fa fa-question-circle" title="This allows you to host your offer tracking URLs on a custom domain." data-toggle="tooltip" data-html="true"></i>                    </strong>
-                                                                           {{ $offer->restrictions->tracking_domain }}               
-                                                                        </p>
-                                                                     </div>
-                                                                  </div>
-                                                                  <div class="row" style="margin-bottom: 10px">
-                                                                     <div class="col-sm-12">
-                                                                        <div>
-                                                                           <strong class="pull-left">SSL
-                                                                           <i class="fa fa-question-circle" title="Enforce SSL by generating affiliate tracking link and advertiser postback with https instead of http." data-toggle="tooltip" data-html="true"></i>                    </strong>
-                                                                           <div class="form-wrap toggle-switches-flex">
-                                                                              <div class="form-group">
-                                                                                 <input {{ ($offer->restrictions->ssl == 1) ? 'checked':'' }} class="ssl_toggle" name="ssl" data-toggle="toggle" type="checkbox">
-                                                                              </div>
-                                                                           </div>
-                                                                        </div>
-                                                                     </div>
-                                                                  </div>
-                                                                  <div class="row clickip-content" style="margin-bottom: 10px">
-                                                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                        <div class="pull-left" style="padding-left: 0px">
-                                                                           <strong class="pull-left">Unique IP Tracking <i class="fa fa-question-circle" title="When you turn on the button, the system will filter the part of clicks out of the allowed repetition of independent IPs." data-toggle="tooltip" data-html="true"></i></strong>
-                                                                           <div class="form-wrap toggle-switches-flex">
-                                                                              <div class="form-group">
-                                                                                 <input {{ ($offer->restrictions->unique_ip_tracking == 1) ? 'checked':'' }} class="ssl_toggle" name="unique_ip_tracking" data-toggle="toggle" type="checkbox">
-                                                                              </div>
-                                                                           </div>
-                                                                        </div>
-                                                                        <div class="pull-left  hidden">
-                                                                           <strong style="float: left">Only </strong>
-                                                                           <div style="float: left;padding-right: 5px;padding-left: 15px;">
-                                                                              <select id="click_ip_count" class="form-control select2-hidden-accessible" name="click_ip_count" data-s2-options="s2options_d6851687" data-krajee-select2="select2_7fc2f6f0" style="display:none" tabindex="-1" aria-hidden="true">
-                                                                                 <option value=""></option>
-                                                                                 <option value="1">1</option>
-                                                                                 <option value="2">2</option>
-                                                                                 <option value="3">3</option>
-                                                                                 <option value="4">4</option>
-                                                                                 <option value="5">5</option>
-                                                                                 <option value="6">6</option>
-                                                                                 <option value="7">7</option>
-                                                                                 <option value="8">8</option>
-                                                                                 <option value="9">9</option>
-                                                                                 <option value="10">10</option>
-                                                                              </select>
-                                                                              <span class="select2 select2-container select2-container--krajee" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-click_ip_count-container"><span class="select2-selection__rendered" id="select2-click_ip_count-container"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>                    
-                                                                           </div>
-                                                                           <strong style="padding-left: 4px">Times Allowed</strong>
-                                                                        </div>
-                                                                     </div>
-                                                                  </div>
-                                                                  <div class="row">
-                                                                     <div class="col-sm-12" style="word-break: break-all;word-wrap:break-word;">
-                                                                        <p>
-                                                                           <strong>Alert Setting
-                                                                           <i class="fa fa-question-circle" title="Setting different metrics for alert, including CR, postback, unique clicks and etc." data-toggle="tooltip" data-html="true"></i>                        </strong>
-                                                                           None                    
-                                                                        </p>
                                                                      </div>
                                                                   </div>
                                                                </div>
@@ -401,42 +251,43 @@
                                                          <div id="links" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                                             <div class="panel-body">
                                                                <!-- /.box-header -->
+                                                               @if(!empty($users))
                                                                <div class="box-body">
+                                                                   @if( $users->status == 1 )
                                                                   <p style="border-bottom: 1px solid #eee;">
-                                                                     <label>Destination URL: </label><br>
-                                                                     <textarea readonly="readonly" onclick="$(this).select()" class="form-control" rows="2" style="background-color:white">{{ $offer->destination_url }}</textarea>
+                                                                     <label>Tracking Link : </label><br>
+                                                                     <textarea readonly="readonly" onclick="$(this).select()" class="form-control" rows="2" style="background-color:white">{{ $users->usertracklink }}</textarea>
                                                                      <br>
                                                                   </p>
                                                                   <div id="linkBox" data-pjax-container="" data-pjax-push-state="" data-pjax-timeout="5000" style="border-bottom: 1px solid #eee;margin-bottom:10px;">
                                                                      <div class="row">
-                                                                        <div class="col-sm-12"><label>Event Postback :</label></div>
-                                                                        <div class="col-sm-12" style="margin-top: 5px">
-                                                                           <textarea id="event_link" readonly="readonly" onclick="$(this).select()" class="form-control" rows="2" placeholder="Select Event Firstly" style="background-color:white">{{ $offer->offer_postback }}</textarea>
+                                                                        <div class="col-sm-12"><label>Postback Link :</label></div>
+                                                                        @if( !empty($users->postbacklink))
+                                                                           <div class="col-sm-12" style="margin-top: 5px">
+                                                                           <textarea id="event_link" readonly="readonly" onclick="$(this).select()" class="form-control" rows="2" placeholder="Select Event Firstly" style="background-color:white">{{ $users->postbacklink }}</textarea>
+                                                                        </div>
+                                                                        @endif
+                                                                        <div class="col-sm-12 " style="margin-top: 5px; text-align: right;">
+                                                                           <a class="btn btn-success" href="{{ route('affiliate.createpostback' , [Auth::user()->fname, 'id'=> $users->id]) }}">Add Postback</a>
                                                                         </div>
                                                                      </div>
-                                                                     <br>
-                                                                     <script></script>
-                                                                  </div>
-                                                                  <div id="trackingBox" data-pjax-container="" data-pjax-push-state="" data-pjax-timeout="5000">
-                                                                     <div class="row">
-                                                                        <div class="col-sm-12"><label>Tracking Link :</label></div>
-                                                                        <div class="col-sm-12">
-                                                                           <select class="form-control select2" id="tracking_link" data-placeholder="Select Affiliate" name="tracking_link" required="required">
-                                                                              <option disabled="disabled" selected="selected">Please Select. . .</option>
-                                                                              @if(!empty($users))
-                                                                                 @foreach($users as $user)
-                                                                                    <option value="{{ $user->usertracklink }}">{{ $user->fname }}</option>
-                                                                                 @endforeach
-                                                                              @endif
-                                                                           </select>                    
-                                                                        </div>
-                                                                        <div class="col-sm-12" style="margin-top: 5px">
-                                                                           <textarea id="aff_tracking" readonly="readonly" onclick="$(this).select()" class="form-control" rows="2" placeholder="Please select an affiliate." style="background-color:white"></textarea>
-                                                                        </div>
-                                                                     </div>
-                                                                     <script></script>
                                                                   </div>
                                                                </div>
+                                                               @else 
+                                                               <div class="col-sm-12 " style="margin-top: 5px; text-align: right;">
+                                                                           <a class="btn btn-success" href="{{ $offer->preview_url }}" target="_blank">Preview Offer</a>
+                                                                           <a class="btn btn-warning" href="#
+                                                                           ">Pending Approval</a>
+                                                                        </div>
+                                                               @endif
+                                                               @else
+                                                                     <div class="col-sm-12 " style="margin-top: 5px; text-align: right;">
+                                                                           <a class="btn btn-success" href="{{ $offer->preview_url }}" target="_blank">Preview Offer</a>
+                                                                           <a class="btn btn-danger" href="
+                                                                           {{ route('applyoffer' , [Auth::user()->fname, 'id'=> $offer->id]) }}
+                                                                           ">Apply Offer</a>
+                                                                        </div>
+                                                                  @endif
                                                             </div>
                                                          </div>
                                                       </div>
@@ -522,171 +373,7 @@
                                                       </div>
                                                    </div>
                                                 </div>
-
-
-
-                                                <div class="accordian-example">
-                                                   <div class="panel-group" id="affiliate_pay" role="tablist" aria-multiselectable="true">
-                                                      <div class="panel panel-default">
-                                                         <div class="panel-heading" role="tab" id="headingOne">
-                                                            <h4 class="panel-title">
-                                                               <a role="button" data-toggle="collapse" data-parent="#affiliate_pay" href="#affiliate_payout" aria-expanded="true" aria-controls="affiliate_payout">
-                                                               <i class="fa fa-usd"></i> Affiliate Payout
-                                                               </a>
-                                                            </h4>
-                                                         </div>
-                                                         <div id="affiliate_payout" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                                            <div class="panel-body">
-
-                                                               <div class="box box-default">
-                                                                  <div id="affiliate-payout-box" data-pjax-container="" data-pjax-push-state="" data-pjax-timeout="5000">
-                                                                     <div id="w0" class="grid-view">
-                                                                        <div class="box-body no-padding table-responsive">
-                                                                           <table class="table table-hover table-striped" role="grid">
-                                                                              <colgroup>
-                                                                                 <col width="50">
-                                                                                 <col>
-                                                                                 <col>
-                                                                                 <col>
-                                                                                 <col width="155px">
-                                                                                 <col width="60">
-                                                                                 <col width="50">
-                                                                              </colgroup>
-                                                                              <thead>
-                                                                                 <tr>
-                                                                                    <th>ID</th>
-                                                                                    <th>Event</th>
-                                                                                    <th>Affiliate</th>
-                                                                                    <th>Currency</th>
-                                                                                    <th>Payout</th>
-                                                                                    <th>Type</th>
-                                                                                    <th class="action-column">Action</th>
-                                                                                 </tr>
-                                                                              </thead>
-                                                                              <tbody>
-                                                                                 <tr>
-                                                                                    <td></td>
-                                                                                    <td></td>
-                                                                                    <td></td>
-                                                                                    <td></td>
-                                                                                    <td></td>
-                                                                                    <td></td>
-                                                                                 </tr>
-                                                                              </tbody>
-                                                                           </table>
-                                                                        </div>
-                                                                     </div>
-                                                                  </div>
-                                                               </div>
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                </div>
-
-
-
-
-                                                <div class="accordian-example">
-                                                   <div class="panel-group" id="affiliate_pay" role="tablist" aria-multiselectable="true">
-                                                      <div class="panel panel-default">
-                                                         <div class="panel-heading" role="tab" id="headingOne">
-                                                            <h4 class="panel-title">
-                                                               <a role="button" data-toggle="collapse" data-parent="#affiliate_pay" href="#affiliate_payout" aria-expanded="true" aria-controls="affiliate_payout">
-                                                               <i class="fa fa-files-o"></i> Creative Files
-                                                               </a>
-                                                            </h4>
-                                                         </div>
-                                                         <div id="affiliate_payout" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                                            <div class="panel-body">
-
-                                                               <div class="box box-default">
-                                                                  <div id="affiliate-payout-box" data-pjax-container="" data-pjax-push-state="" data-pjax-timeout="5000">
-                                                                     <div id="w0" class="grid-view">
-                                                                        <div class="box-body no-padding table-responsive">
-                                                                           <table class="table table-hover table-striped" role="grid">
-                                                                              <thead>
-                                                                                 <tr>
-                                                                                    <th>ID</th>
-                                                                                    <th>Preview</th>
-                                                                                    <th>Size</th>
-                                                                                    <th>Link</th>
-                                                                                 </tr>
-                                                                              </thead>
-                                                                              <tbody>
-                                                                                 <tr>
-                                                                                    <td></td>
-                                                                                    <td></td>
-                                                                                    <td></td>
-                                                                                    <td></td>
-                                                                                 </tr>
-                                                                                 <tr>
-                                                                                    <td colspan="4" align="center">No files.</td>
-                                                                                 </tr>
-                                                                              </tbody>
-                                                                           </table>
-                                                                        </div>
-                                                                     </div>
-                                                                  </div>
-                                                               </div>
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                </div>
-
                                              </section>
-                                          </div>
-
-
-
-
-                                       </div>
-                                       <div id="custom_r2" class="tab-pane fade in">
-                                          <div class="advance-table">
-                                             <table id="responsive_datatables_example" class="table display table-striped table-bordered responsive nowrap">
-                                                <thead>
-                                                   <tr>
-                                                      <th>Affiliate</th>
-                                                      <th>Caps Type</th>
-                                                      <th>Category</th>
-                                                      <th>Clicks</th>
-                                                      <th>Conversions</th>
-                                                      <th>Budget</th>
-                                                      <th>Action</th>
-                                                   </tr>
-                                                </thead>
-                                                <tbody>
-                                                   <tr>
-                                                      <td><a href="{{ asset('affiliate-detail-page') }}">asdf #3</a></td>
-                                                      <td>None</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>
-                                                         <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
-                                                      </td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td><a href="{{ asset('affiliate-detail-page') }}">asdf #3</a></td>
-                                                      <td>None</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>not set</td>
-                                                      <td>
-                                                         <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                         <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
-                                                      </td>
-                                                   </tr>
-                                                   
-
-                                                </tbody>
-                                             </table>
                                           </div>
                                        </div>
                                     </div>
@@ -698,7 +385,6 @@
                      </div>
                   </div>
                   <!-- End Add Product Area -->
-                   
                </div>
             </div>
          @endsection

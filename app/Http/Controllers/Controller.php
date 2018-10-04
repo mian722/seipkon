@@ -32,13 +32,16 @@ class Controller extends BaseController
 
     public function getsubdomain()
     {
-     
+     $subdomain = '';
       $url_array = explode('.', Request::getHost());
       if ($url_array[0] == 'www') {
-        return $url_array[1];
+        $subdomain = $url_array[1];
+        
       } else {
-        return $url_array[0];
+        $subdomain = $url_array[0];
       }
+      $a = User::select('id')->where('subdomain',$subdomain)->first();
+      return $a->id;
     } 
 
     public function getplatform()

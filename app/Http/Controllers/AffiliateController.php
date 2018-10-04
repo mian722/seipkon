@@ -203,8 +203,6 @@ class AffiliateController extends Controller
                         ->leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')
                         ->select('users.fname','users.lname','assignoffers.*','offers.offer_name')
                         ->get();
-        //$postbacks = AssignOffers::with('users')->where('status', 1)->get();
-        //$offers = Offer::where('status', 1)->get();
         return view('admin.affiliate-postback',compact('postbacks'));
     }    
     public function createaffiliatepostback()
@@ -233,14 +231,15 @@ class AffiliateController extends Controller
         } else {
             return redirect()->back()->with('success','Succfully Added!');
         }
-
-        $affiliates = User::Where('roles_id',5)->where('status', 1)->get();
-        $offers = Offer::where('status', 1)->get();
-        return view('admin.postback-create',compact('affiliates','offers'));
+    }
+    public function userpostbackcreate()
+    {
+         $offers = AssignOffers::leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')->where('assignoffers.status', 1)->Where('assignoffers.postbacklink', '!=', '')->where('assignoffers.user_id', Auth::user()->id)->get();
+        return view('affiliate.postback-create',compact('offers'));
     }
     public function editpostback($id)
         {
-            $assignoffers = assignoffers::Where('id',$id)->first();
+            $assignoffers = Assignoffers::Where('id',$id)->first();
             $affiliates = User::Where('roles_id',5)->where('status', 1)->get();
             $offers = Offer::where('status', 1)->get();
             return view('admin.postback-create',compact('affiliates','offers','assignoffers'));
@@ -562,7 +561,7 @@ class AffiliateController extends Controller
         return view('affiliate.all-offers',compact('offers'));
     }
     public function approveoffers()
-    {
+    { 
         $offers = AssignOffers::leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')
                         ->leftJoin('offer_restrictions', 'offer_restrictions.id', '=', 'offers.id')
                         ->where('user_id', Auth::user()->id)
@@ -570,39 +569,38 @@ class AffiliateController extends Controller
                         ->get();
         return view('affiliate.all-offers',compact('offers'));
     }
-    public function userpostback()
+    public function userpostback($name)
     {
-        $postbacks = AssignOffers::leftJoin('users', 'users.id', '=', 'assignoffers.user_id')
+         $postbacks = AssignOffers::leftJoin('users', 'users.id', '=', 'assignoffers.user_id')
                         ->leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')
                         ->select('users.fname','users.lname','assignoffers.*','offers.offer_name')
                         ->where('user_id', Auth::user()->id)
                         ->get();
-        //$postbacks = AssignOffers::with('users')->where('status', 1)->get();
-        //$offers = Offer::where('status', 1)->get();
         return view('affiliate.postback',compact('postbacks'));
     }  
-    public function offerdetail($id){
+    public function offerdetail($name, $id){
         $offer = Offer::with('restrictions')->where('id', $id)->first();
         $users = User::leftJoin('assignoffers', 'users.id', '=', 'assignoffers.user_id')
                         ->leftJoin('offers', 'offers.id', '=', 'assignoffers.offer_id')
-                        ->where('assignoffers.user_id', $id)
+                        ->where('assignoffers.user_id', Auth::user()->id)
+                        ->where('assignoffers.offer_id', $id)
                         ->select('users.fname','users.lname','assignoffers.*','offers.offer_name')
-                        ->get();
-        return view('affiliate.offers-detail-page', compact('offer', 'users'));
+                        ->first();
+        return view('affiliate.offers-detail-page', compact('offer','users'));
     }
     public function saveuserpostback(Request $request)
     {
-        //return $request->all();
+        $admin_id = $this->getsubdomain();
         $assignoffers = new AssignOffers;
-        $assignoffers->user_id = $request->user_id;
+        $assignoffers->user_id = Auth::user()->id;
         $assignoffers->postback_type = $request->postback_type;
         $assignoffers->smartlink_id = $request->smartlink_id;
         $assignoffers->offer_id = $request->offer_id;
         $assignoffers->postback_protocol = $request->postback_protocol;
         $assignoffers->postbacklink = $request->postbacklink;
         $assignoffers->postbacklink = $request->postbacklink;
-        $assignoffers->admin_id = Auth::user()->id;
-        $assignoffers->status = '1';
+        $assignoffers->admin_id = $admin_id;
+        $assignoffers->status = '0';
         $assignoffers->save();
         
         if (empty($assignoffers) ) {
@@ -610,16 +608,56 @@ class AffiliateController extends Controller
         } else {
             return redirect()->back()->with('success','Succfully Added!');
         }
-
-        $affiliates = User::Where('roles_id',5)->where('status', 1)->get();
-        $offers = Offer::where('status', 1)->get();
-        return view('affiliate.postback-create',compact('affiliates','offers'));
+        
+        return view('affiliate.postback-create',compact('offers'));
     }
-    public function createuserpostback()
+    public function createuserpostback($name, $id)
     {
-        $affiliates = User::Where('roles_id',5)->where('status', 1)->get();
-        $offers = Offer::where('status', 1)->get();
-        return view('affiliate.postback-create',compact('affiliates','offers'));
+        $assignoffers = Assignoffers::Where('id',$id)->first();
+        $offers = AssignOffers::leftjoin('offers', 'offers.id', 'assignoffers.offer_id')->where('assignoffers.user_id', Auth::user()->id)->where('assignoffers.status', 1)->get();
+        return view('affiliate.postback-create',compact('assignoffers','offers'));
+    }
+
+    public function userpostbackupdate($name,$id,Request $request)
+    {
+        //return $request->all();
+        //return $id;
+        $offer_id = null;
+        $smartlink_id = null;
+        if ($request->postback_type == 'offer') {
+            $offer_id = $request->offer_id;
+        } elseif(($request->postback_type == 'smartlink') ) {
+            $smartlink_id = $request->smartlink_id;
+        } 
+        $update = AssignOffers::where('id', $id)
+            ->update(['smartlink_id' => $smartlink_id,'postback_type' => $request->postback_type,'postback_protocol' => $request->postback_protocol,'postbacklink' => $request->postbacklink]);
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+     public function applyoffer($name, $oid)
+    {
+        $admin_id = $this->getsubdomain();
+        $offer = Offer::find($oid);
+        $user = User::where('roles_id', 5)->where('id', Auth::user()->id)->first();
+
+        $assignoffer = new AssignOffers;
+        $assignoffer->user_id = $user->id;
+        $assignoffer->offer_id = $offer->id;
+        // $assignoffer->postbacklink = url('/').'/post/'.$user->id.'/'.$offer->id;
+        $assignoffer->usertracklink = url('/').'/link/'.$user->id.'/'.$offer->id;
+        $assignoffer->admin_id = $admin_id;
+        $assignoffer->postback_type = 'offer';
+        $assignoffer->postback_protocol = 'postbackurl';
+        $assignoffer->status = 0;
+        $assignoffer->save();
+        if(!empty($assignoffer)){
+            return redirect()->back()->with('success','Succfully Added!');
+        }else{
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        }
     }
 
 }
