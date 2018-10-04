@@ -192,26 +192,8 @@
                                                      <a href="#" id="signup" class="tsignup" data-url="{{ route('affiliateupdateclicks', $offersnames[$i]) }}" data-pk="{{ $offersnames[$i] }}" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offerssignups[$i] }}</a>
                                              </td>
                                              <td>
-                                                   <input type="hidden" class="amounts" name="amount[]" value="{{ $offersamounts[$i] }}" />
-                                                     <a href="#" id="amount" class="tamount" data-url="{{ $offersnames[$i] }}" data-pk="{{ $offersnames[$i] }}" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offersamounts[$i] }}</a>
-                                                     <input type="hidden" class="clicks" name="clicks[]" value="{{ $offersclicks[$i] }}" />
-                                                  <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
-                                                     
-                                                     <a href="#" id="clicks" class="tclicks" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offersclicks[$i] }}</a>
-                                                  </form>
-                                             </td>
-                                             <td>
-                                                     <input type="hidden" class="signups" name="signup[]" value="{{ $offerssignups[$i] }}" />
-                                                  <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
-                                                     
-                                                     <a href="#" id="signup" class="tsignup" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offerssignups[$i] }}</a>
-                                                  </form>
-                                             </td>
-                                             <td>
                                                      <input type="hidden" class="amounts" name="amount[]" value="{{ $offersamounts[$i] }}" />
-                                                  <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
-                                                     <a href="#" id="amount" class="tamount" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offersamounts[$i] }}</a>
-                                                  </form>
+                                                     <a href="#" id="amount" class="tamount" data-url="{{ route('affiliateupdateclicks', $offersnames[$i]) }}" data-pk="{{ $offersnames[$i] }}" data-type="text" data-placement="top" data-title="Edit Comment">{{ $offersamounts[$i] }}</a>
                                              </td>
                                               <td><span id="deloffer" class="btn btn-danger deloffer"><input type="hidden" value="{{ $offersnames[$i] }}" /><i style="font-size: 18px;" class="fa fa-trash"></i></span></td>
                                             </tr>
@@ -224,7 +206,7 @@
                                                   <option disabled="disabled" selected="selected">Select Offer</option>
                                                   <?php 
                                                   $offers = App\Offer::leftJoin('assignoffers', 'offers.id', '=', 'assignoffers.offer_id')
-                                                                  ->where('assignoffers.affiliate_id', $offeredit->affiliate_id)
+                                                                  ->where('assignoffers.user_id', $offeredit->affiliate_id)
                                                                   ->get(); ?>
                                                 @foreach($offers as $offer)
                                                   <option value="{{$offer->offer_id}}" <?php if(in_array($offer->offer_id, $offersnames)) { echo 'disabled="disabled"'; } ?> >{{$offer->offer_name}}</option>

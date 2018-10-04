@@ -421,7 +421,7 @@ class ReportsController extends Controller
          return $table; 
     }
   public function conversionreport()
-      {
+    {
       $advertisers = $this->getuser(4);
       $adv_managers = $this->getrelatedmanagers($advertisers);
       $affiliates = $this->getuser(5);
@@ -432,7 +432,7 @@ class ReportsController extends Controller
       $getplatforms = $this->getplatform();
 
       return view('admin.conversion-report',compact('advertisers', 'adv_managers', 'managers','affiliates','aff_managers', 'offers','countries', 'timezones','getplatforms'));
-      }
+    }
 
     public function conversionreportgenerate(Request $request){
       
@@ -812,8 +812,8 @@ class ReportsController extends Controller
                                    '.((isset($data->payout)) ? '<td>$'.$value->payout.' ('.$value->payout_type.')</td>' : '').'
                                    '.((isset($data->amount)) ? '<td>$'.$amount.'</td>' : '').'
                                    '.((isset($data->profit)) ? '<td>$'.$profit.'</td>' : '').' 
-                                   '.((isset($data->platform)) ? '<td>'.implode (", ",$platformss).'</td>' : '').' 
-                                   '.((isset($data->mobile_carrier)) ? '<td>'.implode (", ",$mobile_carrier).'</td>' : '').' 
+                                   '.((isset($data->platform)) ? '<td>'.(($platformss != null) ? implode (", ",$platformss) : '').'</td>' : '').' 
+                                   '.((isset($data->mobile_carrier)) ? '<td>'.(($mobile_carrier != null) ? implode (", ",$mobile_carrier) : '').'</td>' : '').'  
                                    '.((isset($data->click_rate)) ? '<td>'.$cr.'%</td>' : '').' 
                                    '.((isset($data->earn_per_click)) ? '<td>$'.$earn_per_click.'</td>' : '').' 
                             </tr>';

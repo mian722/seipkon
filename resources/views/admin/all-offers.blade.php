@@ -57,10 +57,22 @@
                                        <td>{{ $offer->id }}</td>
                                        <td><img src="<?php echo url('/'); ?>/public/offerimages/{{ ($offer->offer_image != null) ? $offer->offer_image : 'default.png' }}" alt="order image"  /></td>
                                        <td><a href="{{ route('offers-detail', $offer->id) }}"> {{ $offer->offer_name }}</a></td>
-                                       <td>{{ $offer->tags }}</td>
+                                       <td><?php $tags = json_decode($offer->tags); ?>
+                                          @if($tags!=null)
+                                          @foreach($tags as $tag)
+                                             {{ $tag }},
+                                          @endforeach
+                                          @endif
+                                       </td>
                                        <td>{{ $offer->fname }}</td>
                                        @if( $offer['restrictions'] != null)
-                                          <td>{{ $offer['restrictions']->geo_targeting }}</td>
+                                          <td><?php $geos = json_decode($offer['restrictions']->geo_targeting); ?>
+                                             @if($geos!=null)
+                                             @foreach($geos as $geo)
+                                                {{ $geo }},
+                                             @endforeach
+                                             @endif
+                                          </td>
                                           <td>{{ $offer['restrictions']->advertiser_caps_value }}</td>
                                        @else
                                           <td>&nbsp;</td>
