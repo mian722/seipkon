@@ -17,9 +17,6 @@
                                     <h3>Postback</h3>
                                  </div>
                               </div>
-                              <div class="col-md-1 col-sm-1">
-                                 <a class="btn btn-success btn-xs" href="{{ route('affiliate.createpostback', Auth::user()->fname) }}" >Create</a>
-                              </div>
                            </div>
                         </div>
                      </div>
@@ -35,7 +32,6 @@
                                  <thead>
                                     <tr>
                                        <th>ID</th>
-                                       <th>Affiliate</th>
                                        <th>Name</th>
                                        <th>Type</th>
                                        <th>Protocol</th>
@@ -49,7 +45,6 @@
                                     @foreach($postbacks as $postback)
                                     <tr>
                                        <td>#{{ $loop->iteration }}</td>
-                                       <td><a href="{{ url('/affiliate-detail/'.$postback->user_id ) }}"> {{ $postback->fname }}</a></td>
                                        <td>@if(!empty($postback->offer_id)) {{ $postback->offer_name }} offer @elseif(!empty($postback->smartlink_id)) {{ $postback->offer_name }} smart
                                        @else All offer
                                        @endif</td>
@@ -58,10 +53,8 @@
                                        <td><a href="#" id="username" class="username" data-type="textarea" data-pk="1" data-url="/post" data-value="{{ $postback->postbacklink }}">View</a></td>
                                        <td>{{ $postback->created_at }}</td>
                                        <td><label class="label {{ ($postback->status == 1) ? 'label-success' : 'label-danger' }}">{{ ($postback->status == 1) ? 'Approved' : 'Disable' }}</label></td>
-                                       <td>
-                                          <a href="{{ url('/postback/edit/'.$postback->id ) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="{{ url('/postback/delete/'.$postback->id ) }}" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                       </td>
+                                       <td><a class="btn btn-success btn-xs" href="{{ route('affiliate.createpostback' , [Auth::user()->fname, 'id'=> $postback->id]) }}" >{{ ( $postback->postbacklink != '' ? 'Update' : 'Create') }}</a></td>
+                                       
                                     </tr>
                                  @endforeach 
                                  </tbody>

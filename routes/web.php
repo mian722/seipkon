@@ -14,15 +14,17 @@
 Route::group(['middleware'=> 'boss'], function(){
 	Route::get('/boss/home', 'BossController@index')->name('boss/home');
 });
-
 Route::group(['prefix' => '{affiliates}', 'middleware'=> 'affiliate'], function(){
 	Route::get('/aff-user', 'AffiliateController@index')->name('affiliate.home');
 	Route::get('/aff-offers', 'AffiliateController@affiliateoffers')->name('affiliate.offers');
-	Route::get('/aff-offers-details', 'AffiliateController@affiliateofferdetail')->name('affiliate.offerdetail');
+	Route::get('/aff-offers-details/{id}', 'AffiliateController@offerdetail')->name('affiliate.offerdetail');
 	Route::get('/aff-approved-offers', 'AffiliateController@approveoffers')->name('affiliate.approveoffers');
 	Route::get('/aff-postback', 'AffiliateController@userpostback')->name('affiliate.postback');
-	Route::get('/aff-create-postback', 'AffiliateController@createuserpostback')->name('affiliate.createpostbackk');
-	Route::post('/aff-save-postback', 'AffiliateController@saveuserpostback')->name('affiliate.savepostbac');
+	Route::get('/aff-create-postback/{id}', 'AffiliateController@createuserpostback')->name('affiliate.createpostback');
+	Route::post('/aff-save-postback', 'AffiliateController@saveuserpostback')->name('affiliate.savepostback');
+	Route::post('/aff-update-postback/{id}', 'AffiliateController@userpostbackupdate')->name('affiliate.userpostbackupdate');
+	Route::get('/aff-postback-create', 'AffiliateController@userpostbackcreate')->name('affiliate.userpostbackcreate');
+	Route::get('/applyoffer/{id}', 'AffiliateController@applyoffer')->name('applyoffer');
 	Route::get('/aff-general-report', 'ReportsController@generalreport')->name('affiliate.generalreport');
 	Route::get('/aff-conversion-report', 'ReportsController@conversionreport')->name('affiliate.conversionreport');
 	Route::get('/aff-conversion-status-report', 'ReportsController@conversionstatusreport')->name('affiliate.conversionstatusreport');
