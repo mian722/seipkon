@@ -14,15 +14,15 @@
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Create Affiliate Invoice </h3>
+                                    <h3>Create Advertiser Invoice </h3>
                                  </div>
                               </div>
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-right">
                                     <ul>
                                        <li><a href="index-2.html">Dashboard</a></li>
-                                       <li>Affiliate Invoices</li>
-                                       <li>Create Affiliate Invoice</li>
+                                       <li>Advertiser Invoices</li>
+                                       <li>Create Advertiser Invoice</li>
                                     </ul>
                                  </div>
                               </div>
@@ -44,11 +44,11 @@
                                     <div class="row">
                                        <div class="col-md-5">
                                           <p>
-                                             <label>Affiliate</label>
+                                             <label>Advertiser</label>
                                              <select name="affiliate_id" id="affiliate_id" class="form-control select2" required="">
-                                                   <option disabled="disabled" selected="selected">Select Affiliate</option>
-                                                   @foreach($affiliates as $affiliate)
-                                                   <option value="{{ $affiliate->id }}">{{ $affiliate->fname }} {{ $affiliate->lname }}</option>
+                                                   <option disabled="disabled" selected="selected">Select Advertiser</option>
+                                                   @foreach($advertisers as $advertiser)
+                                                    <option value="{{ $advertiser->id }}">{{ $advertiser->fname }} {{ $advertiser->lname }}</option>
                                                    @endforeach
                                              </select>
                                           </p>
@@ -66,20 +66,14 @@
                                              <label>Currency</label>
                                              <input type="hidden" name="currency" value="USD" />
                                              <p>USD</p>
-                                             <!-- <select name="currency" class="form-control select2" required="">
-                                                <option disabled="disabled" selected="selected">Select Currency</option>
-                                                @foreach($currencies as $currency)
-                                                <option value="{{ $currency }}">{{ $currency }}</option>
-                                                @endforeach
-                                             </select> -->
                                           </p>
                                        </div>
                                     </div>
                                     <div class="row">
                                        <div class="col-md-5">
                                           <p>
-                                             <label>Timezone</label>
-                                             <select name="timezone" class="form-control select2" required="">
+                                             <label>Timezone</label> 
+                                             <select name="timezone" id="timezone" class="form-control select2" required="">
                                                 <option disabled="disabled" selected="selected">Select TimeZone</option>
                                                 @foreach($timezones as $timezone)
                                                 <option value="{{ $timezone }}">{{ $timezone }}</option>
@@ -310,7 +304,7 @@
             var token = "{{ csrf_token() }}";
             $.ajax({
                type: "POST",
-               url: '{{ route("affiliatedetail") }}',
+               url: '{{ route("advertiserdetail") }}',
                data: { "_token": token, "userid": value},
                success: function( response ) {
                   $('#companyname').html(response['user']['company']);

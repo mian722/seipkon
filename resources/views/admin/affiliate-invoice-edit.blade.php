@@ -12,7 +12,7 @@
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Create Affiliate Invoice </h3>
+                                    <h3>Edit Affiliate Invoice </h3>
                                  </div>
                               </div>
                               <div class="col-md-6 col-sm-6">
@@ -20,7 +20,7 @@
                                     <ul>
                                        <li><a href="index-2.html">Dashboard</a></li>
                                        <li>Affiliate Invoices</li>
-                                       <li>Create Affiliate Invoice</li>
+                                       <li>Edit Affiliate Invoice</li>
                                     </ul>
                                  </div>
                               </div>
@@ -294,6 +294,7 @@
                   var invoice_no = strDate+"-"+value+"-"+random+"/fadhal";
                   $('#invoice_no').val(invoice_no);
                   $('#generated').show();
+                  $('#daterange').html($('#timezone').val());
                }
            });
          });

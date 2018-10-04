@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Offer;
 use App\Templates;
+use App\Invoices;
 use DB;
 use Auth;
 use App\Notifications\SignUpNotification;  
@@ -197,8 +198,8 @@ class AdvertiserController extends Controller
      */
     public function advertiserinvoices()
     {
-        $invoices = Invoices::where('admin_id', Auth::user()->id)->get();
-        return view('admin.affiliate-invoices', compact('invoices'));
+        $invoices = Invoices::where('admin_id', Auth::user()->id)->where('user_role_id', 4)->get();
+        return view('admin.advertiser-invoices', compact('invoices'));
     }
 
     /**
@@ -210,14 +211,14 @@ class AdvertiserController extends Controller
     {
         $currencies = $this->getcurrency();
         $timezones = $this->gettimezones();
-        $affiliates = $this->getuser(5);
-        return view('admin.affiliate-invoice-create',compact('currencies', 'timezones', 'offers', 'affiliates'));
+        $advertisers = $this->getuser(4);
+        return view('admin.advertiser-invoice-create',compact('currencies', 'timezones', 'offers', 'advertisers'));
     }
 
     public function advertiserinvoicesedit($id)
     {
         $offeredit = Invoices::find($id);
-        return view('admin.affiliate-invoice-edit',compact('offeredit'));
+        return view('admin.advertiser-invoice-edit',compact('offeredit'));
     }
 
 
@@ -264,12 +265,28 @@ class AdvertiserController extends Controller
         return $request->all();
     }
 
+    public function advertiserdetail(Request $request){
+        $user = User::with('role')->where('id', $request->userid)->first();
+        $offers = Offer::where('offers.adv_id', $request->userid)
+                        ->get();
+        $msg = '<option disabled="disabled" selected="selected">Select Offer</option>';
+        foreach ($offers as $offer) {
+            $msg .= '<option value="'.$offer->id.'">'.$offer->offer_name.'</option>';
+        }
+        $response = array(
+            'user' => $user,
+            'msg' => $msg,
+        );
+        return \Response::json($response);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function advertiseraddinvoices(Request $request)
+    public function advertisersinvoicesedit(Request $request)
     {
         //return Auth::user()->id;
         $request->merge(['name' => json_encode($request->name)]);

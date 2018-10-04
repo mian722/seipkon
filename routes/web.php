@@ -114,11 +114,12 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/advertiser/delete/{id}', 'AdvertiserController@delete')->name('advertiser.delete');	
 	Route::get('/advertiser/block/{id}', 'AdvertiserController@block')->name('advertiser.block');	
 	Route::get('/advertiser/unblock/{id}', 'AdvertiserController@unblock')->name('advertiser.unblock');	
-	Route::get('/advertisers-invoices', 'AdvertiserController@advertisersinvoices')->name('advertisersinvoices');
-	Route::get('/advertisers-invoice-create', 'AdvertiserController@advertisersinvoicescreate')->name('advertisersinvoicescreate'); 
+	Route::post('/advertiserdetail', 'AdvertiserController@advertiserdetail')->name('advertiserdetail'); 
+	Route::get('/advertisers-invoices', 'AdvertiserController@advertiserinvoices')->name('advertisersinvoices');
+	Route::get('/advertisers-invoice-create', 'AdvertiserController@advertiserinvoicescreate')->name('advertisersinvoicescreate'); 
 	Route::post('/advertisers-invoice/add', 'AdvertiserController@advertisersaddinvoices')->name('advertisersaddinvoices'); 
 	Route::post('/advertisers-invoice/update/{id}', 'AdvertiserController@advertisersupdateinvoices')->name('advertisersupdateinvoices'); 
-	Route::get('/advertisers-invoice/edit/{id}', 'AdvertiserController@advertisersinvoicesedit')->name('advertisersinvoicesedit'); 
+	Route::get('/advertisers-invoice/edit/{id}', 'AdvertiserController@advertiserinvoicesedit')->name('advertisersinvoicesedit'); 
 
 
 	/* User Accounts */
@@ -187,7 +188,6 @@ Route::get('/ui_pagination', function () { return view('ui_pagination'); });
 
 Route::get('/affiliate-payout-tiers', function () { return view('affiliate-payout-tiers'); });
 
-Route::get('/advertisers-invoice-create', function () { return view('advertisers-invoice-create'); });
 
 Route::get('/teams', function () { return view('teams'); });
 Route::get('/teams-create', function () { return view('teams-create'); });

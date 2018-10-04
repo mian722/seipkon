@@ -56,7 +56,7 @@ class AffiliateController extends Controller
      */
     public function affiliateinvoices()
     {
-        return $invoices = Invoices::where('admin_id', Auth::user()->id)->get();
+        $invoices = Invoices::where('admin_id', Auth::user()->id)->where('user_role_id', 5)->get();
         return view('admin.affiliate-invoices', compact('invoices'));
     }
 
@@ -149,6 +149,7 @@ class AffiliateController extends Controller
         $invoices->currency = $request->currency;
         $invoices->timezone = $request->timezone;
         $invoices->daterange = $request->daterange;
+        $invoices->user_role_id = $request->user_role_id;
         $invoices->memo = $request->memo;
         $invoices->offer_names = $request->name;
         $invoices->offer_clicks = $request->clicks;
