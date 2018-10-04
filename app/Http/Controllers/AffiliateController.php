@@ -661,4 +661,24 @@ class AffiliateController extends Controller
         }
     }
 
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function affuserinvoices()
+    {
+        $invoices = Invoices::where('affiliate_id', Auth::user()->id)->where('user_role_id', 5)->where('status', 1)->get();
+        return view('affiliate.invoices', compact('invoices'));
+    }
+
+    public function getaffinvoice($name, $id){
+       $invoice = Invoices::Where('id',$id)->first();
+       $user = User::Where('id',$invoice->affiliate_id)->first();
+       $admin = User::Where('id',$invoice->admin_id)->first();
+        return view('admin.invoice',compact('invoice','user','admin'));
+    }
+
 }

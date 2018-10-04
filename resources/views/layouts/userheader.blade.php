@@ -389,7 +389,7 @@
                               <li><a href="{{ asset('conversion-status-report') }}">Conversion Status Report</a></li>
                            </ul>
                         </li>
-                        <li><a href="{{ route('affiliate.postback', Auth::user()->fname) }}"><i class="fa fa-file-o"></i> Invoice</a></li>
+                        <li><a href="{{ route('affuserinvoices', Auth::user()->fname) }}"><i class="fa fa-file-o"></i> Invoice</a></li>
                         <li><a href="{{ route('affiliate.postback', Auth::user()->fname) }}"><i class="fa fa-link"></i> Postback</a></li>
                      @else
                         <li class="active">

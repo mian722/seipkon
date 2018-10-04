@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.userheader')
          
          @section('content') 
         <!-- Right Side Content Start -->
@@ -36,14 +36,11 @@
                                     <tr>
                                        <th>Date</th>
                                        <th>Invoice NO.</th>
-                                       <th>Affiliate</th>
-                                       <th>Manager</th>
                                        <th>Start Date</th>
                                        <th>End Date</th>
                                        <th>Total Amount</th>
                                        <th>Memo</th>
                                        <th>Status</th>
-                                       <th>Action</th>
                                     </tr>
                                  </thead>
                                  <tbody>
@@ -51,17 +48,7 @@
                                     @foreach($invoices as $invoice)
                                     <tr>
                                        <td>#{{ $loop->iteration }}</td>
-                                       <td><a href="{{ url('/invoice/'.$invoice->id) }}" style="color: #1CD2C9;">{{ $invoice->invoiceno }}</a></td>
-                                       <?php $user = null;
-                                       if ($invoice->affiliate_id != 0) {
-                                          $user = App\User::select('fname', 'lname', 'managerid')->where('id', $invoice->affiliate_id)->first();
-                                       }  ?>
-                                       <td>{{ ($user != null) ? $user->fname : '&nbsp;' }} {{ ($user != null) ? $user->lname : '&nbsp;' }}</td>
-                                       <?php $manager = null;
-                                       if ($invoice->affiliate_id != 0) {
-                                          $manager = App\User::select('fname', 'lname')->where('id', ($user != null) ? $user->managerid : '&nbsp;')->first();
-                                       }  ?>
-                                       <td>{{ ($manager != null) ? $manager->fname : '&nbsp;' }} {{ ($manager != null) ? $manager->lname : '&nbsp;' }}</td>
+                                       <td><a href="{{ url('/'.Auth::user()->fname.'/aff-invoice/'.$invoice->id) }}" style="color: #1CD2C9;">{{ $invoice->invoiceno }}</a></td>
 
                                        <?php $date = explode('-',$invoice->daterange) ?>
                                        <td><?php echo $date[0]; ?></td>
@@ -79,10 +66,6 @@
                                        <td><?php echo $text; ?></td>
                                        <td>
                                           <span class="label label-{{ $invoice->status == '1' ? 'success' : 'warning'}}">{{ $invoice->status == '1' ? 'Paid' : 'Pending'}}</span>
-                                       </td>
-                                       <td>
-                                          <a href="{{ route('affiliateinvoicesedit',$invoice->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                        </td>
                                     </tr>
                                     @endforeach

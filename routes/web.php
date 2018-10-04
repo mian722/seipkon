@@ -28,6 +28,8 @@ Route::group(['prefix' => '{affiliates}', 'middleware'=> 'affiliate'], function(
 	Route::get('/aff-general-report', 'ReportsController@generalreport')->name('affiliate.generalreport');
 	Route::get('/aff-conversion-report', 'ReportsController@conversionreport')->name('affiliate.conversionreport');
 	Route::get('/aff-conversion-status-report', 'ReportsController@conversionstatusreport')->name('affiliate.conversionstatusreport');
+	Route::get('/aff-invoices', 'AffiliateController@affuserinvoices')->name('affuserinvoices');
+	Route::get('/aff-invoice/{id}', 'AffiliateController@getaffinvoice')->name('getaffinvoice');
 });
 
 Route::group(['prefix' => '{affiliates}', 'middleware'=> 'advertiser'], function(){
