@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.userheader')
          
          @section('content') 
          <!-- Right Side Content Start -->
@@ -63,30 +63,6 @@
                                              <div class="col-md-11">
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input  id="chk_1" name="advertiser" type="checkbox">
-                                                      <label class="inline control-label" for="chk_1">Advertiser</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_2" name="affiliate" type="checkbox">
-                                                      <label class="inline control-label" for="chk_2">Affiliate</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
-                                                      <input id="chk_3" name="advmanger" type="checkbox">
-                                                      <label class="inline control-label" for="chk_3"> Advertiser Manager</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
-                                                      <input id="chk_4" name="affmanager" checked="checked" type="checkbox">
-                                                      <label class="inline control-label" for="chk_4"> Affiliate Manager</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
                                                       <input id="chk_5" name="smartlinkcheck" type="checkbox">
                                                       <label class="inline control-label" for="chk_5">SmartLink</label>
                                                    </div>
@@ -147,12 +123,6 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input id="chk_16" name="revenue" type="checkbox">
-                                                      <label class="inline control-label" for="chk_16">Revenue</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
                                                       <input id="chk_17" checked="checked" name="payout" type="checkbox">
                                                       <label class="inline control-label" for="chk_17">Payout</label>
                                                    </div>
@@ -161,12 +131,6 @@
                                                    <div class="form-group form-checkbox">
                                                       <input id="chk_18" name="amount" type="checkbox">
                                                       <label class="inline control-label" for="chk_18">Amount</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
-                                                      <input id="chk_19" name="profit" type="checkbox">
-                                                      <label class="inline control-label" for="chk_19">Profit</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -232,78 +196,9 @@
                                              </div>
                                           </div>
                                           <div class="row">
-                                             <div class="col-md-1"><label>Filter</label></div>
-                                             <div class="col-md-11">
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" name="smartlinklist" multiple="multiple" data-placeholder="Select SmartLink">
-                                                      <option>Alabama</option>
-                                                      <option>Alaska</option>
-                                                      <option>California</option>
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" name="offerlist" multiple="multiple" data-placeholder="Select Offer">
-                                                      @foreach($offers as $offer)
-                                                      <option value="{{ $offer->id }}">{{ $offer->offer_name }}</option>
-                                                      @endforeach
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" name="countrylist" multiple="multiple" data-placeholder="Select Country">
-                                                      @foreach($countries as $key => $value)
-                                                         <option {{ isset($updatedata->restrictions) ? ((strpos($updatedata->restrictions->geo_targeting, $key) !== false) ? 'selected' : '') : '' }} value="{{ $key }}">{{ $value[1] }}</option>
-                                                      @endforeach
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" name="affiliatelist" multiple="multiple" data-placeholder="Select Affiliate">
-                                                      @foreach($affiliates as $affiliate)
-                                                      <option value="{{ $affiliate->id }}">{{ $affiliate->fname }}</option>
-                                                      @endforeach
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" name="affiliatemanager" multiple="multiple" data-placeholder="Select Affiliate Manager">
-                                                      @foreach($aff_managers as $affman)
-                                                      <option value="{{ $affman->id }}">{{ $affman->fname }}</option>
-                                                      @endforeach
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" name="advertiserlist" multiple="multiple" data-placeholder="Select Advertiser">
-                                                      @foreach($advertisers as $advertiser)
-                                                      <option value="{{ $advertiser->id }}">{{ $advertiser->fname }}</option>
-                                                      @endforeach
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" name="advertisermanager" multiple="multiple" data-placeholder="Select Advertiser Manager">
-                                                      @foreach($adv_managers as $adv_manager)
-                                                      <option value="{{ $adv_manager->id }}">{{ $adv_manager->fname }}</option>
-                                                      @endforeach
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" name="plateformlist" multiple="multiple" data-placeholder="Select Platform">
-                                                      @foreach($getplatforms as $getplatform)
-                                                      <option value="{{ $getplatform }}">{{ $getplatform }}</option>
-                                                      @endforeach
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" name="conversionstatus" data-placeholder="Approved & Pending Conversions">
-                                                      <option value="all">All</option>
-                                                      <option value="1">Approved</option>
-                                                      <option value="0">Pending</option>
-                                                      <option value="2">Rejected</option>
-                                                   </select>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="row">
-                                             <div class="col-md-1"><label>Timezone</label></div>
-                                             <div class="col-md-11">
-                                                <div class="col-md-6">
+                                             <div class="col-md-12">
+                                                <div class="col-md-5">
+                                                   <label>Timezone</label>
                                                    <select class="form-control select2" name="timezonelist">
                                                       <option selected="" value="null">None</option>
                                                       @foreach($timezones as $timezone)
@@ -311,15 +206,12 @@
                                                       @endforeach
                                                    </select>
                                                 </div>
-                                             </div>
-                                          </div>
-                                          <div class="row">
-                                             <div class="col-md-1"><label>Range</label></div>
-                                             <div class="col-md-11">
-                                                <div class="col-md-6">
-                                                         <input type="text" name="daterange" class="form-control" id="reservation" placeholder="Date" />
+                                                <div class="col-md-5">
+                                                   <label>Range</label>
+                                                   <input type="text" name="daterange" class="form-control" id="reservation" placeholder="Date" />
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-2">
+                                                   <label style="width: 100%;">&nbsp;</label>
                                                    <button class="btn btn-success">Generate Report</button>
                                                 </div>
                                              </div>
@@ -340,14 +232,11 @@
                                        <th>NO.</th>
                                        <th>Coversion Time</th>
                                        <th>Click Time</th>
-                                       <th>Affiliate</th>
-                                       <th>Affiliate Manager</th>
                                        <th>Offer</th>
-                                       <th>Source ID</th>
                                        <th>Clicks ID</th>
-                                       <th>Clicks IP</th>
-                                       <th>Status</th>
                                        <th>Payout</th>
+                                       <th>Status</th>
+                                       <th>User Agent</th>
                                     </tr>
                                  </thead>
                                  <tbody>
@@ -408,7 +297,7 @@
             var token = "{{ csrf_token() }}";
             $.ajax({
                type: "POST",
-               url: '{{ route("conversionreportgenerate") }}',
+               url: '{{ route("affconversionreportgenerate", Auth::user()->fname) }}',
                data: { "_token": token, "allform": allform},
                success: function( response ) {
                   $('#report_response').html(response);

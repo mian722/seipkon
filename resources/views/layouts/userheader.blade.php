@@ -306,7 +306,7 @@
                               <a class="dropdown-toggle profile-toggle" href="#" data-toggle="dropdown">
                                  <img src="{{ asset('public/assets/img/avatar.jpg') }}" class="profile-avator" alt="admin profile" />
                                  <div class="profile-avatar-txt">
-                                    <p>{{ Auth::user()->fname }}</p>
+                                    <p>Jhon Doe</p>
                                     <i class="fa fa-angle-down"></i>
                                  </div>
                               </a>
@@ -353,8 +353,8 @@
                      <img src="{{ asset('public/assets/img/avatar.jpg') }}" alt="profile" />
                   </div>
                   <div class="profile-info">
-                     <h3>{{ Auth::user()->fname }}</h3>
-                     <p>Welcome {{ Auth::user()->roles_id == 4 ? 'Advertiser' : 'Affiliate' }} !</p>
+                     <h3>Jhon Doe</h3>
+                     <p>Welcome Admin !</p>
                   </div>
                </div>
                <!-- Sidebar Profile End -->
@@ -384,9 +384,9 @@
                            Reports
                            </a>
                            <ul class="collapse list-unstyled" id="reports">
-                              <li><a href="{{ asset('general-report') }}">General Report</a></li>
-                              <li><a href="{{ asset('conversion-report') }}">Conversion Report</a></li>
-                              <li><a href="{{ asset('conversion-status-report') }}">Conversion Status Report</a></li>
+                              <li><a href="{{ route('affiliate.generalreport', Auth::user()->fname)}}">General Report</a></li>
+                              <li><a href="{{ route('affiliate.conversionreport', Auth::user()->fname) }}">Conversion Report</a></li>
+                              <!-- <li><a href="{{ route('affiliate.operationreport', Auth::user()->fname) }}">Opration Report</a></li> -->
                            </ul>
                         </li>
                         <li><a href="{{ route('affiliate.postback', Auth::user()->fname) }}"><i class="fa fa-file-o"></i> Invoice</a></li>
@@ -408,11 +408,11 @@
                            Reports
                            </a>
                            <ul class="collapse list-unstyled" id="reports">
-                              <li><a href="{{ route('advertiser.generalreport', Auth::user()->fname) }}">General Report</a></li>
-                              <li><a href="{{ route('advertiser.conversionreport', Auth::user()->fname) }}">Conversion Report</a></li>
+                              <li><a href="{{ asset('general-report') }}">General Report</a></li>
+                              <li><a href="{{ asset('conversion-report') }}">Conversion Report</a></li>
                            </ul>
                         </li>
-                        <li><a href="{{ route('affiliate.invoice', Auth::user()->fname) }}"><i class="fa fa-file-o"></i> Invoice</a></li>
+                        <li><a href="{{ route('affiliate.postback', Auth::user()->fname) }}"><i class="fa fa-file-o"></i> Invoice</a></li>
                      @endif
                      
                   </ul>

@@ -25,9 +25,13 @@ Route::group(['prefix' => '{affiliates}', 'middleware'=> 'affiliate'], function(
 	Route::post('/aff-update-postback/{id}', 'AffiliateController@userpostbackupdate')->name('affiliate.userpostbackupdate');
 	Route::get('/aff-postback-create', 'AffiliateController@userpostbackcreate')->name('affiliate.userpostbackcreate');
 	Route::get('/applyoffer/{id}', 'AffiliateController@applyoffer')->name('applyoffer');
-	Route::get('/aff-general-report', 'ReportsController@generalreport')->name('affiliate.generalreport');
-	Route::get('/aff-conversion-report', 'ReportsController@conversionreport')->name('affiliate.conversionreport');
-	Route::get('/aff-conversion-status-report', 'ReportsController@conversionstatusreport')->name('affiliate.conversionstatusreport');
+	Route::get('/aff-general-report', 'UserReportController@affgeneralreport')->name('affiliate.generalreport');
+	Route::post('/aff-general-report-generate', 'UserReportController@affgeneralreportgenerate')->name('affgeneralreportgenerate');
+	Route::get('/aff-conversion-report', 'UserReportController@affconversionreport')->name('affiliate.conversionreport');
+	Route::post('/aff-conversion-reports-generate', 'UserReportController@affconversionreportgenerate')->name('affconversionreportgenerate');
+	Route::get('/aff-operation-report', 'UserReportController@affoperationreport')->name('affiliate.operationreport');
+	
+
 });
 
 Route::group(['prefix' => '{affiliates}', 'middleware'=> 'advertiser'], function(){
