@@ -25,21 +25,15 @@ Route::group(['prefix' => '{affiliates}', 'middleware'=> 'affiliate'], function(
 	Route::post('/aff-update-postback/{id}', 'AffiliateController@userpostbackupdate')->name('affiliate.userpostbackupdate');
 	Route::get('/aff-postback-create', 'AffiliateController@userpostbackcreate')->name('affiliate.userpostbackcreate');
 	Route::get('/applyoffer/{id}', 'AffiliateController@applyoffer')->name('applyoffer');
-<<<<<<< HEAD
+
 	Route::get('/aff-general-report', 'UserReportController@affgeneralreport')->name('affiliate.generalreport');
 	Route::post('/aff-general-report-generate', 'UserReportController@affgeneralreportgenerate')->name('affgeneralreportgenerate');
 	Route::get('/aff-conversion-report', 'UserReportController@affconversionreport')->name('affiliate.conversionreport');
 	Route::post('/aff-conversion-reports-generate', 'UserReportController@affconversionreportgenerate')->name('affconversionreportgenerate');
 	Route::get('/aff-operation-report', 'UserReportController@affoperationreport')->name('affiliate.operationreport');
-	
 
-=======
-	Route::get('/aff-general-report', 'ReportsController@generalreport')->name('affiliate.generalreport');
-	Route::get('/aff-conversion-report', 'ReportsController@conversionreport')->name('affiliate.conversionreport');
-	Route::get('/aff-conversion-status-report', 'ReportsController@conversionstatusreport')->name('affiliate.conversionstatusreport');
 	Route::get('/aff-invoices', 'AffiliateController@affuserinvoices')->name('affuserinvoices');
 	Route::get('/aff-invoice/{id}', 'AffiliateController@getaffinvoice')->name('getaffinvoice');
->>>>>>> e5b8f62b55df1db8344fd35b697988c34815dba9
 });
 
 Route::group(['prefix' => '{affiliates}', 'middleware'=> 'advertiser'], function(){
