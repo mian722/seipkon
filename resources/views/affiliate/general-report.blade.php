@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.userheader')
          
          @section('content') 
          <!-- Right Side Content Start -->
@@ -43,30 +43,6 @@
                                           <div class="row">
                                              <div class="col-md-1"><label>Indicator</label></div>
                                              <div class="col-md-11">
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_1" type="checkbox" name="advertiser">
-                                                      <label class="inline control-label" for="chk_1">Advertiser</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_2" type="checkbox" name="affiliate">
-                                                      <label class="inline control-label" for="chk_2">Affiliate</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
-                                                      <input id="chk_3" type="checkbox" name="adv_manager">
-                                                      <label class="inline control-label" for="chk_3"> Advertiser Manager</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
-                                                      <input id="chk_4" type="checkbox" name="aff_manager">
-                                                      <label class="inline control-label" for="chk_4"> Affiliate Manager</label>
-                                                   </div>
-                                                </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
                                                       <input id="chk_5" type="checkbox" name="smartlink">
@@ -117,12 +93,6 @@
                                                 </div>
                                                 <div class="col-md-2">
                                                    <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_13" type="checkbox" name="revenue">
-                                                      <label class="inline control-label" for="chk_13">Revenue</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
                                                       <input id="chk_14" type="checkbox" name="payout">
                                                       <label class="inline control-label" for="chk_14">Payout</label>
                                                    </div>
@@ -131,12 +101,6 @@
                                                    <div class="form-group form-checkbox">
                                                       <input id="chk_15" type="checkbox" name="amount">
                                                       <label class="inline control-label" for="chk_15">Amount</label>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                   <div class="form-group form-checkbox">
-                                                      <input checked="checked" id="chk_16" type="checkbox" name="profit">
-                                                      <label class="inline control-label" for="chk_16">Profit</label>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -195,34 +159,6 @@
                                                    </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Affiliate" name="affiliate_id">
-                                                      @foreach($affiliates as $affiliate)
-                                                         <option value="{{ $affiliate->id }}">{{ $affiliate->fname }}</option>
-                                                      @endforeach
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Affiliates Manager" name="aff_manager_id">
-                                                      @foreach($aff_managers as $aff_manager)
-                                                         <option value="{{ $aff_manager->id }}">{{ $aff_manager->fname }}</option>
-                                                      @endforeach
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Advertisers" name="advertiser_id">
-                                                      @foreach($advertisers as $advertiser)
-                                                         <option value="{{ $advertiser->id }}">{{ $advertiser->fname }}</option>
-                                                      @endforeach
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" multiple="multiple" data-placeholder="Select Advertisers Manager" name="adv_manager_id">
-                                                      @foreach($adv_managers as $adv_manager)
-                                                         <option value="{{ $adv_manager->id }}">{{ $adv_manager->fname }}</option>
-                                                      @endforeach
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
                                                    <select class="form-control select2" multiple="multiple" data-placeholder="Select Platform" name="platform_name">
                                                       <option value="windows">Windows</option>
                                                       <option value="mac">Mac</option>
@@ -232,14 +168,6 @@
                                                       <option value="ipad">iPod</option>
                                                       <option value="android">Android</option>
                                                       <option value="blackberry">BlackBerry</option>
-                                                   </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                   <select class="form-control select2" data-placeholder="Approved & Pending Conversions" name="conversion_status">
-                                                      <option value="null">All</option>
-                                                      <option value="1">Approved</option>
-                                                      <option value="0">Pending</option>
-                                                      <option value="2">Rejected</option>
                                                    </select>
                                                 </div>
                                              </div>
@@ -350,7 +278,7 @@
             var token = "{{ csrf_token() }}";
             $.ajax({
                type: "POST",
-               url: '{{ route("generalreportgenerate") }}',
+               url: '{{ route("affgeneralreportgenerate", Auth::user()->fname) }}',
                data: { "_token": token, "allform": allform},
                success: function( response ) {
                   $('#report_response').html(response);
