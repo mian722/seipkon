@@ -42,7 +42,7 @@
                    
                   <!-- Widget Row Start -->
                   <div class="row">
-                     <div class="col-md-3">
+                     <div class="col-md-4">
                         <div id="clock" class="widget_card alert">
                            <div class="widget_card_header">
                               <span class="widget_close" data-toggle="tooltip" title="Remove" data-dismiss="alert" aria-label="close">
@@ -55,13 +55,13 @@
                               </div>
                               <div class="widget_text">
                                  <h3 class="count">{{ $clicks }}</h3>
-                                 <p>Clicks</p>
+                                 <p>Total Clicks</p>
                               </div>
                            </div>
                         </div>
                      </div>
                      <!-- End Col -->
-                     <div class="col-md-3">
+                     <div class="col-md-4">
                         <div id="widget_visitor" class="widget_card alert">
                            <div class="widget_card_header">
                               <span class="widget_close" data-toggle="tooltip" title="Remove" data-dismiss="alert" aria-label="close">
@@ -74,13 +74,13 @@
                               </div>
                               <div class="widget_text">
                                  <h3 class="count">{{ $signups }}</h3>
-                                 <p>Conversions</p>
+                                 <p>Total Conversions</p>
                               </div>
                            </div>
                         </div>
                      </div>
                      <!-- End Col -->
-                     <div class="col-md-3">
+                     <div class="col-md-4">
                         <div id="widget_user" class="widget_card alert">
                            <div class="widget_card_header">
                               <span class="widget_close" data-toggle="tooltip" title="Remove" data-dismiss="alert" aria-label="close">
@@ -92,14 +92,14 @@
                                  <i class="fa fa-money" aria-hidden="true"></i>
                               </div>
                               <div class="widget_text">
-                                 <h3><span class="count">{{ $activeoffers }}</span></h3>
-                                 <p>Active Offers</p>
+                                 <h3>$<span class="count">{{ $earning }}</span></h3>
+                                 <p>Total Earning</p>
                               </div>
                            </div>
                         </div>
                      </div>
                      <!-- End Col -->
-                     <div class="col-md-3">
+                     <!-- <div class="col-md-3">
                         <div id="widget_profits" class="widget_card alert">
                            <div class="widget_card_header">
                               <span class="widget_close" data-toggle="tooltip" title="Remove" data-dismiss="alert" aria-label="close">
@@ -111,12 +111,12 @@
                                  <i class="fa fa-flask"></i>
                               </div>
                               <div class="widget_text">
-                                  <h3><span class="count">{{ $pendingoffers }}</span></h3>
-                                 <p>Pending Offers</p>
+                                 <h3>$<span class="count">2537</span></h3>
+                                 <p>Monthly Profits</p>
                               </div>
                            </div>
                         </div>
-                     </div>
+                     </div> -->
                      <!-- End Col -->
                   </div>
                   <!-- End Widget Row -->

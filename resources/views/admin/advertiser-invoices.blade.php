@@ -66,7 +66,7 @@
                                        <?php $date = explode('-',$invoice->daterange) ?>
                                        <td><?php echo $date[0]; ?></td>
                                        <td><?php echo $date[1]; ?></td>
-                                       <td>tamount</td>
+                                       <td>${{ array_sum(json_decode($invoice->offer_amounts)) }}</td>
                                        <?php
                                        $text = $invoice->memo;
                                        $limit = 10;

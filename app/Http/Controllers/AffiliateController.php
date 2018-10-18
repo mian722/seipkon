@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Notifications\SignUpNotification;
+use Illuminate\Support\Facades\Hash;
 use App\Offer;
 use App\AssignOffers;
 use App\Invoices;
+use App\clicks;
+use App\signup;
+use App\PaymentMethods;
+use Carbon\Carbon;
 use DB;
 use Auth;
+use Carbon\CarbonPeriod;
+use Carbon\CarbonInterval;
 use App\AffiliatePayout;
 use App\Templates;
 class AffiliateController extends Controller
@@ -21,9 +28,88 @@ class AffiliateController extends Controller
      */
     public function index()
     {
-        return view('index');
+      $clicks = clicks::where('affiliate_id',Auth::user()->id)->count();
+      $signups = signup::where('affiliate_id',Auth::user()->id)->count();
+      $earningqry = invoices::select('offer_amounts')->where('affiliate_id', Auth::user()->id)->get();
+      $earning = 0;
+      foreach ($earningqry as $value) {
+       $earning += array_sum(json_decode($value->offer_amounts));
+      }
+     //  $generalquery = "Select  o.*
+     //  , (SELECT COUNT(clc.click) FROM clicks clc WHERE clc.affiliate_id = u.id and clc.offer_id = o.id) as sumclicks
+     //  , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.affiliate_id = u.id and uc.offer_id = o.id) as uniquesumclicks
+     //  , (SELECT COUNT(s.signup) FROM signups s WHERE s.affiliate_id = u.id and s.offer_id = o.id) as sumsignup
+     //  from users u LEFT JOIN assignoffers ao on u.id = ao.user_id
+     //  Left Join offers o on o.id = ao.offer_id
+     //  where u.id = ".Auth::user()->id;
+     // $offers = DB::select($generalquery);
+      return view('affiliate.index',compact('clicks','signups','earning'));
     }
+public function daterangepicker1(Request $request)
+    {
+      
+    //  return DB::table('clicks')
+    // ->select(DB::raw('count(click) as count, HOUR(created_at) as hour'))
+    // ->whereDate('created_at', '=', Carbon::now()->toDateString())
+    // ->groupBy('hour')
+    // ->get();
+//       $start = $request->from.' 00:00:00';
+//      return $end = $request->to.' 23:59:59';
+//       return DB::table('clicks')->select(DB::raw('DAY(created_at) as hour, count(clicks.id) as total'))
+// ->groupBy('hour')->whereBetween('created_at', [$start, $end])
+// ->where('affiliate_id' ,Auth::user()->id)
+// ->tosql();
+      // $start = Carbon::now()->subDays(7); 
+      // for ($i = 0 ; $i <= 7; $i++) 
+      //   { 
+      //     $dates[] = $start->copy()->addDays($i)->format('d');
+      //     //$dates[] = Carbon::now()->subDays($i)->format('d'); 
+      //   } 
+      //   return $dates;
+      //   $alldata = [];
+      //   foreach ($dates as $value) {
+      //                     return $alldata[$key]=$value;
+      //                   }                
+      //   return $dates;
+        $start = Carbon::parse($request->from)->startOfDay();
+        $end = Carbon::parse($request->to)->endOfDay();
 
+        $date = [];
+        while ($start->lte($end)) {
+            $date[] = $start->copy()->format('Y-m-d H:i:s');
+            //$dates[] = $this->chartdata($date);
+            $start->addDay();
+        }
+        //return $date;
+        $shahid = [];
+        foreach ($date as $value) {
+          $shahid[] = DB::table('clicks')->whereBetween('created_at', $value)
+            ->where('affilsiate_id' ,Auth::user()->id)
+            ->get();
+        }
+        return $shahid;
+    }
+    public function chartdata($data)
+    {
+      //return $data;
+       $range1 = '';
+        $range2 = '';
+        $range3 = '';
+              $startdate = $data;
+              //$startdate = Carbon::createFromFormat('d/m/Y H:i:s', $start, $request->timezone);
+              $enddate = $data;
+              //$enddate = Carbon::createFromFormat('d/m/Y H:i:s', $end, $request->timezone);
+              $range1 = " and clc.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+              $range3 = " and s.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+       
+     $generalquery = "Select  ao.updated_at
+      , (SELECT COUNT(clc.click) FROM clicks clc WHERE clc.affiliate_id = u.id and clc.offer_id = ao.offer_id".$range1." ) as sumclicks
+      , (SELECT COUNT(s.signup) FROM signups s WHERE s.affiliate_id = u.id and s.offer_id = ao.offer_id ".$range3.") as sumsignup
+      from users u LEFT JOIN assignoffers ao on u.id = ao.user_id
+      where u.id = ".Auth::user()->id;
+     return $offers = DB::select($generalquery);
+
+    }
     public function affiliatelist()
     {
 
@@ -36,7 +122,13 @@ class AffiliateController extends Controller
         $affilates = User::Where('roles_id',5)->WhereIn('status',[1,2])->get();
         return view('admin.affiliates',compact('affilates'));
     }
-
+    public function affiliateprofile()
+    {
+      $countries = $this->getcountry();
+      $affiliate = User::where('id', Auth::user()->id)->first();
+      $payments = PaymentMethods::where('user_id', Auth::user()->id)->first();
+      return view('affiliate.profile',compact('countries','affiliate','payments'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -94,29 +186,55 @@ class AffiliateController extends Controller
      */
     public function affiliateoffersdetails(Request $request)
     {
-        $offers = Offer::with('restrictions')->where('id', $request->offerid)->first();
+        //return $request->all();
+        //$offers = Offer::with('restrictions')->where('id', $request->offerid)->first();
+        $range1 = '';
+        $range2 = '';
+        $range3 = '';
+        if(isset($request->daterange)){
+              $explode = explode(" - ", $request->daterange);
+              $start = $explode[0].' 00:00:00';
+              $startdate = Carbon::createFromFormat('d/m/Y H:i:s', $start, $request->timezone);
+              $end = $explode[1].' 23:59:59';
+              $enddate = Carbon::createFromFormat('d/m/Y H:i:s', $end, $request->timezone);
+              $range1 = " and clc.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+              $range2 = " and uc.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+              $range3 = " and s.updated_at BETWEEN '".$startdate."' AND '".$enddate."'";
+        }
+     $generalquery = "Select  o.*
+      , (SELECT COUNT(clc.click) FROM clicks clc WHERE clc.affiliate_id = u.id and clc.offer_id = o.id".$range1." ) as sumclicks
+      , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.affiliate_id = u.id and uc.offer_id = o.id".$range2." ) as uniquesumclicks
+      , (SELECT COUNT(s.signup) FROM signups s WHERE s.affiliate_id = u.id and s.offer_id = o.id ".$range3.") as sumsignup
+      from users u LEFT JOIN assignoffers ao on u.id = ao.user_id
+      Left Join offers o on o.id = ao.offer_id
+      where o.id = ".$request->offerid;
+     $offers = DB::select($generalquery);
+//       foreach ($offers as $offer) {
+//        $a = $offer->id;
+// }
+// return $a;
         $response = array(
             'msg' => '<tr>
-                         <td><input type="hidden" class="name" name="name[]" value="'.$offers->id.'" />'.$offers->offer_name.'</td>
+                         <td><input type="hidden" class="name" name="name[]" value="'.$offers[0]->id.'" />'.$offers[0]->offer_name.'</td>
                          <td>
-                                 <input type="hidden" class="clicks" name="clicks[]" value="0" />
+                                 <input type="hidden" class="clicks" name="clicks[]" value="'.$offers[0]->sumclicks.'" />
                               <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
                                  <input type="hidden" name="_token" value="'.csrf_token().'" />
-                                 <a href="#" id="clicks" class="tclicks" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">0</a>
+                                 <a href="#" id="clicks" class="tclicks" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">'.$offers[0]->sumclicks.'</a>
                               </form>
                          </td>
                          <td>
-                                 <input type="hidden" class="signups" name="signup[]" value="0" />
+                                 <input type="hidden" class="signups" name="signup[]" value="'.$offers[0]->sumsignup.'" />
                               <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
                                  <input type="hidden" name="_token" value="'.csrf_token().'" />
-                                 <a href="#" id="signup" class="tsignup" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">0</a>
+                                 <a href="#" id="signup" class="tsignup" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">'.$offers[0]->sumsignup.'</a>
                               </form>
                          </td>
                          <td>
-                                 <input type="hidden" class="amounts" name="amount[]" value="0" />
+                                 <input type="hidden" class="amounts" name="amount[]" value="'.$offers[0]->sumsignup * $offers[0]->prev_payout.'" />
                               <form action="'.route('affiliateupdateclicks', $request->offerid).'" method="post">
                                  <input type="hidden" name="_token" value="'.csrf_token().'" />
-                                 <a href="#" id="amount" class="tamount" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">0</a>
+                                 <a href="#" id="amount" class="tamount" data-url="'.route('affiliateupdateclicks', $request->offerid).'" data-pk="'.$request->offerid.'" data-type="text" data-placement="top" data-title="Edit Comment">'.$offers[0]->sumsignup * $offers[0]->prev_payout.'</a>
                               </form>
                          </td>
                          <td><span id="deloffer" class="btn btn-danger deloffer"><input type="hidden" value="'.$request->offerid.'" /><i style="font-size: 18px;" class="fa fa-trash"></i></span></td>
@@ -136,7 +254,7 @@ class AffiliateController extends Controller
      */
     public function affiliateaddinvoices(Request $request)
     {
-        //return Auth::user()->id;
+        //return $request->all();
         $request->merge(['name' => json_encode($request->name)]);
         $request->merge(['clicks' => json_encode($request->clicks)]);
         $request->merge(['signup' => json_encode($request->signup)]);
@@ -470,6 +588,100 @@ class AffiliateController extends Controller
             return redirect()->back()->with('success','Succfully Added!');
         }
     }
+    public function profileupdate($name, $id, Request $request)
+    {
+        $update = DB::table('users')
+            ->where('id', $id)
+            ->update(['fname' => $request->fname, 'lname' => $request->lname, 'email' => $request->email, 'contactno' => $request->mobile, 'imid' => $request->imtype, 'imaccount' => $request->imaccount, 'country' => $request->country, 'website' => $request->website, 'company' => $request->company]);
+        
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+
+    public function paymentupdate($name, $id, Request $request)
+    {
+      //return $id;
+        $update = DB::table('paymentdetails')
+            ->where('user_id', $id)
+            ->update(['bank_account_name' => $request->accountname, 'iban' => $request->iban, 'bank_name' => $request->bankname, 'branch_name' => $request->branchname, 'country' => $request->country, 'zipcode' => $request->zipcode, 'phone' => $request->phonenumber, 'paypal_email' => $request->paypalemail, 'paypal_account_name' => $request->paypalaccountname, 'default_method' => $request->default_method]);
+        
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+    }
+    public function passwordupdate($name, Request $request)
+    {
+       $user = User::findOrFail(Auth::user()->id);
+
+        if (Hash::check($request->oldpassword, $user->password)) { 
+           $user->fill([
+            'password' => Hash::make($request->password)
+            ])->save();
+
+           $request->session()->flash('success', 'Password changed');
+           Auth::logout();
+            return redirect()->back();
+
+        } else {
+            $request->session()->flash('fail', 'Password does not match');
+            return redirect()->back();
+        }
+
+
+
+
+
+
+
+      $this->validate($request, [
+          'password' => 'required|confirmed|min:6',
+      ]);
+      $oldpassword = bcrypt($request->oldpassword);
+      $password = bcrypt($request->password);
+     return $checkpass = User::select('password')->where('id',Auth::user()->id)->get();
+
+      if (!empty($checkpass)) {
+        $update = DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->update(['password'=> $password]);
+        if (empty($update) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Updated!');
+        }
+      } else {
+            return redirect()->back()->with('fail','Password not Matched!');
+        }
+    }
+    public function paymentmethodcreate(Request $request)
+    {
+        $payments = new PaymentMethods;
+        $payments->user_id = Auth::user()->id;
+        $payments->bank_account_name = $request->accountname;
+        $payments->iban = $request->iban;
+        $payments->bank_name = $request->bankname;
+        $payments->branch_name = $request->branchname;
+        $payments->country = $request->country;
+        $payments->zipcode = $request->zipcode;
+        $payments->phone = $request->phonenumber;
+        $payments->paypal_email = $request->paypalemail;
+        $payments->paypal_account_name = $request->paypalaccountname;
+        $payments->default_method = $request->default_method;
+        $payments->save();
+        
+        if (empty($payments) ) {
+            return redirect()->back()->with('fail', 'Something Wrong!');
+        } else {
+            return redirect()->back()->with('success','Succfully Added!');
+        }
+        
+        return view('affiliate.postback-create',compact('offers'));
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -678,7 +890,19 @@ class AffiliateController extends Controller
        $invoice = Invoices::Where('id',$id)->first();
        $user = User::Where('id',$invoice->affiliate_id)->first();
        $admin = User::Where('id',$invoice->admin_id)->first();
-        return view('admin.invoice',compact('invoice','user','admin'));
+        return view('affiliate.invoice',compact('invoice','user','admin'));
+    }
+    public function advuserinvoices()
+    {
+        $invoices = Invoices::where('affiliate_id', Auth::user()->id)->where('user_role_id', 4)->where('status', 1)->get();
+        return view('advertiser.invoices', compact('invoices'));
+    }
+
+    public function getadvinvoice($name, $id){
+       $invoice = Invoices::Where('id',$id)->first();
+       $user = User::Where('id',$invoice->affiliate_id)->first();
+       $admin = User::Where('id',$invoice->admin_id)->first();
+        return view('advertiser.invoice',compact('invoice','user','admin'));
     }
 
 }

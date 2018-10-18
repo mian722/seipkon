@@ -127,80 +127,6 @@
                            </li>
                            <!-- Full Screen Btn End -->
                             
-                           <!-- Message Toggle Start -->
-                           <li class="dropdown">
-                              <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                              <i class="fa fa-envelope-o"></i>
-                              <span>5</span>
-                              </a>
-                              <div class="message-box dropdown-menu animated bounceIn">
-                                 <div class="message-header">
-                                    <h4>5 new Message</h4>
-                                    <a href="#">mark as read</a>
-                                 </div>
-                                 <div class="message-body">
-                                    <ul>
-                                       <li>
-                                          <a href="#" class="single-message">
-                                             <div class="message-img">
-                                                <img src="{{ asset('public/assets/img/msg-4.png') }}" alt="message" />
-                                                <span class="online-message"></span>
-                                             </div>
-                                             <div class="message-txt">
-                                                <h4>David Johnson</h4>
-                                                <p>I like your portfolio, let's start.</p>
-                                                <span>56 seconds ago</span>
-                                             </div>
-                                          </a>
-                                       </li>
-                                       <li>
-                                          <a href="#" class="single-message">
-                                             <div class="message-img">
-                                                <img src="{{ asset('public/assets/img/msg-1.png') }}" alt="message" />
-                                                <span class="busy-message"></span>
-                                             </div>
-                                             <div class="message-txt">
-                                                <h4>Margaret Govan</h4>
-                                                <p>Can we have call in this week ?</p>
-                                                <span>14 hourse ago</span>
-                                             </div>
-                                          </a>
-                                       </li>
-                                       <li>
-                                          <a href="#" class="single-message">
-                                             <div class="message-img">
-                                                <img src="{{ asset('public/assets/img/msg-3.png') }}" alt="message" />
-                                                <span class="online-message"></span>
-                                             </div>
-                                             <div class="message-txt">
-                                                <h4>Emanual Doe</h4>
-                                                <p>A National Book Award Finalist An...</p>
-                                                <span>a day ago</span>
-                                             </div>
-                                          </a>
-                                       </li>
-                                       <li>
-                                          <a href="#" class="single-message">
-                                             <div class="message-img">
-                                                <img src="{{ asset('public/assets/img/msg-2.png') }}" alt="message" />
-                                                <span class="away-message"></span>
-                                             </div>
-                                             <div class="message-txt">
-                                                <h4>Eric Alsobrook</h4>
-                                                <p>A National Book Award Finalist An...</p>
-                                                <span>2 days ago</span>
-                                             </div>
-                                          </a>
-                                       </li>
-                                    </ul>
-                                 </div>
-                                 <div class="message-footer">
-                                    <a href="#"><i class="fa fa-angle-down"></i>see all messages</a>
-                                 </div>
-                              </div>
-                           </li>
-                           <!-- Message Toggle Start -->
-                            
                            <!-- Notification Toggle Start -->
                            <li class="dropdown">
                               <a class="dropdown-toggle cart-icon" href="#" data-toggle="dropdown">
@@ -306,16 +232,16 @@
                               <a class="dropdown-toggle profile-toggle" href="#" data-toggle="dropdown">
                                  <img src="{{ asset('public/assets/img/avatar.jpg') }}" class="profile-avator" alt="admin profile" />
                                  <div class="profile-avatar-txt">
-                                    <p>Jhon Doe</p>
+                                    <p>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</p>
                                     <i class="fa fa-angle-down"></i>
                                  </div>
                               </a>
                               <div class="profile-box dropdown-menu animated bounceIn">
                                  <ul>
-                                    <li><a href="#"><i class="fa fa-user"></i> view profile</a></li>
-                                    <li><a href="#"><i class="fa fa-pencil-square-o"></i> Edit profile</a></li>
+                                    <!-- <li><a href="#"><i class="fa fa-user"></i> view profile</a></li> -->
+                                    <li><a href="{{ route('affiliate.profile', Auth::user()->fname) }}"><i class="fa fa-pencil-square-o"></i> Edit profile</a></li>
                                     <li><a href="#"><i class="fa fa-flash"></i> Activity Log</a></li>
-                                    <li><a href="#"><i class="fa fa-wrench"></i> Setting</a></li>
+                                    <!-- <li><a href="#"><i class="fa fa-wrench"></i> Setting</a></li> -->
                                     @if (!Auth::guest())
                                        <li>
                                            <a href="{{ route('logout') }}"
@@ -348,20 +274,20 @@
          <aside class="seipkon-main-sidebar">
             <nav id="sidebar">
                <!-- Sidebar Profile Start -->
-               <div class="sidebar-profile clearfix">
+               <!-- <div class="sidebar-profile clearfix">
                   <div class="profile-avatar">
                      <img src="{{ asset('public/assets/img/avatar.jpg') }}" alt="profile" />
-                  </div>
+                  </div> 
                   <div class="profile-info">
-                     <h3>Jhon Doe</h3>
-                     <p>Welcome Admin !</p>
+                     <h3>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h3>
+                     <p>Welcome {{ (Auth::user()->roles_id === 5) ? "Affiliate" : "Advertiser" }} !</p>
                   </div>
-               </div>
+               </div> -->
                <!-- Sidebar Profile End -->
                 
                <!-- Menu Section Start -->
                <div class="menu-section">
-                  <h3>General</h3>
+                  <!-- <h3>General</h3> -->
                   <ul class="list-unstyled components">
                      @if(Auth::user()->roles_id == 5)
                         <li class="active">
@@ -408,18 +334,42 @@
                            Reports
                            </a>
                            <ul class="collapse list-unstyled" id="reports">
-                              <li><a href="{{ asset('general-report') }}">General Report</a></li>
-                              <li><a href="{{ asset('conversion-report') }}">Conversion Report</a></li>
+                              <li><a href="{{ route('advertiser.generalreport', Auth::user()->fname) }}">General Report</a></li>
+                              <li><a href="{{ route('advertiser.conversionreport', Auth::user()->fname) }}">Conversion Report</a></li>
                            </ul>
                         </li>
-                        <li><a href="{{ route('affiliate.postback', Auth::user()->fname) }}"><i class="fa fa-file-o"></i> Invoice</a></li>
+                        <li><a href="{{ route('advuserinvoices', Auth::user()->fname) }}"><i class="fa fa-file-o"></i> Invoice</a></li>
                      @endif
                      
                   </ul>
                </div>
                <!-- Menu Section End -->
-                
+               @if(Auth::user()->roles_id == 5)
+                <div class="col-md-12">
+                        <div class="widget_card_page profile-box header_bg_blue">
+                           <div class="profile-widget-img">
+                              <img src="{{ asset('public/assets/img/msg-1.png') }}" alt="profile" />
+                           </div>
+                           <div class="profile-widget-info">
+                              @php
+                               $manger = DB::table('users')->where('id', Auth::user()->admin_id)->first();
+                              @endphp
+                              <h3>{{ $manger->fname }} {{ $manger->lname }}</h3>
+                              <p>Marketing Manager</p>
+                           </div>
+                           <div class="profile-widget-social">
+                              <ul>
+                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     @endif
             </nav>
+
          </aside>
          <!-- End Sidebar -->
 
@@ -603,7 +553,53 @@
             $('#tracking_link').on('change', function(){
                $('#aff_tracking').html($(this).val());
             });
+            $('#daterange_btn').daterangepicker({
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            startDate: moment().subtract(29, 'days'),
+            endDate: moment()
+         },
+         function (start, end) {
+            $('#daterange_btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+               $.ajax({
+               headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+               type: 'post',
+               url:"{{ route('daterangepicker1',Auth::user()->fname )}}",
+               data: {from: start.format('YYYY-MM-DD'), to: end.format('YYYY-MM-DD')},
+               success:function(result) {
+                   alert(result);
+                   Morris.Area({
+                     element: 'sales_chart',
+                     data: result,
+                     xkey: 'updated_at',
+                     ykeys: ['sumclicks', 'sumsignup', 'sumsignup'],
+                     labels: ['sumclicks', 'sumsignup', 'sumsignup'],
+                     pointSize: 3,
+                     fillOpacity: 0,
+                     pointStrokeColors: ['#1cc100', '#fdc006', '#1db4bd'],
+                     behaveLikeLine: true,
+                     gridLineColor: '#e0e0e0',
+                     lineWidth: 1,
+                     hideHover: 'auto',
+                     lineColors: ['#1cc100', '#fdc006', '#1db4bd'],
+                     resize: true
+
+                  });
+                   $('#dataTables-example > tbody').html(result);
+               }
+           });
          });
+      });
+
+
+
       </script>
+
    </body>
 </html>

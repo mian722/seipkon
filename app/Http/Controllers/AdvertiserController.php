@@ -7,6 +7,9 @@ use App\User;
 use App\Offer;
 use App\Templates;
 use App\Invoices;
+use App\Clicks;
+use App\Signup;
+use App\AssignOffers;
 use DB;
 use Auth;
 use App\Notifications\SignUpNotification;  
@@ -20,7 +23,11 @@ class AdvertiserController extends Controller
      */
     public function index()
     {
-        return view('advertiser.index');
+      $clicks = clicks::leftjoin('offers','offers.id','clicks.offer_id')->where('offers.adv_id',Auth::user()->id)->count();
+      $signups = signup::leftjoin('offers','offers.id','signups.offer_id')->where('offers.adv_id',Auth::user()->id)->count();
+      $activeoffers = offer::where('adv_id', Auth::user()->id)->count();
+      $pendingoffers = offer::where('adv_id', Auth::user()->id)->where('status',0)->count();
+        return view('advertiser.index',compact('clicks','signups','activeoffers','pendingoffers'));
     }
 
     public function advertiserslist()
@@ -198,7 +205,7 @@ class AdvertiserController extends Controller
      */
     public function advertiserinvoices()
     {
-        $invoices = Invoices::where('admin_id', Auth::user()->id)->where('user_role_id', 4)->get();
+         $invoices = Invoices::where('admin_id', Auth::user()->id)->where('user_role_id', 4)->get();
         return view('admin.advertiser-invoices', compact('invoices'));
     }
 

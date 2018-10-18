@@ -79,7 +79,7 @@
                                        <div class="col-md-5">
                                           <p>
                                              <label>Timezone</label>
-                                             <select name="timezone" class="form-control select2" required="">
+                                             <select name="timezone" id="timezone" class="form-control select2" required="">
                                                 <option disabled="disabled" selected="selected">Select TimeZone</option>
                                                 @foreach($timezones as $timezone)
                                                 <option value="{{ $timezone }}">{{ $timezone }}</option>
@@ -192,7 +192,7 @@
                                              <td>&nbsp;</td>
                                              <td>&nbsp;</td>
                                              <td><b><h4>Total:</h4></b></td>
-                                             <td><b><h4>$00.00</h4></b></td>
+                                             <td><b><h4 class="payable">$00.00</h4></b></td>
                                           </tr>
                                        </tfooter>
                                     </table>
@@ -225,19 +225,25 @@
          <script type="text/javascript">
 
             $(document).ready(function() {
-
+              
                $('#offers_select').on('change', function (e) {
                     var value = $(this).val();
+                    var datetime = $('#reservation').val();
+                    var timezone = $('#timezone').val();
                     $("#offers_select option:selected").attr('disabled','disabled');
                     e.preventDefault();
                     var token = "{{ csrf_token() }}";
                     $.ajax({
                         type: "POST",
                         url: '{{ route("affiliateoffersdetails") }}',
-                        data: { "_token": token, "offerid": value},
+                        data: { "_token": token, "offerid": value, "daterange": datetime, "timezone":timezone},
                         success: function( response ) {
                            $("#offerdetails").append(response['msg']);
-                                
+                              var a = 0;
+                              $(".tamount").each(function() {
+                                  a += parseInt($(this).text());
+                              });
+                              $(".payable").text( '$' + a.toFixed(2));
                            $.ajaxSetup({
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -297,10 +303,12 @@
                               $(this).closest('tr').remove();
                               $("#offers_select option[value=" + id + "]").removeAttr('disabled');
                            });
+
                         }
                     });
+                    
                 });
-
+               
             });
 
       $(document).ready(function(){

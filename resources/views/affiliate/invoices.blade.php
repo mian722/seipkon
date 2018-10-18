@@ -18,7 +18,7 @@
                                  </div>
                               </div>
                               <div class="col-md-1 col-sm-1">
-                                 <a class="btn btn-success btn-xs" href="{{ url('affiliate-invoice-create') }}" >Create</a>
+                                 <!-- <a class="btn btn-success btn-xs" href="{{ url('affiliate-invoice-create') }}" >Create</a> -->
                               </div>
                            </div>
                         </div>
@@ -53,7 +53,7 @@
                                        <?php $date = explode('-',$invoice->daterange) ?>
                                        <td><?php echo $date[0]; ?></td>
                                        <td><?php echo $date[1]; ?></td>
-                                       <td>tamount</td>
+                                       <td>${{ array_sum(json_decode($invoice->offer_amounts)) }}</td>
                                        <?php
                                        $text = $invoice->memo;
                                        $limit = 10;

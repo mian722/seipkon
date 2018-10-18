@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.userheader')
          
          @section('content') 
         <!-- Right Side Content Start -->
@@ -18,7 +18,7 @@
                                  </div>
                               </div>
                               <div class="col-md-1 col-sm-1">
-                                 <a class="btn btn-success btn-xs" href="{{ url('affiliate-invoice-create') }}" >Create</a>
+                                <!--  <a class="btn btn-success btn-xs" href="{{ url('affiliate-invoice-create') }}" >Create</a> -->
                               </div>
                            </div>
                         </div>
@@ -43,7 +43,6 @@
                                        <th>Total Amount</th>
                                        <th>Memo</th>
                                        <th>Status</th>
-                                       <th>Action</th>
                                     </tr>
                                  </thead>
                                  <tbody>
@@ -51,7 +50,7 @@
                                     @foreach($invoices as $invoice)
                                     <tr>
                                        <td>#{{ $loop->iteration }}</td>
-                                       <td><a href="{{ url('/invoice/'.$invoice->id) }}" style="color: #1CD2C9;">{{ $invoice->invoiceno }}</a></td>
+                                       <td><a href="{{ route('getadvinvoice', [Auth::user()->fname , $invoice->id]) }}" style="color: #1CD2C9;">{{ $invoice->invoiceno }}</a></td>
                                        <?php $user = null;
                                        if ($invoice->affiliate_id != 0) {
                                           $user = App\User::select('fname', 'lname', 'managerid')->where('id', $invoice->affiliate_id)->first();
@@ -66,7 +65,7 @@
                                        <?php $date = explode('-',$invoice->daterange) ?>
                                        <td><?php echo $date[0]; ?></td>
                                        <td><?php echo $date[1]; ?></td>
-                                       <td>tamount</td>
+                                       <td>${{ array_sum(json_decode($invoice->offer_amounts)) }}</td>
                                        <?php
                                        $text = $invoice->memo;
                                        $limit = 10;
@@ -79,10 +78,6 @@
                                        <td><?php echo $text; ?></td>
                                        <td>
                                           <span class="label label-{{ $invoice->status == '1' ? 'success' : 'warning'}}">{{ $invoice->status == '1' ? 'Paid' : 'Pending'}}</span>
-                                       </td>
-                                       <td>
-                                          <a href="{{ route('affiliateinvoicesedit',$invoice->id) }}" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
-                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                        </td>
                                     </tr>
                                     @endforeach

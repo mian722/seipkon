@@ -216,7 +216,7 @@
                                              <td>&nbsp;</td>
                                              <td>&nbsp;</td>
                                              <td><b><h4>Total:</h4></b></td>
-                                             <td><b><h4>$00.00</h4></b></td>
+                                             <td><b><h4>${{ array_sum($offersamounts) }}</h4></b></td>
                                           </tr>
                                        </tfooter>
                                     </table>
