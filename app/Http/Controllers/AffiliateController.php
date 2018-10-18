@@ -875,6 +875,8 @@ public function daterangepicker1(Request $request)
 
 
 
+
+
     /**
      * Show the form for creating a new resource.
      *
