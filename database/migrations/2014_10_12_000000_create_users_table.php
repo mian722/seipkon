@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('country')->nullable();
             $table->string('website')->nullable();
             $table->string('company')->nullable();
+            $table->string('companylogo')->nullable();
+            $table->string('favicon')->nullable();
             $table->string('managerid')->nullable();
             $table->string('whitelist')->nullable();
             $table->string('securitycode')->nullable();
