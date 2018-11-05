@@ -51,7 +51,7 @@
       <!-- jQuery -->
       <script src="{{ asset('public/assets/js/jquery-3.1.0.min.js') }}"></script>
       <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
-
+      <script src="https://code.highcharts.com/highcharts.js"></script>
       
       <style type="text/css">
          .profile-widget-img {
@@ -545,61 +545,15 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-      </script>
-
-
-      <script type="text/javascript">
          $(document).ready(function(){
             $('#tracking_link').on('change', function(){
                $('#aff_tracking').html($(this).val());
             });
-            $('#daterange_btn').daterangepicker({
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            },
-            startDate: moment().subtract(29, 'days'),
-            endDate: moment()
-         },
-         function (start, end) {
-            $('#daterange_btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-               $.ajax({
-               headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-               type: 'post',
-               url:"{{ route('daterangepicker1',Auth::user()->fname )}}",
-               data: {from: start.format('YYYY-MM-DD'), to: end.format('YYYY-MM-DD')},
-               success:function(result) {
-                   alert(result);
-                   Morris.Area({
-                     element: 'sales_chart',
-                     data: result,
-                     xkey: 'updated_at',
-                     ykeys: ['sumclicks', 'sumsignup', 'sumsignup'],
-                     labels: ['sumclicks', 'sumsignup', 'sumsignup'],
-                     pointSize: 3,
-                     fillOpacity: 0,
-                     pointStrokeColors: ['#1cc100', '#fdc006', '#1db4bd'],
-                     behaveLikeLine: true,
-                     gridLineColor: '#e0e0e0',
-                     lineWidth: 1,
-                     hideHover: 'auto',
-                     lineColors: ['#1cc100', '#fdc006', '#1db4bd'],
-                     resize: true
-
-                  });
-                   $('#dataTables-example > tbody').html(result);
-               }
-           });
-         });
-      });
-
-
-
+         });   
       </script>
+
+
+      
 
    </body>
 </html>

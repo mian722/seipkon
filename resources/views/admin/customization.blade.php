@@ -38,7 +38,7 @@
                      <div class="tabs-box-example horizontal-tab-example">
                         <ul class="nav nav-tabs" id="service_pro" role="tablist">
                            <li class="active" role="appearance"><a href="#appearance" role="tab" data-toggle="tab">Appearance</a></li>
-                           <li role="preferences"><a href="#preferences" role="tab" data-toggle="tab">Preferences</a></li>
+                           <!-- <li role="preferences"><a href="#preferences" role="tab" data-toggle="tab">Preferences</a></li> -->
                            <li role="smtp"><a href="#smtp" role="tab" data-toggle="tab">SMTP</a></li>
                            <li  role="message"><a href="#message" role="tab" data-toggle="tab">Message</a>
                         </li>
@@ -51,110 +51,79 @@
          <div id="seipkkon_tab_content" class="tab-content">
             <div id="appearance" class="tab-pane fade in active">
                <div class="box-body">
-                  <div class="row">
-                     <section class="col-sm-12 col-md-6 col-lg-6">
-                        <div class="form-group">
-                           <label class="col-sm-4 control-label">
-                              Network Name
-                           <i class="fa fa-question-circle" title="" data-toggle="tooltip" data-html="true" data-original-title="Allows you to set Network Name which will appear in system notification and email/message signature."></i>                    </label>
-                           <div class="col-sm-6">
-                              <div class="without-form-group field-appearance-network_name required">
-                                 <input type="text" id="appearance-network_name" class="form-control" name="Appearance[network_name]" value="amir" maxlength="80" data="amir" aria-required="true">
-                                 <p class="help-block help-block-error"></p>
-                              </div>                    </div>
-                              <div class="col-sm-2">
-                              <button type="submit" id="save-name" class="btn btn-primary" style="display:none">Save</button>                    </div>
-                           </div>
-                        </section>
-                        <section class="col-sm-12 col-md-6 col-lg-6">
-                           <div class="form-horizontal">
-                              <div class="form-group">
-                                 <label class="col-sm-4 control-label">
-                                    Network Logo
-                                    <i class="fa fa-question-circle" title="Allows you to add logo of your network, which will be visible on the upper left corner of your account interface and of your affiliates’ interface." data-toggle="tooltip" data-html="true"></i>
-                                 </label>
-                                 <div class="col-sm-8">
-                                    
-                                    <div class="product-upload btn btn-info">
-                                       <p>
-                                          <i class="fa fa-upload"></i>
-                                          Upload Another Image
-                                       </p>
-                                       <input type="file" >
-                                    </div>
-                                    <p style="color:#ccc">Logo size: 200*40px; Format: jpg, png</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </section>
-                     </div>
+                  
                      <div class="row">
                         <section class="col-sm-12 col-md-6 col-lg-6">
-                           <div class="form-horizontal">
-                              <div class="form-group">
-                                 <label class="col-sm-4 control-label">
-                                    Favicon
-                                 <i class="fa fa-question-circle" title="Adds a favicon that will appear on the browser tab." data-toggle="tooltip" data-html="true"></i>                    </label>
-                                 <div class="col-sm-8">
-                                    <div class="product-upload btn btn-info">
-                                       <p>
-                                          <i class="fa fa-upload"></i>
-                                          Upload Another Image
-                                       </p>
-                                       <input type="file" >
-                                    </div>
-                                    <p style="color:#ccc">Icon size: 16*16px / 32*32px; Format: icon, png</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </section>
-                        <section class="col-sm-12 col-md-6 col-lg-6">
-                           <div class="form-horizontal">
-                              <div class="form-group">
-                                 <label class="col-sm-4 control-label">
-                                    Login Logo
-                                 <i class="fa fa-question-circle" title="" data-toggle="tooltip" data-html="true" data-original-title="Adds a logo that will be shown on the page of your network’s log-in portal."></i>                    </label>
-                                 <div class="col-sm-8">
-                                    
-                                    <div class="product-upload btn btn-info">
-                                       <p>
-                                          <i class="fa fa-upload"></i>
-                                          Upload Another Image
-                                       </p>
-                                       <input type="file" >
-                                    </div>
-                                    
-                                    <p style="color:#ccc">Logo size: 200*40px; Format: jpg, png</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </section>
-                     </div>
-                     <div class="row">
-                        <section class="col-sm-12 col-md-6 col-lg-6">
-                           <div class="form-horizontal">
-                              <div class="form-group">
-                                 <label class="col-sm-4 control-label">
-                                    Login Background Color
-                                 </label>
-                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                       <div id="cp3" class="input-group colorpicker-component" title="Using horizontal option">
-                                          <input type="text" class="form-control"/>
-                                          <span class="input-group-addon"><i></i></span>
-                                       </div>
-                                    </div>
-                                    <p style="color:#ccc">Set background color of login page, registration page and password reset page.</p>
-                                 </div>
+                           <form action="{{ route('networkname') }}" method="post" id="networklogo">
+                           <div class="form-group">
+                              <label class="col-sm-4 control-label">
+                                 Network Name
+                              <i class="fa fa-question-circle" title="" data-toggle="tooltip" data-html="true" data-original-title="Allows you to set Network Name which will appear in system notification and email/message signature."></i>                    </label>
+                              <div class="col-sm-6">
+                                 <div class="without-form-group field-appearance-network_name required">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="text" id="appearance-network_name" class="form-control" name="network_name"  maxlength="80" value="{{ Auth::user()->company }}" aria-required="true">
+                                    <p class="help-block help-block-error"></p>
+                                 </div>                    </div>
                                  <div class="col-sm-2">
-                                 <button type="submit" id="save-lb" class="btn btn-primary" style="display:none">Save</button>                    </div>
+                                 <button type="submit" id="save-name" class="btn btn-primary" >Save</button>                    </div>
                               </div>
-                           </div>
-                        </section>
+                              </form>
+                           </section>
+                           <section class="col-sm-12 col-md-6 col-lg-6">
+                              <form action="{{ route('networklogo') }}" method="post" enctype="multipart/form-data">
+                              <div class="form-horizontal col-md-12">
+                                 <div class="form-group">
+                                    <label class="col-sm-4 control-label">
+                                       Network Logo
+                                       <i class="fa fa-question-circle" title="Allows you to add logo of your network, which will be visible on the upper left corner of your account interface and of your affiliates’ interface." data-toggle="tooltip" data-html="true"></i>
+                                    </label>
+                                    <div class="col-sm-8">
+                                       
+                                       <div class="product-upload btn btn-info">
+                                          <p>
+                                             <i class="fa fa-upload"></i>
+                                             Upload Network Logo
+                                          </p>
+                                          {{ csrf_field() }}
+                                          <input type="file" id="uploadlogo" name="logo">
+                                       </div>
+                                       <p style="color:#ccc">Logo size: 200*40px; Format: jpg, png</p>
+                                    </div>
+                                 </div>
+                              </div>
+                              </form>
+                              <div class="form-horizontal col-md-12">
+                                 <form action="{{ route('networkfavicon') }}" method="post" enctype="multipart/form-data">
+                                 <div class="form-group">
+                                    <label class="col-sm-4 control-label">
+                                       Favicon
+                                    <i class="fa fa-question-circle" title="Adds a favicon that will appear on the browser tab." data-toggle="tooltip" data-html="true"></i>                    </label>
+                                    <div class="col-sm-8">
+                                       <div class="product-upload btn btn-info">
+                                          <p>
+                                             <i class="fa fa-upload"></i>
+                                             Upload Favicon
+                                          </p>
+                                          <input type="file" id="uploadfavicon" name="favicon">
+                                       </div>
+                                       <p style="color:#ccc">Icon size: 16*16px / 32*32px; Format: icon, png</p>
+                                    </div>
+                                 </div>
+                                  </form>
+                              </div>
+                           </section>
+                        </div>
+                        <div class="row">
+                           <section class="col-sm-12 col-md-6 col-lg-6">
+                              
+                           </section>
+                        </div>
+                        
                      </div>
-                  </div>
+                  
                </div>
-               <div id="preferences" class="tab-pane fade in">
+               <!-- <div id="preferences" class="tab-pane fade in">
                   <form>
                      <div class="row">
                         <div class="col-sm-6">
@@ -390,15 +359,16 @@
                         </div>
                      </div>
                   </form>
-               </div>
+               </div> -->
                <div id="smtp" class="tab-pane fade in">
-                  <form >
+                  <form action="{{ route('smtpsave') }}" method="post">
                      <div class="row">
                         <div class="col-sm-12 col-md-6 col-lg-6">
                            <div class="form-group field-smtpconfig-smtp_server required">
                               <label class="control-label col-sm-3" for="smtpconfig-smtp_server">SMTP Server</label>
                               <div class="col-sm-9">
-                                 <input type="text" id="smtpconfig-smtp_server" class="form-control" name="SmtpConfig[smtp_server]" maxlength="255" aria-required="true">
+                                 {{ csrf_field() }}
+                                 <input type="text" id="smtpconfig-smtp_server" class="form-control" name="smtp_server" maxlength="255" value="{{ isset($smtpdetail->smtp_server) ? $smtpdetail->smtp_server : '' }}" aria-required="true">
                                  <div class="help-block help-block-error "></div>
                               </div>
                            </div>
@@ -408,23 +378,20 @@
                               <div class="col-sm-9">
                                  <div class="form-group field-smtpconfig-security_type required">
                                     <label class="control-label col-sm-4" for="smtpconfig-security_type">Security Type</label>
-                                    <div class="col-sm-7">
-                                       <select id="smtpconfig-security_type" class="form-control" name="SmtpConfig[security_type]" aria-required="true">
-                                          <option value="1">None</option>
-                                          <option value="2">SSL/TLS</option>
-                                          <option value="4">SSL/TLS(Accept all Certificates)</option>
-                                          <option value="3">STARTTLS</option>
-                                          <option value="5">STARTTLS(Accept all Certificates)</option>
+                                    <div class="col-sm-8">
+                                       <select id="smtpconfig-security_type" class="form-control" name="security_type" aria-required="true">
+                                          <option  value="SSL/TLS" {{ (isset($smtpdetail->security_type) == 'SSL/TLS') ? 'selected' : '' }} >SSL/TLS</option>
+                                          <option {{ (isset($smtpdetail->security_type) == 'STARTTLS') ? 'selected' : '' }} value="STARTTLS">STARTTLS</option>
                                        </select>
                                        <div class="help-block help-block-error "></div>
                                     </div>
                                  </div>
                               </div>
-                              <div class="col-sm-3">
+                              <div class="col-sm-3" style="    padding-left: 0;">
                                  <div class="form-group field-smtpconfig-port required">
                                     <label class="control-label col-sm-4" for="smtpconfig-port">Port</label>
                                     <div class="col-sm-8">
-                                       <input type="text" id="smtpconfig-port" class="form-control" name="SmtpConfig[port]" value="25" aria-required="true">
+                                       <input type="text" id="smtpconfig-port" class="form-control" name="port" value="{{ isset($smtpdetail->port) ? $smtpdetail->port : '' }}" aria-required="true">
                                        <div class="help-block help-block-error "></div>
                                     </div>
                                  </div>
@@ -437,7 +404,7 @@
                            <div class="form-group field-smtpconfig-username required has-success">
                               <label class="control-label col-sm-3" for="smtpconfig-username">SMTP Username</label>
                               <div class="col-sm-9">
-                                 <input type="text" id="smtpconfig-username" class="form-control" name="SmtpConfig[username]" maxlength="255" aria-required="true" aria-invalid="false">
+                                 <input type="text" id="smtpconfig-username" class="form-control" name="username" maxlength="255" aria-required="true" aria-invalid="false" value="{{ isset($smtpdetail->username) ? $smtpdetail->username : '' }}">
                                  <div class="help-block help-block-error "></div>
                               </div>
                            </div>
@@ -446,7 +413,7 @@
                            <div class="form-group field-smtpconfig-password required has-success">
                               <label class="control-label col-sm-3" for="smtpconfig-password">Password</label>
                               <div class="col-sm-9">
-                                 <input type="password" id="smtpconfig-password" class="form-control" name="SmtpConfig[password]" maxlength="255" aria-required="true" aria-invalid="false">
+                                 <input type="password" id="smtpconfig-password" value="{{ isset($smtpdetail->password) ? $smtpdetail->password : '' }}" class="form-control" name="password" maxlength="255" aria-required="true" aria-invalid="false">
                                  <div class="help-block help-block-error "></div>
                               </div>
                            </div>
@@ -457,7 +424,7 @@
                            <div class="form-group field-smtpconfig-nickname required">
                               <label class="control-label col-sm-3" for="smtpconfig-nickname">From Email Name<i data-original-title="Email name will be shown in the mail." data-toggle="tooltip" class="fa fa-question-circle"></i></label>
                               <div class="col-sm-9">
-                                 <input type="text" id="smtpconfig-nickname" class="form-control" name="SmtpConfig[nickname]" maxlength="255" aria-required="true">
+                                 <input type="text" id="smtpconfig-nickname" class="form-control" value="{{ isset($smtpdetail->nickname) ? $smtpdetail->nickname : '' }}" name="nickname" maxlength="255" aria-required="true">
                                  <div class="help-block help-block-error "></div>
                               </div>
                            </div>
@@ -466,12 +433,16 @@
                            <div class="form-group field-smtpconfig-email required">
                               <label class="control-label col-sm-3" for="smtpconfig-email">Email<i class="fa fa-question-circle" data-toggle="tooltip" data-original-title="Email address will be shown in the mail."></i></label>
                               <div class="col-sm-9">
-                                 <input type="text" id="smtpconfig-email" class="form-control" name="SmtpConfig[email]" maxlength="255" aria-required="true">
+                                 <input type="text" id="smtpconfig-email" class="form-control" value="{{ isset($smtpdetail->email) ? $smtpdetail->email : '' }}" name="email" maxlength="255" aria-required="true">
                                  <div class="help-block help-block-error "></div>
                               </div>
                            </div>
                         </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: right;">
+                                 <button type="submit" id="save-smtp" style="margin-right: 16px; margin-bottom: 10px;" class="btn btn-primary">{{ isset($smtpdetail) ? 'Update' : 'Save' }}</button>
+                        </div>
                      </div>
+                  </form>
                      <div style="height: 20px;border-top: 1px solid #D2D6DE"></div>
                      <div class="row">
                         <div class="col-sm-12 col-md-6 col-lg-6">
@@ -496,16 +467,7 @@
                         </div>
                      </div>
                      <div id="test-info"></div>
-                     <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                           <div class="row">
-                              <div class="col-sm-3"></div>
-                              <div class="col-sm-6">
-                                 <button type="submit" id="save-smtp" class="btn btn-primary">Save</button>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                    
                   </form>
                </div>
                <div id="message" class="tab-pane fade in">
@@ -1091,7 +1053,7 @@
                   </div>
                </div>
             <div id="domain" class="tab-pane fade in">
-               <form id="app-domain-setting" action="" method="post" data-pjax="">
+               <form id="app-domain-setting" style="display: none;" action="" method="post" data-pjax="">
                      <div class="col-sm-12">
                         <p><b>Customize Application Domain</b></p>
                         <p>This allows you to host your affiliate network on a custom domain.
@@ -1119,7 +1081,7 @@
                         </div>
                      </div>
                   </form>
-                  <div class="row" style="margin-bottom: 5px;">
+                  <div class="row" style="margin-bottom: 5px; display: none;">
                      <div class="col-sm-12">
                         <p><b>Customize Tracking Domain</b></p>
                         <p>
@@ -1133,9 +1095,52 @@
                      
                   </div>
                   <div class="row" style="border-top: 2px solid #333;">
+                     <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                         <div class="modal-dialog" role="document">
+                             <div class="modal-content">
+                                 <div class="modal-header text-center">
+                                     <h4 class="modal-title w-100 font-weight-bold">Domain Detail</h4>
+                                 </div>
+                                 <form id="domainform" method="post">
+                                 <div class="modal-body mx-3">
+                                     <div class="md-form mb-5">
+                                       {{ csrf_field() }}
+                                       <label data-error="wrong" data-success="right" for="defaultForm-email">Your Domain</label>
+                                       <input type="hidden" id="domainid" name="domainid" class="form-control validate">
+                                         <input type="text" id="domainname" required="required" name="domainname" class="form-control validate">
+                                     </div>
+                                     <div class="md-form mb-4">
+                                       <label data-error="wrong" data-success="right" for="defaultForm-pass">SSL Status</label>
+                                       <select id="sslstatus" name="sslstatus" required="required" class="form-control validate">
+                                          <option value="1">Enable</option>
+                                          <option value="0">Disable</option>
+                                       </select>
+                                     </div>
+                                     <div class="md-form mb-4">
+                                       <label data-error="wrong" data-success="right" for="defaultForm-pass">Domain Status</label>
+                                       <select id="domainstatus" name="domainstatus" required="required"  class="form-control validate">
+                                          <option value="1">Active</option>
+                                          <option value="0">Inactive</option>
+                                       </select>
+                                     </div>
+                                     <div class="md-form mb-4">
+                                       <label data-error="wrong" data-success="right" for="defaultForm-pass">Is Default</label>
+                                       <select id="is_default" name="is_default" required="required"  class="form-control validate">
+                                          <option value="1">Yes</option>
+                                          <option value="0">No</option>
+                                       </select>
+                                     </div>
+                                 </div>
+                                 <div class="modal-footer d-flex justify-content-center">
+                                     <button type="submit" class="btn btn-default">Save</button>
+                                 </div>
+                              </form>
+                             </div>
+                         </div>
+                     </div>
                      <div class="col-md-12">
                         <div class="advance-table">
-                           <h4><i class="fa fa-list"></i> Approved & Caps<a class="btn btn-success btn-xs pull-right" href="{{ url('affiliate-create') }}" >Create</a></h4><br />
+                           <h4><i class="fa fa-list"></i> Domain List<a class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#modalLoginForm" >Create</a></h4><br />
                            <table width="100%" id="responsive_datatables_example" class="table display table-striped table-bordered responsive nowrap">
                               <thead>
                                  <tr>
@@ -1148,18 +1153,20 @@
                                  </tr>
                               </thead>
                               <tbody>
+                                 @foreach($domaindetails as $domaindetail)
                                  <tr>
-                                    <td>offer test google #4</td>
-                                    <td>None1</td>
-                                    <td>not set</td>
-                                    <td>not set</td>
+                                    <td>#{{ $domaindetail->id }}</td>
+                                    <td>{{ $domaindetail->domain }}</td>
+                                    <td>{{ ($domaindetail->sslstatus == '1') ? 'Set' : 'Not Set' }}</td>
+                                    <td>{{ ($domaindetail->status == '1') ? 'Active' : 'Disable' }}</td>
                                     <td>
-                                       <a href="#" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
+                                       <a style="cursor: pointer;"  onclick="getdomaindetail({{ $domaindetail->id }})" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil"></i></a>
                                        <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                        <a href="#" class="product-table-danger" data-toggle="tooltip" title="Block"><i class="fa fa-lock"></i></a>
                                     </td>
-                                    <td><span class="label label-success">default</span></td>
+                                    <td><span class="label label-{{ ($domaindetail->is_default == '1') ? 'success' : 'primary' }}">{{ ($domaindetail->is_default == 1) ? 'Default' : 'Normal' }}</span></td>
                                  </tr>
+                                 @endforeach
                               </tbody>
                            </table>
                         </div>
@@ -1657,5 +1664,131 @@ Agreement was last revised on 20-06-2016.</p><p></p>
 </footer>
 <!-- End Footer Area -->
 </section>
+<script type="text/javascript">
+
+$("#uploadfavicon").change(function(){
+        if ($(this).val() != '') {
+            uploadfavicon(this);
+
+        }
+});
+  $("#uploadlogo").change(function(){
+        if ($(this).val() != '') {
+            uploadlogo(this);
+        }
+        });
+$( "#domainform" ).submit(function( event ) {
+   var form_data = $(this).serialize();
+   $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+   //form_data.append('_token', '{{csrf_token()}}');
+  $.ajax({
+            url: "{{ route('adddomain') }}",
+            data: form_data,
+            type: 'POST',
+            success: function (data) {
+                $('#modalLoginForm').modal('toggle');
+                swal("Good job!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.", "success");
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+                $('#preview_image').attr('src', '{{asset('images/noimage.jpg')}}');
+            }
+        });
+  event.preventDefault();
+});
+// $( "#getdomaindetail" ).submit(function( event ) {
+//    var form_data = $(this).serialize();
+//    $.ajaxSetup({
+//        headers: {
+//            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//        }
+//    });
+//    alert(form_data);
+//    //form_data.append('_token', '{{csrf_token()}}');
+//   $.ajax({
+//             url: "{{ route('getdomaindetail', ['id' => 1]) }}",
+//             data: form_data,
+//             type: 'GET',
+//             success: function (data) {
+//                 alert(data);
+//             },
+//             error: function (xhr, status, error) {
+//                 alert(xhr.responseText);
+//                 $('#preview_image').attr('src', '{{asset('images/noimage.jpg')}}');
+//             }
+//         });
+//   event.preventDefault();
+// });
+function getdomaindetail(id) {
+   //alert(id);
+        // var form_data = new FormData();
+        // form_data.append('file', img.files[0]);
+        // form_data.append('_token', '{{csrf_token()}}');
+        // $('#loading').css('display', 'block');
+        $.ajax({
+            url: "{{ url('/getdomaindetail') }}/"+id,
+            type: 'get',
+            success: function (data) {
+                $('#domainid').val(data.id);
+                $('#domainname').val(data.domain);
+                $('#sslstatus').val(data.sslstatus);
+                $('#domainstatus').val(data.status);
+                $('#is_default').val(data.is_default);
+                $('#modalLoginForm').modal('toggle');
+                
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+                $('#preview_image').attr('src', '{{asset('images/noimage.jpg')}}');
+            }
+        });
+    }
+function uploadfavicon(img) {
+        var form_data = new FormData();
+        form_data.append('file', img.files[0]);
+        form_data.append('_token', '{{csrf_token()}}');
+        $('#loading').css('display', 'block');
+        $.ajax({
+            url: "{{ route('networkfavicon') }}",
+            data: form_data,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                alert(data);
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+                $('#preview_image').attr('src', '{{asset('images/noimage.jpg')}}');
+            }
+        });
+    }
+function uploadlogo(img) {
+        var form_data = new FormData();
+        form_data.append('file', img.files[0]);
+        form_data.append('_token', '{{csrf_token()}}');
+        $('#loading').css('display', 'block');
+        $.ajax({
+            url: "{{ route('networklogo') }}",
+            data: form_data,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                alert(data);
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+                $('#preview_image').attr('src', '{{asset('images/noimage.jpg')}}');
+            }
+        });
+    }
+
+</script>
 <!-- End Right Side Content -->
 @endsection

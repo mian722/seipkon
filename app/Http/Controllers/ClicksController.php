@@ -10,6 +10,7 @@ use Location;
 use DB;
 use Hash;
 use App\Clicks;
+use Jenssegers\Agent\Agent;
 
 class ClicksController extends Controller
 {
@@ -20,7 +21,9 @@ class ClicksController extends Controller
      */
     public function index()
     {
-        //
+        $agent = new Agent();
+              $platform = $agent->platform();
+return $version = $agent->version($platform);
     }
 
     /**

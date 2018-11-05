@@ -54,7 +54,7 @@
                                  <i class="fa fa-eye"></i>
                               </div>
                               <div class="widget_text">
-                                 <h3 class="count">{{ $clicks }}</h3>
+                                 <h3 class="count" id="tclicks">{{ $tclicks }}</h3>
                                  <p>Total Clicks</p>
                               </div>
                            </div>
@@ -73,7 +73,7 @@
                                  <i class="fa fa-eye"></i>
                               </div>
                               <div class="widget_text">
-                                 <h3 class="count">{{ $signups }}</h3>
+                                 <h3 class="count" id="tsignups">{{ $tsignups }}</h3>
                                  <p>Total Conversions</p>
                               </div>
                            </div>
@@ -92,7 +92,7 @@
                                  <i class="fa fa-money" aria-hidden="true"></i>
                               </div>
                               <div class="widget_text">
-                                 <h3>$<span class="count">{{ $earning }}</span></h3>
+                                 <h3>$<span class="count" id="tearning">{{ $tearning }}</span></h3>
                                  <p>Total Earning</p>
                               </div>
                            </div>
@@ -190,7 +190,8 @@
                            </div>
                            <div class="widget_card_body collapse in" id="chart_1">
                               <div class="chart">
-                                 <div id="sales_chart"></div>
+                                 <!-- <div id="sales_chart"></div> -->
+                                 <div id="container"></div>
                               </div>
                            </div>
                         </div>
@@ -590,5 +591,150 @@
                    
                </div>
             </div>
+            <script type="text/javascript">
+         
+         $(document).ready(function(){
+            Highcharts.chart('container', {
+                        title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                        categories: <?php echo json_encode($date); ?>
+                                    },
+                            yAxis: {
+                                     categories: [0,1,2,3,4,5,6,7,8,9],
+                                   allowDecimals: false,
+                                  min: '0',
+                                  title: {
+                                    text: 'Clicks / Conversions'
+                                  },
+                                    labels: {
+                                        formatter: function () {
+                                            return this.value;
+                                        }
+                                    }
+                                },
+                          
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            },
+
+                            series: [{
+                                name: 'Clicks',
+                                data: <?php echo json_encode($clicks); ?>
+                            }, {
+                                name: 'Conversions',
+                                data: <?php echo json_encode($signups); ?>
+                            }, {
+                                name: 'Earning',
+                                data: <?php echo json_encode($earning); ?>
+                            }],
+
+                            responsive: {
+                                rules: [{
+                                    condition: {
+                                        maxWidth: 500
+                                    },
+                                    chartOptions: {
+                                        legend: {
+                                            layout: 'horizontal',
+                                            align: 'center',
+                                            verticalAlign: 'bottom'
+                                        }
+                                    }
+                                }]
+                            }
+
+                        });
+            $('#tracking_link').on('change', function(){
+               $('#aff_tracking').html($(this).val());
+            });
+            $('#daterange_btn').daterangepicker({
+
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            startDate: moment().subtract(29, 'days'),
+            endDate: moment()
+         },
+         function (start, end) {
+            $('#daterange_btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+               $.ajax({
+               headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+               type: 'post',
+               url:"{{ route('daterangepicker1',Auth::user()->fname )}}",
+               data: {from: start.format('YYYY-MM-DD'), to: end.format('YYYY-MM-DD')},
+               dataType: 'json',
+               success:function(result) {
+                  $('#tclicks').html(result[4]);
+                  $('#tsignups').html(result[5]);
+                  $('#tearning').html(result[6]);
+                    Highcharts.chart('container', {
+                        title: {
+                                text: ''
+                            },
+                            xAxis: {
+                                        categories: result[2]
+                                    },
+                            yAxis: {
+                                     categories: [0,1,2,3,4,5,6,7,8,9],
+                                   allowDecimals: false,
+                                  min: '0',
+                                  title: {
+                                    text: 'Clicks / Conversions'
+                                  },
+                                    labels: {
+                                        formatter: function () {
+                                            return this.value;
+                                        }
+                                    }
+                                },
+                          
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            },
+
+                            series: [{
+                                name: 'Clicks',
+                                data: result[0]
+                            }, {
+                                name: 'Conversions',
+                                data: result[1]
+                            }, {
+                                name: 'Earning',
+                                data: result[3]
+                            }],
+
+                            responsive: {
+                                rules: [{
+                                    condition: {
+                                        maxWidth: 500
+                                    },
+                                    chartOptions: {
+                                        legend: {
+                                            layout: 'horizontal',
+                                            align: 'center',
+                                            verticalAlign: 'bottom'
+                                        }
+                                    }
+                                }]
+                            }
+
+                        });
+                   // $('#dataTables-example > tbody').html(result);
+               }
+           });
+         });
+      });
+      </script>
              @endsection
             

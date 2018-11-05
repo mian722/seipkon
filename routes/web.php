@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/test', 'ClicksController@index')->name('test');
 Route::group(['middleware'=> 'boss'], function(){
 	Route::get('/boss/home', 'BossController@index')->name('boss/home');
 });
@@ -63,11 +63,13 @@ Route::group(['prefix' => '{affiliates}', 'middleware'=> 'advertiser'], function
     Route::post('/paymentupdate/{id}', 'AffiliateController@paymentupdate')->name('affiliate.paymentupdate');
     Route::post('/paymentmethod', 'AffiliateController@paymentmethodcreate')->name('paymentmethod.create');
     Route::post('/passwordupdate', 'AffiliateController@passwordupdate')->name('affiliate.passwordupdate');
+    Route::post('/daterangepicker2/', 'AdvertiserController@daterangepicker2')->name('daterangepicker2');
 });
 
 Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/admin/home', 'AdminController@index')->name('admin.home');
 	Route::get('/admin', 'AdminController@index')->name('admin.home');
+	Route::post('/daterangepicker3/', 'AdminController@daterangepicker3')->name('daterangepicker3');
 
 	/* Offer Links */
 	Route::get('/all-offers', 'OfferController@index')->name('all-offers.get');
@@ -177,6 +179,16 @@ Route::group(['middleware'=> 'admin'], function(){
 	Route::get('/email-templates', 'TemplatesController@index')->name('emailtemplates');
 	Route::post('/email-templates/store', 'TemplatesController@affiliatestore')->name('affiliatestore');
 	Route::post('/email-templates/update', 'TemplatesController@affiliateupdate')->name('affiliateupdate');
+
+	/* setting */
+	Route::get('/customization', 'CustomizationContoller@index')->name('customization');
+	Route::post('/networkname', 'CustomizationContoller@networkname')->name('networkname');
+	Route::post('/networklogo', 'CustomizationContoller@networklogo')->name('networklogo');
+	Route::post('/networkfavicon', 'CustomizationContoller@networkfavicon')->name('networkfavicon');
+	Route::post('/smtpsave', 'CustomizationContoller@smtpsave')->name('smtpsave');
+	Route::post('/adddomain', 'CustomizationContoller@adddomain')->name('adddomain');
+	Route::get('/getdomaindetail/{id}', 'CustomizationContoller@getdomaindetail')->name('getdomaindetail');
+
 });
 Route::get('/tracking/{aid}/{oid}', 'ClicksController@tracking')->name('tracking');
 Route::get('/post', 'SignupController@postback')->name('posttracking');
@@ -221,7 +233,7 @@ Route::get('/teams-create', function () { return view('teams-create'); });
 Route::get('/test-conversion-report', function () { return view('test-conversion-report'); });
 Route::get('/server-log', function () { return view('server-log'); });
 Route::get('/activity-log', function () { return view('activity-log'); });
-Route::get('/customization', function () { return view('customization'); });
+
 Route::get('/mail-box', function () { return view('mail-box'); });
 Route::get('/unsubscribe-list', function () { return view('unsubscribe-list'); });
 Route::get('/puller-sources', function () { return view('puller-sources'); });

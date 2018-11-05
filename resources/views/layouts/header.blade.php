@@ -11,9 +11,9 @@
       <meta name="author" content="Themescare">
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <!-- Title -->
-      <title>{{ config('app.name', 'Seipkon') }}</title>
+      <title>{{ Auth::user()->company }}</title>
       <!-- Favicon -->
-      <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('public/assets/img/favicon/favicon-32x32.png') }}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('public/companylogo/').'/'.Auth::user()->favicon }}">
       <!-- Animate CSS -->
       <link href="{{ asset('public/assets/css/imageuploadify.min.css') }}" rel="stylesheet">
       <link rel="stylesheet" href="{{ asset('public/assets/css/animate.min.css') }}">
@@ -28,7 +28,8 @@
       <!-- Jvector CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/jvector/css/jquery-jvectormap.css') }}">
       <link href="{{ asset('public/assets/bootstrap3-editable/css/bootstrap-editable.css') }}" rel="stylesheet"/>
-
+      <!-- Sweet Alerts CSS -->
+      <link rel="stylesheet" href="{{ asset('public/assets/plugins/sweet-alerts/css/sweetalert.css') }}">
       <!-- Daterange CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/daterangepicker/css/daterangepicker.css') }}">
       <!-- Toggles CSS -->
@@ -44,8 +45,6 @@
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/datatables/css/buttons.bootstrap.min.css') }}" >
       <link rel="stylesheet" href="{{ asset('public/assets/plugins/datatables/css/responsive.bootstrap.min.css') }}" >
       <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-      <!-- Color Picker CSS -->
-      <link rel="stylesheet" href="{{ asset('public/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
       <!-- Main CSS -->
       <link rel="stylesheet" href="{{ asset('public/assets/css/seipkon.css') }}">
       <!-- Responsive CSS -->
@@ -91,7 +90,7 @@
             <!-- Logo Start -->
             <div class="seipkon-logo">
                <a href="index-2.html">
-               <img src="{{ asset('public/assets/img/logo.png') }}" alt="logo">
+               <img src="{{ asset('public/companylogo/').'/'.Auth::user()->companylogo }}" alt="logo">
                </a>
             </div>
             <!-- Logo End -->
@@ -536,7 +535,7 @@
       <!-- Select2 JS -->
       <script src="{{ asset('public/assets/plugins/select2/js/select2.full.js') }}"></script>
       <!-- Color Picker JS -->
-      <script src="{{ asset('public/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+      <!-- <script src="{{ asset('public/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script> -->
       <!-- Jquery Knob JS -->
       <script src="{{ asset('public/assets/plugins/jquery-knob/js/jquery.knob.min.js') }}"></script>
       <!-- Advance Component Form JS For Only This Page -->
@@ -587,6 +586,9 @@
       <!-- Custom JS -->
       <script src="{{ asset('public/assets/js/seipkon.js') }}"></script>
       <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="{{ asset('public/assets/plugins/sweet-alerts/js/sweetalert.min.js') }}"></script>
+      <script src="{{ asset('public/assets/plugins/sweet-alerts/js/custom-sweetalerts.js') }}"></script>
       
 
 
@@ -613,6 +615,12 @@
              $('#c1').DataTable();
              $('#c2').DataTable();
              $('#c3').DataTable();
+             $('#offer-list').DataTable( {
+                 "paging":   false,
+                 "ordering": false,
+                 "searching": false,
+                 "info":     false
+             } );
          } );
 
       $("ul.nav-tabs a").click(function (e) {

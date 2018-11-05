@@ -28,67 +28,109 @@ class AffiliateController extends Controller
      */
     public function index()
     {
-      $clicks = clicks::where('affiliate_id',Auth::user()->id)->count();
-      $signups = signup::where('affiliate_id',Auth::user()->id)->count();
-      $earningqry = invoices::select('offer_amounts')->where('affiliate_id', Auth::user()->id)->get();
-      $earning = 0;
-      foreach ($earningqry as $value) {
-       $earning += array_sum(json_decode($value->offer_amounts));
-      }
-     //  $generalquery = "Select  o.*
-     //  , (SELECT COUNT(clc.click) FROM clicks clc WHERE clc.affiliate_id = u.id and clc.offer_id = o.id) as sumclicks
-     //  , (SELECT COUNT(DISTINCT uc.ip) FROM clicks uc WHERE uc.affiliate_id = u.id and uc.offer_id = o.id) as uniquesumclicks
-     //  , (SELECT COUNT(s.signup) FROM signups s WHERE s.affiliate_id = u.id and s.offer_id = o.id) as sumsignup
-     //  from users u LEFT JOIN assignoffers ao on u.id = ao.user_id
-     //  Left Join offers o on o.id = ao.offer_id
-     //  where u.id = ".Auth::user()->id;
-     // $offers = DB::select($generalquery);
-      return view('affiliate.index',compact('clicks','signups','earning'));
+
+
+       $start = Carbon::now()->startOfDay();
+        $end = Carbon::now()->endOfDay();
+
+        $tclicks = clicks::where('affiliate_id',Auth::user()->id)->whereBetween('created_at', [$start,$end])->count();
+      $tsignups = signup::where('affiliate_id',Auth::user()->id)->whereBetween('created_at', [$start,$end])->count();
+     $tearning = signup::leftJoin('offers', 'offers.id', '=', 'signups.offer_id')->where('affiliate_id', Auth::user()->id)->whereBetween('signups.created_at', [$start,$end])->sum(DB::raw('offers.payout * signups.signup'));
+        $date = [];
+        while ($start->lte($end)) {
+            $date[] = $start->copy()->format('Y-m-d H:i');
+            //$dates[] = $this->chartdata($date);
+            $start->addHour();
+        }
+       $clicks = [];
+        foreach ($date as $value) {
+          $start = Carbon::parse($value)->startOfhour();
+          $end = Carbon::parse($value)->endOfhour();
+          $clicks[] = clicks::where('affiliate_id',Auth::user()->id)->whereBetween('created_at', [$start,$end])->count();
+        }
+        $signups = [];
+        foreach ($date as $value) {
+          $start = Carbon::parse($value)->startOfhour();
+          $end = Carbon::parse($value)->endOfhour();
+          $signups[] = signup::where('affiliate_id',Auth::user()->id)->whereBetween('created_at', [$start,$end])->count();
+        }
+        $earning = [];
+        foreach ($date as $value) {
+          $start = Carbon::parse($value)->startOfhour();
+          $end = Carbon::parse($value)->endOfhour();
+          $earning[] = signup::leftJoin('offers', 'offers.id', '=', 'signups.offer_id')->select('offer_amounts')->where('affiliate_id', Auth::user()->id)->whereBetween('signups.created_at', [$start,$end])->sum(DB::raw('offers.payout * signups.signup'));
+        }
+
+        // $alldata = json_encode(array($clicks,$signups,$date,$earning));
+     
+      return view('affiliate.index',compact('tclicks','tsignups','tearning','clicks','signups','date','earning'));
     }
 public function daterangepicker1(Request $request)
     {
-      
-    //  return DB::table('clicks')
-    // ->select(DB::raw('count(click) as count, HOUR(created_at) as hour'))
-    // ->whereDate('created_at', '=', Carbon::now()->toDateString())
-    // ->groupBy('hour')
-    // ->get();
-//       $start = $request->from.' 00:00:00';
-//      return $end = $request->to.' 23:59:59';
-//       return DB::table('clicks')->select(DB::raw('DAY(created_at) as hour, count(clicks.id) as total'))
-// ->groupBy('hour')->whereBetween('created_at', [$start, $end])
-// ->where('affiliate_id' ,Auth::user()->id)
-// ->tosql();
-      // $start = Carbon::now()->subDays(7); 
-      // for ($i = 0 ; $i <= 7; $i++) 
-      //   { 
-      //     $dates[] = $start->copy()->addDays($i)->format('d');
-      //     //$dates[] = Carbon::now()->subDays($i)->format('d'); 
-      //   } 
-      //   return $dates;
-      //   $alldata = [];
-      //   foreach ($dates as $value) {
-      //                     return $alldata[$key]=$value;
-      //                   }                
-      //   return $dates;
         $start = Carbon::parse($request->from)->startOfDay();
         $end = Carbon::parse($request->to)->endOfDay();
-
         $date = [];
-        while ($start->lte($end)) {
-            $date[] = $start->copy()->format('Y-m-d H:i:s');
+        $clicks = [];
+        $signups = [];
+        $earning = [];
+        $tclicks = clicks::where('affiliate_id',Auth::user()->id)->whereBetween('created_at', [$start,$end])->count();
+      $tsignups = signup::where('affiliate_id',Auth::user()->id)->whereBetween('created_at', [$start,$end])->count();
+     $tearning = signup::leftJoin('offers', 'offers.id', '=', 'signups.offer_id')->where('affiliate_id', Auth::user()->id)->whereBetween('signups.created_at', [$start,$end])->sum(DB::raw('offers.payout * signups.signup'));
+        if ($request->from == $request->to) {
+          while ($start->lte($end)) {
+            $date[] = $start->copy()->format('Y-m-d H:i');
+            //$dates[] = $this->chartdata($date);
+            $start->addHour();
+          }
+          foreach ($date as $value) {
+            $start = Carbon::parse($value)->startOfHour();
+            $end = Carbon::parse($value)->endOfHour();
+            $clicks[] = clicks::where('affiliate_id',Auth::user()->id)->whereBetween('created_at', [$start,$end])->count();
+          }
+          
+          foreach ($date as $value) {
+            $start = Carbon::parse($value)->startOfHour();
+            $end = Carbon::parse($value)->endOfHour();
+            $signups[] = signup::where('affiliate_id',Auth::user()->id)->whereBetween('created_at', [$start,$end])->count();
+          }
+          
+          foreach ($date as $value) {
+            $start = Carbon::parse($value)->startOfHour();
+            $end = Carbon::parse($value)->endOfHour();
+            $earning[] = signup::leftJoin('offers', 'offers.id', '=', 'signups.offer_id')->select('offer_amounts')->where('affiliate_id', Auth::user()->id)->whereBetween('signups.created_at', [$start,$end])->sum(DB::raw('offers.payout * signups.signup'));
+          }
+         
+        } else {
+          while ($start->lte($end)) {
+            $date[] = $start->copy()->format('Y-m-d');
             //$dates[] = $this->chartdata($date);
             $start->addDay();
+          }
+
+          foreach ($date as $value) {
+            $start = Carbon::parse($value)->startOfDay();
+            $end = Carbon::parse($value)->endOfDay();
+            $clicks[] = clicks::where('affiliate_id',Auth::user()->id)->whereBetween('created_at', [$start,$end])->count();
+          }
+          
+          foreach ($date as $value) {
+            $start = Carbon::parse($value)->startOfDay();
+            $end = Carbon::parse($value)->endOfDay();
+            $signups[] = signup::where('affiliate_id',Auth::user()->id)->whereBetween('created_at', [$start,$end])->count();
+          }
+          
+          foreach ($date as $value) {
+            $start = Carbon::parse($value)->startOfDay();
+            $end = Carbon::parse($value)->endOfDay();
+            $earning[] = signup::leftJoin('offers', 'offers.id', '=', 'signups.offer_id')->select('offer_amounts')->where('affiliate_id', Auth::user()->id)->whereBetween('signups.created_at', [$start,$end])->sum(DB::raw('offers.payout * signups.signup'));
+          }
         }
-        //return $date;
-        $shahid = [];
-        foreach ($date as $value) {
-          $shahid[] = DB::table('clicks')->whereBetween('created_at', $value)
-            ->where('affilsiate_id' ,Auth::user()->id)
-            ->get();
-        }
-        return $shahid;
+       
+       //return $date;
+        
+       return json_encode(array($clicks,$signups,$date,$earning,$tclicks,$tsignups,$tearning));
     }
+   
     public function chartdata($data)
     {
       //return $data;
